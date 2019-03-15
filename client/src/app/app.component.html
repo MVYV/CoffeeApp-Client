@@ -1,20 +1,28 @@
 <header class="header-6">
   <div class="branding">
-    <a routerLink="/" class="nav-link">
+    <a routerLink="/" class="nav-link" (click)="activeNavLink('home')">
       <clr-icon shape="bundle"></clr-icon>
       <span class="title">{{ 'TITLE' | translate }}</span>
     </a>
   </div>
   <div class="header-nav">
-    <a routerLink="/" class="nav-link nav-text">{{ 'HOME' | translate }}</a>
-    <a routerLink="/news" class="active nav-link nav-text">{{ 'NEWS' | translate }}</a>
-    <a routerLink="/products" class="nav-link nav-text">{{ 'PRODUCTS' | translate }}</a>
-    <a routerLink="/about" class="nav-link nav-text">{{ 'ABOUT' | translate }}</a>
+    <a routerLink="/" class="nav-link nav-text" (click)="activeNavLink('home')" [ngClass] = "{'active': navLinkTitle == 'home'}">{{ 'HOME' | translate }}</a>
+    <a routerLink="/news" class="active nav-link nav-text" (click)="activeNavLink('news')" [ngClass] = "{'active': navLinkTitle == 'news'}">{{ 'NEWS' | translate }}</a>
+    <a routerLink="/products" class="nav-link nav-text" (click)="activeNavLink('products')" [ngClass] = "{'active': navLinkTitle == 'products'}">{{ 'PRODUCTS' | translate }}</a>
+    <a routerLink="/about" class="nav-link nav-text" (click)="activeNavLink('about')" [ngClass] = "{'active': navLinkTitle == 'about'}">{{ 'ABOUT' | translate }}</a>
   </div>
   <div class="header-actions">
-    <span (click)="setLanguage('en')" class="nav-link nav-text langSwitch">EN</span>
-    <!--<span (click)="setLanguage('ua')" class="nav-link nav-text langSwitch langSwitchUA">UA</span>-->
-    <span (click)="setLanguage('pl')" class="nav-link nav-text langSwitch">PL</span>
+    <clr-dropdown>
+      <button class="nav-icon" clrDropdownTrigger>
+        <clr-icon shape="language"></clr-icon>
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <span clrDropdownItem (click)="setLanguage('en')" class="langSwitch">{{ 'ENGLISH' | translate }}</span>
+        <!--<span (click)="setLanguage('ua')" class="nav-link nav-text langSwitch langSwitchUA">{{ 'UKRAINIAN' | translate}}</span>-->
+        <span clrDropdownItem (click)="setLanguage('pl')" class="langSwitch">{{ 'POLISH' | translate}}</span>
+      </clr-dropdown-menu>
+    </clr-dropdown>
     <clr-dropdown>
       <button class="nav-icon" clrDropdownTrigger>
         <clr-icon shape="user"></clr-icon>
