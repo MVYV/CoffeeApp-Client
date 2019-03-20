@@ -11,6 +11,7 @@ import { ClarityModule } from "@clr/angular";
 import { HttpClientModule } from "@angular/common/http";
 import { TranslateService } from "./services/translate.service";
 import { TranslatePipe } from './pipes/translate.pipe';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('en');
@@ -27,6 +28,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ClarityModule,
     HttpClientModule

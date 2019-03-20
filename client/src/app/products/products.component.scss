@@ -1,9 +1,8 @@
 .products-container
 {
   width: 75%;
-  height: 500px;
   margin: 106px auto 10px;
-  background-color: #0f171c;
+  background-color: transparent;
 }
 .subnav
 {
@@ -15,24 +14,36 @@
 .product-item
 {
   width: 100%;
-  height: 2000px;
+  height: 1500px;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 .product-item-1
 {
-  background-color: cadetblue;
+  background-color: transparent;
   margin-bottom: 10px;
+  border: 1px solid cadetblue;
+  color: cadetblue;
 }
 .product-item-2
 {
-  background-color: coral;
+  background-color: transparent;
   margin-bottom: 10px;
+  border: 1px solid coral;
+  color: coral;
 }
 .product-item-3
 {
-  background-color: darkcyan;
+  background-color: transparent;
   margin-bottom: 10px;
+  border: 1px solid darkolivegreen;
+  color: darkolivegreen;
 }
 .product-item-4
 {
-  background-color: darkslateblue;
+  background-color: transparent;
+  border: 1px solid darkslateblue;
+  color: darkslateblue;
 }

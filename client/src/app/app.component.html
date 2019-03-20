@@ -1,43 +1,58 @@
-<header class="header-6">
-  <div class="branding">
-    <a routerLink="/" class="nav-link" (click)="activeNavLink('home')">
-      <clr-icon shape="bundle"></clr-icon>
-      <span class="title">{{ 'TITLE' | translate }}</span>
-    </a>
+<clr-main-container class="clr-main-container">
+  <clr-header class="header-6">
+    <!--<header class="header header-6">-->
+      <div class="branding">
+        <a routerLink="/" class="nav-link" (click)="activeNavLink('home')">
+          <clr-icon shape="bundle"></clr-icon>
+          <span class="title">{{ 'TITLE' | translate }}</span>
+        </a>
+      </div>
+      <div class="header-nav" [clr-nav-level]="1">
+        <a routerLink="/" class="nav-link nav-text" (click)="activeNavLink('home')" [ngClass] = "{'active': navLinkTitle == 'home'}">{{ 'HOME' | translate }}</a>
+        <a routerLink="/news" class="active nav-link nav-text" (click)="activeNavLink('news')" [ngClass] = "{'active': navLinkTitle == 'news'}">{{ 'NEWS' | translate }}</a>
+        <a routerLink="/products" class="nav-link nav-text" (click)="activeNavLink('products')" [ngClass] = "{'active': navLinkTitle == 'products'}">{{ 'PRODUCTS' | translate }}</a>
+        <a routerLink="/about" class="nav-link nav-text" (click)="activeNavLink('about')" [ngClass] = "{'active': navLinkTitle == 'about'}">{{ 'ABOUT' | translate }}</a>
+      </div>
+      <div class="header-actions">
+        <clr-dropdown>
+          <button class="nav-icon" clrDropdownTrigger>
+            <clr-icon shape="language"></clr-icon>
+            <clr-icon shape="caret down"></clr-icon>
+          </button>
+          <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right" class="langSelector">
+            <span clrDropdownItem (click)="setLanguage('en')" class="langSwitch">{{ 'ENGLISH' | translate }}</span>
+            <!--<span (click)="setLanguage('ua')" class="nav-link nav-text langSwitch langSwitchUA">{{ 'UKRAINIAN' | translate}}</span>-->
+            <span clrDropdownItem (click)="setLanguage('pl')" class="langSwitch">{{ 'POLISH' | translate}}</span>
+          </clr-dropdown-menu>
+        </clr-dropdown>
+        <clr-dropdown>
+          <button class="nav-icon" clrDropdownTrigger>
+            <clr-icon shape="user"></clr-icon>
+            <clr-icon shape="caret down"></clr-icon>
+          </button>
+          <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right" class="userTools">
+            <a href="..." clrDropdownItem>{{ 'ABOUT_USER' | translate }}</a>
+            <a href="..." clrDropdownItem>{{ 'PREFERENCES' | translate }}</a>
+            <a href="..." clrDropdownItem>{{ 'LOG_OUT' | translate }}</a>
+          </clr-dropdown-menu>
+        </clr-dropdown>
+        <a class="nav-link nav-icon" (click)="basic = true">
+          <clr-icon shape="cog"></clr-icon>
+        </a>
+      </div>
+    <!--</header>-->
+  </clr-header>
+  <router-outlet></router-outlet>
+</clr-main-container>
+<clr-modal [(clrModalOpen)]="basic">
+  <h3 class="modal-title">I have a nice title</h3>
+  <div class="modal-body">
+    <p>But not much to say...</p>
   </div>
-  <div class="header-nav">
-    <a routerLink="/" class="nav-link nav-text" (click)="activeNavLink('home')" [ngClass] = "{'active': navLinkTitle == 'home'}">{{ 'HOME' | translate }}</a>
-    <a routerLink="/news" class="active nav-link nav-text" (click)="activeNavLink('news')" [ngClass] = "{'active': navLinkTitle == 'news'}">{{ 'NEWS' | translate }}</a>
-    <a routerLink="/products" class="nav-link nav-text" (click)="activeNavLink('products')" [ngClass] = "{'active': navLinkTitle == 'products'}">{{ 'PRODUCTS' | translate }}</a>
-    <a routerLink="/about" class="nav-link nav-text" (click)="activeNavLink('about')" [ngClass] = "{'active': navLinkTitle == 'about'}">{{ 'ABOUT' | translate }}</a>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="basic = false">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>
   </div>
-  <div class="header-actions">
-    <clr-dropdown>
-      <button class="nav-icon" clrDropdownTrigger>
-        <clr-icon shape="language"></clr-icon>
-        <clr-icon shape="caret down"></clr-icon>
-      </button>
-      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-        <span clrDropdownItem (click)="setLanguage('en')" class="langSwitch">{{ 'ENGLISH' | translate }}</span>
-        <!--<span (click)="setLanguage('ua')" class="nav-link nav-text langSwitch langSwitchUA">{{ 'UKRAINIAN' | translate}}</span>-->
-        <span clrDropdownItem (click)="setLanguage('pl')" class="langSwitch">{{ 'POLISH' | translate}}</span>
-      </clr-dropdown-menu>
-    </clr-dropdown>
-    <clr-dropdown>
-      <button class="nav-icon" clrDropdownTrigger>
-        <clr-icon shape="user"></clr-icon>
-        <clr-icon shape="caret down"></clr-icon>
-      </button>
-      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-        <a href="..." clrDropdownItem>{{ 'ABOUT_USER' | translate }}</a>
-        <a href="..." clrDropdownItem>{{ 'PREFERENCES' | translate }}</a>
-        <a href="..." clrDropdownItem>{{ 'LOG_OUT' | translate }}</a>
-      </clr-dropdown-menu>
-    </clr-dropdown>
-    <a href="..." class="nav-link nav-icon">
-      <clr-icon shape="cog"></clr-icon>
-    </a>
-  </div>
-</header>
+</clr-modal>
 
-<router-outlet></router-outlet>
+<!--<router-outlet></router-outlet>-->

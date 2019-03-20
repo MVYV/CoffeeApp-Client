@@ -2,10 +2,19 @@
 //{
 //  font-family: 'ZCOOL QingKe HuangYou', cursive;
 //}
+.clr-main-container
+{
+  overflow: auto;
+}
 .header-6
 {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+}
+.langSelector,
+.userTools
+{
+  z-index: 9999999 !important;
 }
