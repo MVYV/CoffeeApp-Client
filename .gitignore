@@ -37,3 +37,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+/server/.idea
+/server/target
+/server/march11webapp.iml
