@@ -6,15 +6,11 @@
 {
   overflow: auto;
 }
-.header-6
+.header-navigation
 {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-}
-.langSelector,
-.userTools
-{
-  z-index: 9999999 !important;
+  z-index: 99999;
 }

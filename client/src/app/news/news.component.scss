@@ -1,8 +1,18 @@
 .news-container
 {
   width: 75%;
-  height: 500px;
-  margin: 70px auto 10px;
+  margin: 60px auto 10px;
+  padding: 5px;
   background-color: transparent;
-  font-size: 40px;
+  //border: 1px solid #9aa8e2;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+.card
+{
+  display: block;
+  margin: 5px;
+  width: calc(33.33333% - 10px);
 }

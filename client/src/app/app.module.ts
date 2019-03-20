@@ -1,5 +1,5 @@
-import {BrowserModule, Title} from '@angular/platform-browser';
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import { BrowserModule, Title } from '@angular/platform-browser';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,7 +11,9 @@ import { ClarityModule } from "@clr/angular";
 import { HttpClientModule } from "@angular/common/http";
 import { TranslateService } from "./services/translate.service";
 import { TranslatePipe } from './pipes/translate.pipe';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ArticleComponent } from './article/article.component';
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('en');
@@ -24,7 +26,9 @@ export function setupTranslateFactory(service: TranslateService): Function {
     NewsComponent,
     ProductsComponent,
     HomeComponent,
-    TranslatePipe
+    TranslatePipe,
+    PageNotFoundComponent,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,
