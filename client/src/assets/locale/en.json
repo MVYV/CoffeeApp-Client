@@ -9,5 +9,12 @@
   "LOG_IN": "Log In",
   "ENGLISH": "English",
   "POLISH": "Polish",
-  "UKRAINIAN": "Ukrainian"
+  "UKRAINIAN": "Ukrainian",
+  "LOGIN_WELCOME": "Welcome to",
+  "LOGIN_TITLE": "Coffee Products",
+  "LOGIN_HELP": "Use your Login and Password to sign in or create one now",
+  "USERNAME": "Username",
+  "PASSWORD": "Password",
+  "REGISTER": "Register",
+  "REMEMBER_ME": "Remember me"
 }

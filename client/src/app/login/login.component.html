@@ -1,26 +1,26 @@
 <div class="login-wrapper">
   <form class="login">
     <section class="title">
-      <h3 class="welcome">Welcome to</h3>
-      Coffee Products
-      <h5 class="hint">Use your Login and Password to sign in or create one now</h5>
+      <h3 class="welcome">{{ 'LOGIN_WELCOME' | translate }}</h3>
+      {{ 'LOGIN_TITLE' | translate }}
+      <h5 class="hint">{{ 'LOGIN_HELP' | translate }}</h5>
     </section>
     <div class="login-group">
       <clr-input-container>
-        <input type="text" name="username" clrInput placeholder="Username"/>
+        <input type="text" name="username" clrInput placeholder="{{ 'USERNAME' | translate }}"/>
       </clr-input-container>
       <clr-password-container>
-        <input type="password" name="password" clrPassword placeholder="Password"/>
+        <input type="password" name="password" clrPassword placeholder="{{ 'PASSWORD' | translate }}"/>
       </clr-password-container>
       <clr-checkbox-wrapper>
-        <label>Remember me</label>
+        <label>{{ 'REMEMBER_ME' | translate }}</label>
         <input type="checkbox" name="rememberMe" clrCheckbox/>
       </clr-checkbox-wrapper>
       <div class="error error-message">
         Invalid user name or password
       </div>
-      <button type="submit" class="btn btn-primary">Log In</button>
-      <a href="" class="signup">Register</a>
+      <button type="submit" class="btn btn-primary">{{ 'LOG_IN' | translate }}</button>
+      <a href="" class="signup">{{ 'REGISTER' | translate }}</a>
     </div>
   </form>
 </div>

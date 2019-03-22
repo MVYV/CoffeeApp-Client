@@ -6,8 +6,15 @@
   "ABOUT": "About",
   "ABOUT_USER": "Profil",
   "PREFERENCES": "Konfiguracja",
-  "LOG_OUT": "Zaloguj Się",
+  "LOG_IN": "Zaloguj Się",
   "ENGLISH": "Angielski",
   "POLISH": "Polski",
-  "UKRAINIAN": "Ukraiński"
+  "UKRAINIAN": "Ukraiński",
+  "LOGIN_WELCOME": "Zapraszamy do",
+  "LOGIN_TITLE": "Produktów Kawowych",
+  "LOGIN_HELP": "Zaloguj się z pomocą twojego login i hasła lub stwórz nowe konto",
+  "USERNAME": "Imię Użytkownika",
+  "PASSWORD": "Hasło",
+  "REGISTER": "Zarejestrować",
+  "REMEMBER_ME": "Zapamiętaj mnie"
 }
