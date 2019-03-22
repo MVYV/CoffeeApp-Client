@@ -14,3 +14,23 @@
   right: 0;
   z-index: 99999;
 }
+.login-modal
+{
+  height: auto;
+}
+.login-container
+{
+  background-color: #1b2a32;
+  height: auto;
+  padding: 10px;
+}
+clr-input-container,
+clr-password-container
+{
+  width: 100% !important;
+}
+.user-name,
+.user-password
+{
+  width: 100% !important;
+}

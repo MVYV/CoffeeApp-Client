@@ -33,7 +33,7 @@
           <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right" class="userTools">
             <a href="..." clrDropdownItem>{{ 'ABOUT_USER' | translate }}</a>
             <a href="..." clrDropdownItem>{{ 'PREFERENCES' | translate }}</a>
-            <a href="..." clrDropdownItem>{{ 'LOG_OUT' | translate }}</a>
+            <a routerLink="/login" clrDropdownItem>{{ 'LOG_IN' | translate }}</a>
           </clr-dropdown-menu>
         </clr-dropdown>
         <a class="nav-link nav-icon" (click)="basic = true">

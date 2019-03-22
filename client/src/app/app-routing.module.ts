@@ -6,6 +6,7 @@ import { AboutComponent } from "./about/about.component";
 import { ProductsComponent } from "./products/products.component";
 import { ArticleComponent } from "./article/article.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { LoginComponent } from "./login/login.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,6 +14,7 @@ const appRoutes: Routes = [
   { path: 'products', component: ProductsComponent },
   { path: 'about', component: AboutComponent },
   { path: 'article/:id', component: ArticleComponent },
+  { path:'login', component: LoginComponent },
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

@@ -14,6 +14,7 @@ import { TranslatePipe } from './pipes/translate.pipe';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ArticleComponent } from './article/article.component';
+import { LoginComponent } from './login/login.component';
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('en');
@@ -28,7 +29,8 @@ export function setupTranslateFactory(service: TranslateService): Function {
     HomeComponent,
     TranslatePipe,
     PageNotFoundComponent,
-    ArticleComponent
+    ArticleComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
