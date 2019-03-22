@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ArticleComponent } from './article/article.component';
 import { LoginComponent } from './login/login.component';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('en');
@@ -37,7 +38,8 @@ export function setupTranslateFactory(service: TranslateService): Function {
     BrowserAnimationsModule,
     AppRoutingModule,
     ClarityModule,
-    HttpClientModule
+    HttpClientModule,
+    ScrollToModule.forRoot()
   ],
   providers: [
     Title,

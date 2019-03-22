@@ -1,16 +1,16 @@
 <nav class="subnav" [clr-nav-level]="2">
   <ul class="nav">
     <li class="nav-item">
-      <a class="nav-link active" href="products#product-item1" (click)="activeProduct('something1')" [ngClass] = "{'active': productsLink == 'something1'}">Something1</a>
+      <a class="nav-link active" [ngx-scroll-to-offset]="-106" [ngx-scroll-to]="'#product-item1'" (click)="activeProduct('something1')" [ngClass] = "{'active': productsLink == 'something1'}">Something1</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="products#product-item2" (click)="activeProduct('something2')" [ngClass] = "{'active': productsLink == 'something2'}">Something2</a>
+      <a class="nav-link" [ngx-scroll-to-offset]="-106" [ngx-scroll-to]="'#product-item2'" (click)="activeProduct('something2')" [ngClass] = "{'active': productsLink == 'something2'}">Something2</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="products#product-item3" (click)="activeProduct('something3')" [ngClass] = "{'active': productsLink == 'something3'}">Something3</a>
+      <a class="nav-link" [ngx-scroll-to-offset]="-106" [ngx-scroll-to]="'#product-item3'" (click)="activeProduct('something3')" [ngClass] = "{'active': productsLink == 'something3'}">Something3</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="products#product-item4" (click)="activeProduct('something4')" [ngClass] = "{'active': productsLink == 'something4'}">Something4</a>
+      <a class="nav-link" [ngx-scroll-to-offset]="-106" [ngx-scroll-to]="'#product-item4'" (click)="activeProduct('something4')" [ngClass] = "{'active': productsLink == 'something4'}">Something4</a>
     </li>
   </ul>
 </nav>

@@ -23,8 +23,10 @@
     "@clr/angular": "^1.1.1",
     "@clr/icons": "^1.1.1",
     "@clr/ui": "^1.1.1",
+    "@nicky-lenaers/ngx-scroll-to": "^2.0.0",
     "@webcomponents/custom-elements": "^1.2.1",
     "core-js": "^2.5.4",
+    "ng2-smooth-scroll": "^1.0.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"

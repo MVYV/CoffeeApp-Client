@@ -1,15 +1,15 @@
 .products-container
 {
   width: 75%;
-  margin: 106px auto 10px;
+  margin: 10px auto 10px;
   background-color: transparent;
 }
 .subnav
 {
-  position: fixed;
+  position: sticky;
   top: 60px;
-  left: 0;
-  right: 0;
+  //left: 0;
+  //right: 0;
 }
 .product-item
 {
@@ -19,6 +19,7 @@
   display: flex;
   justify-content: center;
   align-content: center;
+  background-color: #22343c !important;
 }
 .product-item-1
 {
@@ -46,4 +47,8 @@
   background-color: transparent;
   border: 1px solid darkslateblue;
   color: darkslateblue;
+}
+.nav-item
+{
+  cursor: pointer;
 }
