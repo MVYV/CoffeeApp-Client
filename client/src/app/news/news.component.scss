@@ -16,3 +16,17 @@
   margin: 5px;
   width: calc(33.33333% - 10px);
 }
+@media screen and (max-width: 1200px)
+{
+  .card
+  {
+    width: calc(50% - 10px);
+  }
+}
+@media screen and (max-width: 768px)
+{
+  .card
+  {
+    width: calc(100% - 10px);
+  }
+}
