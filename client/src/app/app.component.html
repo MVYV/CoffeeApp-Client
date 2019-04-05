@@ -34,8 +34,7 @@
           <clr-icon shape="caret down"></clr-icon>
         </button>
         <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right" class="userTools">
-          <a href="..." clrDropdownItem>{{ 'ABOUT_USER' | translate }}</a>
-          <a href="..." clrDropdownItem>{{ 'PREFERENCES' | translate }}</a>
+          <a routerLink="/registration" clrDropdownItem>{{ 'REGISTRATION' | translate }}</a>
           <a routerLink="/login" clrDropdownItem>{{ 'LOG_IN' | translate }}</a>
         </clr-dropdown-menu>
       </clr-dropdown>

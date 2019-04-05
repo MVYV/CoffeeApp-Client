@@ -1,0 +1,33 @@
+<div class="login-wrapper">
+  <form class="login">
+    <section class="title">
+      <h3 class="welcome">{{ 'LOGIN_WELCOME' | translate }}</h3>
+      {{ 'LOGIN_TITLE' | translate }}
+      <h5 class="hint">{{ 'REGISTRATION_HELP' | translate }}</h5>
+    </section>
+    <div class="login-group">
+      <clr-input-container>
+        <input type="text" name="username" class="userName" clrInput placeholder="{{ 'FIRST_NAME' | translate }}" autocomplete="off"/>
+      </clr-input-container>
+      <clr-input-container>
+        <input type="text" name="username" class="userName" clrInput placeholder="{{ 'LAST_NAME' | translate }}" autocomplete="off"/>
+      </clr-input-container>
+      <clr-input-container>
+        <input type="text" name="username" class="userName" clrInput placeholder="{{ 'LOGIN' | translate }}" autocomplete="off"/>
+      </clr-input-container>
+      <clr-input-container>
+        <input type="text" name="username" class="userName" clrInput placeholder="{{ 'EMAIL' | translate }}" autocomplete="off"/>
+      </clr-input-container>
+      <clr-password-container>
+        <input type="password" name="password" class="userPass" clrPassword placeholder="{{ 'PASSWORD' | translate }}"/>
+      </clr-password-container>
+      <clr-password-container>
+        <input type="password" name="password" class="userPass" clrPassword placeholder="{{ 'PASSWORD_REPEAT' | translate }}"/>
+      </clr-password-container>
+      <div class="error error-message">
+        Invalid user name or password
+      </div>
+      <button type="submit" class="btn btn-primary">{{ 'REGISTER' | translate }}</button>
+    </div>
+  </form>
+</div>

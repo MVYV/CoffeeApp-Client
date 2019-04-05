@@ -7,6 +7,7 @@ import { ProductsComponent } from "./components/products/products.component";
 import { ArticleComponent } from "./components/article/article.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { LoginComponent } from "./components/login/login.component";
+import { RegistrationComponent } from "./components/registration/registration.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'article/:id', component: ArticleComponent },
   { path:'login', component: LoginComponent },
+  { path:'registration', component: RegistrationComponent },
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

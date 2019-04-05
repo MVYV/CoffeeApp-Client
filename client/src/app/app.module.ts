@@ -16,6 +16,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { ArticleComponent } from './components/article/article.component';
 import { LoginComponent } from './components/login/login.component';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('en');
@@ -31,7 +32,8 @@ export function setupTranslateFactory(service: TranslateService): Function {
     TranslatePipe,
     PageNotFoundComponent,
     ArticleComponent,
-    LoginComponent
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

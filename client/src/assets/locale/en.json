@@ -16,5 +16,12 @@
   "USERNAME": "Username",
   "PASSWORD": "Password",
   "REGISTER": "Register",
-  "REMEMBER_ME": "Remember me"
+  "REGISTRATION": "Registration",
+  "REMEMBER_ME": "Remember me",
+  "LOGIN": "Login",
+  "FIRST_NAME": "First Name",
+  "LAST_NAME": "Last Name",
+  "EMAIL": "Email",
+  "PASSWORD_REPEAT": "Repeat Password",
+  "REGISTRATION_HELP": "Please fill in the fields below to register on our site"
 }
