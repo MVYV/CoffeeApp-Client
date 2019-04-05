@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from "./home/home.component";
-import { NewsComponent } from "./news/news.component";
-import { AboutComponent } from "./about/about.component";
-import { ProductsComponent } from "./products/products.component";
-import { ArticleComponent } from "./article/article.component";
-import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
-import { LoginComponent } from "./login/login.component";
+import { HomeComponent } from "./components/home/home.component";
+import { NewsComponent } from "./components/news/news.component";
+import { AboutComponent } from "./components/about/about.component";
+import { ProductsComponent } from "./components/products/products.component";
+import { ArticleComponent } from "./components/article/article.component";
+import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
+import { LoginComponent } from "./components/login/login.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
