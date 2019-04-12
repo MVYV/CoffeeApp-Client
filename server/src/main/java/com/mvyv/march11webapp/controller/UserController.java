@@ -33,12 +33,15 @@ public class UserController {
   @PreAuthorize("hasAnyRole('ADMIN')")
   @RequestMapping("/getAll")
   public ResponseEntity<List<String>> getAllItems() {
+    userService.getById(1L).get().getRoles().forEach(r -> System.out.println("role: " +r.getRole()));
     List<String> list = Arrays.asList("1", "2", "3");
     return ResponseEntity.ok(list);
   }
 
   @RequestMapping("/hello")
   public ResponseEntity<List<User>> sayHello(){
+    userService.getById(1L).get().getRoles().forEach(r -> System.out.println("role: " +r.getRole()));
+    System.out.println("user role: " );
     return ResponseEntity.ok(userService.getAll());
   }
 }

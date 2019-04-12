@@ -29,7 +29,7 @@ public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "user_id")
-  private int id;
+  private Long id;
 
   @Column(name = "email")
   private String email;
@@ -44,10 +44,14 @@ public class User {
   private String lastName;
 
   @Column(name = "active")
-  private int active;
+  private Integer active;
 
-  @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+//  @ManyToMany(cascade = CascadeType.ALL)
+//  @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+//  private List<Role> roles;
+
+  @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+  @JoinTable(name="user_role",joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
   private List<Role> roles;
 
 }
