@@ -16,6 +16,16 @@ import java.util.List;
 @Table(name = "USERS")
 public class User {
 
+  public User(User user) {
+    id = user.getId();
+    email = user.getEmail();
+    password = user.getPassword();
+    name = user.getName();
+    lastName = user.getLastName();
+    active = user.getActive();
+    roles = user.getRoles();
+  }
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "user_id")

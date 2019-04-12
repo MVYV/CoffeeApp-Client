@@ -28,8 +28,8 @@ public class UserService {
     return Optional.ofNullable(userRepository.getOne(id));
   }
 
-  public Optional<User> getByUsername(String username) {
-    return Optional.ofNullable(userRepository.findByUsername(username));
+  public Optional<User> getByEmail(String email) {
+    return Optional.ofNullable(userRepository.findByEmail(email));
   }
 
   public User save(User user) {
