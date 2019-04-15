@@ -4,14 +4,11 @@ import com.mvyv.march11webapp.domain.User;
 import com.mvyv.march11webapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/")
@@ -24,24 +21,31 @@ public class UserController {
     this.userService = userService;
   }
 
-  @GetMapping
-  public ResponseEntity<Void> index() {
-    System.out.println("index load");
-    return ResponseEntity.noContent().build();
-  }
-
-  @PreAuthorize("hasAnyRole('ADMIN')")
-  @RequestMapping("/getAll")
+  @GetMapping("/getAll")
   public ResponseEntity<List<String>> getAllItems() {
-    userService.getById(1L).get().getRoles().forEach(r -> System.out.println("role: " +r.getRole()));
     List<String> list = Arrays.asList("1", "2", "3");
     return ResponseEntity.ok(list);
   }
 
-  @RequestMapping("/hello")
-  public ResponseEntity<List<User>> sayHello(){
-    userService.getById(1L).get().getRoles().forEach(r -> System.out.println("role: " +r.getRole()));
-    System.out.println("user role: " );
+  @GetMapping("/")
+  @CrossOrigin(origins = "http://localhost:4200")
+  public ResponseEntity<List<User>> getAll(){
     return ResponseEntity.ok(userService.getAll());
+  }
+
+  @GetMapping("/{id}")
+  @CrossOrigin(origins = "http://localhost:4200")
+  public ResponseEntity<User> getById(@PathVariable("id") Long id) {
+    Optional<User> userOptional = userService.getById(id);
+    if (userOptional.isPresent()) {
+      return ResponseEntity.ok(userOptional.get());
+    }
+    return ResponseEntity.notFound().build();
+  }
+
+  @PostMapping
+  @CrossOrigin(origins = "http://localhost:4200")
+  public ResponseEntity<User> addNewUser(@RequestBody User user) {
+    return ResponseEntity.ok(userService.save(user));
   }
 }
