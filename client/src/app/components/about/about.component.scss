@@ -4,5 +4,25 @@
   height: 500px;
   margin: 10px auto 10px;
   background-color: transparent;
-  font-size: 40px;
+  //font-size: 40px;
+}
+clr-tree-node
+{
+  color: #000000;
+}
+.title3:nth-of-type(2n + 1)
+{
+  background-color: dodgerblue;
+}
+.title3:nth-of-type(2n)
+{
+  background-color: lightblue;
+}
+.title3:nth-of-type(2n + 1) .title4:nth-of-type(2n + 1)
+{
+  background-color: lightblue;
+}
+.title3:nth-of-type(2n) .title4:nth-of-type(2n + 1)
+{
+  background-color: dodgerblue;
 }
