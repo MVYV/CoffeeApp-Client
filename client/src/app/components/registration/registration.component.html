@@ -1,5 +1,5 @@
 <div class="login-wrapper">
-  <form class="login">
+  <form class="login" #userRegistrationForm="ngForm" autocomplete="off">
     <section class="title">
       <h3 class="welcome">{{ 'LOGIN_WELCOME' | translate }}</h3>
       {{ 'LOGIN_TITLE' | translate }}
@@ -7,27 +7,24 @@
     </section>
     <div class="login-group">
       <clr-input-container>
-        <input type="text" name="username" class="userName" clrInput placeholder="{{ 'FIRST_NAME' | translate }}" autocomplete="off"/>
+        <input type="text" class="userName" clrInput placeholder="{{ 'FIRST_NAME' | translate }}" [(ngModel)]="newUser.name" #firstName="ngModel" name="firstName"/>
       </clr-input-container>
       <clr-input-container>
-        <input type="text" name="username" class="userName" clrInput placeholder="{{ 'LAST_NAME' | translate }}" autocomplete="off"/>
+        <input type="text" class="userName" clrInput placeholder="{{ 'LAST_NAME' | translate }}" [(ngModel)]="newUser.lastName" #lastName="ngModel" name="lastName"/>
       </clr-input-container>
       <clr-input-container>
-        <input type="text" name="username" class="userName" clrInput placeholder="{{ 'LOGIN' | translate }}" autocomplete="off"/>
-      </clr-input-container>
-      <clr-input-container>
-        <input type="text" name="username" class="userName" clrInput placeholder="{{ 'EMAIL' | translate }}" autocomplete="off"/>
+        <input type="text" class="userName" clrInput placeholder="{{ 'EMAIL' | translate }}" [(ngModel)]="newUser.email" #email="ngModel" name="email"/>
       </clr-input-container>
       <clr-password-container>
-        <input type="password" name="password" class="userPass" clrPassword placeholder="{{ 'PASSWORD' | translate }}"/>
+        <input type="password" class="userPass" clrPassword placeholder="{{ 'PASSWORD' | translate }}" [(ngModel)]="newUser.password" #password="ngModel" name="password"/>
       </clr-password-container>
       <clr-password-container>
-        <input type="password" name="password" class="userPass" clrPassword placeholder="{{ 'PASSWORD_REPEAT' | translate }}"/>
+        <input type="password" class="userPass" clrPassword placeholder="{{ 'PASSWORD_REPEAT' | translate }}"/>
       </clr-password-container>
       <div class="error error-message">
         Invalid user name or password
       </div>
-      <button type="submit" class="btn btn-primary">{{ 'REGISTER' | translate }}</button>
+      <button type="submit" class="btn btn-primary" (click)="addNewUser();">{{ 'REGISTER' | translate }}</button>
     </div>
   </form>
 </div>
