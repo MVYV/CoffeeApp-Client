@@ -41,7 +41,7 @@ export class AdminPageComponent implements OnInit {
       user.lastName,
       user.email,
       user.password,
-      user.role,
+      user.roles,
       user.active
     );
   }
