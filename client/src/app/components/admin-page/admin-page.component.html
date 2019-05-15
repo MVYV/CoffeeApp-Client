@@ -1,0 +1,82 @@
+<div class="progress loop" [hidden]="!loading"><progress></progress></div>
+
+<clr-datagrid>
+  <clr-dg-column>First Name</clr-dg-column>
+  <clr-dg-column>Last Name</clr-dg-column>
+  <clr-dg-column>Email</clr-dg-column>
+  <clr-dg-column>Role</clr-dg-column>
+  <clr-dg-column>Is Active</clr-dg-column>
+  <clr-dg-column>Tools</clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let user of users">
+    <clr-dg-cell>{{user.name}}</clr-dg-cell>
+    <clr-dg-cell>{{user.lastName}}</clr-dg-cell>
+    <clr-dg-cell>{{user.email}}</clr-dg-cell>
+    <clr-dg-cell>Role</clr-dg-cell>
+    <clr-dg-cell>{{user.active}}</clr-dg-cell>
+    <clr-dg-cell class="admin-tools-for-user">
+      <clr-icon shape="trash" class="admin-delete-user" (click)="deleteOneUser(user.id);"></clr-icon>
+      <clr-icon shape="pencil" class="admin-modify-user" (click)="basic=true; editUser(user)"></clr-icon>
+    </clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer><clr-dg-pagination #pagination [clrDgPageSize]="5">
+    <clr-dg-page-size [clrPageSizeOptions]="[5,10,20,50,100]">Users per page</clr-dg-page-size>
+    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+    of {{pagination.totalItems}} users
+  </clr-dg-pagination></clr-dg-footer>
+</clr-datagrid>
+
+<clr-modal [(clrModalOpen)]="basic" [clrModalStaticBackdrop]="false">
+  <h3 class="modal-title">I have a nice title</h3>
+  <div class="modal-body">
+    <form class="clr-form">
+      <div class="clr-form-control">
+        <label for="example" class="clr-control-label">First Name</label>
+        <div class="clr-control-container clr-error">
+          <div class="clr-input-wrapper">
+            <input type="text" id="example" placeholder="User First Name" class="clr-input" [(ngModel)]="selectedUser.name" name="name">
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+          </div>
+          <span class="clr-subtext">Error message</span>
+        </div>
+        <label for="example" class="clr-control-label">Last Name</label>
+        <div class="clr-control-container clr-error">
+          <div class="clr-input-wrapper">
+            <input type="text" id="example" placeholder="User Last Name" class="clr-input" [(ngModel)]="selectedUser.lastName" name="lastName">
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+          </div>
+          <span class="clr-subtext">Error message</span>
+        </div>
+        <label for="example" class="clr-control-label">Email</label>
+        <div class="clr-control-container clr-error">
+          <div class="clr-input-wrapper">
+            <input type="text" id="example" placeholder="User Email" class="clr-input" [(ngModel)]="selectedUser.email" name="email">
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+          </div>
+          <span class="clr-subtext">Error message</span>
+        </div>
+        <label for="example" class="clr-control-label">Role</label>
+        <div class="clr-control-container clr-error">
+          <div class="clr-input-wrapper">
+            <input type="text" id="example" placeholder="User Role" class="clr-input" [(ngModel)]="selectedUser.role" name="role">
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+          </div>
+          <span class="clr-subtext">Error message</span>
+        </div>
+        <label for="example" class="clr-control-label">Is Active</label>
+        <div class="clr-control-container clr-error">
+          <div class="clr-input-wrapper">
+            <input type="text" id="example" placeholder="Is Active" class="clr-input" [(ngModel)]="selectedUser.active" name="active">
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+          </div>
+          <span class="clr-subtext">Error message</span>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="basic = false">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="basic = false; modifyUser();">Ok</button>
+  </div>
+</clr-modal>
