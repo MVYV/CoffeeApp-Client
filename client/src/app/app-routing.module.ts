@@ -8,6 +8,7 @@ import { ArticleComponent } from "./components/article/article.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
 import { LoginComponent } from "./components/login/login.component";
 import { RegistrationComponent } from "./components/registration/registration.component";
+import { AdminPageComponent } from "./components/admin-page/admin-page.component";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,8 +16,9 @@ const appRoutes: Routes = [
   { path: 'products', component: ProductsComponent },
   { path: 'about', component: AboutComponent },
   { path: 'article/:id', component: ArticleComponent },
-  { path:'login', component: LoginComponent },
-  { path:'registration', component: RegistrationComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'registration', component: RegistrationComponent },
+  { path: 'dashboard', component: AdminPageComponent },
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

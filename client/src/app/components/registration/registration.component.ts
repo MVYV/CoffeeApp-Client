@@ -19,14 +19,14 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.pageTitle.setTitle('Coffee Products - Registration');
-    this.newUser = new User('','','','');
+    this.newUser = new User();
   }
 
   addNewUser() {
     this.registrationService.postUser(this.newUser).subscribe(
-      user => {
+      () => {
       console.log('Done!!!');
-    },error => {
+    },() => {
       console.log('Fail(((');
     });
   }

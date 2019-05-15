@@ -19,6 +19,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { UserRegistrationService } from './services/user-registration.service';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('en');
@@ -35,7 +36,8 @@ export function setupTranslateFactory(service: TranslateService): Function {
     PageNotFoundComponent,
     ArticleComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,
