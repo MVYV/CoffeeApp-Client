@@ -1,5 +1,21 @@
 <div class="progress loop" [hidden]="!loading"><progress></progress></div>
 
+<clr-alert [clrAlertType]="'success'" [hidden]="!isSuccess">
+  <clr-alert-item>
+        <span class="alert-text">
+            Changes have been saved.
+        </span>
+  </clr-alert-item>
+</clr-alert>
+
+<clr-alert [clrAlertType]="'danger'" [hidden]="!isError">
+  <clr-alert-item>
+        <span class="alert-text">
+            An error occurred. Changes have not been saved.
+        </span>
+  </clr-alert-item>
+</clr-alert>
+
 <clr-datagrid>
   <clr-dg-column>First Name</clr-dg-column>
   <clr-dg-column>Last Name</clr-dg-column>
@@ -15,8 +31,8 @@
     <clr-dg-cell>Role</clr-dg-cell>
     <clr-dg-cell>{{user.active}}</clr-dg-cell>
     <clr-dg-cell class="admin-tools-for-user">
-      <clr-icon shape="trash" class="admin-delete-user" (click)="deleteOneUser(user.id);"></clr-icon>
-      <clr-icon shape="pencil" class="admin-modify-user" (click)="basic=true; editUser(user)"></clr-icon>
+      <clr-icon shape="trash" title="Delete User" class="admin-delete-user" (click)="showDeleteDialog(); editUser(user);"></clr-icon>
+      <clr-icon shape="pencil" title="Modify User" class="admin-modify-user" (click)="openForm(); editUser(user)"></clr-icon>
     </clr-dg-cell>
   </clr-dg-row>
 
@@ -27,7 +43,7 @@
   </clr-dg-pagination></clr-dg-footer>
 </clr-datagrid>
 
-<clr-modal [(clrModalOpen)]="basic" [clrModalStaticBackdrop]="false">
+<clr-modal [(clrModalOpen)]="showForm" [clrModalStaticBackdrop]="false">
   <h3 class="modal-title">I have a nice title</h3>
   <div class="modal-body">
     <form class="clr-form">
@@ -76,7 +92,18 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline" (click)="basic = false">Cancel</button>
-    <button type="button" class="btn btn-primary" (click)="basic = false; modifyUser();">Ok</button>
+    <button type="button" class="btn btn-outline" (click)="closeForm();">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="closeForm(); modifyUser();">Ok</button>
+  </div>
+</clr-modal>
+
+<clr-modal [(clrModalOpen)]="showDeleteUserConfirmation" [clrModalStaticBackdrop]="false">
+  <h3 class="modal-title">Please confirm the deletion of the user</h3>
+  <div class="modal-body">
+    <p><clr-icon shape="exclamation-triangle" size="72" class="is-warning"></clr-icon>You really want to delete <span class="selected-user">{{selectedUser.name}} {{selectedUser.lastName}}'s</span> account?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="hideDeleteDialog();">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="hideDeleteDialog();  deleteOneUser();">Yes, Delete</button>
   </div>
 </clr-modal>

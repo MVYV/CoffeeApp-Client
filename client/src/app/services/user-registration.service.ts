@@ -20,7 +20,7 @@ export class UserRegistrationService {
     return this.http.put<User>(`https://march11app.herokuapp.com/${user.id}`, user);
   }
 
-  public deleteUser(userId: number): Observable<User> {
-    return this.http.delete<User>(`https://march11app.herokuapp.com/${userId}`);
+  public deleteUser(user: User): Observable<User> {
+    return this.http.delete<User>(`https://march11app.herokuapp.com/${user.id}`);
   }
 }

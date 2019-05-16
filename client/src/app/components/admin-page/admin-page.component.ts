@@ -10,11 +10,14 @@ import { Role } from '../../models/roles.model';
 })
 export class AdminPageComponent implements OnInit {
 
+  showForm: boolean = false;
+  showDeleteUserConfirmation: boolean = false;
   loading: boolean;
+  isSuccess: boolean = false;
+  isError: boolean = false;
   users: User[];
   selectedUser: User;
   numberOfUsers: number;
-  role: Role;
 
   constructor( private registrationService: UserRegistrationService ) { }
 
@@ -27,6 +30,7 @@ export class AdminPageComponent implements OnInit {
   getAllUsers() {
     this.registrationService.getUsers().subscribe(
       users => {
+        // users.roles.forEach(r => console.log("role: " + r.role));
         this.users = users;
         this.numberOfUsers = users.length;
         this.loading = false;
@@ -50,18 +54,40 @@ export class AdminPageComponent implements OnInit {
     this.registrationService.putUser(this.selectedUser).subscribe(
       () => {
         console.log('Updated');
+        this.isSuccess = true;
+        this.getAllUsers();
       }, () => {
         console.log('NOOOOOOOOO!!!');
+        this.isError = true;
+        this.getAllUsers();
       });
   }
 
-  deleteOneUser(user_id: number) {
-    this.registrationService.deleteUser(user_id).subscribe(
+  deleteOneUser() {
+    this.registrationService.deleteUser(this.selectedUser).subscribe(
       () => {
         console.log('YES');
+        this.getAllUsers();
       }, () => {
         console.log('NO');
+        this.getAllUsers();
       });
+  }
+
+  openForm() {
+    this.showForm = true;
+  }
+
+  closeForm() {
+    this.showForm = false;
+  }
+
+  showDeleteDialog() {
+    this.showDeleteUserConfirmation = true;
+  }
+
+  hideDeleteDialog() {
+    this.showDeleteUserConfirmation = false;
   }
 
 }
