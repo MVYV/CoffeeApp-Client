@@ -34,7 +34,6 @@ export class AdminPageComponent implements OnInit {
         this.users = users;
         this.numberOfUsers = users.length;
         this.loading = false;
-        console.log('Done!!!');
       });
   }
 
@@ -53,11 +52,9 @@ export class AdminPageComponent implements OnInit {
   modifyUser() {
     this.registrationService.putUser(this.selectedUser).subscribe(
       () => {
-        console.log('Updated');
         this.isSuccess = true;
         this.getAllUsers();
       }, () => {
-        console.log('NOOOOOOOOO!!!');
         this.isError = true;
         this.getAllUsers();
       });
@@ -66,10 +63,8 @@ export class AdminPageComponent implements OnInit {
   deleteOneUser() {
     this.registrationService.deleteUser(this.selectedUser).subscribe(
       () => {
-        console.log('YES');
         this.getAllUsers();
       }, () => {
-        console.log('NO');
         this.getAllUsers();
       });
   }

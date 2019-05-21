@@ -7,24 +7,33 @@
     </section>
     <div class="login-group">
       <clr-input-container>
-        <input type="text" class="userName" clrInput placeholder="{{ 'FIRST_NAME' | translate }}" [(ngModel)]="newUser.name" #firstName="ngModel" name="firstName"/>
+        <input type="text" class="userName" clrInput placeholder="{{ 'FIRST_NAME' | translate }}"
+               [(ngModel)]="newUser.name" #firstName="ngModel" name="firstName" minlength="3" maxlength="20"
+               pattern="[A-ZĄĆĘŁŃÓŚŹŻ]([A-ZĄĆĘŁŃÓŚŹŻ]*[a-ząćęłńóśźż]*[\' -]?)+" required/>
       </clr-input-container>
       <clr-input-container>
-        <input type="text" class="userName" clrInput placeholder="{{ 'LAST_NAME' | translate }}" [(ngModel)]="newUser.lastName" #lastName="ngModel" name="lastName"/>
+        <input type="text" class="userName" clrInput placeholder="{{ 'LAST_NAME' | translate }}"
+               [(ngModel)]="newUser.lastName" #lastName="ngModel" name="lastName" minlength="3" maxlength="20"
+               pattern="[A-ZĄĆĘŁŃÓŚŹŻ]([A-ZĄĆĘŁŃÓŚŹŻ]*[a-ząćęłńóśźż]*[\' -]?)+" required/>
       </clr-input-container>
       <clr-input-container>
-        <input type="text" class="userName" clrInput placeholder="{{ 'EMAIL' | translate }}" [(ngModel)]="newUser.email" #email="ngModel" name="email"/>
+        <input type="text" class="userName" clrInput placeholder="{{ 'EMAIL' | translate }}" [(ngModel)]="newUser.email"
+               #email="ngModel" name="email"
+               pattern="^([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))$" required/>
       </clr-input-container>
       <clr-password-container>
-        <input type="password" class="userPass" clrPassword placeholder="{{ 'PASSWORD' | translate }}" [(ngModel)]="newUser.password" #password="ngModel" name="password"/>
+        <input type="password" class="userPass" clrPassword placeholder="{{ 'PASSWORD' | translate }}"
+               [(ngModel)]="newUser.password" #password="ngModel" name="password" required/>
       </clr-password-container>
       <clr-password-container>
-        <input type="password" class="userPass" clrPassword placeholder="{{ 'PASSWORD_REPEAT' | translate }}"/>
+        <input type="password" class="userPass" clrPassword placeholder="{{ 'PASSWORD_REPEAT' | translate }}" required/>
       </clr-password-container>
-      <div class="error error-message">
-        Invalid user name or password
+      <div class="error error-message" [class.active]="userRegistrationForm.invalid">
+        Invalid entered data or empty field.<br>Please, start your first name and last name with capital letter.
       </div>
-      <button type="submit" class="btn btn-primary" (click)="addNewUser();">{{ 'REGISTER' | translate }}</button>
+      <button type="submit" class="btn btn-primary" [disabled]="userRegistrationForm.invalid" (click)="addNewUser();">{{
+        'REGISTER' | translate }}
+      </button>
     </div>
   </form>
 </div>
