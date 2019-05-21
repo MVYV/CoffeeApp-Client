@@ -30,7 +30,9 @@
     <clr-dg-cell>{{user.name}}</clr-dg-cell>
     <clr-dg-cell>{{user.lastName}}</clr-dg-cell>
     <clr-dg-cell>{{user.email}}</clr-dg-cell>
-    <clr-dg-cell>Role</clr-dg-cell>
+    <clr-dg-cell>
+      <ng-container *ngFor="let role of user.roles">{{role.role}}</ng-container>
+    </clr-dg-cell>
     <clr-dg-cell>{{user.active}}</clr-dg-cell>
     <clr-dg-cell class="admin-tools-for-user">
       <clr-icon shape="pencil" title="Modify User" class="admin-modify-user"
