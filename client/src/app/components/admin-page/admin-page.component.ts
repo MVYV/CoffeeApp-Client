@@ -126,8 +126,10 @@ export class AdminPageComponent implements OnInit {
     if (this.isNewArticle) {
       this.newsService.postArticle(this.selectedArticle).subscribe(
         () => {
+          this.isSuccess = true;
           this.getAllNews();
         },() => {
+          this.isError = true;
           this.getAllNews();
         });
     } else {
