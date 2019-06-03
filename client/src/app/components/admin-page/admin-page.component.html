@@ -1,7 +1,9 @@
+<!--Loading bar for visualisation -->
 <div class="progress loop" [hidden]="!loading">
   <progress></progress>
 </div>
 
+<!--Success alert-->
 <clr-alert [clrAlertType]="'success'" [hidden]="!isSuccess">
   <clr-alert-item>
         <span class="alert-text">
@@ -10,6 +12,7 @@
   </clr-alert-item>
 </clr-alert>
 
+<!--Error alert-->
 <clr-alert [clrAlertType]="'danger'" [hidden]="!isError">
   <clr-alert-item>
         <span class="alert-text">
@@ -18,91 +21,179 @@
   </clr-alert-item>
 </clr-alert>
 
-<clr-datagrid>
-  <clr-dg-column>First Name</clr-dg-column>
-  <clr-dg-column>Last Name</clr-dg-column>
-  <clr-dg-column>Email</clr-dg-column>
-  <clr-dg-column>Role</clr-dg-column>
-  <clr-dg-column>Is Active</clr-dg-column>
-  <clr-dg-column>Tools</clr-dg-column>
+<!--Tabs with information-->
+<clr-tabs>
+  <!--Tab with user information-->
+  <clr-tab>
+    <button clrTabLink id="link1">Users</button>
+    <clr-tab-content *clrIfActive="true">
 
-  <clr-dg-row *clrDgItems="let user of users">
-    <clr-dg-cell>{{user.name}}</clr-dg-cell>
-    <clr-dg-cell>{{user.lastName}}</clr-dg-cell>
-    <clr-dg-cell>{{user.email}}</clr-dg-cell>
-    <clr-dg-cell>
-      <ng-container *ngFor="let role of user.roles">{{role.role}}</ng-container>
-    </clr-dg-cell>
-    <clr-dg-cell>{{user.active}}</clr-dg-cell>
-    <clr-dg-cell class="admin-tools-for-user">
-      <clr-icon shape="pencil" title="Modify User" class="admin-modify-user"
-                (click)="openForm(); editUser(user)"></clr-icon>
-      <clr-icon shape="trash" title="Delete User" class="admin-delete-user"
-                (click)="showDeleteDialog(); editUser(user);"></clr-icon>
-    </clr-dg-cell>
-  </clr-dg-row>
+      <!--Table with all users-->
+      <clr-datagrid>
 
-  <clr-dg-footer>
-    <clr-dg-pagination #pagination [clrDgPageSize]="10">
-      <clr-dg-page-size [clrPageSizeOptions]="[5,10,20,50,100]">Users per page</clr-dg-page-size>
-      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-      of {{pagination.totalItems}} users
-    </clr-dg-pagination>
-  </clr-dg-footer>
-</clr-datagrid>
+        <!--Table header-->
+        <clr-dg-column>First Name</clr-dg-column>
+        <clr-dg-column>Last Name</clr-dg-column>
+        <clr-dg-column>Email</clr-dg-column>
+        <clr-dg-column>Role</clr-dg-column>
+        <clr-dg-column>Is Active</clr-dg-column>
+        <clr-dg-column>Tools</clr-dg-column>
 
-<clr-modal [(clrModalOpen)]="showForm" [clrModalStaticBackdrop]="false">
+        <!--Table data-->
+        <clr-dg-row *clrDgItems="let user of users">
+          <clr-dg-cell>{{user.userName}}</clr-dg-cell>
+          <clr-dg-cell>{{user.lastName}}</clr-dg-cell>
+          <clr-dg-cell>{{user.email}}</clr-dg-cell>
+          <clr-dg-cell>
+            <ng-container *ngFor="let role of user.roles">{{role.role}}</ng-container>
+          </clr-dg-cell>
+          <clr-dg-cell>{{user.isActive}}</clr-dg-cell>
+          <clr-dg-cell class="admin-tools-for-user">
+            <clr-icon shape="envelope" title="Send message for user" class="admin-message-user"></clr-icon>
+            <clr-icon shape="ban" title="Ban user" class="admin-ban-user"></clr-icon>
+            <clr-icon shape="pencil" title="Modify User" class="admin-modify-user"
+                      (click)="openForm(); editUser(user)"></clr-icon>
+            <clr-icon shape="trash" title="Delete User" class="admin-delete-user"
+                      (click)="showDeleteDialog('user'); editUser(user);"></clr-icon>
+          </clr-dg-cell>
+        </clr-dg-row>
+
+        <!--Table footer-->
+        <clr-dg-footer>
+          <clr-dg-pagination #pagination [clrDgPageSize]="10">
+            <clr-dg-page-size [clrPageSizeOptions]="[5,10,20,50,100]">Users per page</clr-dg-page-size>
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+            of {{pagination.totalItems}} users
+          </clr-dg-pagination>
+        </clr-dg-footer>
+
+      </clr-datagrid>
+
+    </clr-tab-content>
+  </clr-tab>
+
+  <!--Tab with news information-->
+  <clr-tab>
+    <button clrTabLink>News</button>
+    <clr-tab-content *clrIfActive>
+      <button type="button" class="btn btn-icon btn-primary" (click)="editArticleForm.reset(); createArticle();">
+        <clr-icon shape="plus"></clr-icon>
+      </button>
+
+      <!--Table with all news-->
+      <clr-datagrid>
+
+        <!--Table header-->
+        <clr-dg-column>Title</clr-dg-column>
+        <clr-dg-column>Annotation</clr-dg-column>
+        <clr-dg-column>Text</clr-dg-column>
+        <clr-dg-column>Tools</clr-dg-column>
+
+        <!--Table data-->
+        <clr-dg-row *clrDgItems="let article of news">
+          <clr-dg-cell class="newsTitle">{{article.newsTitle}}</clr-dg-cell>
+          <clr-dg-cell>{{article.newsSubText}}</clr-dg-cell>
+          <clr-dg-cell>{{article.newsText}}</clr-dg-cell>
+          <clr-dg-cell class="admin-tools-for-user">
+            <clr-icon shape="pencil" title="Modify Article" class="admin-modify-user"
+                      (click)="showArticle = true; editArticle(article);"></clr-icon>
+            <clr-icon shape="trash" title="Delete Article" class="admin-delete-user"
+                      (click)="showDeleteDialog('article'); editArticle(article);"></clr-icon>
+          </clr-dg-cell>
+        </clr-dg-row>
+
+        <!--Table footer-->
+        <clr-dg-footer>
+          <clr-dg-pagination #pagination [clrDgPageSize]="10">
+            <clr-dg-page-size [clrPageSizeOptions]="[5,10,20,50,100]">News per page</clr-dg-page-size>
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+            of {{pagination.totalItems}} news
+          </clr-dg-pagination>
+        </clr-dg-footer>
+
+      </clr-datagrid>
+
+    </clr-tab-content>
+  </clr-tab>
+
+</clr-tabs>
+
+<!--Modal window with confirmation of deletion selected user or article-->
+<clr-modal [(clrModalOpen)]="showDeleteUserConfirmation" [clrModalStaticBackdrop]="false">
+  <h3 class="modal-title">Please confirm the deletion of the
+    <span *ngIf="dataBaseKey === 'user'">selected user</span>
+    <span *ngIf="dataBaseKey === 'article'">selected article</span>
+  </h3>
+  <div class="modal-body">
+    <p>
+      <clr-icon shape="exclamation-triangle" size="72" class="is-warning"></clr-icon>
+      You really want to delete
+      <span class="selected-user" *ngIf="dataBaseKey === 'user'">{{selectedUser.userName}} {{selectedUser.lastName}}'s </span>
+      <span *ngIf="dataBaseKey === 'user'">account?</span>
+      <span class="selected-user" *ngIf="dataBaseKey === 'article'">{{selectedArticle.newsTitle}} </span>
+      <span *ngIf="dataBaseKey === 'article'">news record?</span>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="hideDeleteDialog();">Cancel</button>
+    <button type="button" class="btn btn-primary" *ngIf="dataBaseKey === 'user'" (click)="hideDeleteDialog();  deleteOneUser();">Yes, Delete</button>
+    <button type="button" class="btn btn-primary" *ngIf="dataBaseKey === 'article'" (click)="hideDeleteDialog();  deleteOneArticle();">Yes, Delete</button>
+  </div>
+</clr-modal>
+
+<!--Modal window with form for editing information about user-->
+<clr-modal [(clrModalOpen)]="showForm" [clrModalStaticBackdrop]="false" [clrModalSize]="'lg'">
   <h3 class="modal-title">Please enter the new data into the user's account.</h3>
   <div class="modal-body">
     <form class="clr-form clr-form-horizontal editUserForm" #editUserForm="ngForm" autocomplete="off">
       <div class="clr-form-control clr-row">
-        <label for="example" class="clr-control-label clr-col-12 clr-col-md-3">First Name</label>
-        <div class="clr-control-container clr-col-12 clr-col-md-8" [class.clr-error]="name.invalid">
+        <label for="example" class="clr-control-label clr-col-12 clr-col-md-2">First Name</label>
+        <div class="clr-control-container clr-col-12 clr-col-md-10" [class.clr-error]="userName.invalid">
           <div class="clr-input-wrapper">
             <input type="text" id="example" placeholder="User First Name" class="clr-input" style="width: 99%;"
-                   [(ngModel)]="selectedUser.name" #name="ngModel" name="name" minlength="3" maxlength="20"
+                   [(ngModel)]="selectedUser.userName" #userName="ngModel" name="userName" minlength="3" maxlength="20"
                    pattern="[A-ZĄĆĘŁŃÓŚŹŻ]([A-ZĄĆĘŁŃÓŚŹŻ]*[a-ząćęłńóśźż]*[\' -]?)+" required/>
-            <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="name.valid"></clr-icon>
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="userName.valid"></clr-icon>
           </div>
-          <span class="clr-subtext" [class.wrongDataMessage]="name.valid">Error message</span>
+          <span class="clr-subtext" [class.wrongDataMessage]="userName.valid">Incorrect first userName</span>
         </div>
-        <label for="example" class="clr-control-label clr-col-12 clr-col-md-3">Last Name</label>
-        <div class="clr-control-container clr-col-12 clr-col-md-8" [class.clr-error]="lastName.invalid">
+        <label for="example" class="clr-control-label clr-col-12 clr-col-md-2">Last Name</label>
+        <div class="clr-control-container clr-col-12 clr-col-md-10" [class.clr-error]="lastName.invalid">
           <div class="clr-input-wrapper">
             <input type="text" id="example" placeholder="User Last Name" class="clr-input"
                    [(ngModel)]="selectedUser.lastName" #lastName="ngModel" name="lastName" minlength="3" maxlength="20"
                    pattern="[A-ZĄĆĘŁŃÓŚŹŻ]([A-ZĄĆĘŁŃÓŚŹŻ]*[a-ząćęłńóśźż]*[\' -]?)+" required/>
             <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="lastName.valid"></clr-icon>
           </div>
-          <span class="clr-subtext" [class.wrongDataMessage]="lastName.valid">Error message</span>
+          <span class="clr-subtext" [class.wrongDataMessage]="lastName.valid">Incorrect last userName</span>
         </div>
-        <label for="example" class="clr-control-label clr-col-12 clr-col-md-3">Email</label>
-        <div class="clr-control-container clr-col-12 clr-col-md-8" [class.clr-error]="email.invalid">
+        <label for="example" class="clr-control-label clr-col-12 clr-col-md-2">Email</label>
+        <div class="clr-control-container clr-col-12 clr-col-md-10" [class.clr-error]="email.invalid">
           <div class="clr-input-wrapper">
             <input type="text" id="example" placeholder="User Email" class="clr-input" [(ngModel)]="selectedUser.email"
                    #email="ngModel" name="email"
                    pattern="^([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))$" required/>
             <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="email.valid"></clr-icon>
           </div>
-          <span class="clr-subtext" [class.wrongDataMessage]="email.valid">Error message</span>
+          <span class="clr-subtext" [class.wrongDataMessage]="email.valid">Incorrect email</span>
         </div>
-        <label for="example" class="clr-control-label clr-col-12 clr-col-md-3">Role</label>
-        <div class="clr-control-container clr-col-12 clr-col-md-8" [class.clr-error]="role.invalid">
+        <label for="example" class="clr-control-label clr-col-12 clr-col-md-2">Role</label>
+        <div class="clr-control-container clr-col-12 clr-col-md-10" [class.clr-error]="role.invalid">
           <div class="clr-input-wrapper">
             <input type="text" id="example" placeholder="User Role" class="clr-input" [(ngModel)]="selectedUser.role"
                    #role="ngModel" name="role"/>
             <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="role.valid"></clr-icon>
           </div>
-          <span class="clr-subtext" [class.wrongDataMessage]="role.valid">Error message</span>
+          <span class="clr-subtext" [class.wrongDataMessage]="role.valid">Incorrect user role</span>
         </div>
-        <label for="example" class="clr-control-label clr-col-12 clr-col-md-3">Is Active</label>
-        <div class="clr-control-container clr-col-12 clr-col-md-8" [class.clr-error]="active.invalid">
+        <label for="example" class="clr-control-label clr-col-12 clr-col-md-2">Is Active</label>
+        <div class="clr-control-container clr-col-12 clr-col-md-10" [class.clr-error]="isActive.invalid">
           <div class="clr-input-wrapper">
-            <input type="text" id="example" placeholder="Is Active" class="clr-input" [(ngModel)]="selectedUser.active"
-                   #active="ngModel" name="active" pattern="^(?:[0-1])$" required/>
-            <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="active.valid"></clr-icon>
+            <input type="text" id="example" placeholder="Is Active" class="clr-input" [(ngModel)]="selectedUser.isActive"
+                   #isActive="ngModel" name="isActive" pattern="^(?:[0-1])$" required/>
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="isActive.valid"></clr-icon>
           </div>
-          <span class="clr-subtext" [class.wrongDataMessage]="active.valid">Error message</span>
+          <span class="clr-subtext" [class.wrongDataMessage]="isActive.valid">Incorrect data</span>
         </div>
       </div>
     </form>
@@ -115,17 +206,45 @@
   </div>
 </clr-modal>
 
-<clr-modal [(clrModalOpen)]="showDeleteUserConfirmation" [clrModalStaticBackdrop]="false">
-  <h3 class="modal-title">Please confirm the deletion of the user</h3>
+<!--Modal window with form for editing information about article-->
+<clr-modal [(clrModalOpen)]="showArticle" [clrModalStaticBackdrop]="false" [clrModalSize]="'xl'">
+  <h3 class="modal-title">Please modify or add new article.</h3>
   <div class="modal-body">
-    <p>
-      <clr-icon shape="exclamation-triangle" size="72" class="is-warning"></clr-icon>
-      You really want to delete <span class="selected-user">{{selectedUser.name}} {{selectedUser.lastName}}'s</span>
-      account?
-    </p>
+    <form class="clr-form clr-form-horizontal editUserForm" #editArticleForm="ngForm" autocomplete="off">
+      <div class="clr-form-control clr-row">
+        <label for="example" class="clr-control-label clr-col-12 clr-col-md-1">Article Title</label>
+        <div class="clr-control-container clr-col-12 clr-col-md-11" [class.clr-error]="newsTitle.invalid">
+          <div class="clr-input-wrapper">
+            <input type="text" id="example" placeholder="Article Title" class="clr-input" style="width: 99%;"
+                   [(ngModel)]="selectedArticle.newsTitle" #newsTitle="ngModel" name="newsTitle" required/>
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="newsTitle.valid"></clr-icon>
+          </div>
+          <span class="clr-subtext" [class.wrongDataMessage]="newsTitle.valid">Incorrect Article Title</span>
+        </div>
+        <label for="example" class="clr-control-label clr-col-12 clr-col-md-1">Sub Text</label>
+        <div class="clr-control-container clr-col-12 clr-col-md-11" [class.clr-error]="subText.invalid">
+          <div class="clr-input-wrapper">
+            <input type="text" id="example" placeholder="Article Annotation" class="clr-input"
+                   [(ngModel)]="selectedArticle.newsSubText" #subText="ngModel" name="subText" required />
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="subText.valid"></clr-icon>
+          </div>
+          <span class="clr-subtext" [class.wrongDataMessage]="subText.valid">Incorrect Annotation</span>
+        </div>
+        <label for="textarea-basic-error" class="clr-control-label clr-col-12 clr-col-md-1">Article Main Text</label>
+        <div class="clr-control-container clr-col-12 clr-col-md-11" [class.clr-error]="newsText.invalid">
+          <div class="clr-textarea-wrapper">
+            <textarea id="textarea-basic-error" placeholder="Field For Article Main Text" class="clr-textarea" style="width:100%; height: 500px;" [(ngModel)]="selectedArticle.newsText" #newsText="ngModel" name="newsText" required></textarea>
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="newsText.valid"></clr-icon>
+          </div>
+          <span class="clr-subtext" [class.wrongDataMessage]="newsText.valid">Please Add Text</span>
+        </div>
+      </div>
+    </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline" (click)="hideDeleteDialog();">Cancel</button>
-    <button type="button" class="btn btn-primary" (click)="hideDeleteDialog();  deleteOneUser();">Yes, Delete</button>
+    <button type="button" class="btn btn-outline" (click)="showArticle = false;">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="showArticle = false; addNewArticle();"
+            [disabled]="editArticleForm.invalid">Ok
+    </button>
   </div>
 </clr-modal>

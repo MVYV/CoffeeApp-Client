@@ -1,20 +1,20 @@
 <clr-main-container class="clr-main-container">
-  <clr-header class="header-6 header-navigation">
+  <clr-header class="header-1 header-navigation">
     <div class="branding">
       <a routerLink="/" class="nav-link" (click)="activeNavLink('home')">
-        <clr-icon shape="bundle"></clr-icon>
+        <clr-icon shape="image" class="is-solid"></clr-icon>
         <span class="title">{{ 'TITLE' | translate }}</span>
       </a>
     </div>
     <div class="header-nav" [clr-nav-level]="1">
       <a routerLink="/" class="nav-link nav-text" (click)="activeNavLink('home')"
-         [ngClass]="{'active': navLinkTitle == 'home'}">{{ 'HOME' | translate }}</a>
+         [ngClass]="{'isActive': navLinkTitle == 'home'}">{{ 'HOME' | translate }}</a>
       <a routerLink="/news" class="active nav-link nav-text" (click)="activeNavLink('news')"
-         [ngClass]="{'active': navLinkTitle == 'news'}">{{ 'NEWS' | translate }}</a>
+         [ngClass]="{'isActive': navLinkTitle == 'news'}">{{ 'NEWS' | translate }}</a>
       <a routerLink="/products" class="nav-link nav-text" (click)="activeNavLink('products')"
-         [ngClass]="{'active': navLinkTitle == 'products'}">{{ 'PRODUCTS' | translate }}</a>
+         [ngClass]="{'isActive': navLinkTitle == 'products'}">{{ 'PRODUCTS' | translate }}</a>
       <a routerLink="/about" class="nav-link nav-text" (click)="activeNavLink('about')"
-         [ngClass]="{'active': navLinkTitle == 'about'}">{{ 'ABOUT' | translate }}</a>
+         [ngClass]="{'isActive': navLinkTitle == 'about'}">{{ 'ABOUT' | translate }}</a>
     </div>
     <div class="header-actions">
       <clr-dropdown>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PageTitleService } from "../../services/page-title.service";
+import { PageTitleService } from '../../services/page-title.service';
+import { NewsService } from '../../services/news-service';
+import { News } from '../../models/news.model';
 
 @Component({
   selector: 'app-news',
@@ -8,10 +10,21 @@ import { PageTitleService } from "../../services/page-title.service";
 })
 export class NewsComponent implements OnInit {
 
-  constructor( private pageTitle: PageTitleService ) { }
+  news: News[];
+
+  constructor( private pageTitle: PageTitleService,
+               private newsService: NewsService) { }
 
   ngOnInit() {
     this.pageTitle.setTitle('Coffee Products - News');
+    this.getAllNews();
+  }
+
+  getAllNews() {
+    this.newsService.getNews().subscribe(
+      news => {
+        this.news = news;
+      });
   }
 
 }

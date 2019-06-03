@@ -13,45 +13,45 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @ToString(callSuper = true)
-@Table(name = "USERS")
+@Table(userName = "USERS")
 public class User {
 
   public User(User user) {
     id = user.getId();
     email = user.getEmail();
     password = user.getPassword();
-    name = user.getName();
+    userName = user.getName();
     lastName = user.getLastName();
-    active = user.getActive();
+    isActive = user.getActive();
     roles = user.getRoles();
   }
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "user_id")
+  @Column(userName = "user_id")
   private Long id;
 
-  @Column(name = "email")
+  @Column(userName = "email")
   private String email;
 
-  @Column(name = "password")
+  @Column(userName = "password")
   private String password;
 
-  @Column(name = "name")
-  private String name;
+  @Column(userName = "userName")
+  private String userName;
 
-  @Column(name = "last_name")
+  @Column(userName = "last_name")
   private String lastName;
 
-  @Column(name = "active")
-  private Integer active;
+  @Column(userName = "isActive")
+  private Integer isActive;
 
 //  @ManyToMany(cascade = CascadeType.ALL)
-//  @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+//  @JoinTable(userName = "user_role", joinColumns = @JoinColumn(userName = "user_id"), inverseJoinColumns = @JoinColumn(userName = "role_id"))
 //  private List<Role> roles;
 
   @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-  @JoinTable(name="user_role",joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+  @JoinTable(userName="user_role",joinColumns = @JoinColumn(userName = "user_id"), inverseJoinColumns = @JoinColumn(userName = "role_id"))
   private List<Role> roles;
 
 }

@@ -4,7 +4,9 @@ $warningColor: #fac400;
 {
   text-align: right;
   .admin-delete-user,
-  .admin-modify-user
+  .admin-modify-user,
+  .admin-ban-user,
+  .admin-message-user
   {
     margin-left: 10px;
     cursor: pointer;
@@ -23,4 +25,8 @@ $warningColor: #fac400;
 .wrongDataMessage
 {
   visibility: hidden;
+}
+.newsTitle
+{
+  font-weight: bold;
 }

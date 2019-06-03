@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRegistrationService } from '../../services/user-registration.service';
 import { User } from '../../models/users.model';
-import { Role } from '../../models/roles.model';
+import { News } from '../../models/news.model';
+import { PageTitleService } from '../../services/page-title.service';
+import { NewsService } from '../../services/news-service';
 
 @Component({
   selector: 'app-admin-page',
@@ -11,26 +13,37 @@ import { Role } from '../../models/roles.model';
 export class AdminPageComponent implements OnInit {
 
   showForm: boolean = false;
+  showArticle: boolean;
   showDeleteUserConfirmation: boolean = false;
   loading: boolean;
+  isNewArticle: boolean;
   isSuccess: boolean = false;
   isError: boolean = false;
   users: User[];
+  news: News[];
   selectedUser: User;
+  selectedArticle: News;
+  newArticle: News;
+  dataBaseKey: string;
   numberOfUsers: number;
 
-  constructor( private registrationService: UserRegistrationService ) { }
+  constructor( private pageTitle: PageTitleService,
+               private registrationService: UserRegistrationService,
+               private newsService: NewsService) { }
 
   ngOnInit() {
+    this.pageTitle.setTitle('Coffee Products - Admin Page');
     this.loading = true;
     this.selectedUser = new User();
+    this.selectedArticle = new News();
+    this.newArticle = new News();
     this.getAllUsers();
+    this.getAllNews();
   }
 
   getAllUsers() {
     this.registrationService.getUsers().subscribe(
       users => {
-        // users.roles.forEach(r => console.log("role: " + r.role));
         this.users = users;
         this.numberOfUsers = users.length;
         this.loading = false;
@@ -40,12 +53,12 @@ export class AdminPageComponent implements OnInit {
   editUser(user: User) {
     this.selectedUser = new User(
       user.id,
-      user.name,
+      user.userName,
       user.lastName,
       user.email,
       user.password,
       user.roles,
-      user.active
+      user.isActive
     );
   }
 
@@ -77,12 +90,65 @@ export class AdminPageComponent implements OnInit {
     this.showForm = false;
   }
 
-  showDeleteDialog() {
+  showDeleteDialog(db_key: string) {
     this.showDeleteUserConfirmation = true;
+    this.dataBaseKey = db_key;
   }
 
   hideDeleteDialog() {
     this.showDeleteUserConfirmation = false;
+  }
+
+  getAllNews() {
+    this.newsService.getNews().subscribe(
+      news => {
+        this.news = news;
+      });
+  }
+
+  editArticle(article: News) {
+    this.isNewArticle = false;
+    this.selectedArticle = new News(
+      article.id,
+      article.newsTitle,
+      article.newsSubText,
+      article.newsText
+    );
+  }
+
+  createArticle() {
+    this.selectedArticle = new News();
+    this.showArticle = true;
+    this.isNewArticle = true;
+  }
+
+  addNewArticle() {
+    if (this.isNewArticle) {
+      this.newsService.postArticle(this.selectedArticle).subscribe(
+        () => {
+          this.getAllNews();
+        },() => {
+          this.getAllNews();
+        });
+    } else {
+      this.newsService.putArticle(this.selectedArticle).subscribe(
+        () => {
+          this.isSuccess = true;
+          this.getAllNews();
+        }, () => {
+          this.isError = true;
+          this.getAllNews();
+        });
+    }
+  }
+
+  deleteOneArticle() {
+    this.newsService.deleteArticle(this.selectedArticle).subscribe(
+      () => {
+        this.getAllNews();
+      }, () => {
+        this.getAllNews();
+      });
   }
 
 }

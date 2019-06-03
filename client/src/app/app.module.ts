@@ -20,6 +20,7 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { UserRegistrationService } from './services/user-registration.service';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
+import { NewsService } from './services/news-service';
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('en');
@@ -51,6 +52,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
   providers: [
     Title,
     UserRegistrationService,
+    NewsService,
     TranslateService,
     {
       provide: APP_INITIALIZER,

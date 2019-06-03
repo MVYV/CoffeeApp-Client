@@ -12,14 +12,14 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @ToString(callSuper = true)
-@Table(name = "ROLES")
+@Table(userName = "ROLES")
 public class Role {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "role_id")
+  @Column(userName = "role_id")
   private int id;
 
-  @Column(name = "role")
+  @Column(userName = "role")
   private String role;
 }

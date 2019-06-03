@@ -8,7 +8,7 @@
     <div class="login-group">
       <clr-input-container>
         <input type="text" class="userName" clrInput placeholder="{{ 'FIRST_NAME' | translate }}"
-               [(ngModel)]="newUser.name" #firstName="ngModel" name="firstName" minlength="3" maxlength="20"
+               [(ngModel)]="newUser.userName" #firstName="ngModel" name="firstName" minlength="3" maxlength="20"
                pattern="[A-ZĄĆĘŁŃÓŚŹŻ]([A-ZĄĆĘŁŃÓŚŹŻ]*[a-ząćęłńóśźż]*[\' -]?)+" required/>
       </clr-input-container>
       <clr-input-container>
@@ -29,7 +29,7 @@
         <input type="password" class="userPass" clrPassword placeholder="{{ 'PASSWORD_REPEAT' | translate }}" required/>
       </clr-password-container>
       <div class="error error-message" [class.active]="userRegistrationForm.invalid">
-        Invalid entered data or empty field.<br>Please, start your first name and last name with capital letter.
+        Invalid entered data or empty field.<br>Please, start your first userName and last userName with capital letter.
       </div>
       <button type="submit" class="btn btn-primary" [disabled]="userRegistrationForm.invalid" (click)="addNewUser();">{{
         'REGISTER' | translate }}
