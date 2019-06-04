@@ -16,6 +16,10 @@ export class NewsService {
     return this.http.get<News[]>('https://march11app.herokuapp.com/news');
   }
 
+  public getArticle(articleId: number): Observable<News> {
+    return this.http.get<News>(`https://march11app.herokuapp.com/news/${articleId}`);
+  }
+
   public putArticle(article: News): Observable<News> {
     return this.http.put<News>(`https://march11app.herokuapp.com/news/${article.id}`, article);
   }

@@ -1,0 +1,45 @@
+.article-image-box
+{
+  width: 100%;
+  height: calc(100vh - 60px);
+  position: relative;
+  .article-image
+  {
+    width: 100%;
+    height: calc(100vh - 60px);
+  }
+  .gray-box
+  {
+    width: 100%;
+    height: calc(100vh - 60px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .4);
+    .article-title
+    {
+      font-weight: bold;
+      font-size: 50px;
+      padding-right: 25px;
+      color: lightblue;
+      position: absolute;
+      left: 25px;
+      bottom: 25px;
+      line-height: 50px;
+    }
+  }
+}
+.article-text-box
+{
+  margin: 0 25px 25px 25px;
+  text-align: justify;
+  .article-annotation
+  {
+    font-weight: bold;
+    font-size: 22px;
+  }
+  .article-text
+  {
+    font-size: 16px;
+  }
+}

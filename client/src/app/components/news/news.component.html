@@ -1,132 +1,17 @@
-<div *ngFor="let article of news">
-  <p>{{article.newsTitle}}</p>
-  <hr>
-  <p>{{article.newsSubText}}</p>
-  <hr>
-  <p>{{article.newsText}}</p>
+<div class="news-container">
+  <a class="card clickable" *ngFor="let article of news" [routerLink]="['/article', article.id]">
+    <div class="card-img" >
+      <img src="assets/news.png">
+    </div>
+    <div class="card-block">
+      <h4 class="card-title">{{article.newsTitle}}</h4>
+      <h6 class="card-media-title">{{article.newsSubText}}</h6>
+      <!--<p class="card-text">-->
+        <!--{{article.newsText}}-->
+      <!--</p>-->
+    </div>
+  </a>
 </div>
-
-<!--<div class="news-container">-->
-  <!--<a href="..." class="card clickable">-->
-    <!--<div class="card-img">-->
-      <!--<img src="assets/news.png">-->
-    <!--</div>-->
-    <!--<div class="card-block">-->
-      <!--<p class="card-text">-->
-        <!--Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere,-->
-        <!--magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.-->
-        <!--Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique-->
-        <!--senectus et netus et malesuada fames ac turpis egestas.-->
-        <!--Proin pharetra nonummy pede. Mauris et orci. Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.-->
-        <!--Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend.-->
-      <!--</p>-->
-    <!--</div>-->
-  <!--</a>-->
-  <!--<a href="..." class="card clickable">-->
-    <!--<div class="card-img">-->
-      <!--<img src="assets/news.png">-->
-    <!--</div>-->
-    <!--<div class="card-block">-->
-      <!--<p class="card-text">-->
-        <!--Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere,-->
-        <!--magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.-->
-        <!--Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.-->
-      <!--</p>-->
-    <!--</div>-->
-  <!--</a>-->
-  <!--<a href="..." class="card clickable">-->
-    <!--<div class="card-img">-->
-      <!--<img src="assets/news.png">-->
-    <!--</div>-->
-    <!--<div class="card-block">-->
-      <!--<p class="card-text">-->
-        <!--Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere,-->
-        <!--magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.-->
-        <!--Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique-->
-        <!--senectus et netus et malesuada fames ac turpis egestas.-->
-        <!--Proin pharetra nonummy pede. Mauris et orci. Aenean nec lorem.-->
-      <!--</p>-->
-    <!--</div>-->
-  <!--</a>-->
-  <!--<a href="..." class="card clickable">-->
-    <!--<div class="card-img">-->
-      <!--<img src="assets/news.png">-->
-    <!--</div>-->
-    <!--<div class="card-block">-->
-      <!--<p class="card-text">-->
-        <!--Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere,-->
-        <!--magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.-->
-        <!--Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique-->
-        <!--senectus et netus et malesuada fames ac turpis egestas.-->
-        <!--Proin pharetra nonummy pede. Mauris et orci. Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.-->
-        <!--Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend.-->
-      <!--</p>-->
-    <!--</div>-->
-  <!--</a>-->
-  <!--<a href="..." class="card clickable">-->
-    <!--<div class="card-img">-->
-      <!--<img src="assets/news.png">-->
-    <!--</div>-->
-    <!--<div class="card-block">-->
-      <!--<p class="card-text">-->
-        <!--Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere,-->
-        <!--magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.-->
-        <!--Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique-->
-        <!--senectus et netus et malesuada fames ac turpis egestas.-->
-      <!--</p>-->
-    <!--</div>-->
-  <!--</a>-->
-  <!--<a href="..." class="card clickable">-->
-    <!--<div class="card-img">-->
-      <!--<img src="assets/news.png">-->
-    <!--</div>-->
-    <!--<div class="card-block">-->
-      <!--<p class="card-text">-->
-        <!--Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere,-->
-        <!--magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.-->
-      <!--</p>-->
-    <!--</div>-->
-  <!--</a>-->
-  <!--<a href="..." class="card clickable">-->
-    <!--<div class="card-img">-->
-      <!--<img src="assets/news.png">-->
-    <!--</div>-->
-    <!--<div class="card-block">-->
-      <!--<p class="card-text">-->
-        <!--Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere,-->
-        <!--magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.-->
-        <!--Nunc viverra imperdiet enim. Fusce est.-->
-      <!--</p>-->
-    <!--</div>-->
-  <!--</a>-->
-  <!--<a href="..." class="card clickable">-->
-    <!--<div class="card-img">-->
-      <!--<img src="assets/news.png">-->
-    <!--</div>-->
-    <!--<div class="card-block">-->
-      <!--<p class="card-text">-->
-        <!--Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere,-->
-        <!--magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.-->
-        <!--Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique-->
-        <!--senectus et netus et malesuada fames ac turpis egestas.-->
-        <!--Proin pharetra nonummy pede. Mauris et orci. Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.-->
-        <!--Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend.-->
-      <!--</p>-->
-    <!--</div>-->
-  <!--</a>-->
-  <!--<a href="..." class="card clickable">-->
-    <!--<div class="card-img">-->
-      <!--<img src="assets/news.png">-->
-    <!--</div>-->
-    <!--<div class="card-block">-->
-      <!--<p class="card-text">-->
-        <!--Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere,-->
-        <!--magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.-->
-        <!--Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique-->
-        <!--senectus et netus et malesuada fames ac turpis egestas.-->
-        <!--Proin pharetra nonummy pede. Mauris et orci. Aenean nec lorem. In porttitor.-->
-      <!--</p>-->
-    <!--</div>-->
-  <!--</a>-->
-<!--</div>-->
-
+<span class="spinner spinner-lg" [hidden]="!loadingSpinner">
+    Loading...
+</span>

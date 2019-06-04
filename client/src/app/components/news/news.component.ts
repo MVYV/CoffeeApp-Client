@@ -11,6 +11,7 @@ import { News } from '../../models/news.model';
 export class NewsComponent implements OnInit {
 
   news: News[];
+  loadingSpinner: boolean;
 
   constructor( private pageTitle: PageTitleService,
                private newsService: NewsService) { }
@@ -18,12 +19,14 @@ export class NewsComponent implements OnInit {
   ngOnInit() {
     this.pageTitle.setTitle('Coffee Products - News');
     this.getAllNews();
+    this.loadingSpinner = true;
   }
 
   getAllNews() {
     this.newsService.getNews().subscribe(
       news => {
         this.news = news;
+        this.loadingSpinner = false;
       });
   }
 

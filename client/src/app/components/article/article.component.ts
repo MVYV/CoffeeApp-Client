@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PageTitleService } from "../../services/page-title.service";
+import { NewsService } from '../../services/news-service';
+import { News } from '../../models/news.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-article',
@@ -8,10 +11,23 @@ import { PageTitleService } from "../../services/page-title.service";
 })
 export class ArticleComponent implements OnInit {
 
-  constructor( private pageTitle: PageTitleService ) { }
+  selectedArticle: News;
+  selectedArticleId: any;
+
+  constructor( private pageTitle: PageTitleService,
+               private newsService: NewsService,
+               private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.selectedArticleId = this.route.snapshot.paramMap.get('id');
     this.pageTitle.setTitle('Coffee Products - Article');
+    this.getSelectedArticle();
   }
 
+  getSelectedArticle() {
+    this.newsService.getArticle(this.selectedArticleId).subscribe(
+      (article: News) => {
+        this.selectedArticle = article;
+      });
+  }
 }
