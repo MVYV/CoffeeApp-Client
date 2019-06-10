@@ -86,6 +86,7 @@
         <!--Table header-->
         <clr-dg-column>Title</clr-dg-column>
         <clr-dg-column>Annotation</clr-dg-column>
+        <clr-dg-column>Source</clr-dg-column>
         <clr-dg-column>Text</clr-dg-column>
         <clr-dg-column>Tools</clr-dg-column>
 
@@ -93,7 +94,8 @@
         <clr-dg-row *clrDgItems="let article of news">
           <clr-dg-cell class="newsTitle">{{article.newsTitle}}</clr-dg-cell>
           <clr-dg-cell>{{article.newsSubText}}</clr-dg-cell>
-          <clr-dg-cell>{{article.newsText}}</clr-dg-cell>
+          <clr-dg-cell>{{article.newsSource}}</clr-dg-cell>
+          <clr-dg-cell>The text will be visible when editing.</clr-dg-cell>
           <clr-dg-cell class="admin-tools-for-user">
             <clr-icon shape="pencil" title="Modify Article" class="admin-modify-user"
                       (click)="showArticle = true; editArticle(article);"></clr-icon>
@@ -213,30 +215,38 @@
     <form class="clr-form clr-form-horizontal editUserForm" #editArticleForm="ngForm" autocomplete="off">
       <div class="clr-form-control clr-row">
         <label for="example" class="clr-control-label clr-col-12 clr-col-md-1">Article Title</label>
-        <div class="clr-control-container clr-col-12 clr-col-md-11" [class.clr-error]="newsTitle.invalid">
+        <div class="clr-control-container clr-col-12 clr-col-md-11" [class.clr-error]="newsTitle.invalid && newsTitle.touched">
           <div class="clr-input-wrapper">
             <input type="text" id="example" placeholder="Article Title" class="clr-input" style="width: 99%;"
                    [(ngModel)]="selectedArticle.newsTitle" #newsTitle="ngModel" name="newsTitle" required/>
             <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="newsTitle.valid"></clr-icon>
           </div>
-          <span class="clr-subtext" [class.wrongDataMessage]="newsTitle.valid">Incorrect Article Title</span>
+          <span class="clr-subtext" [class.wrongDataMessage]="newsTitle.valid" [hidden]="newsTitle.untouched">Incorrect Article Title</span>
         </div>
         <label for="example" class="clr-control-label clr-col-12 clr-col-md-1">Sub Text</label>
-        <div class="clr-control-container clr-col-12 clr-col-md-11" [class.clr-error]="subText.invalid">
+        <div class="clr-control-container clr-col-12 clr-col-md-11" [class.clr-error]="subText.invalid && subText.touched">
           <div class="clr-input-wrapper">
             <input type="text" id="example" placeholder="Article Annotation" class="clr-input"
                    [(ngModel)]="selectedArticle.newsSubText" #subText="ngModel" name="subText" required />
             <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="subText.valid"></clr-icon>
           </div>
-          <span class="clr-subtext" [class.wrongDataMessage]="subText.valid">Incorrect Annotation</span>
+          <span class="clr-subtext" [class.wrongDataMessage]="subText.valid" [hidden]="subText.untouched">Incorrect Annotation</span>
         </div>
-        <label for="textarea-basic-error" class="clr-control-label clr-col-12 clr-col-md-1">Article Main Text</label>
-        <div class="clr-control-container clr-col-12 clr-col-md-11" [class.clr-error]="newsText.invalid">
-          <div class="clr-textarea-wrapper">
-            <textarea id="textarea-basic-error" placeholder="Field For Article Main Text" class="clr-textarea" style="width:100%; height: 500px;" [(ngModel)]="selectedArticle.newsText" #newsText="ngModel" name="newsText" required></textarea>
-            <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="newsText.valid"></clr-icon>
+        <label for="example" class="clr-control-label clr-col-12 clr-col-md-1">Source</label>
+        <div class="clr-control-container clr-col-12 clr-col-md-11" [class.clr-error]="articleSource.invalid && articleSource.touched">
+          <div class="clr-input-wrapper">
+            <input type="text" id="example" placeholder="Article Source" class="clr-input"
+                   [(ngModel)]="selectedArticle.newsSource" #articleSource="ngModel" name="articleSource" required />
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="articleSource.valid"></clr-icon>
           </div>
-          <span class="clr-subtext" [class.wrongDataMessage]="newsText.valid">Please Add Text</span>
+          <span class="clr-subtext" [class.wrongDataMessage]="articleSource.valid" [hidden]="articleSource.untouched">Incorrect Article Source</span>
+        </div>
+        <br><br>
+        <label for="textarea-basic-error" class="clr-control-label clr-col-12 clr-col-md-1">Article Main Text</label>
+        <div class="clr-control-container clr-col-12 clr-col-md-11" [class.clr-error]="newsText.invalid && newsText.touched">
+          <quill-editor id="textarea-basic-error" placeholder="Field For Article Main Text" [(ngModel)]="selectedArticle.newsText" #newsText="ngModel" name="newsText" required></quill-editor>
+          <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="newsText.valid"></clr-icon>
+          <span class="clr-subtext" [class.wrongDataMessage]="newsText.valid" [hidden]="newsText.untouched">Please Add Text</span>
         </div>
       </div>
     </form>

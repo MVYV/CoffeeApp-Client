@@ -112,6 +112,7 @@ export class AdminPageComponent implements OnInit {
       article.id,
       article.newsTitle,
       article.newsSubText,
+      article.newsSource,
       article.newsText
     );
   }

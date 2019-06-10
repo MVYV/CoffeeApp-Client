@@ -16,16 +16,25 @@
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, .4);
-    .article-title
+    .article-info
     {
-      font-weight: bold;
-      font-size: 50px;
-      padding-right: 25px;
-      color: lightblue;
+      width: calc(100% - 25px);
+      color: #ffffff;
       position: absolute;
       left: 25px;
-      bottom: 25px;
+      bottom: 0;
       line-height: 50px;
+      .article-title
+      {
+        padding-right: 25px;
+        font-weight: bold;
+        font-size: 50px;
+      }
+      .article-source
+      {
+        float: right;
+        padding-right: 10px;
+      }
     }
   }
 }
@@ -36,10 +45,11 @@
   .article-annotation
   {
     font-weight: bold;
-    font-size: 22px;
+    font-size: 24px;
+    margin-bottom: 50px;
   }
-  .article-text
+  ::ng-deep .article-text > p
   {
-    font-size: 16px;
+    font-size: 18px;
   }
 }

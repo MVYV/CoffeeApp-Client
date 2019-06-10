@@ -1,6 +1,7 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { QuillModule } from 'ngx-quill';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,6 +48,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     AppRoutingModule,
     ClarityModule,
     HttpClientModule,
+    QuillModule,
     ScrollToModule.forRoot()
   ],
   providers: [
