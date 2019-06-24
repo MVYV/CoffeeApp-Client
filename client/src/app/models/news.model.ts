@@ -4,5 +4,6 @@ export class News {
     public newsTitle?: string,
     public newsSubText?: string,
     public newsSource?: string,
+    public newsDate?: any,
     public newsText?: string ) {}
 }

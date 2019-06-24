@@ -1,15 +1,23 @@
 $warningColor: #fac400;
 
-.admin-tools-for-user
+.admin-tools
 {
   text-align: right;
-  .admin-delete-user,
-  .admin-modify-user,
-  .admin-ban-user,
-  .admin-message-user
+  .admin-delete,
+  .admin-ban,
+  .admin-message
   {
-    margin-left: 10px;
+    margin-left: 15px;
     cursor: pointer;
+  }
+  .admin-modify
+  {
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  clr-icon:hover
+  {
+    color: #0079b8;
   }
 }
 
@@ -29,4 +37,8 @@ $warningColor: #fac400;
 .newsTitle
 {
   font-weight: bold;
+}
+.add-article-btn
+{
+  margin: 12px 0 0 12px;
 }

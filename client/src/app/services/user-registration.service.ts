@@ -23,4 +23,8 @@ export class UserRegistrationService {
   public deleteUser(user: User): Observable<User> {
     return this.http.delete<User>(`https://march11app.herokuapp.com/${user.id}`);
   }
+
+  public banUser(user: User): Observable<User> {
+    return this.http.patch<User>(`https://march11app.herokuapp.com/${user.id}`, user);
+  }
 }

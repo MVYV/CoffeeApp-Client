@@ -22,6 +22,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { UserRegistrationService } from './services/user-registration.service';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { NewsService } from './services/news-service';
+import { FooterComponent } from './components/footer/footer.component';
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('en');
@@ -39,7 +40,8 @@ export function setupTranslateFactory(service: TranslateService): Function {
     ArticleComponent,
     LoginComponent,
     RegistrationComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

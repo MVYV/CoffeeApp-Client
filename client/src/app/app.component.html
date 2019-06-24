@@ -8,13 +8,13 @@
     </div>
     <div class="header-nav" [clr-nav-level]="1">
       <a routerLink="/" class="nav-link nav-text" (click)="activeNavLink('home')"
-         [ngClass]="{'isActive': navLinkTitle == 'home'}">{{ 'HOME' | translate }}</a>
+         [ngClass]="{'active': navLinkTitle == 'home'}">{{ 'HOME' | translate }}</a>
       <a routerLink="/news" class="active nav-link nav-text" (click)="activeNavLink('news')"
-         [ngClass]="{'isActive': navLinkTitle == 'news'}">{{ 'NEWS' | translate }}</a>
+         [ngClass]="{'active': navLinkTitle == 'news'}">{{ 'NEWS' | translate }}</a>
       <a routerLink="/products" class="nav-link nav-text" (click)="activeNavLink('products')"
-         [ngClass]="{'isActive': navLinkTitle == 'products'}">{{ 'PRODUCTS' | translate }}</a>
+         [ngClass]="{'active': navLinkTitle == 'products'}">{{ 'PRODUCTS' | translate }}</a>
       <a routerLink="/about" class="nav-link nav-text" (click)="activeNavLink('about')"
-         [ngClass]="{'isActive': navLinkTitle == 'about'}">{{ 'ABOUT' | translate }}</a>
+         [ngClass]="{'active': navLinkTitle == 'about'}">{{ 'ABOUT' | translate }}</a>
     </div>
     <div class="header-actions">
       <clr-dropdown>
@@ -38,20 +38,22 @@
           <a routerLink="/login" clrDropdownItem>{{ 'LOG_IN' | translate }}</a>
         </clr-dropdown-menu>
       </clr-dropdown>
-      <a class="nav-link nav-icon" (click)="basic = true">
+      <a routerLink="/dashboard" class="nav-link nav-icon">
         <clr-icon shape="cog"></clr-icon>
       </a>
     </div>
   </clr-header>
   <router-outlet></router-outlet>
+  <app-footer></app-footer>
 </clr-main-container>
-<clr-modal [(clrModalOpen)]="basic">
-  <h3 class="modal-title">I have a nice title</h3>
-  <div class="modal-body">
-    <p>But not much to say...</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline" (click)="basic = false">Cancel</button>
-    <button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>
-  </div>
-</clr-modal>
+<!--<clr-modal [(clrModalOpen)]="basic">-->
+  <!--<h3 class="modal-title">I have a nice title</h3>-->
+  <!--<div class="modal-body">-->
+    <!--<p>But not much to say...</p>-->
+  <!--</div>-->
+  <!--<div class="modal-footer">-->
+    <!--<button type="button" class="btn btn-outline" (click)="basic = false">Cancel</button>-->
+    <!--<button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>-->
+  <!--</div>-->
+<!--</clr-modal>-->
+

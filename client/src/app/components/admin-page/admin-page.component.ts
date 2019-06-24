@@ -4,6 +4,7 @@ import { User } from '../../models/users.model';
 import { News } from '../../models/news.model';
 import { PageTitleService } from '../../services/page-title.service';
 import { NewsService } from '../../services/news-service';
+import { ClrDatagridSortOrder } from '@clr/angular';
 
 @Component({
   selector: 'app-admin-page',
@@ -26,12 +27,16 @@ export class AdminPageComponent implements OnInit {
   newArticle: News;
   dataBaseKey: string;
   numberOfUsers: number;
+  ascSort: any;
+  descSort: any;
 
   constructor( private pageTitle: PageTitleService,
                private registrationService: UserRegistrationService,
                private newsService: NewsService) { }
 
   ngOnInit() {
+    this.ascSort = ClrDatagridSortOrder.ASC;
+    this.descSort = ClrDatagridSortOrder.DESC;
     this.pageTitle.setTitle('Coffee Products - Admin Page');
     this.loading = true;
     this.selectedUser = new User();
@@ -82,6 +87,15 @@ export class AdminPageComponent implements OnInit {
       });
   }
 
+  banOneUser() {
+    this.registrationService.banUser(this.selectedUser).subscribe(
+      () => {
+        this.getAllUsers();
+      }, () => {
+        this.getAllUsers();
+      });
+  }
+
   openForm() {
     this.showForm = true;
   }
@@ -113,6 +127,7 @@ export class AdminPageComponent implements OnInit {
       article.newsTitle,
       article.newsSubText,
       article.newsSource,
+      article.newsDate,
       article.newsText
     );
   }
