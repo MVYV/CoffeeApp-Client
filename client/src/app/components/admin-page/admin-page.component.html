@@ -119,6 +119,11 @@
             Date
           </ng-container>
         </clr-dg-column>
+        <clr-dg-column [clrDgField]="'newsModificationDate'">
+          <ng-container *clrDgHideableColumn="{hidden: false}">
+            Modification Date
+          </ng-container>
+        </clr-dg-column>
 
         <!--Table data-->
         <clr-dg-row *clrDgItems="let article of news">
@@ -131,7 +136,8 @@
           <clr-dg-cell class="newsTitle">{{article.newsTitle}}</clr-dg-cell>
           <clr-dg-cell>{{article.newsSubText}}</clr-dg-cell>
           <clr-dg-cell>{{article.newsSource}}</clr-dg-cell>
-          <clr-dg-cell>{{article.newsDate}}</clr-dg-cell>
+          <clr-dg-cell>{{article.newsDate | date: 'long'}}</clr-dg-cell>
+          <clr-dg-cell>{{article.newsModificationDate | date: 'long'}}</clr-dg-cell>
           <clr-dg-row-detail *clrIfExpanded>
             {{article.newsText}}
           </clr-dg-row-detail>

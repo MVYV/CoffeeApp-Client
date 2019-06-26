@@ -5,6 +5,9 @@
 .clr-main-container
 {
   overflow: auto;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: 60px auto 1fr;
 }
 .header-navigation
 {

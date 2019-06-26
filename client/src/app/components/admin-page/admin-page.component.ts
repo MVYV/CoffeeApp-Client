@@ -128,6 +128,7 @@ export class AdminPageComponent implements OnInit {
       article.newsSubText,
       article.newsSource,
       article.newsDate,
+      article.newsModificationDate,
       article.newsText
     );
   }
