@@ -1,4 +1,5 @@
 $warningColor: #fac400;
+$alertColor: #f8b7b6;
 
 .admin-tools
 {
@@ -41,4 +42,9 @@ $warningColor: #fac400;
 .add-article-btn
 {
   margin: 12px 0 0 12px;
+}
+.inactiveUser
+{
+  background-color: $alertColor;
+  //color: #ffffff;
 }

@@ -54,7 +54,7 @@
         </clr-dg-column>
 
         <!--Table data-->
-        <clr-dg-row *clrDgItems="let user of users">
+        <clr-dg-row *clrDgItems="let user of users" [ngClass]="{'inactiveUser': user.isActive === 0}">
           <clr-dg-action-overflow class="user-tools admin-tools">
             <clr-icon shape="pencil" title="Modify User" class="admin-modify-user admin-modify"
                       (click)="openForm(); editUser(user)"></clr-icon>
