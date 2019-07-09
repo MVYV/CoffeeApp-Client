@@ -1,4 +1,4 @@
-import {Role} from "./roles.model";
+import { Role } from "./roles.model";
 
 export class User {
   constructor (
@@ -8,5 +8,10 @@ export class User {
     public email?: string,
     public password?: string,
     public roles?: Role[],
-    public isActive?: number) { }
+    public isActive?: number,
+    public country?: string,
+    public city?: string,
+    public dateOfBirth?: any,
+    public gender?: string,
+    public avatar?: string ) { }
 }

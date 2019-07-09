@@ -14,21 +14,35 @@
 {
   display: block;
   margin: 5px;
-  width: calc(25% - 10px);
+  width: calc(20% - 10px);
 }
 .spinner
 {
   display: block;
   margin: auto;
 }
+@media screen and (max-width: 1200px)
+{
+  .card
+  {
+    width: calc(25% - 10px);
+  }
+}
 @media screen and (max-width: 1000px)
+{
+  .card
+  {
+    width: calc(33% - 10px);
+  }
+}
+@media screen and (max-width: 768px)
 {
   .card
   {
     width: calc(50% - 10px);
   }
 }
-@media screen and (max-width: 768px)
+@media screen and (max-width: 550px)
 {
   .card
   {

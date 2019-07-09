@@ -39,7 +39,7 @@ $alertColor: #f8b7b6;
 {
   font-weight: bold;
 }
-.add-article-btn
+.add-item-btn
 {
   margin: 12px 0 0 12px;
 }
@@ -47,4 +47,10 @@ $alertColor: #f8b7b6;
 {
   background-color: $alertColor;
   //color: #ffffff;
+}
+.user-data-field,
+.news-data-field,
+.product-data-field
+{
+  margin-bottom: 20px;
 }

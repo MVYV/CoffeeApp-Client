@@ -1,10 +1,12 @@
-<div class="article-box">
+<div class="article-box" id="articleBox">
   <div class="article-image-box">
     <img src="assets/nature33hd.jpg" class="article-image">
     <div class="gray-box">
       <div class="article-info">
+        <div class="article-date">Added: {{selectedArticle?.newsDate | date: 'medium'}}</div>
+        <div class="article-modification-date">Modified: {{selectedArticle?.newsModificationDate | date: 'medium'}}</div>
         <div class="article-title">{{selectedArticle?.newsTitle}}</div>
-        <div class="article-source">Source: {{selectedArticle?.newsSource}}</div>
+        <div class="article-source">Source/Author: {{selectedArticle?.newsSource}}</div>
       </div>
     </div>
   </div>
@@ -12,4 +14,21 @@
     <p class="article-annotation">{{selectedArticle?.newsSubText}}</p>
     <div class="article-text" [innerHtml]="selectedArticle?.newsText"></div>
   </div>
+</div>
+
+<div class="other-news">
+  <div class="other-news-header"><p>More news</p></div>
+  <a *ngFor="let record of news" [routerLink]="['/article', record.id]" [ngx-scroll-to-offset]="-60" [ngx-scroll-to]="'#articleBox'" class="other-news-link-box">
+    <div class="other-news-box">
+      <div class="other-news-icon">
+        <clr-icon shape="details" size="40"></clr-icon>
+      </div>
+      <div class="other-news-title">
+        {{record.newsTitle}}
+      </div>
+      <div class="other-news-arrow-icon">
+        <clr-icon shape="angle" size="40" class="angle-icon"></clr-icon>
+      </div>
+    </div>
+  </a>
 </div>

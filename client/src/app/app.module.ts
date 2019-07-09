@@ -22,6 +22,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { UserRegistrationService } from './services/user-registration.service';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { NewsService } from './services/news-service';
+import { ProductsService } from "./services/products.service";
 import { FooterComponent } from './components/footer/footer.component';
 
 export function setupTranslateFactory(service: TranslateService): Function {
@@ -57,6 +58,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     Title,
     UserRegistrationService,
     NewsService,
+    ProductsService,
     TranslateService,
     {
       provide: APP_INITIALIZER,

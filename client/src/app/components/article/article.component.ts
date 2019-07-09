@@ -12,22 +12,35 @@ import { ActivatedRoute } from '@angular/router';
 export class ArticleComponent implements OnInit {
 
   selectedArticle: News;
-  selectedArticleId: any;
+  news: News[];
 
   constructor( private pageTitle: PageTitleService,
                private newsService: NewsService,
                private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.selectedArticleId = this.route.snapshot.paramMap.get('id');
+    this.route.params.subscribe(
+      params => {
+        const selectedArticleId = +params['id'];
+        this.getSelectedArticle(selectedArticleId);
+      });
     this.pageTitle.setTitle('Coffee Products - Article');
-    this.getSelectedArticle();
+
+    this.getAllNews();
   }
 
-  getSelectedArticle() {
-    this.newsService.getArticle(this.selectedArticleId).subscribe(
+  getSelectedArticle(articleId: number) {
+    this.newsService.getArticle(articleId).subscribe(
       (article: News) => {
         this.selectedArticle = article;
+        window.scroll(0, 0);
+      });
+  }
+
+  getAllNews() {
+    this.newsService.getNews().subscribe(
+      news => {
+        this.news = news;
       });
   }
 }

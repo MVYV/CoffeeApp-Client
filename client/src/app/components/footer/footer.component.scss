@@ -1,8 +1,10 @@
+$siteColor: #314351;
+
 .footer
 {
   width: 100%;
   border: 1px solid transparent;
-  background-color: #314351;
+  background-color: $siteColor;
   padding: 15px;
   display: flex;
   flex-direction: row;

@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { UserRegistrationService } from '../../services/user-registration.service';
 import { User } from '../../models/users.model';
 import { News } from '../../models/news.model';
+import { Product } from "../../models/products.model";
 import { PageTitleService } from '../../services/page-title.service';
 import { NewsService } from '../../services/news-service';
 import { ClrDatagridSortOrder } from '@clr/angular';
+import {ProductsService} from "../../services/products.service";
 
 @Component({
   selector: 'app-admin-page',
@@ -13,18 +15,25 @@ import { ClrDatagridSortOrder } from '@clr/angular';
 })
 export class AdminPageComponent implements OnInit {
 
-  showForm: boolean = false;
+  showUser: boolean;
   showArticle: boolean;
+  showProducts: boolean;
   showDeleteUserConfirmation: boolean = false;
   loading: boolean;
   isNewArticle: boolean;
+  isNewUser: boolean;
+  isNewProduct: boolean;
   isSuccess: boolean = false;
   isError: boolean = false;
   users: User[];
-  news: News[];
+  newUser: User;
   selectedUser: User;
-  selectedArticle: News;
+  news: News[];
   newArticle: News;
+  selectedArticle: News;
+  products: Product[];
+  newProduct: Product;
+  selectedProduct: Product;
   dataBaseKey: string;
   numberOfUsers: number;
   ascSort: any;
@@ -32,7 +41,8 @@ export class AdminPageComponent implements OnInit {
 
   constructor( private pageTitle: PageTitleService,
                private registrationService: UserRegistrationService,
-               private newsService: NewsService) { }
+               private newsService: NewsService,
+               private productsService: ProductsService) { }
 
   ngOnInit() {
     this.ascSort = ClrDatagridSortOrder.ASC;
@@ -40,10 +50,14 @@ export class AdminPageComponent implements OnInit {
     this.pageTitle.setTitle('Coffee Products - Admin Page');
     this.loading = true;
     this.selectedUser = new User();
+    this.newUser = new User();
     this.selectedArticle = new News();
     this.newArticle = new News();
+    this.selectedProduct = new Product();
+    this.newProduct = new Product();
     this.getAllUsers();
     this.getAllNews();
+    this.getAllProducts();
   }
 
   getAllUsers() {
@@ -55,7 +69,14 @@ export class AdminPageComponent implements OnInit {
       });
   }
 
+  addUser() {
+    this.selectedUser = new User();
+    this.showUser = true;
+    this.isNewUser = true;
+  }
+
   editUser(user: User) {
+    this.isNewUser = false;
     this.selectedUser = new User(
       user.id,
       user.userName,
@@ -63,19 +84,36 @@ export class AdminPageComponent implements OnInit {
       user.email,
       user.password,
       user.roles,
-      user.isActive
+      user.isActive,
+      user.country,
+      user.city,
+      user.dateOfBirth,
+      user.gender,
+      user.avatar
     );
   }
 
   modifyUser() {
-    this.registrationService.putUser(this.selectedUser).subscribe(
-      () => {
-        this.isSuccess = true;
-        this.getAllUsers();
-      }, () => {
-        this.isError = true;
-        this.getAllUsers();
-      });
+    if (this.isNewUser) {
+      this.registrationService.postUser(this.selectedUser).subscribe(
+        () => {
+          this.isSuccess = true;
+          this.getAllUsers();
+        },() => {
+          this.isError = true;
+          this.getAllUsers();
+        });
+    } else {
+      this.registrationService.putUser(this.selectedUser).subscribe(
+        () => {
+          this.isSuccess = true;
+          this.getAllUsers();
+        }, () => {
+          this.isError = true;
+          this.getAllUsers();
+        });
+    }
+
   }
 
   deleteOneUser() {
@@ -94,14 +132,6 @@ export class AdminPageComponent implements OnInit {
       }, () => {
         this.getAllUsers();
       });
-  }
-
-  openForm() {
-    this.showForm = true;
-  }
-
-  closeForm() {
-    this.showForm = false;
   }
 
   showDeleteDialog(db_key: string) {
@@ -129,7 +159,8 @@ export class AdminPageComponent implements OnInit {
       article.newsSource,
       article.newsDate,
       article.newsModificationDate,
-      article.newsText
+      article.newsText,
+      article.newsImage
     );
   }
 
@@ -167,6 +198,64 @@ export class AdminPageComponent implements OnInit {
         this.getAllNews();
       }, () => {
         this.getAllNews();
+      });
+  }
+
+  getAllProducts() {
+    this.productsService.getProducts().subscribe(
+      products => {
+        this.products = products;
+      });
+  }
+
+  editProduct(product: Product) {
+    this.isNewProduct = false;
+    this.selectedProduct = new Product(
+      product.id,
+      product.productName,
+      product.productType,
+      product.image,
+      product.description,
+      product.price,
+      product.productDate,
+      product.productModificationDate
+    );
+  }
+
+  createProduct() {
+    this.selectedProduct = new Product();
+    this.showProducts = true;
+    this.isNewProduct = true;
+  }
+
+  addNewProduct() {
+    if (this.isNewProduct) {
+      this.productsService.postProduct(this.selectedProduct).subscribe(
+        () => {
+          this.isSuccess = true;
+          this.getAllProducts();
+        }, () => {
+          this.isError = true;
+          this.getAllProducts();
+        });
+    } else {
+      this.productsService.putProduct(this.selectedProduct).subscribe(
+        () => {
+          this.isSuccess = true;
+          this.getAllProducts();
+        }, () => {
+          this.isError = true;
+          this.getAllProducts();
+        });
+    }
+  }
+
+  deleteOneProduct() {
+    this.productsService.deleteProduct(this.selectedProduct).subscribe(
+      () => {
+        this.getAllProducts();
+      }, () => {
+        this.getAllProducts();
       });
   }
 
