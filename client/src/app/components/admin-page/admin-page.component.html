@@ -590,13 +590,13 @@
         <!--News image field-->
         <label for="example" class="clr-control-label clr-col-12 clr-col-md-1">Image</label>
         <div class="clr-control-container product-data-field clr-col-12 clr-col-md-11"
-             [class.clr-error]="articleImage.invalid && articleImage.touched">
+             [class.clr-error]="productImage.invalid && productImage.touched">
           <div class="clr-input-wrapper">
-            <input type="text" id="example" placeholder="Article Image" class="clr-input"
-                   [(ngModel)]="selectedArticle.newsSource" #articleImage="ngModel" name="articleImage"/>
-            <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="articleImage.valid"></clr-icon>
+            <input type="text" id="example" placeholder="Product Image" class="clr-input"
+                   [(ngModel)]="selectedProduct.image" #productImage="ngModel" name="productImage"/>
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="productImage.valid"></clr-icon>
           </div>
-          <span class="clr-subtext" [class.wrongDataMessage]="articleImage.valid" [hidden]="articleImage.untouched">Incorrect Article Source</span>
+          <span class="clr-subtext" [class.wrongDataMessage]="productImage.valid" [hidden]="productImage.untouched">Incorrect Product Source</span>
         </div>
 
         <!--News main text field-->
