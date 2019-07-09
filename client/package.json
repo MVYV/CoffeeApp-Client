@@ -25,6 +25,7 @@
     "@clr/ui": "^1.1.1",
     "@nicky-lenaers/ngx-scroll-to": "^2.0.0",
     "@webcomponents/custom-elements": "^1.0.0",
+    "handlebars": ">=4.1.2",
     "core-js": "^2.5.4",
     "ng2-smooth-scroll": "^1.0.1",
     "ngx-quill": "^5.2.0",
