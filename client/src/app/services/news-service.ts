@@ -6,7 +6,7 @@ import { News } from '../models/news.model';
 @Injectable()
 export class NewsService {
 
-  constructor( private http: HttpClient) { }
+  constructor( private http: HttpClient ) { }
 
   public postArticle(article: News): Observable<News> {
     return this.http.post<News>('https://march11app.herokuapp.com/news', article);
