@@ -7,10 +7,10 @@
     </section>
     <div class="login-group">
       <clr-input-container>
-        <input type="text" name="username" class="userName" clrInput placeholder="{{ 'USERNAME' | translate }}" autocomplete="off"/>
+        <input type="text" name="username" class="userName" [(ngModel)]="username" clrInput placeholder="{{ 'USERNAME' | translate }}" autocomplete="off"/>
       </clr-input-container>
       <clr-password-container>
-        <input type="password" name="password" class="userPass" clrPassword placeholder="{{ 'PASSWORD' | translate }}"/>
+        <input type="password" name="password" class="userPass" [(ngModel)]="password"  clrPassword placeholder="{{ 'PASSWORD' | translate }}"/>
       </clr-password-container>
       <clr-checkbox-wrapper>
         <label>{{ 'REMEMBER_ME' | translate }}</label>
@@ -19,7 +19,7 @@
       <div class="error error-message">
         Invalid user userName or password
       </div>
-      <button type="submit" class="btn btn-primary">{{ 'LOG_IN' | translate }}</button>
+      <button type="button" class="btn btn-primary" (click)="checkLogin();">{{ 'LOG_IN' | translate }}</button>
       <a routerLink="/registration" class="signup">{{ 'REGISTER' | translate }}</a>
     </div>
   </form>

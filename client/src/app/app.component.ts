@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { TranslateService } from "./services/translate.service";
+import { AuthenticationService } from "./services/authentication.service";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ export class AppComponent implements OnInit{
 
   navLinkTitle: string;
 
-  constructor( private translate: TranslateService) {}
+  constructor( private translate: TranslateService,
+               private authenticationService: AuthenticationService) {}
 
   ngOnInit() {
     // this.activeNavLink('home');

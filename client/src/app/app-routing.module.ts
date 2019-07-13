@@ -9,6 +9,8 @@ import { PageNotFoundComponent } from "./components/page-not-found/page-not-foun
 import { LoginComponent } from "./components/login/login.component";
 import { RegistrationComponent } from "./components/registration/registration.component";
 import { AdminPageComponent } from "./components/admin-page/admin-page.component";
+import { LogoutComponent } from "./components/logout/logout.component";
+import {AuthenticationGuardService} from "./services/authentication-guard.service";
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,8 +19,9 @@ const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'article/:id', component: ArticleComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent },
   { path: 'registration', component: RegistrationComponent },
-  { path: 'dashboard', component: AdminPageComponent },
+  { path: 'dashboard', component: AdminPageComponent, canActivate: [AuthenticationGuardService] },
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

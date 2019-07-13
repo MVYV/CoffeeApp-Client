@@ -35,10 +35,12 @@
         </button>
         <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right" class="userTools">
           <a routerLink="/registration" clrDropdownItem>{{ 'REGISTRATION' | translate }}</a>
-          <a routerLink="/login" clrDropdownItem>{{ 'LOG_IN' | translate }}</a>
+          <a *ngIf="!authenticationService.isLoggedIn()" routerLink="/login" clrDropdownItem>{{ 'LOG_IN' | translate }}</a>
+          <a *ngIf="authenticationService.isLoggedIn()" routerLink="/logout" clrDropdownItem>Log Out</a>
+          <a *ngIf="authenticationService.isLoggedIn()" clrDropdownItem>{{authenticationService.loggedInUser}}111</a>
         </clr-dropdown-menu>
       </clr-dropdown>
-      <a routerLink="/dashboard" class="nav-link nav-icon">
+      <a *ngIf="authenticationService.isLoggedIn()" routerLink="/dashboard" class="nav-link nav-icon">
         <clr-icon shape="cog"></clr-icon>
       </a>
     </div>

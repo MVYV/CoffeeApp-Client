@@ -10,7 +10,7 @@ import { NewsComponent } from './components/news/news.component';
 import { ProductsComponent } from './components/products/products.component';
 import { HomeComponent } from './components/home/home.component';
 import { ClarityModule } from '@clr/angular';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { TranslateService } from './services/translate.service';
 import { TranslatePipe } from './pipes/translate.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,6 +24,9 @@ import { AdminPageComponent } from './components/admin-page/admin-page.component
 import { NewsService } from './services/news-service';
 import { ProductsService } from "./services/products.service";
 import { FooterComponent } from './components/footer/footer.component';
+import { AuthenticationService } from "./services/authentication.service";
+import { LogoutComponent } from './components/logout/logout.component';
+import {AuthenticationHttpInterceptorService} from "./services/authentication-http-interceptor.service";
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('en');
@@ -42,7 +45,8 @@ export function setupTranslateFactory(service: TranslateService): Function {
     LoginComponent,
     RegistrationComponent,
     AdminPageComponent,
-    FooterComponent
+    FooterComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +64,10 @@ export function setupTranslateFactory(service: TranslateService): Function {
     NewsService,
     ProductsService,
     TranslateService,
+    AuthenticationService,
+    {
+      provide: HTTP_INTERCEPTORS, useClass: AuthenticationHttpInterceptorService, multi: true
+    },
     {
       provide: APP_INITIALIZER,
       useFactory: setupTranslateFactory,
