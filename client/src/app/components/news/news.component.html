@@ -1,7 +1,7 @@
 <div class="news-container">
   <a class="card clickable" *ngFor="let article of news" [routerLink]="['/article', article.id]">
     <div class="card-img" >
-      <img src="assets/news.png">
+      <img src="assets/images/news.png">
     </div>
     <div class="card-block">
       <h4 class="card-title">{{article.newsTitle}}</h4>

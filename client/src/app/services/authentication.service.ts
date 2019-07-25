@@ -8,7 +8,7 @@ import { map } from "rxjs/operators";
 @Injectable()
 export class AuthenticationService {
 
-  loggedInUser;
+  loggedInUser: any;
 
   constructor( private http: HttpClient) { }
 
@@ -31,7 +31,7 @@ export class AuthenticationService {
 
   isLoggedIn() {
     let user = sessionStorage.getItem('username');
-    console.log(!(user === null));
+    // console.log(!(user === null));
     return !(user === null);
   }
 

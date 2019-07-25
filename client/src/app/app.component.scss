@@ -8,11 +8,13 @@
   min-height: 100%;
   display: grid;
   grid-template-rows: 60px auto 1fr;
+  background-image: url('/assets/images/login-page.jpg');
+  background-size: cover;
 }
 .header-navigation
 {
   position: sticky;
   top: 0;
-  z-index: 10000;
+  z-index: 1;
 }
 
