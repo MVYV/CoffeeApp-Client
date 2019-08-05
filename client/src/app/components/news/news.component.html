@@ -1,14 +1,11 @@
 <div class="news-container">
   <a class="card clickable" *ngFor="let article of news" [routerLink]="['/article', article.id]">
     <div class="card-img" >
-      <img src="assets/images/news.png">
+      <img src="assets/images/login-page.jpg">
+      <div class="card-date">{{article.newsDate | date: 'medium'}}</div>
     </div>
     <div class="card-block">
-      <h4 class="card-title">{{article.newsTitle}}</h4>
-      <h6 class="card-media-title">{{article.newsSubText}}</h6>
-      <!--<p class="card-text">-->
-        <!--{{article.newsText}}-->
-      <!--</p>-->
+      <h6 class="card-title">{{article.newsTitle}}</h6>
     </div>
   </a>
 </div>

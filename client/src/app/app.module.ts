@@ -22,11 +22,11 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { UserRegistrationService } from './services/user-registration.service';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { NewsService } from './services/news-service';
-import { ProductsService } from "./services/products.service";
+import { ProductsService } from './services/products.service';
 import { FooterComponent } from './components/footer/footer.component';
-import { AuthenticationService } from "./services/authentication.service";
+import { AuthenticationService } from './services/authentication.service';
 import { LogoutComponent } from './components/logout/logout.component';
-import {AuthenticationHttpInterceptorService} from "./services/authentication-http-interceptor.service";
+import { AuthenticationHttpInterceptorService } from './services/authentication-http-interceptor.service';
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('en');

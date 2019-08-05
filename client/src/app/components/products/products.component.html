@@ -1,12 +1,23 @@
 <nav class="subnav" [clr-nav-level]="2">
   <ul class="nav">
     <li *ngFor="let product of products" class="nav-item">
-      <a class="nav-link" [ngx-scroll-to-offset]="-106" [ngx-scroll-to]="product.productName" (click)="activeProduct(product.productName)" [ngClass] = "{'active': productsLink == product.productName}">{{product.productName}}</a>
+      <a class="nav-link" [ngx-scroll-to-offset]="-96" [ngx-scroll-to]="product.productName" (click)="activeProduct(product.productName)" [ngClass] = "{'active': productsLink == product.productName}">{{product.productName}}</a>
     </li>
   </ul>
 </nav>
 <div class="products-container">
-  <div *ngFor="let product of products" class="product-item product-item-4" id="{{product.productName}}">
-    {{product.productName}}
+  <div *ngFor="let product of products" class="item-container" id="{{product.productName}}">
+    <div class="product-item">
+      <div class="productName productInfo">{{product.productName}}</div>
+      <div *ngIf="product.productType" class="productType productInfo">{{product.productType}}</div>
+      <div class="productImage">
+        <img src="/assets/images/login-page.jpg" class="productImg"/>
+        <div *ngIf="product.price" class="productPrice productInfo">Price: {{product.price}}</div>
+        <div class="productText productInfo" [innerHtml]="product.description"></div>
+        <div class="productDate productInfo" *ngIf="product.productModificationDate">{{product.productModificationDate | date:'medium'}}</div>
+        <div class="productDate productInfo" *ngIf="!product.productModificationDate">{{product.productDate | date:'medium'}}</div>
+      </div>
+      <!--<div class="productResponse productInfo">Nice</div>-->
+    </div>
   </div>
 </div>

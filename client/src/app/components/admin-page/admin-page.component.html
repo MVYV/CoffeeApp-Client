@@ -280,6 +280,15 @@
     </clr-tab-content>
   </clr-tab>
 
+  <!--Tab with site settings-->
+  <clr-tab>
+    <button clrTabLink id="link1">Application Settings</button>
+    <clr-tab-content *clrIfActive="true">
+
+
+    </clr-tab-content>
+  </clr-tab>
+
 </clr-tabs>
 
 <!--Modal window with confirmation of deletion selected user, article or product-->
@@ -516,7 +525,7 @@
              [class.clr-error]="articleImage.invalid && articleImage.touched">
           <div class="clr-input-wrapper">
             <input type="text" id="example" placeholder="Article Image" class="clr-input"
-                   [(ngModel)]="selectedArticle.newsSource" #articleImage="ngModel" name="articleImage"/>
+                   [(ngModel)]="selectedArticle.newsImage" #articleImage="ngModel" name="articleImage"/>
             <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="articleImage.valid"></clr-icon>
           </div>
           <span class="clr-subtext" [class.wrongDataMessage]="articleImage.valid" [hidden]="articleImage.untouched">Incorrect Article Source</span>

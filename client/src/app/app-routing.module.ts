@@ -21,7 +21,8 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'registration', component: RegistrationComponent },
-  { path: 'dashboard', component: AdminPageComponent, canActivate: [AuthenticationGuardService] },
+  // { path: 'dashboard', component: AdminPageComponent, canActivate: [AuthenticationGuardService] },
+  { path: 'dashboard', component: AdminPageComponent },
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

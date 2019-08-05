@@ -11,14 +11,14 @@
     </div>
   </div>
   <div class="article-text-box">
-    <p class="article-annotation">{{selectedArticle?.newsSubText}}</p>
+    <div class="article-annotation">{{selectedArticle?.newsSubText}}</div>
     <div class="article-text" [innerHtml]="selectedArticle?.newsText"></div>
   </div>
 </div>
 
 <div class="other-news">
-  <div class="other-news-header"><p>More news</p></div>
-  <a *ngFor="let record of news" [routerLink]="['/article', record.id]" [ngx-scroll-to-offset]="-60" [ngx-scroll-to]="'#articleBox'" class="other-news-link-box">
+  <div class="other-news-header">More news</div>
+  <a *ngFor="let record of news" [routerLink]="['/article', record.id]" [ngx-scroll-to-offset]="-70" [ngx-scroll-to]="'#articleBox'" class="other-news-link-box" title="{{record.newsTitle}}">
     <div class="other-news-box">
       <div class="other-news-icon">
         <clr-icon shape="details" size="40"></clr-icon>
