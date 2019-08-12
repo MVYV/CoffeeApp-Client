@@ -2,6 +2,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { QuillModule } from 'ngx-quill';
+import { ColorPickerModule } from "ngx-color-picker";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,7 +11,7 @@ import { NewsComponent } from './components/news/news.component';
 import { ProductsComponent } from './components/products/products.component';
 import { HomeComponent } from './components/home/home.component';
 import { ClarityModule } from '@clr/angular';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TranslateService } from './services/translate.service';
 import { TranslatePipe } from './pipes/translate.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,10 +24,19 @@ import { UserRegistrationService } from './services/user-registration.service';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { NewsService } from './services/news-service';
 import { ProductsService } from './services/products.service';
+import { StyleService } from "./services/style.service";
 import { FooterComponent } from './components/footer/footer.component';
 import { AuthenticationService } from './services/authentication.service';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AuthenticationHttpInterceptorService } from './services/authentication-http-interceptor.service';
+
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 
 export function setupTranslateFactory(service: TranslateService): Function {
   return () => service.use('en');
@@ -56,6 +66,8 @@ export function setupTranslateFactory(service: TranslateService): Function {
     ClarityModule,
     HttpClientModule,
     QuillModule,
+    ColorPickerModule,
+    PerfectScrollbarModule,
     ScrollToModule.forRoot()
   ],
   providers: [
@@ -64,6 +76,11 @@ export function setupTranslateFactory(service: TranslateService): Function {
     NewsService,
     ProductsService,
     TranslateService,
+    StyleService,
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    },
     AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS, useClass: AuthenticationHttpInterceptorService, multi: true

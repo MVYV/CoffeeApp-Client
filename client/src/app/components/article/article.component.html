@@ -1,18 +1,36 @@
-<div class="article-box" id="articleBox">
-  <div class="article-image-box">
-    <img src="assets/images/nature33hd.jpg" class="article-image">
-    <div class="gray-box">
-      <div class="article-info">
-        <div class="article-date">Added: {{selectedArticle?.newsDate | date: 'medium'}}</div>
-        <div class="article-modification-date">Modified: {{selectedArticle?.newsModificationDate | date: 'medium'}}</div>
-        <div class="article-title">{{selectedArticle?.newsTitle}}</div>
-        <div class="article-source">Source/Author: {{selectedArticle?.newsSource}}</div>
+<div class="article-page-container">
+  <div class="article-box" id="articleBox">
+    <div class="article-image-box">
+      <img src="assets/images/nature33hd.jpg" class="article-image">
+      <div class="gray-box">
+        <div class="article-info">
+          <div class="article-date">Added: {{selectedArticle?.newsDate | date: 'medium'}}</div>
+          <div class="article-modification-date">Modified: {{selectedArticle?.newsModificationDate | date: 'medium'}}</div>
+          <div class="article-title">{{selectedArticle?.newsTitle}}</div>
+          <div class="article-source">Source/Author: {{selectedArticle?.newsSource}}</div>
+        </div>
       </div>
     </div>
+    <div class="article-text-box">
+      <div class="article-annotation">{{selectedArticle?.newsSubText}}</div>
+      <div class="article-text" [innerHtml]="selectedArticle?.newsText"></div>
+    </div>
   </div>
-  <div class="article-text-box">
-    <div class="article-annotation">{{selectedArticle?.newsSubText}}</div>
-    <div class="article-text" [innerHtml]="selectedArticle?.newsText"></div>
+  <div class="products-on-article-page">
+    <div class="products-header">Our Products</div>
+    <perfect-scrollbar class="scrollbarBox" [config]="config">
+      <a *ngFor="let product of products" [routerLink]="'/products'" class="product-link">
+        <div class="product-img">
+          <img *ngIf="product.image" src="{{product.image}}" class="productImage"/>
+          <img *ngIf="!product.image" src="assets/images/login-page.jpg" class="productImage"/>
+        </div>
+        <div class="product-info-box">
+          <clr-icon shape="arrow" class="product-arrow" size="24"></clr-icon>
+          <clr-icon shape="bundle" size="24" class="product-logo"></clr-icon>
+          <span class="product-title">{{product.productName}}</span>
+        </div>
+      </a>
+    </perfect-scrollbar>
   </div>
 </div>
 

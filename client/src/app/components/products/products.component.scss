@@ -1,3 +1,7 @@
+$textColor: #000000;
+$alternateColor :#314351;
+$backgroundColor: #dddddd;
+$globalBackgroundColor: #edeef0;
 .subnav
 {
   position: sticky;
@@ -8,130 +12,275 @@
 {
   cursor: pointer;
 }
-.products-container
+.globalProductsContainer
 {
   width: 1200px;
-  //height: 100vh;
-  margin: 0 auto 10px;
-  background-color: transparent;
-  .item-container
+  margin: 10px auto 0;
+  //background-color: #0079b8;
+  position: relative;
+  //overflow: hidden;
+  .products-container
   {
-    display: flex;
-    justify-content: center;
-    height: calc(100vh - 96px);
-    margin-bottom: 20px;
-    .product-item
+    width: 970px;
+    //height: 100vh;
+    margin: 0 10px 0 0;
+    //background-color: transparent;
+    //background-color: green;
+    display: inline-block;
+    .item-container
     {
       width: 100%;
-      align-self: center;
-      font-size: 30px;
-      .productInfo
+      display: flex;
+      justify-content: center;
+      //height: calc(100vh - 96px);
+      margin-bottom: 10px;
+      //background-color: aquamarine;
+      .product-item
       {
-        display: flex;
-        align-items: center;
-      }
-      .productName
-      {
-        -webkit-border-radius: 10px 10px 0 0;
-        -moz-border-radius: 10px 10px 0 0;
-        border-radius: 10px 10px 0 0;
-        background-color: #314351;
-        color: #ffffff;
-        padding: 20px;
-        margin-bottom: 10px;
-        font-size: 40px;
-        justify-content: center;
-      }
-      .productType
-      {
-        margin-bottom: 10px;
-        background-color: #314351;
-        color: #ffffff;
-        padding: 10px;
-        font-size: 20px;
-        justify-content: flex-end;
-      }
-      .productImage
-      {
-        background-color: green;
-        position: relative;
-        -webkit-border-radius: 0 0 10px 10px;
-        -moz-border-radius: 0 0 10px 10px;
-        border-radius: 0 0 10px 10px;
-        .productImg
+        width: 100%;
+        //align-self: center;
+        font-size: 30px;
+        .productInfo
         {
-          width: 100%;
-          height: calc(100vh - 0);
-          object-fit: cover;
+          display: flex;
+          align-items: center;
+        }
+        .productImage
+        {
+          //background-color: green;
+          position: relative;
+          -webkit-border-radius: 0 0 10px 10px;
+          -moz-border-radius: 0 0 10px 10px;
+          border-radius: 0 0 10px 10px;
+          .productImg
+          {
+            width: 100%;
+            height: calc(100vh - 0);
+            object-fit: cover;
+            -webkit-border-radius: 10px 10px 0 0;
+            -moz-border-radius: 10px 10px 0 0;
+            border-radius: 10px 10px 0 0;
+          }
+          .productName
+          {
+            position: absolute;
+            top: 0;
+            bottom: 50%;
+            right: 0;
+            left: 50%;
+            background-color: rgba(0, 0, 0, .7);
+            -webkit-border-radius: 0 10px 0 0;
+            -moz-border-radius: 0 10px 0 0;
+            border-radius: 0 10px 0 0;
+            //background-color: #314351;
+            color: #ffffff;
+            padding: 20px;
+            //margin-bottom: 10px;
+            font-size: 40px;
+            justify-content: center;
+          }
+          .productType
+          {
+            position: absolute;
+            top: 50%;
+            bottom: 0;
+            right: 0;
+            left: 50%;
+            //margin-bottom: 10px;
+            //background-color: #314351;
+            background-color: rgba(0, 0, 0, .7);
+            color: #ffffff;
+            padding: 10px;
+            font-size: 20px;
+            justify-content: center;
+          }
+          .productPrice
+          {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            background-color: rgba(0, 0, 0, .7);
+            color: #ffffff;
+            padding: 10px;
+            font-size: 20px;
+            justify-content: flex-end;
+          }
+          .productDate
+          {
+            position: absolute;
+            left: 0;
+            bottom: 10px;
+            background-color: rgba(0, 0, 0, .7);
+            color: #ffffff;
+            justify-content: flex-start;
+            padding: 5px;
+            font-size: 14px;
+          }
+        }
+        .productText
+        {
+          //position: absolute;
+          //right: 0;
+          //left: 50%;
+          //top: 0;
+          //bottom: 0;
+          margin-top: 10px;
+          padding: 10px 20px 20px 20px;
+          text-align: justify;
+          //background-color: rgba(0, 0, 0, .7);
+          background-color: #ffffff;
           -webkit-border-radius: 0 0 10px 10px;
           -moz-border-radius: 0 0 10px 10px;
           border-radius: 0 0 10px 10px;
         }
-        .productPrice
-        {
-          position: absolute;
-          top: 10px;
-          left: 0;
-          background-color: rgba(0, 0, 0, .7);
-          color: #ffffff;
-          padding: 10px;
-          font-size: 20px;
-          justify-content: flex-end;
-        }
-        .productText
-        {
-          position: absolute;
-          right: 0;
-          left: 50%;
-          top: 0;
-          bottom: 0;
-          justify-content: center;
-          background-color: rgba(0, 0, 0, .7);
-          -webkit-border-radius: 0 0 10px 0;
-          -moz-border-radius: 0 0 10px 0;
-          border-radius: 0 0 10px 0;
-        }
         ::ng-deep .productText > p
         {
-          color: #ffffff;
+          font-size: 16px;
+          color: $alternateColor;
         }
-        .productDate
-        {
-          position: absolute;
-          left: 0;
-          bottom: 10px;
-          background-color: rgba(0, 0, 0, .7);
-          color: #ffffff;
-          justify-content: flex-start;
-          padding: 5px;
-          font-size: 14px;
-        }
+        //.productResponse
+        //{
+        //  background-color: darkolivegreen;
+        //}
       }
-      //.productResponse
-      //{
-      //  background-color: darkolivegreen;
-      //}
     }
   }
+  .newsOnProductsPage
+  {
+    width: 220px;
+    height: 500px;
+    padding: 20px;
+    background-color: #ffffff;
+    //background-color: #fac400;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    float: right;
+    //display: inline-block;
+    position: sticky;
+    top: 106px;
+    //right: 0;
+    .news-header
+    {
+      overflow: hidden;
+      border-bottom: 1px solid $alternateColor;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .scrollbarBox
+    {
+      max-width: 200px;
+      max-height: 700px;
+      .articleLink {
+        display: block;
+        font-size: 12px;
+        //background-color: #aaaaaa;
+        //border-bottom: 1px solid $backgroundColor;
+        margin-bottom: 2px;
+        text-decoration: none;
+        .articleDate
+        {
+          background-color: $backgroundColor;
+          padding: 0 5px;
+          font-size: 10px;
+          font-weight: bold;
+          text-align: right;
+          text-decoration: none;
+          color: $alternateColor;
+        }
+        .newsIcon
+        {
+          margin-right: 10px;
+        }
+        .articleTitle
+        {
+          //background-color: black;
+          //padding: 0 5px;
+          color: $alternateColor;
+        }
+      }
+      .articleLink:hover
+      {
+        .articleTitle
+        {
+          text-decoration: underline;
+          color: #0066cc;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
 }
+
 @media screen and (max-width: 1220px)
 {
-  .products-container
+  .globalProductsContainer
   {
     width: 1000px;
+    .products-container
+    {
+      width: 770px;
+    }
   }
 }
 @media screen and (max-width: 1020px)
 {
-  .products-container
+  .globalProductsContainer
   {
     width: 800px;
+    .products-container
+    {
+      width: 570px;
+    }
   }
 }
 @media screen and (max-width: 820px)
 {
-  .products-container
+  .globalProductsContainer
   {
     width: 100%;
+    .products-container
+    {
+      width: 100%;
+    }
+    .newsOnProductsPage
+    {
+      width: 100%;
+      position: relative;
+      top: 0;
+      margin-bottom: 10px;
+      .scrollbarBox
+      {
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    }
   }
+}
+@media screen and (max-width: 800px)
+{
+
+}
+@media screen and (max-width: 700px)
+{
+
+}
+@media screen and (max-width: 550px)
+{
+
+}
+@media screen and (max-width: 450px)
+{
+
+}
+@media screen and (max-width: 400px)
+{
+
+}
+@media screen and (max-width: 375px)
+{
+
 }

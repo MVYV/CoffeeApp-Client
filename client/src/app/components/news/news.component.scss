@@ -1,35 +1,98 @@
-.news-container
+$textColor: #000000;
+$alternateColor :#314351;
+$backgroundColor: #dddddd;
+$globalBackgroundColor: #edeef0;
+.news-page-container
 {
   width: 1200px;
-  margin: 0 auto 10px;
-  padding: 5px;
-  background-color: transparent;
-  //border: 1px solid #9aa8e2;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-}
-.card
-{
-  display: block;
-  margin: 5px;
-  width: calc(20% - 10px);
-}
-.card-img
-{
-  position: relative;
-  .card-date
+  background-color: #fac400;
+  margin: 0 auto;
+  .left-box
   {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 0 5px;
-    background-color: rgba(0, 0, 0, .5);
-    color: #ffffff;
+    width: 200px;
+    height: 50px;
+    float: left;
+    margin-top: 10px;
+    background-color: #ffffff;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+  }
+  .right-box
+  {
+    width: 200px;
+    height: 100px;
+    float: right;
+    margin-top: 10px;
+    background-color: #ffffff;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+  }
+  .news-container
+  {
+    width: 780px;
+    margin: 0 10px;
+    //padding: 5px;
+    float: left;
+    background-color: transparent;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    .card
+    {
+      display: block;
+      margin: 10px 0;
+      width: 100%;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      .card-img
+      {
+
+        position: relative;
+        .news-img
+        {
+          width: 100%;
+          -webkit-border-radius: 10px 10px 0 0;
+          -moz-border-radius: 10px 10px 0 0;
+          border-radius: 10px 10px 0 0;
+        }
+        .card-date
+        {
+          color: #ffffff;
+          position: absolute;
+          top: 0;
+          left: 0;
+          padding: 5px 10px;
+          background-color: rgba(0, 0, 0, .5);
+          -webkit-border-radius: 10px 0 0 0;
+          -moz-border-radius: 10px 0 0 0;
+          border-radius: 10px 0 0 0;
+        }
+        .card-title
+        {
+          color: #ffffff;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          font-size: 48px;
+          line-height: 48px;
+          font-weight: bold;
+          padding: 10px;
+          background-color: rgba(0, 0, 0, .5);
+        }
+      }
+    }
   }
 }
+
+
 .spinner
 {
   display: block;

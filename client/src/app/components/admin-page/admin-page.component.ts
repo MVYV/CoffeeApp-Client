@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { UserRegistrationService } from '../../services/user-registration.service';
 import { User } from '../../models/users.model';
 import { News } from '../../models/news.model';
-import { Product } from "../../models/products.model";
+import { Product } from '../../models/products.model';
 import { PageTitleService } from '../../services/page-title.service';
 import { NewsService } from '../../services/news-service';
 import { ClrDatagridSortOrder } from '@clr/angular';
-import {ProductsService} from "../../services/products.service";
+import { ProductsService } from '../../services/products.service';
+import { StyleService } from "../../services/style.service";
 
 @Component({
   selector: 'app-admin-page',
@@ -42,7 +43,8 @@ export class AdminPageComponent implements OnInit {
   constructor( private pageTitle: PageTitleService,
                private registrationService: UserRegistrationService,
                private newsService: NewsService,
-               private productsService: ProductsService) { }
+               private productsService: ProductsService,
+               private styleService: StyleService) { }
 
   ngOnInit() {
     this.ascSort = ClrDatagridSortOrder.ASC;

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PageTitleService } from "../../services/page-title.service";
 import { NewsService } from '../../services/news-service';
+import { ProductsService } from "../../services/products.service";
+import { Product } from "../../models/products.model";
 import { News } from '../../models/news.model';
 import { ActivatedRoute } from '@angular/router';
 
@@ -13,10 +15,12 @@ export class ArticleComponent implements OnInit {
 
   selectedArticle: News;
   news: News[];
+  products: Product[];
 
   constructor( private pageTitle: PageTitleService,
                private newsService: NewsService,
-               private route: ActivatedRoute) { }
+               private route: ActivatedRoute,
+               private productsService: ProductsService) { }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -25,8 +29,8 @@ export class ArticleComponent implements OnInit {
         this.getSelectedArticle(selectedArticleId);
       });
     this.pageTitle.setTitle('Coffee Products - Article');
-
     this.getAllNews();
+    this.getAllProducts();
   }
 
   getSelectedArticle(articleId: number) {
@@ -42,5 +46,13 @@ export class ArticleComponent implements OnInit {
       news => {
         this.news = news;
       });
+  }
+
+  getAllProducts() {
+    this.productsService.getProducts().subscribe(
+      products => {
+        this.products = products;
+      }
+    );
   }
 }
