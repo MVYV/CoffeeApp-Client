@@ -11,6 +11,7 @@ import { News } from '../../models/news.model';
 export class NewsComponent implements OnInit {
 
   news: News[];
+  postedNews: News[];
   loadingSpinner: boolean;
 
   constructor( private pageTitle: PageTitleService,
@@ -26,8 +27,21 @@ export class NewsComponent implements OnInit {
     this.newsService.getNews().subscribe(
       news => {
         this.news = news;
+        this.postedNews = news.slice(0, 7);
         this.loadingSpinner = false;
       });
+  }
+
+  onScrollDown() {
+    if(this.postedNews.length < this.news.length) {
+      let p = this.postedNews.length;
+      let n = this.news.length;
+      for(let i = p; i <= p + 2; i++) {
+        if(i <= n - 1) {
+          this.postedNews.push(this.news[i]);
+        }
+      }
+    }
   }
 
 }

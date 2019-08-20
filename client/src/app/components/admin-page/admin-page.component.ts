@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { UserRegistrationService } from '../../services/user-registration.service';
 import { User } from '../../models/users.model';
 import { News } from '../../models/news.model';
+import { Mail } from '../../models/mail.model';
 import { Product } from '../../models/products.model';
 import { PageTitleService } from '../../services/page-title.service';
 import { NewsService } from '../../services/news-service';
 import { ClrDatagridSortOrder } from '@clr/angular';
 import { ProductsService } from '../../services/products.service';
-import { StyleService } from "../../services/style.service";
 
 @Component({
   selector: 'app-admin-page',
@@ -20,6 +20,7 @@ export class AdminPageComponent implements OnInit {
   showArticle: boolean;
   showProducts: boolean;
   showDeleteUserConfirmation: boolean = false;
+  showMailWindow: boolean = false;
   loading: boolean;
   isNewArticle: boolean;
   isNewUser: boolean;
@@ -29,6 +30,7 @@ export class AdminPageComponent implements OnInit {
   users: User[];
   newUser: User;
   selectedUser: User;
+  mail: Mail;
   news: News[];
   newArticle: News;
   selectedArticle: News;
@@ -43,8 +45,7 @@ export class AdminPageComponent implements OnInit {
   constructor( private pageTitle: PageTitleService,
                private registrationService: UserRegistrationService,
                private newsService: NewsService,
-               private productsService: ProductsService,
-               private styleService: StyleService) { }
+               private productsService: ProductsService ) { }
 
   ngOnInit() {
     this.ascSort = ClrDatagridSortOrder.ASC;
@@ -53,6 +54,7 @@ export class AdminPageComponent implements OnInit {
     this.loading = true;
     this.selectedUser = new User();
     this.newUser = new User();
+    this.mail = new Mail();
     this.selectedArticle = new News();
     this.newArticle = new News();
     this.selectedProduct = new Product();
@@ -60,6 +62,16 @@ export class AdminPageComponent implements OnInit {
     this.getAllUsers();
     this.getAllNews();
     this.getAllProducts();
+  }
+
+  sendMailToUser() {
+    this.registrationService.mailToUser(this.mail).subscribe(
+      () => {
+        console.log('Yes');
+      }, () => {
+        console.log('No');
+      }
+    )
   }
 
   getAllUsers() {
@@ -79,6 +91,7 @@ export class AdminPageComponent implements OnInit {
 
   editUser(user: User) {
     this.isNewUser = false;
+    this.mail.mailTo = user.email;
     this.selectedUser = new User(
       user.id,
       user.userName,

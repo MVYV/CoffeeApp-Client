@@ -1,6 +1,13 @@
 $warningColor: #fac400;
 $alertColor: #f8b7b6;
-
+$globalBackgroundColor: #edeef0;
+.scroll-container
+{
+  width: 100%;
+  height: calc(100vh - 60px);
+  overflow: auto;
+  background-color: $globalBackgroundColor;
+}
 .admin-tools
 {
   text-align: right;

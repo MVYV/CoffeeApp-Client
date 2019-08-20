@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/users.model';
+import { Mail } from "../models/mail.model";
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -26,5 +27,9 @@ export class UserRegistrationService {
 
   public banUser(user: User): Observable<User> {
     return this.http.patch<User>(`https://march11app.herokuapp.com/${user.id}`, user);
+  }
+
+  public mailToUser(mail: Mail): Observable<Mail> {
+    return this.http.post<Mail>('https://march11app.herokuapp.com/sendMail', mail);
   }
 }

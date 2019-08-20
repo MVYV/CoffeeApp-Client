@@ -1,3 +1,12 @@
+.scroll-container
+{
+  width: 100%;
+  height: calc(100vh - 60px);
+  //min-height: 100%;
+  overflow: auto;
+  //display: grid;
+  //grid-template-rows: 60px auto 1fr;
+}
 .about-container
 {
   width: 75%;

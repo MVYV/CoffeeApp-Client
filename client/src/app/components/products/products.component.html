@@ -1,14 +1,14 @@
 <nav class="subnav" [clr-nav-level]="2">
   <ul class="nav">
     <li *ngFor="let product of products" class="nav-item">
-      <a class="nav-link" [ngx-scroll-to-offset]="-106" [ngx-scroll-to]="product.productName" (click)="activeProduct(product.productName)" [ngClass] = "{'active': productsLink == product.productName}">{{product.productName}}</a>
+      <a class="nav-link {{product.id}}" [ngx-scroll-to-offset]="-10" [ngx-scroll-to]="product.id" (click)="activeProduct(product.productName)" [ngClass] = "{'active': productsLink == product.productName}">{{product.productName}}</a>
     </li>
   </ul>
 </nav>
-
+<div class="scroll-container">
 <div class="globalProductsContainer">
   <div class="products-container">
-    <div *ngFor="let product of products" class="item-container" id="{{product.productName}}">
+    <div *ngFor="let product of products" class="item-container" id="{{product.id}}">
       <div class="product-item">
         <div class="productImage">
           <img src="/assets/images/login-page.jpg" class="productImg"/>
@@ -25,12 +25,15 @@
   </div>
   <div class="newsOnProductsPage">
     <div class="news-header">Latest News</div>
-    <perfect-scrollbar class="scrollbarBox" [config]="config">
-      <a *ngFor="let article of news" [routerLink]="['/article', article.id]" class="articleLink">
+    <div class="scrollbarBox">
+      <a *ngFor="let article of news | paginate: { itemsPerPage: 10, currentPage: p }" [routerLink]="['/article', article.id]" class="articleLink">
         <div *ngIf="!article.newsModificationDate" class="articleDate">{{article.newsDate | date:'medium'}}</div>
         <div *ngIf="article.newsModificationDate" class="articleDate">{{article.newsModificationDate | date:'medium'}}</div>
         <div class="articleTitle"><clr-icon shape="details" size="18" class="newsIcon"></clr-icon><span>{{article.newsTitle}}</span></div>
       </a>
-    </perfect-scrollbar>
+    </div>
+    <pagination-controls class="newsPagination" [directionLinks]="false" [maxSize]="7" [responsive]="false" previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
   </div>
+  <app-footer></app-footer>
+</div>
 </div>

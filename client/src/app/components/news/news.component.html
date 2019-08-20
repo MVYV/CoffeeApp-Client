@@ -1,21 +1,18 @@
-<div class="news-page-container">
-  <div class="left-box">
-
-  </div>
-  <div class="news-container">
-    <a class="card clickable" *ngFor="let article of news" [routerLink]="['/article', article.id]">
-      <div class="card-img" >
-        <img src="assets/images/login-page.jpg" class="news-img">
-        <div class="card-date">{{article.newsDate | date: 'medium'}}</div>
-        <div class="card-title">{{article.newsTitle}}</div>
-      </div>
-      <div class="card-block">
-        <h6 class="card-title">{{article.newsSubText}}</h6>
-      </div>
-    </a>
-  </div>
-  <div class="right-box">
-
+<div class="scroll-container" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" [scrollWindow]="false" (scrolled)="onScrollDown();">
+  <div class="news-page-container">
+    <div class="news-container">
+      <a class="card clickable" *ngFor="let article of postedNews" [routerLink]="['/article', article.id]">
+        <div class="card-img" >
+          <img src="assets/images/login-page.jpg" class="news-img">
+          <div class="card-date">{{article.newsDate | date: 'medium'}}</div>
+          <div class="card-title">{{article.newsTitle}}</div>
+        </div>
+        <div class="card-block">
+          <div class="card-annotation">{{article.newsSubText}}</div>
+        </div>
+      </a>
+    </div>
+    <app-footer></app-footer>
   </div>
 </div>
 <span class="spinner spinner-lg" [hidden]="!loadingSpinner">

@@ -16,6 +16,7 @@ export class ArticleComponent implements OnInit {
   selectedArticle: News;
   news: News[];
   products: Product[];
+  p: number = 1;
 
   constructor( private pageTitle: PageTitleService,
                private newsService: NewsService,

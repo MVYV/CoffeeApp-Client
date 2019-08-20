@@ -4,11 +4,11 @@
 //}
 .clr-main-container
 {
-  overflow: auto;
+  overflow: hidden;
   min-height: 100%;
   display: grid;
   grid-template-rows: 60px auto 1fr;
-  background-color: #edeef0;
+  //background-color: #edeef0;
   //background-image: url('/assets/images/login-page.jpg');
   //background-size: cover;
 }

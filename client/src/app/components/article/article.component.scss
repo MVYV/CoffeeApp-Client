@@ -1,416 +1,488 @@
 $textColor: #000000;
 $backgroundColor: #dddddd;
 $alternateColor: #314351;
-.article-page-container
+$linkColor: #0066cc;
+$globalBackgroundColor: #edeef0;
+
+.scroll-container
 {
-  width: 1200px;
-  margin: 10px auto;
-  position: relative;
-  .products-on-article-page
+  width: 100%;
+  height: calc(100vh - 60px);
+  overflow: auto;
+  background-color: $globalBackgroundColor;
+  .article-page-container
   {
-    width: 220px;
-    background-color: #ffffff;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    //border: 3px solid $backgroundColor;
-    display: inline-block;
-    position: absolute;
-    padding: 20px;
-    top: 0;
-    .products-header
+    width: 1200px;
+    margin: 20px auto;
+    position: relative;
+    .products-on-article-page
     {
-      overflow: hidden;
-      border-bottom: 1px solid $alternateColor;
-      font-size: 18px;
-      font-weight: bold;
-    }
-    .scrollbarBox
-    {
-      max-width: 200px;
-      max-height: 700px;
-      .product-link
+      width: 270px;
+      background-color: #ffffff;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      display: inline-block;
+      position: absolute;
+      padding: 20px;
+      top: 0;
+      .products-header
       {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-flow: column wrap;
-        width: 100%;
-        //height: 120px;
-        margin-top: 10px;
-        background-color: $backgroundColor;
-        font-size: 16px;
-        color: $alternateColor;
-        text-decoration: none;
-        -webkit-transition: all ease-in-out .2s;
-        -moz-transition: all ease-in-out .2s;
-        -ms-transition: all ease-in-out .2s;
-        -o-transition: all ease-in-out .2s;
-        transition: all ease-in-out .2s;
-        position: relative;
-        .product-img
+        overflow: hidden;
+        border-bottom: 1px solid $alternateColor;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .scrollbarBox
+      {
+        max-width: 270px;
+        max-height: 700px;
+        .product-link
         {
-          width: 100%;
-          .productImage
-          {
-            width: 100%;
-          }
-        }
-        .product-info-box
-        {
-          width: 100%;
-          position: absolute;
-          top: 0;
-          bottom: 0;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-flow: column wrap;
-          background-color: rgba(0, 0, 0, .5);
-          font-size: 14px;
-          color: #ffffff;
+          width: 100%;
+          margin-top: 10px;
+          background-color: $backgroundColor;
+          font-size: 16px;
+          color: $alternateColor;
+          text-decoration: none;
           -webkit-transition: all ease-in-out .2s;
           -moz-transition: all ease-in-out .2s;
           -ms-transition: all ease-in-out .2s;
           -o-transition: all ease-in-out .2s;
           transition: all ease-in-out .2s;
-          .product-arrow
+          position: relative;
+          .product-img
           {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            color: $backgroundColor;
-            -webkit-transform: rotate(90deg);
-            -moz-transform: rotate(90deg);
-            -ms-transform: rotate(90deg);
-            -o-transform: rotate(90deg);
-            transform: rotate(90deg);
+            width: 100%;
+            .productImage
+            {
+              width: 100%;
+            }
           }
-          .product-logo,
-          .product-title
+          .product-info-box
           {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-flow: column wrap;
+            background-color: rgba(0, 0, 0, .5);
+            font-size: 14px;
+            color: #ffffff;
             -webkit-transition: all ease-in-out .2s;
             -moz-transition: all ease-in-out .2s;
             -ms-transition: all ease-in-out .2s;
             -o-transition: all ease-in-out .2s;
             transition: all ease-in-out .2s;
+            .product-arrow
+            {
+              position: absolute;
+              top: 5px;
+              right: 5px;
+              color: $backgroundColor;
+              -webkit-transform: rotate(90deg);
+              -moz-transform: rotate(90deg);
+              -ms-transform: rotate(90deg);
+              -o-transform: rotate(90deg);
+              transform: rotate(90deg);
+            }
+            .product-logo,
+            .product-title
+            {
+              -webkit-transition: all ease-in-out .2s;
+              -moz-transition: all ease-in-out .2s;
+              -ms-transition: all ease-in-out .2s;
+              -o-transition: all ease-in-out .2s;
+              transition: all ease-in-out .2s;
+            }
           }
         }
-      }
-      .product-link:hover
-      {
-        background-color: $alternateColor;
-        color: $backgroundColor;
-        justify-content: space-evenly;
-        .product-info-box
+        .product-link:hover
         {
-          top: 50%;
-          .product-arrow
+          background-color: $alternateColor;
+          color: $backgroundColor;
+          justify-content: space-evenly;
+          .product-info-box
           {
-            display: none;
+            top: 50%;
+            .product-arrow
+            {
+              display: none;
+            }
           }
         }
       }
     }
-  }
-  .article-box
-  {
-    width: 970px;
-    margin-right: 10px;
-    display: inline-block;
-    .article-image-box
-    {
-      width: 100%;
-      -webkit-border-radius: 10px 10px 0 0;
-      -moz-border-radius: 10px 10px 0 0;
-      border-radius: 10px 10px 0 0;
-      margin-bottom: 10px;
-      position: relative;
-      .article-image
-      {
-        width: 100%;
-        -webkit-border-radius: 10px 10px 0 0;
-        -moz-border-radius: 10px 10px 0 0;
-        border-radius: 10px 10px 0 0;
-      }
-      .gray-box
-      {
-        width: 100%;
-        -webkit-border-radius: 10px 10px 0 0;
-        -moz-border-radius: 10px 10px 0 0;
-        border-radius: 10px 10px 0 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, .3);
-        .article-info
-        {
-          width: 100%;
-          color: #ffffff;
-          position: absolute;
-          left: 0;
-          bottom: 0;
-          line-height: 50px;
-          background-color: rgba(0, 0, 0, .5);
-          .article-date
-          {
-            width: 50%;
-            float: left;
-            padding-left: 10px;
-          }
-          .article-modification-date
-          {
-            width: 50%;
-            float: right;
-            text-align: right;
-            padding-right: 10px;
-          }
-          .article-title
-          {
-            padding-right: 10px;
-            padding-left: 10px;
-            font-weight: bold;
-            font-size: 50px;
-          }
-          .article-source
-          {
-            float: right;
-            padding-right: 10px;
-          }
-        }
-      }
-    }
-    .article-text-box
-    {
-      width: 100%;
-      text-align: justify;
-      padding: 20px;
-      background-color: #ffffff;
-      -webkit-border-radius: 0 0 10px 10px;
-      -moz-border-radius: 0 0 10px 10px;
-      border-radius: 0 0 10px 10px;
-      //border: 3px solid $backgroundColor;
-      .article-annotation
-      {
-        font-weight: bold;
-        color: $textColor;
-        font-size: 24px;
-        margin-bottom: 50px;
-      }
-      ::ng-deep .article-text > p
-      {
-        font-size: 16px;
-        color: $textColor;
-      }
-    }
-  }
-}
-.other-news
-{
-  width: 1200px;
-  padding: 20px;
-  margin: 0 auto 10px;
-  background-color: #ffffff;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  //border: 3px solid $backgroundColor;
-  .other-news-header
-  {
-    overflow: hidden;
-    margin-bottom: 10px;
-    border-bottom: 1px solid $alternateColor;
-    font-size: 18px;
-    font-weight: bold;
-  }
-  .other-news-link-box
-  {
-    background-color: $backgroundColor;
-    display: inline-block;
-    margin: 0 2px 4px 2px;
-    color: $textColor;
-    text-decoration: none;
-    -webkit-transition: all ease-in-out .2s;
-    -moz-transition: all ease-in-out .2s;
-    -ms-transition: all ease-in-out .2s;
-    -o-transition: all ease-in-out .2s;
-    transition: all ease-in-out .2s;
-    .other-news-box
-    {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      padding: 0;
-      .other-news-icon
-      {
-        width: calc(48px + 5px);
-        height: calc(48px + 5px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 5px 0 0;
-        background-color: $alternateColor;
-        color: $backgroundColor;
-      }
-      .other-news-title
-      {
-        font-size: 16px;
-        width: calc(100% - 61px - 10px - 1em);
-        overflow: hidden;
-        position: relative;
-        line-height: 24px;
-        max-height: calc(48px + 5px);
-        padding: 5px 1em 5px 0;
-        vertical-align: middle;
-      }
-      .other-news-title:before
-      {
-        content: '...';
-        position: absolute;
-        right: 5px;
-        bottom: 0;
-      }
-      .other-news-title:after
-      {
-        content: '';
-        position: absolute;
-        right: 0;
-        width: 1em;
-        height: 1em;
-        margin-top: 0.5em;
-        background-color: $backgroundColor;
-      }
-      .other-news-arrow-icon
-      {
-        width: calc(24px + 5px);
-        height: calc(48px + 5px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .angle-icon
-        {
-          transform: rotate(90deg);
-        }
-      }
-    }
-  }
-  .other-news-box:hover
-  {
-    .other-news-icon
-    {
-      background-color: $backgroundColor;
-      color: #ff0000;
-    }
-    .other-news-arrow-icon
-    {
-      -webkit-transition: all ease-in-out .5s;
-      -moz-transition: all ease-in-out .5s;
-      -o-transition: all ease-in-out .5s;
-      transition: all ease-in-out .5s;
-      transform: rotate(540deg);
-    }
-  }
-}
-.other-news-link-box
-{
-  width: calc(20% - 4px);
-}
-@media screen and (max-width: 1220px)
-{
-  .article-page-container
-  {
-    width: 1000px;
     .article-box
     {
-      width: 770px;
+      width: 910px;
+      margin-right: 20px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      display: inline-block;
+      .article-image-box
+      {
+        width: 100%;
+        -webkit-border-radius: 10px 10px 0 0;
+        -moz-border-radius: 10px 10px 0 0;
+        border-radius: 10px 10px 0 0;
+        position: relative;
+        .article-image
+        {
+          width: 100%;
+          -webkit-border-radius: 10px 10px 0 0;
+          -moz-border-radius: 10px 10px 0 0;
+          border-radius: 10px 10px 0 0;
+        }
+        .gray-box
+        {
+          width: 100%;
+          -webkit-border-radius: 10px 10px 0 0;
+          -moz-border-radius: 10px 10px 0 0;
+          border-radius: 10px 10px 0 0;
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          background-color: rgba(0, 0, 0, .3);
+          .article-info
+          {
+            width: 100%;
+            color: #ffffff;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            line-height: 50px;
+            background-color: rgba(0, 0, 0, .5);
+            .article-date
+            {
+              width: 50%;
+              float: left;
+              padding-left: 10px;
+            }
+            .article-modification-date
+            {
+              width: 50%;
+              float: right;
+              text-align: right;
+              padding-right: 10px;
+            }
+            .article-title
+            {
+              padding-right: 10px;
+              padding-left: 10px;
+              font-weight: bold;
+              font-size: 50px;
+            }
+            .article-source
+            {
+              float: right;
+              padding-right: 10px;
+            }
+          }
+        }
+      }
+      .article-text-box
+      {
+        width: 100%;
+        text-align: justify;
+        padding: 20px;
+        background-color: #ffffff;
+        -webkit-border-radius: 0 0 10px 10px;
+        -moz-border-radius: 0 0 10px 10px;
+        border-radius: 0 0 10px 10px;
+        .article-annotation
+        {
+          font-weight: bold;
+          color: $textColor;
+          font-size: 24px;
+          margin-bottom: 50px;
+        }
+        ::ng-deep .article-text > p
+        {
+          font-size: 16px;
+          color: $textColor;
+        }
+      }
     }
   }
   .other-news
   {
-    width: 1000px;
+    width: 1200px;
+    padding: 20px;
+    margin: 20px auto 20px;
+    background-color: #ffffff;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    .other-news-header
+    {
+      overflow: hidden;
+      margin-bottom: 10px;
+      border-bottom: 1px solid $alternateColor;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .other-news-link-box
+    {
+      width: calc(20% - 4px);
+      background-color: $globalBackgroundColor;
+      display: inline-block;
+      margin: 0 2px 4px 2px;
+      color: $textColor;
+      text-decoration: none;
+      -webkit-transition: all ease-in-out .2s;
+      -moz-transition: all ease-in-out .2s;
+      -ms-transition: all ease-in-out .2s;
+      -o-transition: all ease-in-out .2s;
+      transition: all ease-in-out .2s;
+      .other-news-box
+      {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0;
+        .other-news-icon
+        {
+          width: calc(48px + 5px);
+          height: calc(48px + 5px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 5px 0 0;
+          background-color: $alternateColor;
+          color: $backgroundColor;
+        }
+        .other-news-title
+        {
+          font-size: 14px;
+          width: calc(100% - 61px - 10px - 1em);
+          overflow: hidden;
+          position: relative;
+          line-height: 22px;
+          max-height: calc(48px + 5px);
+          padding: 5px 1em 5px 0;
+          vertical-align: middle;
+        }
+        .other-news-title:before
+        {
+          content: '...';
+          position: absolute;
+          right: 5px;
+          bottom: 0;
+        }
+        .other-news-title:after
+        {
+          content: '';
+          position: absolute;
+          right: 0;
+          width: 1em;
+          height: 1em;
+          margin-top: 0.5em;
+          background-color: $backgroundColor;
+        }
+        .other-news-arrow-icon
+        {
+          width: calc(24px - 5px);
+          height: calc(48px + 5px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .angle-icon
+          {
+            transform: rotate(90deg);
+          }
+        }
+      }
+    }
+    .newsPagination ::ng-deep .ngx-pagination
+    {
+      width: 100%;
+      border-top: 1px solid $alternateColor;
+      border-bottom: 1px solid $alternateColor;
+      margin: 5px 0;
+      padding: 0;
+    }
+    .newsPagination ::ng-deep .ngx-pagination > li
+    {
+      width: 14.285714%;
+      text-align: center;
+      margin: 0;
+      padding: 5px 0;
+      list-style: none;
+    }
+    .newsPagination ::ng-deep .ngx-pagination > li > a:hover
+    {
+      background-color: $backgroundColor;
+      color: $alternateColor;
+      text-decoration: none;
+      //margin: 0;
+      //padding: 5px 0;
+    }
+    .newsPagination ::ng-deep .ngx-pagination > li > a
+    {
+      font-size: 12px;
+      line-height: 12px;
+      font-weight: bold;
+      margin: 0;
+      padding: 5px 0;
+    }
+    .newsPagination ::ng-deep .ngx-pagination .current
+    {
+      font-size: 12px;
+      line-height: 12px;
+      //margin: 0;
+      //padding: 5px 0;
+      background-color: $alternateColor;
+    }
+    .other-news-box:hover
+    {
+      .other-news-icon
+      {
+        background-color: $backgroundColor;
+        color: #ff0000;
+      }
+      .other-news-title
+      {
+        color: $linkColor;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      .other-news-arrow-icon
+      {
+        -webkit-transition: all ease-in-out .5s;
+        -moz-transition: all ease-in-out .5s;
+        -o-transition: all ease-in-out .5s;
+        transition: all ease-in-out .5s;
+        transform: rotate(540deg);
+      }
+    }
   }
-  .other-news-link-box
+}
+
+@media screen and (max-width: 1220px)
+{
+  .scroll-container
   {
-    width: calc(25% - 4px);
+    .article-page-container
+    {
+      width: 1000px;
+      .article-box
+      {
+        width: 710px;
+      }
+    }
+    .other-news
+    {
+      width: 1000px;
+      .other-news-link-box
+      {
+        width: calc(25% - 4px);
+      }
+    }
   }
 }
 @media screen and (max-width: 1020px)
 {
-  .article-page-container
+  .scroll-container
   {
-    width: 800px;
-    .article-box
+    .article-page-container
     {
-      width: 570px;
+      width: 800px;
+      .article-box
+      {
+        width: 510px;
+      }
     }
-  }
-  .other-news
-  {
-    width: 800px;
-  }
-  .other-news-link-box
-  {
-    width: calc(33% - 4px);
+    .other-news
+    {
+      width: 800px;
+      .other-news-link-box
+      {
+        width: calc(33% - 4px);
+      }
+    }
   }
 }
 @media screen and (max-width: 820px)
 {
-  .article-page-container
+  .scroll-container
   {
-    width: 100%;
-    .article-box
+    .article-page-container
     {
-      display: block;
       width: 100%;
-    }
-    .products-on-article-page
-    {
-      display: block;
-      width: 100%;
-      position: relative;
-      margin-top: 10px;
-      .products-header
+      .article-box
       {
-        margin-bottom: 8px;
+        display: block;
+        width: 100%;
       }
-      .scrollbarBox
+      .products-on-article-page
       {
-        max-width: 100%;
-        max-height: 100%;
-        .product-link
+        display: block;
+        width: 100%;
+        position: relative;
+        margin-top: 10px;
+        .products-header
         {
-          margin: 2px;
-          float: left;
-          width: calc(25% - 4px);
+          margin-bottom: 8px;
+        }
+        .scrollbarBox
+        {
+          max-width: 100%;
+          max-height: 100%;
+          .product-link
+          {
+            margin: 2px;
+            float: left;
+            width: calc(25% - 4px);
+          }
         }
       }
     }
-  }
-  .other-news
-  {
-    width: 100%;
+    .other-news
+    {
+      width: 100%;
+    }
   }
 }
 @media screen and (max-width: 800px)
 {
-
-  .other-news-link-box
+  .scroll-container
   {
-    width: calc(50% - 4px);
+    .other-news
+    {
+      .other-news-link-box
+      {
+        width: calc(50% - 4px);
+      }
+    }
   }
 }
 @media screen and (max-width: 700px)
 {
-  .article-page-container
+  .scroll-container
   {
-    .products-on-article-page
+    .article-page-container
     {
-      .scrollbarBox
+      .products-on-article-page
       {
-        .product-link
+        .scrollbarBox
         {
-          width: calc(33.33333% - 4px);
+          .product-link
+          {
+            width: calc(33.33333% - 4px);
+          }
         }
       }
     }
@@ -418,15 +490,18 @@ $alternateColor: #314351;
 }
 @media screen and (max-width: 550px)
 {
-  .article-page-container
+  .scroll-container
   {
-    .products-on-article-page
+    .article-page-container
     {
-      .scrollbarBox
+      .products-on-article-page
       {
-        .product-link
+        .scrollbarBox
         {
-          width: calc(50% - 4px);
+          .product-link
+          {
+            width: calc(50% - 4px);
+          }
         }
       }
     }
@@ -434,22 +509,31 @@ $alternateColor: #314351;
 }
 @media screen and (max-width: 450px)
 {
-  .other-news-link-box
+  .scroll-container
   {
-    width: calc(100% - 4px);
+    .other-news
+    {
+      .other-news-link-box
+      {
+        width: calc(100% - 4px);
+      }
+    }
   }
 }
 @media screen and (max-width: 400px)
 {
-  .article-page-container
+  .scroll-container
   {
-    .products-on-article-page
+    .article-page-container
     {
-      .scrollbarBox
+      .products-on-article-page
       {
-        .product-link
+        .scrollbarBox
         {
-          width: calc(50% - 4px);
+          .product-link
+          {
+            width: calc(50% - 4px);
+          }
         }
       }
     }
@@ -457,15 +541,18 @@ $alternateColor: #314351;
 }
 @media screen and (max-width: 375px)
 {
-  .article-page-container
+  .scroll-container
   {
-    .products-on-article-page
+    .article-page-container
     {
-      .scrollbarBox
+      .products-on-article-page
       {
-        .product-link
+        .scrollbarBox
         {
-          width: calc(100% - 4px);
+          .product-link
+          {
+            width: calc(100% - 4px);
+          }
         }
       }
     }

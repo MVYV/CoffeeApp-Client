@@ -33,6 +33,9 @@ import { AuthenticationHttpInterceptorService } from './services/authentication-
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
+import { AngularPaginatorModule } from "angular-paginator";
+import { NgxPaginationModule } from "ngx-pagination";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -68,6 +71,9 @@ export function setupTranslateFactory(service: TranslateService): Function {
     QuillModule,
     ColorPickerModule,
     PerfectScrollbarModule,
+    InfiniteScrollModule,
+    AngularPaginatorModule,
+    NgxPaginationModule,
     ScrollToModule.forRoot()
   ],
   providers: [

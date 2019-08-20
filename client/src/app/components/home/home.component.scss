@@ -1,3 +1,10 @@
+.scroll-container
+{
+  width: 100%;
+  height: calc(100vh - 60px);
+  overflow: auto;
+  background-color: #edeef0;
+}
 .home-container
 {
   //width: 100%;

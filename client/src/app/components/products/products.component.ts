@@ -15,6 +15,7 @@ export class ProductsComponent implements OnInit {
   productsLink: string;
   products: Product[];
   news: News[];
+  p: number = 1;
 
   constructor( private pageTitle: PageTitleService,
                private productsService: ProductsService,

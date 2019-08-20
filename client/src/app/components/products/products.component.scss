@@ -2,6 +2,7 @@ $textColor: #000000;
 $alternateColor :#314351;
 $backgroundColor: #dddddd;
 $globalBackgroundColor: #edeef0;
+$linkColor: #0066cc;
 .subnav
 {
   position: sticky;
@@ -12,250 +13,291 @@ $globalBackgroundColor: #edeef0;
 {
   cursor: pointer;
 }
-.globalProductsContainer
+.scroll-container
 {
-  width: 1200px;
-  margin: 10px auto 0;
-  //background-color: #0079b8;
-  position: relative;
-  //overflow: hidden;
-  .products-container
+  width: 100%;
+  height: calc(100vh - 96px);
+  overflow: auto;
+  background-color: $globalBackgroundColor;
+  .globalProductsContainer
   {
-    width: 970px;
-    //height: 100vh;
-    margin: 0 10px 0 0;
-    //background-color: transparent;
-    //background-color: green;
-    display: inline-block;
-    .item-container
+    width: 1200px;
+    margin: 20px auto 0;
+    position: relative;
+    .products-container
     {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      //height: calc(100vh - 96px);
-      margin-bottom: 10px;
-      //background-color: aquamarine;
-      .product-item
+      width: 910px;
+      margin: 0 20px 0 0;
+      display: inline-block;
+      .item-container
       {
         width: 100%;
-        //align-self: center;
-        font-size: 30px;
-        .productInfo
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        .product-item
         {
-          display: flex;
-          align-items: center;
-        }
-        .productImage
-        {
-          //background-color: green;
-          position: relative;
-          -webkit-border-radius: 0 0 10px 10px;
-          -moz-border-radius: 0 0 10px 10px;
-          border-radius: 0 0 10px 10px;
-          .productImg
+          width: 100%;
+          font-size: 30px;
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          .productInfo
           {
-            width: 100%;
-            height: calc(100vh - 0);
-            object-fit: cover;
+            display: flex;
+            align-items: center;
+          }
+          .productImage
+          {
+            position: relative;
             -webkit-border-radius: 10px 10px 0 0;
             -moz-border-radius: 10px 10px 0 0;
             border-radius: 10px 10px 0 0;
+            .productImg
+            {
+              width: 100%;
+              height: calc(100vh - 0);
+              object-fit: cover;
+              -webkit-border-radius: 10px 10px 0 0;
+              -moz-border-radius: 10px 10px 0 0;
+              border-radius: 10px 10px 0 0;
+              //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+            .productName
+            {
+              position: absolute;
+              top: 0;
+              bottom: 50%;
+              right: 0;
+              left: 50%;
+              background-color: rgba(0, 0, 0, .7);
+              -webkit-border-radius: 0 10px 0 0;
+              -moz-border-radius: 0 10px 0 0;
+              border-radius: 0 10px 0 0;
+              color: #ffffff;
+              padding: 20px;
+              font-size: 40px;
+              justify-content: center;
+            }
+            .productType
+            {
+              position: absolute;
+              top: 50%;
+              bottom: 0;
+              right: 0;
+              left: 50%;
+              background-color: rgba(0, 0, 0, .7);
+              color: #ffffff;
+              padding: 10px;
+              font-size: 20px;
+              justify-content: center;
+            }
+            .productPrice
+            {
+              position: absolute;
+              top: 10px;
+              left: 0;
+              background-color: rgba(0, 0, 0, .7);
+              color: #ffffff;
+              padding: 10px;
+              font-size: 20px;
+              justify-content: flex-end;
+            }
+            .productDate
+            {
+              position: absolute;
+              left: 0;
+              bottom: 10px;
+              background-color: rgba(0, 0, 0, .7);
+              color: #ffffff;
+              justify-content: flex-start;
+              padding: 5px;
+              font-size: 14px;
+            }
           }
-          .productName
+          .productText
           {
-            position: absolute;
-            top: 0;
-            bottom: 50%;
-            right: 0;
-            left: 50%;
-            background-color: rgba(0, 0, 0, .7);
-            -webkit-border-radius: 0 10px 0 0;
-            -moz-border-radius: 0 10px 0 0;
-            border-radius: 0 10px 0 0;
-            //background-color: #314351;
-            color: #ffffff;
-            padding: 20px;
-            //margin-bottom: 10px;
-            font-size: 40px;
-            justify-content: center;
+            padding: 10px 20px 20px 20px;
+            text-align: justify;
+            background-color: #ffffff;
+            -webkit-border-radius: 0 0 10px 10px;
+            -moz-border-radius: 0 0 10px 10px;
+            border-radius: 0 0 10px 10px;
           }
-          .productType
+          ::ng-deep .productText > p
           {
-            position: absolute;
-            top: 50%;
-            bottom: 0;
-            right: 0;
-            left: 50%;
-            //margin-bottom: 10px;
-            //background-color: #314351;
-            background-color: rgba(0, 0, 0, .7);
-            color: #ffffff;
-            padding: 10px;
-            font-size: 20px;
-            justify-content: center;
+            font-size: 16px;
+            color: $alternateColor;
           }
-          .productPrice
+          ::ng-deep .productText > p > a
           {
-            position: absolute;
-            top: 10px;
-            left: 0;
-            background-color: rgba(0, 0, 0, .7);
-            color: #ffffff;
-            padding: 10px;
-            font-size: 20px;
-            justify-content: flex-end;
+            color: $linkColor;
           }
-          .productDate
-          {
-            position: absolute;
-            left: 0;
-            bottom: 10px;
-            background-color: rgba(0, 0, 0, .7);
-            color: #ffffff;
-            justify-content: flex-start;
-            padding: 5px;
-            font-size: 14px;
-          }
+          //.productResponse
+          //{
+          //  background-color: darkolivegreen;
+          //}
         }
-        .productText
-        {
-          //position: absolute;
-          //right: 0;
-          //left: 50%;
-          //top: 0;
-          //bottom: 0;
-          margin-top: 10px;
-          padding: 10px 20px 20px 20px;
-          text-align: justify;
-          //background-color: rgba(0, 0, 0, .7);
-          background-color: #ffffff;
-          -webkit-border-radius: 0 0 10px 10px;
-          -moz-border-radius: 0 0 10px 10px;
-          border-radius: 0 0 10px 10px;
-        }
-        ::ng-deep .productText > p
-        {
-          font-size: 16px;
-          color: $alternateColor;
-        }
-        //.productResponse
-        //{
-        //  background-color: darkolivegreen;
-        //}
       }
     }
-  }
-  .newsOnProductsPage
-  {
-    width: 220px;
-    height: 500px;
-    padding: 20px;
-    background-color: #ffffff;
-    //background-color: #fac400;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    float: right;
-    //display: inline-block;
-    position: sticky;
-    top: 106px;
-    //right: 0;
-    .news-header
+    .newsOnProductsPage
     {
-      overflow: hidden;
-      border-bottom: 1px solid $alternateColor;
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    .scrollbarBox
-    {
-      max-width: 200px;
-      max-height: 700px;
-      .articleLink {
-        display: block;
-        font-size: 12px;
-        //background-color: #aaaaaa;
-        //border-bottom: 1px solid $backgroundColor;
-        margin-bottom: 2px;
-        text-decoration: none;
-        .articleDate
-        {
-          background-color: $backgroundColor;
-          padding: 0 5px;
-          font-size: 10px;
-          font-weight: bold;
-          text-align: right;
-          text-decoration: none;
-          color: $alternateColor;
-        }
-        .newsIcon
-        {
-          margin-right: 10px;
-        }
-        .articleTitle
-        {
-          //background-color: black;
-          //padding: 0 5px;
-          color: $alternateColor;
-        }
-      }
-      .articleLink:hover
+      width: 270px;
+      padding: 20px;
+      background-color: #ffffff;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      .news-header
       {
-        .articleTitle
+        overflow: hidden;
+        border-bottom: 1px solid $alternateColor;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      .scrollbarBox
+      {
+        .articleLink {
+          display: block;
+          font-size: 12px;
+          margin-bottom: 2px;
+          text-decoration: none;
+          .articleDate
+          {
+            background-color: $backgroundColor;
+            padding: 0 5px;
+            font-size: 10px;
+            font-weight: bold;
+            text-align: right;
+            text-decoration: none;
+            color: $alternateColor;
+          }
+          .newsIcon
+          {
+            margin-right: 10px;
+          }
+          .articleTitle
+          {
+            color: $alternateColor;
+          }
+        }
+        .articleLink:hover
         {
-          text-decoration: underline;
-          color: #0066cc;
-          font-weight: bold;
+          .articleTitle
+          {
+            text-decoration: underline;
+            color: $linkColor;
+            font-weight: bold;
+          }
         }
       }
+      .newsPagination ::ng-deep .ngx-pagination
+      {
+        width: 100%;
+        border-top: 1px solid $alternateColor;
+        border-bottom: 1px solid $alternateColor;
+        margin: 5px 0;
+        padding: 0;
+      }
+      .newsPagination ::ng-deep .ngx-pagination > li
+      {
+        width: 14.285714%;
+        text-align: center;
+        margin: 0;
+        padding: 5px 0;
+        list-style: none;
+      }
+      .newsPagination ::ng-deep .ngx-pagination > li > a:hover
+      {
+        background-color: $backgroundColor;
+        color: $alternateColor;
+        text-decoration: none;
+        //margin: 0;
+        //padding: 5px 0;
+      }
+      .newsPagination ::ng-deep .ngx-pagination > li > a
+      {
+        font-size: 12px;
+        line-height: 12px;
+        font-weight: bold;
+        margin: 0;
+        padding: 5px 0;
+      }
+      .newsPagination ::ng-deep .ngx-pagination .current
+      {
+        font-size: 12px;
+        line-height: 12px;
+        //margin: 0;
+        //padding: 5px 0;
+        background-color: $alternateColor;
+      }
     }
-  }
 
+  }
 }
 
 @media screen and (max-width: 1220px)
 {
-  .globalProductsContainer
+  .scroll-container
   {
-    width: 1000px;
-    .products-container
+    .globalProductsContainer
     {
-      width: 770px;
+      width: 1000px;
+      .products-container
+      {
+        width: 710px;
+      }
     }
   }
 }
 @media screen and (max-width: 1020px)
 {
-  .globalProductsContainer
+  .scroll-container
   {
-    width: 800px;
-    .products-container
+    .globalProductsContainer
     {
-      width: 570px;
+      width: 800px;
+      .products-container
+      {
+        width: 510px;
+      }
     }
   }
 }
 @media screen and (max-width: 820px)
 {
-  .globalProductsContainer
+  .scroll-container
   {
-    width: 100%;
-    .products-container
+    .globalProductsContainer
     {
       width: 100%;
-    }
-    .newsOnProductsPage
-    {
-      width: 100%;
-      position: relative;
-      top: 0;
-      margin-bottom: 10px;
-      .scrollbarBox
+      .products-container
       {
-        max-width: 100%;
-        display: flex;
-        justify-content: center;
+        width: 100%;
+        margin-right: 0;
+      }
+      .newsOnProductsPage
+      {
+        width: 100%;
+        position: relative;
+        top: 0;
+        margin-bottom: 10px;
+        .scrollbarBox
+        {
+          width: 100%;
+          //display: flex;
+          //flex-flow: row wrap;
+          //justify-content: center;
+        }
       }
     }
   }
