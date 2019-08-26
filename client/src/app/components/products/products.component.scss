@@ -18,53 +18,100 @@ $linkColor: #0066cc;
   width: 100%;
   height: calc(100vh - 96px);
   overflow: auto;
-  background-color: $globalBackgroundColor;
+  //background-color: $globalBackgroundColor;
+  background-image: url('/assets/images/background.jpg');
+  h1, h2, h3, h4, h5, h6
+  {
+    text-align: left;
+  }
   .globalProductsContainer
   {
     width: 1200px;
-    margin: 20px auto 0;
+    margin: 20px auto 20px;
     position: relative;
+    background-color: #ffffff;
     .products-container
     {
-      width: 910px;
-      margin: 0 20px 0 0;
+      width: 930px;
+      //margin: 0 20px 0 0;
+      padding: 20px 0 0 20px;
       display: inline-block;
+      //background-color: #fac400;
       .item-container
       {
         width: 100%;
         display: flex;
         justify-content: center;
         margin-bottom: 20px;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        border-radius: 10px;
+        //-webkit-border-radius: 10px;
+        //-moz-border-radius: 10px;
+        //border-radius: 10px;
         .product-item
         {
           width: 100%;
           font-size: 30px;
-          -webkit-border-radius: 10px;
-          -moz-border-radius: 10px;
-          border-radius: 10px;
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          //-webkit-border-radius: 10px;
+          //-moz-border-radius: 10px;
+          //border-radius: 10px;
+          //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
           .productInfo
           {
             display: flex;
             align-items: center;
           }
+          .lineTitle
+          {
+            width: 100%;
+            display: block;
+            text-align: center;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 4px 0 20px;
+            line-height: 40px;
+            .lineText
+            {
+              position: relative;
+              display: inline-block;
+              font-size: 40px;
+              font-weight: bold;
+              font-style: oblique;
+              color: $alternateColor;
+            }
+            .lineText::before,
+            .lineText::after
+            {
+              content: "";
+              position: absolute;
+              top: 50%;
+              height: 1px;
+              width: 9999px;
+              background-color: $alternateColor;
+            }
+            .lineText::before
+            {
+              right: 100%;
+              margin-right: 20px;
+            }
+            .lineText::after
+            {
+              left: 100%;
+              margin-left: 20px;
+            }
+          }
           .productImage
           {
             position: relative;
-            -webkit-border-radius: 10px 10px 0 0;
-            -moz-border-radius: 10px 10px 0 0;
-            border-radius: 10px 10px 0 0;
+            //-webkit-border-radius: 10px 10px 0 0;
+            //-moz-border-radius: 10px 10px 0 0;
+            //border-radius: 10px 10px 0 0;
             .productImg
             {
               width: 100%;
               height: calc(100vh - 0);
               object-fit: cover;
-              -webkit-border-radius: 10px 10px 0 0;
-              -moz-border-radius: 10px 10px 0 0;
-              border-radius: 10px 10px 0 0;
+              //-webkit-border-radius: 10px 10px 0 0;
+              //-moz-border-radius: 10px 10px 0 0;
+              //border-radius: 10px 10px 0 0;
               //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             }
             .productName
@@ -75,9 +122,9 @@ $linkColor: #0066cc;
               right: 0;
               left: 50%;
               background-color: rgba(0, 0, 0, .7);
-              -webkit-border-radius: 0 10px 0 0;
-              -moz-border-radius: 0 10px 0 0;
-              border-radius: 0 10px 0 0;
+              //-webkit-border-radius: 0 10px 0 0;
+              //-moz-border-radius: 0 10px 0 0;
+              //border-radius: 0 10px 0 0;
               color: #ffffff;
               padding: 20px;
               font-size: 40px;
@@ -121,12 +168,12 @@ $linkColor: #0066cc;
           }
           .productText
           {
-            padding: 10px 20px 20px 20px;
+            padding: 10px 0 20px 0;
             text-align: justify;
             background-color: #ffffff;
-            -webkit-border-radius: 0 0 10px 10px;
-            -moz-border-radius: 0 0 10px 10px;
-            border-radius: 0 0 10px 10px;
+            //-webkit-border-radius: 0 0 10px 10px;
+            //-moz-border-radius: 0 0 10px 10px;
+            //border-radius: 0 0 10px 10px;
           }
           ::ng-deep .productText > p
           {
@@ -136,6 +183,15 @@ $linkColor: #0066cc;
           ::ng-deep .productText > p > a
           {
             color: $linkColor;
+          }
+          ::ng-deep .productText > h1,
+          ::ng-deep .productText > h2,
+          ::ng-deep .productText > h3,
+          ::ng-deep .productText > h4,
+          ::ng-deep .productText > h5,
+          ::ng-deep .productText > h6
+          {
+            text-align: left;
           }
           //.productResponse
           //{
@@ -149,13 +205,13 @@ $linkColor: #0066cc;
       width: 270px;
       padding: 20px;
       background-color: #ffffff;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
+      //-webkit-border-radius: 10px;
+      //-moz-border-radius: 10px;
+      //border-radius: 10px;
       position: absolute;
       top: 0;
       right: 0;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       .news-header
       {
         overflow: hidden;
@@ -254,7 +310,7 @@ $linkColor: #0066cc;
       width: 1000px;
       .products-container
       {
-        width: 710px;
+        width: 730px;
       }
     }
   }
@@ -268,7 +324,7 @@ $linkColor: #0066cc;
       width: 800px;
       .products-container
       {
-        width: 510px;
+        width: 530px;
       }
     }
   }
@@ -283,7 +339,18 @@ $linkColor: #0066cc;
       .products-container
       {
         width: 100%;
-        margin-right: 0;
+        margin: 0;
+        padding: 0;
+        .item-container
+        {
+          .product-item
+          {
+            .productText
+            {
+              padding: 10px 20px 20px 20px;
+            }
+          }
+        }
       }
       .newsOnProductsPage
       {
@@ -302,9 +369,12 @@ $linkColor: #0066cc;
     }
   }
 }
-@media screen and (max-width: 800px)
+@media screen and (max-width: 770px)
 {
-
+  .scroll-container
+  {
+    height: calc(100vh - 60px);
+  }
 }
 @media screen and (max-width: 700px)
 {

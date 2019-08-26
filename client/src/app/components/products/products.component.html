@@ -1,39 +1,42 @@
 <nav class="subnav" [clr-nav-level]="2">
   <ul class="nav">
     <li *ngFor="let product of products" class="nav-item">
-      <a class="nav-link {{product.id}}" [ngx-scroll-to-offset]="-10" [ngx-scroll-to]="product.id" (click)="activeProduct(product.productName)" [ngClass] = "{'active': productsLink == product.productName}">{{product.productName}}</a>
+      <a class="nav-link {{product.id}}" [ngx-scroll-to-offset]="-20" [ngx-scroll-to]="product.id" (click)="activeProduct(product.productName)" [ngClass] = "{'active': productsLink == product.productName}">{{product.productName}}</a>
     </li>
   </ul>
 </nav>
 <div class="scroll-container">
-<div class="globalProductsContainer">
-  <div class="products-container">
-    <div *ngFor="let product of products" class="item-container" id="{{product.id}}">
-      <div class="product-item">
-        <div class="productImage">
-          <img src="/assets/images/login-page.jpg" class="productImg"/>
-          <div *ngIf="product.price" class="productPrice productInfo">Price: {{product.price}}</div>
-          <div class="productName productInfo">{{product.productName}}</div>
-          <div *ngIf="product.productType" class="productType productInfo">{{product.productType}}</div>
-          <div class="productDate productInfo" *ngIf="product.productModificationDate">{{product.productModificationDate | date:'medium'}}</div>
-          <div class="productDate productInfo" *ngIf="!product.productModificationDate">{{product.productDate | date:'medium'}}</div>
+  <div class="globalProductsContainer">
+    <div class="products-container">
+      <div *ngFor="let product of products" class="item-container" id="{{product.id}}">
+        <div class="product-item">
+          <div class="lineTitle">
+            <span class="lineText">{{product.productName}}</span>
+          </div>
+          <div class="productImage">
+            <img src="/assets/images/login-page.jpg" class="productImg"/>
+            <div *ngIf="product.price" class="productPrice productInfo">Price: {{product.price}}</div>
+            <div class="productName productInfo">{{product.productName}}</div>
+            <div *ngIf="product.productType" class="productType productInfo">{{product.productType}}</div>
+            <div class="productDate productInfo" *ngIf="product.productModificationDate">{{product.productModificationDate | date:'medium'}}</div>
+            <div class="productDate productInfo" *ngIf="!product.productModificationDate">{{product.productDate | date:'medium'}}</div>
+          </div>
+          <div class="productText" [innerHtml]="product.description"></div>
+          <!--<div class="productResponse productInfo">Nice</div>-->
         </div>
-        <div class="productText" [innerHtml]="product.description"></div>
-        <!--<div class="productResponse productInfo">Nice</div>-->
       </div>
     </div>
-  </div>
-  <div class="newsOnProductsPage">
-    <div class="news-header">Latest News</div>
-    <div class="scrollbarBox">
-      <a *ngFor="let article of news | paginate: { itemsPerPage: 10, currentPage: p }" [routerLink]="['/article', article.id]" class="articleLink">
-        <div *ngIf="!article.newsModificationDate" class="articleDate">{{article.newsDate | date:'medium'}}</div>
-        <div *ngIf="article.newsModificationDate" class="articleDate">{{article.newsModificationDate | date:'medium'}}</div>
-        <div class="articleTitle"><clr-icon shape="details" size="18" class="newsIcon"></clr-icon><span>{{article.newsTitle}}</span></div>
-      </a>
+    <div class="newsOnProductsPage">
+      <div class="news-header">Latest News</div>
+      <div class="scrollbarBox">
+        <a *ngFor="let article of news | paginate: { itemsPerPage: 10, currentPage: p }" [routerLink]="['/article', article.id]" class="articleLink">
+          <div *ngIf="!article.newsModificationDate" class="articleDate">{{article.newsDate | date:'medium'}}</div>
+          <div *ngIf="article.newsModificationDate" class="articleDate">{{article.newsModificationDate | date:'medium'}}</div>
+          <div class="articleTitle"><clr-icon shape="details" size="18" class="newsIcon"></clr-icon><span>{{article.newsTitle}}</span></div>
+        </a>
+      </div>
+      <pagination-controls class="newsPagination" [directionLinks]="false" [maxSize]="7" [responsive]="false" previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
     </div>
-    <pagination-controls class="newsPagination" [directionLinks]="false" [maxSize]="7" [responsive]="false" previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
   </div>
   <app-footer></app-footer>
-</div>
 </div>

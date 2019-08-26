@@ -8,6 +8,7 @@ import { PageTitleService } from '../../services/page-title.service';
 import { NewsService } from '../../services/news-service';
 import { ClrDatagridSortOrder } from '@clr/angular';
 import { ProductsService } from '../../services/products.service';
+import { Role } from "../../models/roles.model";
 
 @Component({
   selector: 'app-admin-page',
@@ -30,15 +31,23 @@ export class AdminPageComponent implements OnInit {
   users: User[];
   newUser: User;
   selectedUser: User;
+  numberOfUsers: number;
+  activeUsers: User[];
+  inActiveUsers: User[];
+  numberOfActiveUsers: number;
+  numberOfInActiveUsers: number;
+  roles: any[];
+  selectedRoles: any[];
   mail: Mail;
   news: News[];
   newArticle: News;
   selectedArticle: News;
+  numberOfNews: number;
   products: Product[];
   newProduct: Product;
   selectedProduct: Product;
+  numberOfProducts: number;
   dataBaseKey: string;
-  numberOfUsers: number;
   ascSort: any;
   descSort: any;
 
@@ -60,6 +69,7 @@ export class AdminPageComponent implements OnInit {
     this.selectedProduct = new Product();
     this.newProduct = new Product();
     this.getAllUsers();
+    this.getUserRoles();
     this.getAllNews();
     this.getAllProducts();
   }
@@ -70,8 +80,7 @@ export class AdminPageComponent implements OnInit {
         console.log('Yes');
       }, () => {
         console.log('No');
-      }
-    )
+      });
   }
 
   getAllUsers() {
@@ -79,7 +88,21 @@ export class AdminPageComponent implements OnInit {
       users => {
         this.users = users;
         this.numberOfUsers = users.length;
+        this.activeUsers = users.filter(person => person.isActive);
+        this.inActiveUsers = users.filter(person => !person.isActive);
+        this.numberOfActiveUsers = this.activeUsers.length;
+        this.numberOfInActiveUsers = this.inActiveUsers.length;
         this.loading = false;
+      });
+  }
+
+  getUserRoles() {
+    this.registrationService.getRoles().subscribe(
+      roles => {
+        this.roles = roles;
+        console.log(this.roles);
+      }, () => {
+        console.log('No');
       });
   }
 
@@ -162,6 +185,7 @@ export class AdminPageComponent implements OnInit {
     this.newsService.getNews().subscribe(
       news => {
         this.news = news;
+        this.numberOfNews = news.length;
       });
   }
 
@@ -220,6 +244,7 @@ export class AdminPageComponent implements OnInit {
     this.productsService.getProducts().subscribe(
       products => {
         this.products = products;
+        this.numberOfProducts = products.length;
       });
   }
 

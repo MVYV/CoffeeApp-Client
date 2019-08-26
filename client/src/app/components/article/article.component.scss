@@ -3,26 +3,31 @@ $backgroundColor: #dddddd;
 $alternateColor: #314351;
 $linkColor: #0066cc;
 $globalBackgroundColor: #edeef0;
-
+body
+{
+  overflow: hidden;
+}
 .scroll-container
 {
   width: 100%;
   height: calc(100vh - 60px);
   overflow: auto;
-  background-color: $globalBackgroundColor;
+  //background-color: $globalBackgroundColor;
+  background-image: url('/assets/images/background.jpg');
   .article-page-container
   {
     width: 1200px;
     margin: 20px auto;
     position: relative;
+    background-color: #ffffff;
     .products-on-article-page
     {
       width: 270px;
       background-color: #ffffff;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      //-webkit-border-radius: 10px;
+      //-moz-border-radius: 10px;
+      //border-radius: 10px;
+      //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       display: inline-block;
       position: absolute;
       padding: 20px;
@@ -123,33 +128,67 @@ $globalBackgroundColor: #edeef0;
     }
     .article-box
     {
-      width: 910px;
-      margin-right: 20px;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
+      width: 930px;
+      padding: 20px 0 0 20px;
+      //background-color: #fac400;
+      //margin-right: 20px;
+      //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      //-webkit-border-radius: 10px;
+      //-moz-border-radius: 10px;
+      //border-radius: 10px;
       display: inline-block;
+      .link-guide
+      {
+        //background-color: #fac400;
+        margin-bottom: 10px;
+        .link-guide-item
+        {
+          display: inline-block;
+          padding: 0 5px;
+          background-color: $backgroundColor;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          border-radius: 5px;
+          font-size: 14px;
+          color: $alternateColor;
+        }
+        a.link-guide-item
+        {
+          color: $alternateColor;
+
+        }
+        .guide-arrow
+        {
+          -webkit-transform: rotate(90deg);
+          -moz-transform: rotate(90deg);
+          -ms-transform: rotate(90deg);
+          -o-transform: rotate(90deg);
+          transform: rotate(90deg);
+          margin: 0 5px;
+          //background-color: #fac400;
+          color: $backgroundColor;
+        }
+      }
       .article-image-box
       {
         width: 100%;
-        -webkit-border-radius: 10px 10px 0 0;
-        -moz-border-radius: 10px 10px 0 0;
-        border-radius: 10px 10px 0 0;
+        //-webkit-border-radius: 10px 10px 0 0;
+        //-moz-border-radius: 10px 10px 0 0;
+        //border-radius: 10px 10px 0 0;
         position: relative;
         .article-image
         {
           width: 100%;
-          -webkit-border-radius: 10px 10px 0 0;
-          -moz-border-radius: 10px 10px 0 0;
-          border-radius: 10px 10px 0 0;
+          //-webkit-border-radius: 10px 10px 0 0;
+          //-moz-border-radius: 10px 10px 0 0;
+          //border-radius: 10px 10px 0 0;
         }
         .gray-box
         {
           width: 100%;
-          -webkit-border-radius: 10px 10px 0 0;
-          -moz-border-radius: 10px 10px 0 0;
-          border-radius: 10px 10px 0 0;
+          //-webkit-border-radius: 10px 10px 0 0;
+          //-moz-border-radius: 10px 10px 0 0;
+          //border-radius: 10px 10px 0 0;
           position: absolute;
           top: 0;
           left: 0;
@@ -196,11 +235,11 @@ $globalBackgroundColor: #edeef0;
       {
         width: 100%;
         text-align: justify;
-        padding: 20px;
+        padding: 20px 0;
         background-color: #ffffff;
-        -webkit-border-radius: 0 0 10px 10px;
-        -moz-border-radius: 0 0 10px 10px;
-        border-radius: 0 0 10px 10px;
+        //-webkit-border-radius: 0 0 10px 10px;
+        //-moz-border-radius: 0 0 10px 10px;
+        //border-radius: 0 0 10px 10px;
         .article-annotation
         {
           font-weight: bold;
@@ -222,10 +261,10 @@ $globalBackgroundColor: #edeef0;
     padding: 20px;
     margin: 20px auto 20px;
     background-color: #ffffff;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    //-webkit-border-radius: 10px;
+    //-moz-border-radius: 10px;
+    //border-radius: 10px;
+    //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     .other-news-header
     {
       overflow: hidden;
@@ -306,7 +345,7 @@ $globalBackgroundColor: #edeef0;
         }
       }
     }
-    .newsPagination ::ng-deep .ngx-pagination
+    .otherNewsPagination ::ng-deep .ngx-pagination
     {
       width: 100%;
       border-top: 1px solid $alternateColor;
@@ -314,7 +353,7 @@ $globalBackgroundColor: #edeef0;
       margin: 5px 0;
       padding: 0;
     }
-    .newsPagination ::ng-deep .ngx-pagination > li
+    .otherNewsPagination ::ng-deep .ngx-pagination > li
     {
       width: 14.285714%;
       text-align: center;
@@ -322,7 +361,7 @@ $globalBackgroundColor: #edeef0;
       padding: 5px 0;
       list-style: none;
     }
-    .newsPagination ::ng-deep .ngx-pagination > li > a:hover
+    .otherNewsPagination ::ng-deep .ngx-pagination > li > a:hover
     {
       background-color: $backgroundColor;
       color: $alternateColor;
@@ -330,7 +369,7 @@ $globalBackgroundColor: #edeef0;
       //margin: 0;
       //padding: 5px 0;
     }
-    .newsPagination ::ng-deep .ngx-pagination > li > a
+    .otherNewsPagination ::ng-deep .ngx-pagination > li > a
     {
       font-size: 12px;
       line-height: 12px;
@@ -338,7 +377,7 @@ $globalBackgroundColor: #edeef0;
       margin: 0;
       padding: 5px 0;
     }
-    .newsPagination ::ng-deep .ngx-pagination .current
+    .otherNewsPagination ::ng-deep .ngx-pagination .current
     {
       font-size: 12px;
       line-height: 12px;
@@ -380,7 +419,7 @@ $globalBackgroundColor: #edeef0;
       width: 1000px;
       .article-box
       {
-        width: 710px;
+        width: 730px;
       }
     }
     .other-news
@@ -402,7 +441,7 @@ $globalBackgroundColor: #edeef0;
       width: 800px;
       .article-box
       {
-        width: 510px;
+        width: 530px;
       }
     }
     .other-news
@@ -426,6 +465,11 @@ $globalBackgroundColor: #edeef0;
       {
         display: block;
         width: 100%;
+        padding: 0;
+        .article-text-box
+        {
+          padding: 20px;
+        }
       }
       .products-on-article-page
       {

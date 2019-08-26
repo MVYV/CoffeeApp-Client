@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/users.model';
-import { Mail } from "../models/mail.model";
+import { Role } from '../models/roles.model';
+import { Mail } from '../models/mail.model';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -31,5 +32,9 @@ export class UserRegistrationService {
 
   public mailToUser(mail: Mail): Observable<Mail> {
     return this.http.post<Mail>('https://march11app.herokuapp.com/sendMail', mail);
+  }
+
+  public getRoles(): Observable<Role[]> {
+    return this.http.get<Role[]>('https://march11app.herokuapp.com/role');
   }
 }

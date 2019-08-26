@@ -23,6 +23,30 @@
     <clr-tab>
       <button clrTabLink id="link1">Overall</button>
       <clr-tab-content *clrIfActive="true">
+        <div class="overall-info">
+          <div class="overall-item overall-users">
+            <div class="number-of-items">
+              {{this.numberOfUsers}}
+              {{this.numberOfActiveUsers}}
+              {{this.numberOfInActiveUsers}}
+            </div>
+            <div>users</div>
+          </div>
+
+          <div class="overall-item overall-news">
+            <div class="number-of-items">
+              {{this.numberOfNews}}
+            </div>
+            <div>news</div>
+          </div>
+
+          <div class="overall-item overall-products">
+            <div class="number-of-items">
+              {{this.numberOfProducts}}
+            </div>
+            <div>products</div>
+          </div>
+        </div>
 
       </clr-tab-content>
     </clr-tab>
@@ -418,15 +442,15 @@
 
           <!--User role field-->
           <label for="example" class="clr-control-label clr-col-12 clr-col-md-2">Role</label>
-          <div class="clr-control-container user-data-field clr-col-12 clr-col-md-10"
-               [class.clr-error]="role.invalid && role.touched">
-            <div class="clr-input-wrapper">
-              <input type="text" id="example" placeholder="User Role" class="clr-input" [(ngModel)]="selectedUser.role"
-                     #role="ngModel" name="role"/>
-              <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="role.valid"></clr-icon>
+          <div class="clr-control-container user-data-field clr-col-12 clr-col-md-10 clr-control-inline">
+            <div class="clr-checkbox-wrapper" *ngFor="let role of roles; let i = index">
+              <input type="checkbox" id="{{role}}" name="checkbox-error" value="roleItem" class="clr-checkbox" [(ngModel)]="roles[i].checked">
+              <label for="{{role}}" class="clr-control-label">{{role}}</label>
             </div>
-            <span class="clr-subtext" [class.wrongDataMessage]="role.valid"
-                  [hidden]="role.untouched">Incorrect user role</span>
+            <div class="clr-subtext-wrapper">
+              <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+              <span class="clr-subtext">Error message</span>
+            </div>
           </div>
 
           <!--User activity field-->

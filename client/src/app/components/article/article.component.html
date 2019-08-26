@@ -1,6 +1,13 @@
 <div class="scroll-container">
   <div class="article-page-container">
     <div class="article-box" id="articleBox">
+      <div class="link-guide">
+        <a routerLink="/news" class="link-guide-item">News</a>
+        <clr-icon shape="circle-arrow" class="is-solid guide-arrow" size="22"></clr-icon>
+        <span class="link-guide-item">Article</span>
+        <clr-icon shape="circle-arrow" class="is-solid guide-arrow" size="22"></clr-icon>
+        <span class="link-guide-item">{{selectedArticle?.newsTitle}}</span>
+      </div>
       <div class="article-image-box">
         <img src="assets/images/nature33hd.jpg" class="article-image">
         <div class="gray-box">
@@ -37,7 +44,6 @@
 
   <div class="other-news">
     <div class="other-news-header">More news</div>
-    <pagination-controls class="newsPagination" [directionLinks]="false" [maxSize]="7" [responsive]="false" previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
     <a *ngFor="let record of news | paginate: { itemsPerPage: 10, currentPage: p }" [routerLink]="['/article', record.id]" [ngx-scroll-to-offset]="-70" [ngx-scroll-to]="'#articleBox'" class="other-news-link-box" title="{{record.newsTitle}}">
       <div class="other-news-box">
         <div class="other-news-icon">
@@ -51,7 +57,7 @@
         </div>
       </div>
     </a>
-
+    <pagination-controls class="otherNewsPagination" [directionLinks]="false" [maxSize]="7" [responsive]="false" previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
   </div>
   <app-footer></app-footer>
 </div>

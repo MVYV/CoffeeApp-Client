@@ -66,3 +66,32 @@ $globalBackgroundColor: #edeef0;
   width: 100px;
   height: 100px;
 }
+.overall-info
+{
+  width: 100%;
+  background-color: #0079b8;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+.overall-item
+{
+  width: 33.33333%;
+  height: 500px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+.overall-users
+{
+  background-color: #f8b7b6;
+}
+.overall-news
+{
+  background-color: #dddddd;
+}
+.overall-products
+{
+  background-color: #888888;
+}
