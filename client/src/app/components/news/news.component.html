@@ -1,19 +1,20 @@
 <div class="scroll-container" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" [scrollWindow]="false" (scrolled)="onScrollDown();">
   <div class="news-page-container">
     <div class="news-container">
-      <a class="card clickable" *ngFor="let article of postedNews" [routerLink]="['/article', article.id]">
-        <div class="card-img" >
+      <a class="news-card clickable" *ngFor="let article of postedNews" [routerLink]="['/article', article.id]">
+        <div class="news-card-img" >
           <img src="assets/images/login-page.jpg" class="news-img">
           <div class="card-date">{{article.newsDate | date: 'medium'}}</div>
-          <div class="card-title">{{article.newsTitle}}</div>
         </div>
-        <div class="card-block">
+        <div class="news-card-block">
+          <div class="card-title">{{article.newsTitle}}</div>
           <div class="card-annotation">{{article.newsSubText}}</div>
+          <div class="card-source">{{article.newsSource}}</div>
         </div>
       </a>
     </div>
-    <app-footer></app-footer>
   </div>
+  <app-footer></app-footer>
 </div>
 <span class="spinner spinner-lg" [hidden]="!loadingSpinner">
     Loading...

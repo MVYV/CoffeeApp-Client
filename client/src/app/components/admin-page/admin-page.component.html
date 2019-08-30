@@ -444,8 +444,8 @@
           <label for="example" class="clr-control-label clr-col-12 clr-col-md-2">Role</label>
           <div class="clr-control-container user-data-field clr-col-12 clr-col-md-10 clr-control-inline">
             <div class="clr-checkbox-wrapper" *ngFor="let role of roles; let i = index">
-              <input type="checkbox" id="{{role}}" name="checkbox-error" value="roleItem" class="clr-checkbox" [(ngModel)]="roles[i].checked">
-              <label for="{{role}}" class="clr-control-label">{{role}}</label>
+              <input type="checkbox" id="{{role.role}}" name="checkbox-error" value="roleItem" class="clr-checkbox" [(ngModel)]="roles[i].checked" (change)="getSelectedRoles()">
+              <label for="{{role.role}}" class="clr-control-label">{{role.role}}</label>
             </div>
             <div class="clr-subtext-wrapper">
               <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>

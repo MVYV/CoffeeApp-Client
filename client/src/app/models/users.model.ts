@@ -7,7 +7,7 @@ export class User {
     public lastName?: string,
     public email?: string,
     public password?: string,
-    public roles?: Role[],
+    public roles?: any,
     public isActive?: number,
     public country?: string,
     public city?: string,

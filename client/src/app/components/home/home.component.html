@@ -1,12 +1,24 @@
 <div class="scroll-container">
   <div class="home-container">
-    <div class="home-home home-box">
+    <div class="home-box box">
+      <div class="home-box-title home-title">About Site</div>
+      <div class="home-box-data home-data"></div>
     </div>
-    <div class="home-news home-box">
+    <div class="news-box box">
+      <div class="news-box-title home-title">News</div>
+      <div class="news-box-data home-data">
+        <div *ngFor="let article of oneArticle">
+          <span>{{article.newsTitle}}</span>
+        </div>
+      </div>
     </div>
-    <div class="home-products home-box">
-    </div>
-    <div class="home-about home-box">
+    <div class="products-box box">
+      <div class="products-box-title home-title">Products</div>
+      <div class="products-box-data home-data">
+        <div *ngFor="let product of oneProduct">
+          <span>{{product.productName}}</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

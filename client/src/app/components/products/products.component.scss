@@ -3,6 +3,7 @@ $alternateColor :#314351;
 $backgroundColor: #dddddd;
 $globalBackgroundColor: #edeef0;
 $linkColor: #0066cc;
+$headerColor: #037a00;
 .subnav
 {
   position: sticky;
@@ -18,7 +19,6 @@ $linkColor: #0066cc;
   width: 100%;
   height: calc(100vh - 96px);
   overflow: auto;
-  //background-color: $globalBackgroundColor;
   background-image: url('/assets/images/background.jpg');
   h1, h2, h3, h4, h5, h6
   {
@@ -30,30 +30,24 @@ $linkColor: #0066cc;
     margin: 20px auto 20px;
     position: relative;
     background-color: #ffffff;
+    -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .75);
+    -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .75);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .75);
     .products-container
     {
       width: 930px;
-      //margin: 0 20px 0 0;
       padding: 20px 0 0 20px;
       display: inline-block;
-      //background-color: #fac400;
       .item-container
       {
         width: 100%;
         display: flex;
         justify-content: center;
         margin-bottom: 20px;
-        //-webkit-border-radius: 10px;
-        //-moz-border-radius: 10px;
-        //border-radius: 10px;
         .product-item
         {
           width: 100%;
           font-size: 30px;
-          //-webkit-border-radius: 10px;
-          //-moz-border-radius: 10px;
-          //border-radius: 10px;
-          //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
           .productInfo
           {
             display: flex;
@@ -75,7 +69,7 @@ $linkColor: #0066cc;
               font-size: 40px;
               font-weight: bold;
               font-style: oblique;
-              color: $alternateColor;
+              color: $headerColor;
             }
             .lineText::before,
             .lineText::after
@@ -85,7 +79,7 @@ $linkColor: #0066cc;
               top: 50%;
               height: 1px;
               width: 9999px;
-              background-color: $alternateColor;
+              background-color: $headerColor;
             }
             .lineText::before
             {
@@ -101,18 +95,11 @@ $linkColor: #0066cc;
           .productImage
           {
             position: relative;
-            //-webkit-border-radius: 10px 10px 0 0;
-            //-moz-border-radius: 10px 10px 0 0;
-            //border-radius: 10px 10px 0 0;
             .productImg
             {
               width: 100%;
               height: calc(100vh - 0);
               object-fit: cover;
-              //-webkit-border-radius: 10px 10px 0 0;
-              //-moz-border-radius: 10px 10px 0 0;
-              //border-radius: 10px 10px 0 0;
-              //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             }
             .productName
             {
@@ -122,9 +109,6 @@ $linkColor: #0066cc;
               right: 0;
               left: 50%;
               background-color: rgba(0, 0, 0, .7);
-              //-webkit-border-radius: 0 10px 0 0;
-              //-moz-border-radius: 0 10px 0 0;
-              //border-radius: 0 10px 0 0;
               color: #ffffff;
               padding: 20px;
               font-size: 40px;
@@ -171,9 +155,6 @@ $linkColor: #0066cc;
             padding: 10px 0 20px 0;
             text-align: justify;
             background-color: #ffffff;
-            //-webkit-border-radius: 0 0 10px 10px;
-            //-moz-border-radius: 0 0 10px 10px;
-            //border-radius: 0 0 10px 10px;
           }
           ::ng-deep .productText > p
           {
@@ -182,7 +163,8 @@ $linkColor: #0066cc;
           }
           ::ng-deep .productText > p > a
           {
-            color: $linkColor;
+            color: $headerColor;
+            font-weight: bold;
           }
           ::ng-deep .productText > h1,
           ::ng-deep .productText > h2,
@@ -193,6 +175,7 @@ $linkColor: #0066cc;
           {
             text-align: left;
           }
+          // ----- Will be added later -----
           //.productResponse
           //{
           //  background-color: darkolivegreen;
@@ -205,20 +188,17 @@ $linkColor: #0066cc;
       width: 270px;
       padding: 20px;
       background-color: #ffffff;
-      //-webkit-border-radius: 10px;
-      //-moz-border-radius: 10px;
-      //border-radius: 10px;
       position: absolute;
       top: 0;
       right: 0;
-      //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       .news-header
       {
         overflow: hidden;
-        border-bottom: 1px solid $alternateColor;
+        border-bottom: 1px solid $headerColor;
         font-size: 18px;
         font-weight: bold;
         margin-bottom: 10px;
+        color: $headerColor;
       }
       .scrollbarBox
       {
@@ -251,7 +231,7 @@ $linkColor: #0066cc;
           .articleTitle
           {
             text-decoration: underline;
-            color: $linkColor;
+            color: $headerColor;
             font-weight: bold;
           }
         }
@@ -259,8 +239,8 @@ $linkColor: #0066cc;
       .newsPagination ::ng-deep .ngx-pagination
       {
         width: 100%;
-        border-top: 1px solid $alternateColor;
-        border-bottom: 1px solid $alternateColor;
+        border-top: 1px solid $headerColor;
+        border-bottom: 1px solid $headerColor;
         margin: 5px 0;
         padding: 0;
       }
@@ -275,10 +255,8 @@ $linkColor: #0066cc;
       .newsPagination ::ng-deep .ngx-pagination > li > a:hover
       {
         background-color: $backgroundColor;
-        color: $alternateColor;
+        color: $headerColor;
         text-decoration: none;
-        //margin: 0;
-        //padding: 5px 0;
       }
       .newsPagination ::ng-deep .ngx-pagination > li > a
       {
@@ -292,9 +270,7 @@ $linkColor: #0066cc;
       {
         font-size: 12px;
         line-height: 12px;
-        //margin: 0;
-        //padding: 5px 0;
-        background-color: $alternateColor;
+        background-color: $headerColor;
       }
     }
 
@@ -361,9 +337,6 @@ $linkColor: #0066cc;
         .scrollbarBox
         {
           width: 100%;
-          //display: flex;
-          //flex-flow: row wrap;
-          //justify-content: center;
         }
       }
     }

@@ -24,10 +24,12 @@ export class LoginComponent implements OnInit {
 
   checkLogin() {
     (this.authenticationService.authenticate(this.username, this.password).subscribe(
-      data => {
-        this.router.navigate(['']);
+      () => {
+        this.router.navigate(['']).then(() => {
+          window.location.reload();
+        });
         this.invalidLogin = false;
-      }, error => {
+      }, () => {
         this.invalidLogin = true;
       }
     ));

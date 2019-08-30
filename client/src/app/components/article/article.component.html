@@ -3,19 +3,31 @@
     <div class="article-box" id="articleBox">
       <div class="link-guide">
         <a routerLink="/news" class="link-guide-item">News</a>
-        <clr-icon shape="circle-arrow" class="is-solid guide-arrow" size="22"></clr-icon>
-        <span class="link-guide-item">Article</span>
-        <clr-icon shape="circle-arrow" class="is-solid guide-arrow" size="22"></clr-icon>
-        <span class="link-guide-item">{{selectedArticle?.newsTitle}}</span>
+        <clr-icon shape="circle-arrow" class="guide-arrow" size="18"></clr-icon>
+        <span class="link-guide-item link-guide-item-disabled">Article</span>
+        <clr-icon shape="circle-arrow" class="guide-arrow" size="18"></clr-icon>
+        <span class="link-guide-item link-guide-item-disabled">{{selectedArticle?.newsTitle}}</span>
       </div>
       <div class="article-image-box">
         <img src="assets/images/nature33hd.jpg" class="article-image">
         <div class="gray-box">
           <div class="article-info">
-            <div class="article-date">Added: {{selectedArticle?.newsDate | date: 'medium'}}</div>
-            <div class="article-modification-date">Modified: {{selectedArticle?.newsModificationDate | date: 'medium'}}</div>
+            <div class="article-date">
+              <span class="smallInfoBox">Added:</span>
+              <span class="smallDataBox">{{selectedArticle?.newsDate | date: 'medium'}}</span>
+            </div>
+            <div class="article-modification-date">
+              <span class="smallInfoBox">Modified:</span>
+              <span *ngIf="selectedArticle?.newsModificationDate" class="smallDataBox">
+                {{selectedArticle?.newsModificationDate | date: 'medium'}}
+              </span>
+              <span *ngIf="!selectedArticle?.newsModificationDate" class="smallDataBox">
+                {{selectedArticle?.newsDate | date: 'medium'}}
+              </span>
+            </div>
             <div class="article-title">{{selectedArticle?.newsTitle}}</div>
-            <div class="article-source">Source/Author: {{selectedArticle?.newsSource}}</div>
+            <div class="article-source"><span class="smallInfoBox">Source/Author:</span><span class="smallDataBox">{{selectedArticle?.newsSource}}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -44,7 +56,9 @@
 
   <div class="other-news">
     <div class="other-news-header">More news</div>
-    <a *ngFor="let record of news | paginate: { itemsPerPage: 10, currentPage: p }" [routerLink]="['/article', record.id]" [ngx-scroll-to-offset]="-70" [ngx-scroll-to]="'#articleBox'" class="other-news-link-box" title="{{record.newsTitle}}">
+    <a *ngFor="let record of news | paginate: { itemsPerPage: 10, currentPage: p }"
+       [routerLink]="['/article', record.id]" [ngx-scroll-to-offset]="-70" [ngx-scroll-to]="'#articleBox'"
+       class="other-news-link-box" title="{{record.newsTitle}}">
       <div class="other-news-box">
         <div class="other-news-icon">
           <clr-icon shape="details" size="40"></clr-icon>
@@ -57,7 +71,8 @@
         </div>
       </div>
     </a>
-    <pagination-controls class="otherNewsPagination" [directionLinks]="false" [maxSize]="7" [responsive]="false" previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
+    <pagination-controls class="otherNewsPagination" [directionLinks]="false" [maxSize]="7" [responsive]="false"
+                         previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
   </div>
   <app-footer></app-footer>
 </div>

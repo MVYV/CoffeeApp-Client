@@ -3,16 +3,32 @@ $backgroundColor: #dddddd;
 $alternateColor: #314351;
 $linkColor: #0066cc;
 $globalBackgroundColor: #edeef0;
+$headerColor: #037a00;
 body
 {
   overflow: hidden;
+}
+.smallInfoBox
+{
+  background-color: rgba(255, 255, 255, 1);
+  color: #000000;
+  font-weight: bold;
+  padding: 2px 5px;
+  border: 2px solid #ffffff;
+}
+.smallDataBox
+{
+  color: #ffffff;
+  font-style: oblique;
+  padding: 2px 5px;
+  border: 2px solid #ffffff;
+  border-left: none;
 }
 .scroll-container
 {
   width: 100%;
   height: calc(100vh - 60px);
   overflow: auto;
-  //background-color: $globalBackgroundColor;
   background-image: url('/assets/images/background.jpg');
   .article-page-container
   {
@@ -20,14 +36,13 @@ body
     margin: 20px auto;
     position: relative;
     background-color: #ffffff;
+    -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .75);
+    -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .75);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .75);
     .products-on-article-page
     {
       width: 270px;
       background-color: #ffffff;
-      //-webkit-border-radius: 10px;
-      //-moz-border-radius: 10px;
-      //border-radius: 10px;
-      //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       display: inline-block;
       position: absolute;
       padding: 20px;
@@ -35,9 +50,10 @@ body
       .products-header
       {
         overflow: hidden;
-        border-bottom: 1px solid $alternateColor;
+        border-bottom: 1px solid $headerColor;
         font-size: 18px;
         font-weight: bold;
+        color: $headerColor;
       }
       .scrollbarBox
       {
@@ -130,32 +146,29 @@ body
     {
       width: 930px;
       padding: 20px 0 0 20px;
-      //background-color: #fac400;
-      //margin-right: 20px;
-      //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      //-webkit-border-radius: 10px;
-      //-moz-border-radius: 10px;
-      //border-radius: 10px;
       display: inline-block;
       .link-guide
       {
-        //background-color: #fac400;
         margin-bottom: 10px;
         .link-guide-item
         {
           display: inline-block;
           padding: 0 5px;
-          background-color: $backgroundColor;
-          -webkit-border-radius: 5px;
-          -moz-border-radius: 5px;
-          border-radius: 5px;
-          font-size: 14px;
-          color: $alternateColor;
+          border-bottom: 1px solid $headerColor;
+          font-size: 12px;
+          color: $headerColor;
+        }
+        .link-guide-item-disabled
+        {
+          cursor: default;
         }
         a.link-guide-item
         {
-          color: $alternateColor;
-
+          color: $headerColor;
+        }
+        a.link-guide-item:hover
+        {
+          font-weight: bold;
         }
         .guide-arrow
         {
@@ -165,30 +178,20 @@ body
           -o-transform: rotate(90deg);
           transform: rotate(90deg);
           margin: 0 5px;
-          //background-color: #fac400;
-          color: $backgroundColor;
+          color: $headerColor;
         }
       }
       .article-image-box
       {
         width: 100%;
-        //-webkit-border-radius: 10px 10px 0 0;
-        //-moz-border-radius: 10px 10px 0 0;
-        //border-radius: 10px 10px 0 0;
         position: relative;
         .article-image
         {
           width: 100%;
-          //-webkit-border-radius: 10px 10px 0 0;
-          //-moz-border-radius: 10px 10px 0 0;
-          //border-radius: 10px 10px 0 0;
         }
         .gray-box
         {
           width: 100%;
-          //-webkit-border-radius: 10px 10px 0 0;
-          //-moz-border-radius: 10px 10px 0 0;
-          //border-radius: 10px 10px 0 0;
           position: absolute;
           top: 0;
           left: 0;
@@ -201,32 +204,37 @@ body
             position: absolute;
             left: 0;
             bottom: 0;
-            line-height: 50px;
+            line-height: 40px;
             background-color: rgba(0, 0, 0, .5);
             .article-date
             {
-              width: 50%;
               float: left;
               padding-left: 10px;
+              padding-top: 10px;
             }
             .article-modification-date
             {
-              width: 50%;
               float: right;
               text-align: right;
               padding-right: 10px;
+              padding-top: 10px;
             }
             .article-title
             {
+              width: 100%;
               padding-right: 10px;
               padding-left: 10px;
+              overflow: hidden;
               font-weight: bold;
               font-size: 50px;
+              line-height: 50px;
+
             }
             .article-source
             {
               float: right;
               padding-right: 10px;
+              padding-bottom: 10px;
             }
           }
         }
@@ -237,20 +245,25 @@ body
         text-align: justify;
         padding: 20px 0;
         background-color: #ffffff;
-        //-webkit-border-radius: 0 0 10px 10px;
-        //-moz-border-radius: 0 0 10px 10px;
-        //border-radius: 0 0 10px 10px;
         .article-annotation
         {
           font-weight: bold;
-          color: $textColor;
+          color: #ffffff;
+          padding: 10px;
+          background-color: $headerColor;
           font-size: 24px;
-          margin-bottom: 50px;
+          margin-bottom: 25px;
         }
         ::ng-deep .article-text > p
         {
           font-size: 16px;
           color: $textColor;
+        }
+        ::ng-deep .article-text > p > a,
+        ::ng-deep .article-text > ul > li > a
+        {
+          color: $headerColor;
+          font-weight: bold;
         }
       }
     }
@@ -261,17 +274,17 @@ body
     padding: 20px;
     margin: 20px auto 20px;
     background-color: #ffffff;
-    //-webkit-border-radius: 10px;
-    //-moz-border-radius: 10px;
-    //border-radius: 10px;
-    //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .75);
+    -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .75);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .75);
     .other-news-header
     {
       overflow: hidden;
       margin-bottom: 10px;
-      border-bottom: 1px solid $alternateColor;
+      border-bottom: 1px solid $headerColor;
       font-size: 18px;
       font-weight: bold;
+      color: $headerColor;
     }
     .other-news-link-box
     {
@@ -318,7 +331,7 @@ body
         {
           content: '...';
           position: absolute;
-          right: 5px;
+          right: 0;
           bottom: 0;
         }
         .other-news-title:after
@@ -329,7 +342,7 @@ body
           width: 1em;
           height: 1em;
           margin-top: 0.5em;
-          background-color: $backgroundColor;
+          background-color: $globalBackgroundColor;
         }
         .other-news-arrow-icon
         {
@@ -344,12 +357,42 @@ body
           }
         }
       }
+      .other-news-box:hover
+      {
+        .other-news-icon
+        {
+          background-color: $headerColor;
+          -webkit-transition: all ease-in-out .1s;
+          -moz-transition: all ease-in-out .1s;
+          -o-transition: all ease-in-out .1s;
+          transition: all ease-in-out .1s;
+        }
+        .other-news-title
+        {
+          color: $headerColor;
+          font-weight: bold;
+          text-decoration: underline;
+          -webkit-transition: all ease-in-out .1s;
+          -moz-transition: all ease-in-out .1s;
+          -o-transition: all ease-in-out .1s;
+          transition: all ease-in-out .1s;
+        }
+        .other-news-arrow-icon
+        {
+          -webkit-transition: all ease-in-out .5s;
+          -moz-transition: all ease-in-out .5s;
+          -o-transition: all ease-in-out .5s;
+          transition: all ease-in-out .5s;
+          transform: rotate(540deg);
+          color: $headerColor;
+        }
+      }
     }
     .otherNewsPagination ::ng-deep .ngx-pagination
     {
       width: 100%;
-      border-top: 1px solid $alternateColor;
-      border-bottom: 1px solid $alternateColor;
+      border-top: 1px solid $headerColor;
+      border-bottom: 1px solid $headerColor;
       margin: 5px 0;
       padding: 0;
     }
@@ -364,10 +407,8 @@ body
     .otherNewsPagination ::ng-deep .ngx-pagination > li > a:hover
     {
       background-color: $backgroundColor;
-      color: $alternateColor;
+      color: $headerColor;
       text-decoration: none;
-      //margin: 0;
-      //padding: 5px 0;
     }
     .otherNewsPagination ::ng-deep .ngx-pagination > li > a
     {
@@ -381,31 +422,7 @@ body
     {
       font-size: 12px;
       line-height: 12px;
-      //margin: 0;
-      //padding: 5px 0;
-      background-color: $alternateColor;
-    }
-    .other-news-box:hover
-    {
-      .other-news-icon
-      {
-        background-color: $backgroundColor;
-        color: #ff0000;
-      }
-      .other-news-title
-      {
-        color: $linkColor;
-        font-weight: bold;
-        text-decoration: underline;
-      }
-      .other-news-arrow-icon
-      {
-        -webkit-transition: all ease-in-out .5s;
-        -moz-transition: all ease-in-out .5s;
-        -o-transition: all ease-in-out .5s;
-        transition: all ease-in-out .5s;
-        transform: rotate(540deg);
-      }
+      background-color: $headerColor;
     }
   }
 }
@@ -442,6 +459,19 @@ body
       .article-box
       {
         width: 530px;
+        .article-image-box
+        {
+          .gray-box
+          {
+            .article-info
+            {
+              .article-date
+              {
+                display: none;
+              }
+            }
+          }
+        }
       }
     }
     .other-news
@@ -461,11 +491,25 @@ body
     .article-page-container
     {
       width: 100%;
+      padding-top: 5px;
       .article-box
       {
         display: block;
         width: 100%;
         padding: 0;
+        .article-image-box
+        {
+          .gray-box
+          {
+            .article-info
+            {
+              .article-date
+              {
+                display: block;
+              }
+            }
+          }
+        }
         .article-text-box
         {
           padding: 20px;
@@ -519,6 +563,22 @@ body
   {
     .article-page-container
     {
+      .article-box
+      {
+        .article-image-box
+        {
+          .gray-box
+          {
+            .article-info
+            {
+              .article-title
+              {
+                font-size: 40px;
+              }
+            }
+          }
+        }
+      }
       .products-on-article-page
       {
         .scrollbarBox
@@ -538,6 +598,32 @@ body
   {
     .article-page-container
     {
+      .article-box
+      {
+        .article-image-box
+        {
+          .gray-box
+          {
+            .article-info
+            {
+              line-height: 20px;
+              .article-date
+              {
+                display: none;
+              }
+              .article-modification-date
+              {
+                left: 0;
+                width: 100%;
+              }
+              .article-title
+              {
+                font-size: 30px;
+              }
+            }
+          }
+        }
+      }
       .products-on-article-page
       {
         .scrollbarBox
@@ -555,6 +641,25 @@ body
 {
   .scroll-container
   {
+    .article-page-container
+    {
+      .article-box
+      {
+        .article-image-box
+        {
+          .gray-box
+          {
+            .article-info
+            {
+              .article-title
+              {
+                font-size: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
     .other-news
     {
       .other-news-link-box
@@ -570,6 +675,24 @@ body
   {
     .article-page-container
     {
+      .article-box
+      {
+        .article-image-box
+        {
+          .gray-box
+          {
+            .article-info
+            {
+              .article-date,
+              .article-modification-date,
+              .article-source
+              {
+                font-size: 12px;
+              }
+            }
+          }
+        }
+      }
       .products-on-article-page
       {
         .scrollbarBox

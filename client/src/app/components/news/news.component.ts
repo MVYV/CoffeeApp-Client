@@ -27,7 +27,7 @@ export class NewsComponent implements OnInit {
     this.newsService.getNews().subscribe(
       news => {
         this.news = news;
-        this.postedNews = news.slice(0, 7);
+        this.postedNews = news.slice(0, 5);
         this.loadingSpinner = false;
       });
   }
@@ -38,7 +38,7 @@ export class NewsComponent implements OnInit {
       let n = this.news.length;
       for(let i = p; i <= p + 2; i++) {
         if(i <= n - 1) {
-          this.postedNews.push(this.news[i]);
+          setTimeout(() => this.postedNews.push(this.news[i]), 300);
         }
       }
     }
