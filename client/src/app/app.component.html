@@ -37,7 +37,7 @@
           <a routerLink="/registration" clrDropdownItem>{{ 'REGISTRATION' | translate }}</a>
           <a *ngIf="!authenticationService.isLoggedIn()" routerLink="/login" clrDropdownItem>{{ 'LOG_IN' | translate }}</a>
           <a *ngIf="authenticationService.isLoggedIn()" routerLink="/logout" clrDropdownItem>Log Out</a>
-          <a *ngIf="authenticationService.isLoggedIn()" clrDropdownItem>{{authenticationService.loggedInUser}}111</a>
+          <a *ngIf="authenticationService.isLoggedIn()" clrDropdownItem>{{loggedIn}}111</a>
         </clr-dropdown-menu>
       </clr-dropdown>
       <a *ngIf="authenticationService.isLoggedIn()" routerLink="/dashboard" class="nav-link nav-icon">

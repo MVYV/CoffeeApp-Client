@@ -10,12 +10,14 @@ import { AuthenticationService } from "./services/authentication.service";
 export class AppComponent implements OnInit{
 
   navLinkTitle: string;
+  loggedIn: any;
 
   constructor( private translate: TranslateService,
                private authenticationService: AuthenticationService) {}
 
   ngOnInit() {
     // this.activeNavLink('home');
+    this.loggedIn = sessionStorage.getItem('username');
   }
 
   setLanguage(lang: string) {

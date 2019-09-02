@@ -8,21 +8,19 @@ import { map } from "rxjs/operators";
 @Injectable()
 export class AuthenticationService {
 
-  loggedInUser: any;
-
   constructor( private http: HttpClient) { }
 
   authenticate(username, password) {
     console.log(username);
     console.log(password);
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password)});
-    return this.http.get<User>('https://march11app.herokuapp.com/login', {headers}).pipe(
+    // const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password)});
+    // return this.http.get<User>('https://march11app.herokuapp.com/login', {headers}).pipe(
+    return this.http.get<User>('https://march11app.herokuapp.com/login').pipe(
       map(
         userData => {
           sessionStorage.setItem('username', username);
-          let authString = 'Basic ' + btoa(username + ':' + password);
-          sessionStorage.setItem('basicAuth', authString);
-          this.loggedInUser = username;
+          // let authString = 'Basic ' + btoa(username + ':' + password);
+          // sessionStorage.setItem('basicAuth', authString);
           return userData;
         }
       )

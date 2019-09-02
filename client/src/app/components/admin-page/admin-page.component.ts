@@ -50,6 +50,7 @@ export class AdminPageComponent implements OnInit {
   dataBaseKey: string;
   ascSort: any;
   descSort: any;
+  userRoles: Role[];
 
   constructor( private pageTitle: PageTitleService,
                private registrationService: UserRegistrationService,
@@ -107,12 +108,12 @@ export class AdminPageComponent implements OnInit {
   }
 
   getSelectedRoles() {
-    let userRoles = [];
+    // let userRoles = [];
     this.selectedRoles = this.roles.filter((r) => r.checked);
     for (let roleItem of this.selectedRoles) {
       console.log(roleItem.role);
-      userRoles.push(this.selectedRoles);
-      this.selectedUser.roles = userRoles;
+      this.userRoles = this.selectedRoles;
+      this.selectedUser.roles = this.userRoles;
       console.log(this.selectedUser.roles);
     }
     console.log(this.selectedRoles);
