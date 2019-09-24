@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
     this.newsService.getNews().subscribe(
       news => {
         this.news = news;
-        this.oneArticle = news.slice(0, 1);
+        this.oneArticle = news.slice(0, 3);
       });
   }
 

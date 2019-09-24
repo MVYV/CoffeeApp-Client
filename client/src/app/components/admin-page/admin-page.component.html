@@ -19,37 +19,7 @@
 
   <!--Tabs with information-->
   <clr-tabs>
-    <!--Tab with overall information about users, news and products -->
-    <clr-tab>
-      <button clrTabLink id="link1">Overall</button>
-      <clr-tab-content *clrIfActive="true">
-        <div class="overall-info">
-          <div class="overall-item overall-users">
-            <div class="number-of-items">
-              {{this.numberOfUsers}}
-              {{this.numberOfActiveUsers}}
-              {{this.numberOfInActiveUsers}}
-            </div>
-            <div>users</div>
-          </div>
 
-          <div class="overall-item overall-news">
-            <div class="number-of-items">
-              {{this.numberOfNews}}
-            </div>
-            <div>news</div>
-          </div>
-
-          <div class="overall-item overall-products">
-            <div class="number-of-items">
-              {{this.numberOfProducts}}
-            </div>
-            <div>products</div>
-          </div>
-        </div>
-
-      </clr-tab-content>
-    </clr-tab>
     <!--Tab with user information-->
     <clr-tab>
       <button clrTabLink id="link1">Users</button>

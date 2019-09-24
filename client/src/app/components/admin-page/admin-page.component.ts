@@ -101,22 +101,14 @@ export class AdminPageComponent implements OnInit {
     this.registrationService.getRoles().subscribe(
       roles => {
         this.roles = roles;
-        console.log(this.roles);
       }, () => {
         console.log('No');
       });
   }
 
   getSelectedRoles() {
-    // let userRoles = [];
     this.selectedRoles = this.roles.filter((r) => r.checked);
-    for (let roleItem of this.selectedRoles) {
-      console.log(roleItem.role);
-      this.userRoles = this.selectedRoles;
-      this.selectedUser.roles = this.userRoles;
-      console.log(this.selectedUser.roles);
-    }
-    console.log(this.selectedRoles);
+    this.userRoles = this.selectedRoles;
   }
 
   addUser() {
@@ -127,7 +119,7 @@ export class AdminPageComponent implements OnInit {
 
   editUser(user: User) {
     this.isNewUser = false;
-    this.mail.mailTo = user.email;
+    this.mail.mailTo = user.id;
     this.selectedUser = new User(
       user.id,
       user.userName,
@@ -146,6 +138,7 @@ export class AdminPageComponent implements OnInit {
 
   modifyUser() {
     if (this.isNewUser) {
+      this.selectedUser.roles = this.userRoles;
       this.registrationService.postUser(this.selectedUser).subscribe(
         () => {
           this.isSuccess = true;
@@ -155,15 +148,14 @@ export class AdminPageComponent implements OnInit {
           this.getAllUsers();
         });
     } else {
+      this.selectedUser.roles = this.userRoles;
       this.registrationService.putUser(this.selectedUser).subscribe(
         () => {
           this.isSuccess = true;
           this.getAllUsers();
-          console.log(this.selectedUser);
         }, () => {
           this.isError = true;
           this.getAllUsers();
-          console.log(this.selectedUser);
         });
     }
 

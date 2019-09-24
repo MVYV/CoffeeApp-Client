@@ -1,22 +1,56 @@
 <div class="scroll-container">
   <div class="home-container">
     <div class="home-box box">
-      <div class="home-box-title home-title">About Site</div>
-      <div class="home-box-data home-data"></div>
+      <a class="home-icons" routerLink="/about">
+        <clr-icon shape="users" size="40" class="home-details"></clr-icon>
+        <clr-icon shape="arrow" size="40" dir="right" class="home-arrow"></clr-icon>
+      </a>
+      <div class="home-box-title home-title">You can get more information about us and our organization ...</div>
+      <div class="home-box-data home-data">
+        <div class="about-image">
+          <img src="assets/images/coffee-logo.png" class="about-img" />
+        </div>
+      </div>
     </div>
     <div class="news-box box">
-      <div class="news-box-title home-title">News</div>
+      <a class="home-icons" routerLink="/news">
+        <clr-icon shape="details" size="40" class="home-details"></clr-icon>
+        <clr-icon shape="arrow" size="40" dir="right" class="home-arrow"></clr-icon>
+      </a>
+      <div class="news-box-title home-title">... or read some recent news about coffee and everything related to this ...</div>
       <div class="news-box-data home-data">
-        <div *ngFor="let article of oneArticle">
-          <span>{{article.newsTitle}}</span>
+        <div class="home-news-title">
+          The latest news
+        </div>
+        <div class="home-news">
+          <a *ngFor="let article of oneArticle" [routerLink]="['/article', article.id]" class="home-news-link">
+            <div class="home-article-image">
+              <img src="assets/images/login-page.jpg" class="home-article-img" />
+            </div>
+            <div class="home-article-title">{{article.newsTitle}}</div>
+          </a>
         </div>
       </div>
     </div>
     <div class="products-box box">
-      <div class="products-box-title home-title">Products</div>
+      <a class="home-icons" routerLink="/products">
+        <clr-icon shape="bundle" size="40" class="home-details"></clr-icon>
+        <clr-icon shape="arrow" size="40" dir="right" class="home-arrow"></clr-icon>
+      </a>
+      <div class="products-box-title home-title">... or You you can view our products, and and leave a feedback about them.</div>
       <div class="products-box-data home-data">
-        <div *ngFor="let product of oneProduct">
-          <span>{{product.productName}}</span>
+        <div class="home-products-title">
+          One of our products
+        </div>
+        <div class="home-products">
+          <a *ngFor="let product of oneProduct" routerLink="/products" class="home-products-link">
+            <div class="home-products-image">
+              <img src="assets/images/login-page.jpg" class="home-products-img" />
+            </div>
+            <div class="home-products-names">
+              {{product.productName}}
+            </div>
+          </a>
         </div>
       </div>
     </div>

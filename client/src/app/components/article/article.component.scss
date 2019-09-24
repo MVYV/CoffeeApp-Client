@@ -206,18 +206,13 @@ body
             bottom: 0;
             line-height: 40px;
             background-color: rgba(0, 0, 0, .5);
-            .article-date
-            {
-              float: left;
-              padding-left: 10px;
-              padding-top: 10px;
-            }
             .article-modification-date
             {
               float: right;
               text-align: right;
               padding-right: 10px;
               padding-top: 10px;
+              font-size: 12px;
             }
             .article-title
             {
@@ -235,6 +230,7 @@ body
               float: right;
               padding-right: 10px;
               padding-bottom: 10px;
+              font-size: 12px;
             }
           }
         }

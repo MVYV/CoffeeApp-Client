@@ -1,6 +1,6 @@
 export class Mail {
   constructor (
-    public mailTo?: string,
+    public mailTo?: number,
     public mailText?: string,
     public mailSubject?: string ) {}
 }

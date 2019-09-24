@@ -12,12 +12,8 @@
         <img src="assets/images/nature33hd.jpg" class="article-image">
         <div class="gray-box">
           <div class="article-info">
-            <div class="article-date">
-              <span class="smallInfoBox">Added:</span>
-              <span class="smallDataBox">{{selectedArticle?.newsDate | date: 'medium'}}</span>
-            </div>
             <div class="article-modification-date">
-              <span class="smallInfoBox">Modified:</span>
+              <span class="smallInfoBox">Date:</span>
               <span *ngIf="selectedArticle?.newsModificationDate" class="smallDataBox">
                 {{selectedArticle?.newsModificationDate | date: 'medium'}}
               </span>
