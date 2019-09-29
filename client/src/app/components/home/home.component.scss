@@ -119,11 +119,12 @@ $headerColor: #037a00;
       width: 100%;
       height: 50%;
       padding: 20px;
+      text-align: center;
       //background-color: #fac400;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-flow: column wrap;
+      //display: flex;
+      //justify-content: center;
+      //align-items: center;
+      //flex-flow: column wrap;
     }
     .home-box-data
     {
@@ -146,6 +147,7 @@ $headerColor: #037a00;
     {
       .home-news-title
       {
+        width: 100%;
         font-size: 28px;
         font-weight: bold;
         margin-bottom: 50px;
@@ -153,7 +155,6 @@ $headerColor: #037a00;
       }
       .home-news
       {
-        //background-color: cadetblue;
         width: 100%;
         .home-news-link
         {
@@ -163,9 +164,8 @@ $headerColor: #037a00;
           font-size: 18px;
           font-weight: bold;
           text-decoration: none;
-          color: #ffffff;
-          background-color: rgba(49, 67, 81, .5);
-          border: 2px solid $darkSiteColor;
+          color: $textColor;
+          background-color: rgba(49, 67, 81, 0);
           -webkit-transition: all ease-in-out .2s;
           -moz-transition: all ease-in-out .2s;
           -o-transition: all ease-in-out .2s;
@@ -173,6 +173,12 @@ $headerColor: #037a00;
           .home-article-image
           {
             width: 20%;
+            margin-right: 10px;
+            border: 2px solid $darkSiteColor;
+            -webkit-transition: all ease-in-out .2s;
+            -moz-transition: all ease-in-out .2s;
+            -o-transition: all ease-in-out .2s;
+            transition: all ease-in-out .2s;
             .home-article-img
             {
               width: 100%;
@@ -184,6 +190,8 @@ $headerColor: #037a00;
             display: flex;
             justify-content: center;
             align-items: center;
+            text-align: center;
+            border: 2px solid $darkSiteColor;
           }
         }
         .home-news-link:not(:last-of-type)
@@ -211,9 +219,8 @@ $headerColor: #037a00;
           font-size: 18px;
           font-weight: bold;
           text-decoration: none;
-          color: #ffffff;
-          background-color: rgba(49, 67, 81, .5);
-          border: 2px solid $darkSiteColor;
+          color: $textColor;
+          background-color: rgba(49, 67, 81, 0);
           -webkit-transition: all ease-in-out .2s;
           -moz-transition: all ease-in-out .2s;
           -o-transition: all ease-in-out .2s;
@@ -221,6 +228,12 @@ $headerColor: #037a00;
           .home-products-image
           {
             width: 50%;
+            margin-right: 10px;
+            border: 2px solid $darkSiteColor;
+            -webkit-transition: all ease-in-out .2s;
+            -moz-transition: all ease-in-out .2s;
+            -o-transition: all ease-in-out .2s;
+            transition: all ease-in-out .2s;
             .home-products-img
             {
               width: 100%;
@@ -232,6 +245,7 @@ $headerColor: #037a00;
             display: flex;
             justify-content: center;
             align-items: center;
+            border: 2px solid $darkSiteColor;
           }
         }
       }
@@ -253,7 +267,7 @@ $headerColor: #037a00;
       {
         .home-news-link
         {
-          background-color: rgba(49, 67, 81, .8);
+          background-color: rgba(49, 67, 81, 0);
           -webkit-transition: all ease-in-out .2s;
           -moz-transition: all ease-in-out .2s;
           -o-transition: all ease-in-out .2s;
@@ -266,7 +280,15 @@ $headerColor: #037a00;
           -o-transition: all ease-in-out .2s;
           transition: all ease-in-out .2s;
           background-color: rgba(3, 122, 0, .5);
-          color: $darkSiteColor;
+          .home-article-image
+          {
+            margin-right: 0;
+            border-right: none;
+            -webkit-transition: all ease-in-out .2s;
+            -moz-transition: all ease-in-out .2s;
+            -o-transition: all ease-in-out .2s;
+            transition: all ease-in-out .2s;
+          }
         }
       }
     }
@@ -276,7 +298,7 @@ $headerColor: #037a00;
       {
         .home-products-link
         {
-          background-color: rgba(49, 67, 81, .8);
+          background-color: rgba(49, 67, 81, 0);
           -webkit-transition: all ease-in-out .2s;
           -moz-transition: all ease-in-out .2s;
           -o-transition: all ease-in-out .2s;
@@ -289,7 +311,15 @@ $headerColor: #037a00;
           -o-transition: all ease-in-out .2s;
           transition: all ease-in-out .2s;
           background-color: rgba(3, 122, 0, .5);
-          color: $darkSiteColor;
+          .home-products-image
+          {
+            margin-right: 0;
+            border-right: none;
+            -webkit-transition: all ease-in-out .2s;
+            -moz-transition: all ease-in-out .2s;
+            -o-transition: all ease-in-out .2s;
+            transition: all ease-in-out .2s;
+          }
         }
       }
     }
@@ -298,4 +328,82 @@ $headerColor: #037a00;
   //{
   //  margin-right: 20px;
   //}
+}
+@media screen and (max-width: 1600px)
+{
+  .home-container
+  {
+    .box
+    {
+      .news-box-data
+      {
+        .home-news
+        {
+          .home-news-link
+          {
+            .home-article-image
+            {
+              display: none;
+            }
+            .home-article-title
+            {
+              padding: 10px;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1400px)
+{
+  .home-container
+  {
+    .box
+    {
+      .home-title
+      {
+        font-size: 28px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px)
+{
+  .home-container
+  {
+    background: rgba(255, 255, 255, .5);
+    height: auto;
+    display: block;
+    .box
+    {
+      background: transparent;
+      width: 100%;
+      height: auto;
+      .home-title
+      {
+        padding-top: 100px;
+      }
+    }
+    .box:hover
+    {
+      background: transparent;
+    }
+  }
+}
+@media screen and (max-width: 768px)
+{
+  .scroll-container
+  {
+    padding: 0;
+  }
+  .home-container
+  {
+    margin: 0;
+    -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .75);
+    -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .75);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .75);
+  }
 }
