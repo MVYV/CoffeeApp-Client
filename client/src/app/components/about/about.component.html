@@ -1,6 +1,65 @@
 <div class="scroll-container">
   <div class="about-container">
     About
+
+    <clr-tabs>
+
+      <!--Tab with user information-->
+      <clr-tab>
+        <button clrTabLink id="link1">Users</button>
+        <clr-tab-content *clrIfActive="false">
+          <button type="button" class="btn btn-outline add-item-btn">
+            Add User
+          </button>
+        </clr-tab-content>
+      </clr-tab>
+      <clr-tab>
+        <button clrTabLink id="link1">Kieshas</button>
+        <clr-tab-content *clrIfActive="false">
+          <button type="button" class="btn btn-outline add-item-btn" (click)="saveCheckBoxesState();">
+            Save Selections
+          </button>
+          <button type="button" class="btn btn-outline add-item-btn" (click)="loadCheckBoxesState();">
+            Load Selections
+          </button>
+          <div id="checkBoxes">
+            <clr-checkbox-wrapper>
+              <input type="checkbox" clrCheckbox value="1" id="value1"/>
+              <label>Kiesha</label>
+            </clr-checkbox-wrapper>
+            <clr-checkbox-wrapper>
+              <input type="checkbox" clrCheckbox value="2" id="value2"/>
+              <label>Hedgehog</label>
+            </clr-checkbox-wrapper>
+            <clr-checkbox-wrapper>
+              <input type="checkbox" clrCheckbox value="3" id="value3"/>
+              <label>User</label>
+            </clr-checkbox-wrapper>
+            <clr-checkbox-wrapper>
+              <input type="checkbox" clrCheckbox value="4" id="value4"/>
+              <label>Nonamer</label>
+            </clr-checkbox-wrapper>
+          </div>
+
+        </clr-tab-content>
+      </clr-tab>
+      <clr-tab>
+        <button clrTabLink id="link1">Hedgehogs</button>
+        <clr-tab-content *clrIfActive="false">
+          <button type="button" class="btn btn-outline add-item-btn">
+            Add Hedgehog
+          </button>
+        </clr-tab-content>
+      </clr-tab>
+      <clr-tab>
+        <button clrTabLink id="link1">Nonamers</button>
+        <clr-tab-content *clrIfActive="false">
+          <button type="button" class="btn btn-outline add-item-btn">
+            Add Nonamer
+          </button>
+        </clr-tab-content>
+      </clr-tab>
+    </clr-tabs>
     <app-footer></app-footer>
   </div>
 </div>
