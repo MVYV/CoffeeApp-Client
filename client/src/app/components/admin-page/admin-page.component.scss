@@ -1,6 +1,8 @@
 $warningColor: #fac400;
 $alertColor: #f8b7b6;
 $globalBackgroundColor: #edeef0;
+$textColor: #000000;
+$buttonColor: #0079b8;
 .scroll-container
 {
   width: 100%;
@@ -66,32 +68,13 @@ $globalBackgroundColor: #edeef0;
   width: 100px;
   height: 100px;
 }
-.overall-info
+.send-email-title
 {
-  width: 100%;
-  background-color: #0079b8;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
+  text-align: center;
+  font-weight: bold;
+  color: $buttonColor;
 }
-.overall-item
+.mail-to
 {
-  width: 33.33333%;
-  height: 500px;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: center;
-}
-.overall-users
-{
-  background-color: #f8b7b6;
-}
-.overall-news
-{
-  background-color: #dddddd;
-}
-.overall-products
-{
-  background-color: #888888;
+  display: none;
 }

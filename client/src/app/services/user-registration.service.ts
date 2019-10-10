@@ -37,4 +37,8 @@ export class UserRegistrationService {
   public getRoles(): Observable<Role[]> {
     return this.http.get<Role[]>('https://march11app.herokuapp.com/role');
   }
+
+  public checkEmail(email: Mail): Observable<Mail> {
+    return this.http.post<Mail>('https://march11app.herokuapp.com/check-mail', email);
+  }
 }

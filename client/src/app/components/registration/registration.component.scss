@@ -1,10 +1,78 @@
-.login-wrapper
+$buttonColor: #0079b8;
+.login-wrapper-own-styles
 {
-  min-height: calc(100vh - 60px) !important;
+  height: 100vh;
   background-image: url('/assets/images/login-page.jpg');
   background-size: auto 100%;
+  overflow: auto;
 }
-.login
+.login-own-styles
 {
-  min-height: calc(100vh - 60px) !important;
+  //height: 200vh;
+  display: block;
+  //overflow: auto;
 }
+.title
+{
+  text-align: center;
+  h4
+  {
+    font-weight: bold;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+  }
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button
+{
+  -webkit-appearance: none;
+  margin: 0;
+}
+.code-button
+{
+  border: 1px solid $buttonColor;
+  text-align: center;
+  color: $buttonColor;
+  cursor: pointer;
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin: 10px 0;
+}
+.code-button:hover
+{
+  background-color: $buttonColor;
+  color: #ffffff;
+}
+.email-code-help
+{
+  font-size: 11px;
+  line-height: 11px;
+  color: $buttonColor;
+  margin-bottom: 10px;
+}
+.email-code-error
+{
+  text-align: right;
+  font-size: 12px;
+  color: #ff0000;
+  margin: 0;
+  position: relative;
+  top: -10px;
+}
+//@media screen and (max-height: 860px)
+//{
+//  .login-own-styles
+//  {
+//    width: 50%;
+//  }
+//}
+//@media screen and (orientation: landscape)
+//{
+//  .login-own-styles
+//  {
+//    height: 300vh;
+//  }
+//}

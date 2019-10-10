@@ -1,9 +1,7 @@
-<div class="login-wrapper">
-  <form class="login" #userRegistrationForm="ngForm" autocomplete="off">
+<div class="login-wrapper login-wrapper-own-styles">
+  <form class="login login-own-styles" #userRegistrationForm="ngForm" autocomplete="off">
     <section class="title">
-      <h3 class="welcome">{{ 'LOGIN_WELCOME' | translate }}</h3>
-      [TITLE]
-      <h5 class="hint">{{ 'REGISTRATION_HELP' | translate }}</h5>
+      <h4 class="registrationTitle">{{ 'REGISTRATION_HELP' | translate }}</h4>
     </section>
     <div class="login-group">
 
@@ -25,6 +23,14 @@
                pattern="^([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))$" required/>
       </clr-input-container>
 
+      <span class="code-button" (click)="checkUserEmail();">Get Verification Code</span>
+      <span class="email-code-help">This code is required to verify that the email is real. We will send you the code by email.</span>
+
+      <clr-input-container>
+        <input type="number" class="userName" [(ngModel)]="eCode" #emailCode="ngModel" name="emailCode" clrInput
+               (change)="checkCode($event);" placeholder="Email Verification Code *" required/>
+      </clr-input-container>
+
       <clr-input-container>
         <input type="text" class="userName" clrInput placeholder="Country *"
                [(ngModel)]="newUser.country" #country="ngModel" name="country" minlength="3" maxlength="20"
@@ -39,7 +45,7 @@
 
       <clr-select-container>
         <select clrSelect [(ngModel)]="newUser.gender" #gender="ngModel" name="gender" required>
-          <option value="Male" selected>Male</option>
+          <option value="Male">Male</option>
           <option value="Female">Female</option>
         </select>
       </clr-select-container>
@@ -50,13 +56,15 @@
       </clr-password-container>
 
       <clr-password-container>
-        <input type="password" class="userPass" clrPassword placeholder="{{ 'PASSWORD_REPEAT' | translate }} *" required/>
+        <input type="password" class="userPass" clrPassword placeholder="{{ 'PASSWORD_REPEAT' | translate }} *"
+               [(ngModel)]="repeatPassword" #repeatPass="ngModel" name="repeatPass" required/>
       </clr-password-container>
-      <div class="error error-message" [class.active]="userRegistrationForm.invalid">
-        Invalid entered data or empty field.<br>Please, start your first userName and last userName with capital letter.
+
+      <div class="error error-message" [class.active]="userRegistrationForm.invalid || !isCorrectCode">
+        Invalid entered data or empty field.<br>Please, start your first name, last name, country and city with capital letter.
       </div>
-      <button type="submit" class="btn btn-primary" [disabled]="userRegistrationForm.invalid" (click)="addNewUser();">{{
-        'REGISTER' | translate }}
+      <button type="submit" class="btn btn-primary" [disabled]="userRegistrationForm.invalid || !isCorrectCode"
+              (click)="addNewUser();">{{'REGISTER' | translate }}
       </button>
     </div>
   </form>

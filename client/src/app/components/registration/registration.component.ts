@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PageTitleService } from '../../services/page-title.service';
 import { UserRegistrationService } from '../../services/user-registration.service';
 import { User } from '../../models/users.model';
+import { Mail } from "../../models/mail.model";
 
 @Component({
   selector: 'app-registration',
@@ -12,6 +13,11 @@ import { User } from '../../models/users.model';
 export class RegistrationComponent implements OnInit {
 
   newUser: User;
+  repeatPassword: any;
+  eCode: any;
+  isCorrectCode: boolean = false;
+  emailCode: any;
+  mail: Mail;
 
   constructor(
     private pageTitle: PageTitleService,
@@ -20,6 +26,7 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
     this.pageTitle.setTitle('Coffee Products - Registration');
     this.newUser = new User();
+    this.mail = new Mail();
   }
 
   addNewUser() {
@@ -29,6 +36,30 @@ export class RegistrationComponent implements OnInit {
     },() => {
       console.log('Fail(((');
     });
+  }
+
+  checkUserEmail() {
+    this.mail.mailToAddress = this.newUser.email;
+    this.registrationService.checkEmail(this.mail).subscribe(
+      emailCode => {
+        this.emailCode = emailCode;
+        console.log('YES');
+        console.log(this.emailCode);
+      }, () => {
+        console.log('NO');
+      }
+    )
+  }
+
+  checkCode(event) {
+    if(event.target.value == this.emailCode) {
+      this.isCorrectCode = true;
+    } else {
+      this.isCorrectCode = false;
+    }
+    console.log(event.target.value);
+    console.log(this.emailCode);
+    console.log(this.isCorrectCode);
   }
 
 }

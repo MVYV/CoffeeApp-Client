@@ -22,7 +22,7 @@
 
     <!--Tab with user information-->
     <clr-tab>
-      <button clrTabLink id="link1">Users</button>
+      <button clrTabLink id="users">Users</button>
       <clr-tab-content *clrIfActive="false">
         <button type="button" class="btn btn-outline add-item-btn" (click)="editUserForm.reset(); addUser();">
           Add User
@@ -201,7 +201,7 @@
 
     <!--Tab with products information-->
     <clr-tab>
-      <button clrTabLink id="link1">Products</button>
+      <button clrTabLink id="products">Products</button>
       <clr-tab-content *clrIfActive="false">
         <button type="button" class="btn btn-outline add-item-btn" (click)="editProductForm.reset(); createProduct();">
           Add Product
@@ -314,46 +314,47 @@
 
   <!--Modal window for letter sending-->
   <clr-modal [(clrModalOpen)]="showMailWindow" [clrModalStaticBackdrop]="false">
-    <h3 class="modal-title">
-      Mail
+    <h3 class="modal-title send-email-title">
+      Email for {{selectedUser.userName}} {{selectedUser.lastName}}<br>
+      <clr-icon shape="envelope" size="28" class="is-highlight send-email-envelope"></clr-icon>
     </h3>
     <div class="modal-body">
-        <clr-icon shape="envelope" size="72" class="is-warning"></clr-icon>
-        Send!!!
-
-        <label for="example" class="clr-control-label clr-col-12 clr-col-md-2">Mail To *</label>
-        <div class="clr-control-container user-data-field clr-col-12 clr-col-md-10"
-             [class.clr-error]="mailTo.invalid && mailTo.touched">
-          <div class="clr-input-wrapper">
-            <input type="text" id="example" placeholder="User Email" class="clr-input" style="width: 99%;"
-                   [(ngModel)]="mail.mailTo" #mailTo="ngModel" name="mailTo" required/>
-            <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="mailTo.valid"></clr-icon>
+      <form class="clr-form">
+        <div class="clr-form-control">
+          <label for="user-email" class="mail-to clr-control-label clr-col-12 clr-col-md-2">Mail To *</label>
+          <div class="mail-to clr-control-container user-data-field clr-col-12 clr-col-md-10"
+               [class.clr-error]="mailTo.invalid && mailTo.touched">
+            <div class="clr-input-wrapper">
+              <input type="text" id="user-email" placeholder="User Email" class="clr-input" style="width: 99%;"
+                     [(ngModel)]="mail.mailTo" #mailTo="ngModel" name="mailTo" required/>
+              <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="mailTo.valid"></clr-icon>
+            </div>
+            <span class="clr-subtext" [class.wrongDataMessage]="mailTo.valid" [hidden]="mailTo.untouched">Incorrect Email</span>
           </div>
-          <span class="clr-subtext" [class.wrongDataMessage]="mailTo.valid" [hidden]="mailTo.untouched">Incorrect Email</span>
-        </div>
 
-        <label for="example" class="clr-control-label clr-col-12 clr-col-md-2">Mail Subject *</label>
-        <div class="clr-control-container user-data-field clr-col-12 clr-col-md-10"
-             [class.clr-error]="mailSubject.invalid && mailSubject.touched">
-          <div class="clr-input-wrapper">
-            <input type="text" id="example" placeholder="Mail Subject" class="clr-input" style="width: 99%;"
-                   [(ngModel)]="mail.mailSubject" #mailSubject="ngModel" name="mailSubject" required/>
-            <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="mailSubject.valid"></clr-icon>
+          <label for="email-subject" class="clr-control-label clr-col-12 clr-col-md-12">Mail Subject *</label>
+          <div class="clr-control-container user-data-field clr-col-12 clr-col-md-12"
+               [class.clr-error]="mailSubject.invalid && mailSubject.touched">
+            <div class="clr-input-wrapper">
+              <input type="text" id="email-subject" placeholder="Mail Subject" class="clr-input" style="width: 99%;"
+                     [(ngModel)]="mail.mailSubject" #mailSubject="ngModel" name="mailSubject" required/>
+              <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="mailSubject.valid"></clr-icon>
+            </div>
+            <span class="clr-subtext" [class.wrongDataMessage]="mailSubject.valid" [hidden]="mailSubject.untouched">Incorrect Mail Subject</span>
           </div>
-          <span class="clr-subtext" [class.wrongDataMessage]="mailSubject.valid" [hidden]="mailSubject.untouched">Incorrect Mail Subject</span>
-        </div>
 
-        <label for="example" class="clr-control-label clr-col-12 clr-col-md-2">Mail Text *</label>
-        <div class="clr-control-container user-data-field clr-col-12 clr-col-md-10"
-             [class.clr-error]="mailText.invalid && mailText.touched">
-          <div class="clr-input-wrapper">
-            <input type="text" id="example" placeholder="Mail Text" class="clr-input" style="width: 99%;"
-                   [(ngModel)]="mail.mailText" #mailText="ngModel" name="mailText" required/>
-            <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="mailText.valid"></clr-icon>
+          <label for="email-text" class="clr-control-label clr-col-12 clr-col-md-12">Mail Text *</label>
+          <div class="clr-control-container user-data-field clr-col-12 clr-col-md-12"
+               [class.clr-error]="mailText.invalid && mailText.touched">
+            <div class="clr-textarea-wrapper">
+              <textarea clrTextarea id="email-text" placeholder="Mail Text" class="clr-textarea send-email-text" style="width: 99%;"
+                        [(ngModel)]="mail.mailText" #mailText="ngModel" name="mailText" required></textarea>
+              <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="mailText.valid"></clr-icon>
+            </div>
+            <span class="clr-subtext" [class.wrongDataMessage]="mailText.valid" [hidden]="mailText.untouched">Incorrect Text</span>
           </div>
-          <span class="clr-subtext" [class.wrongDataMessage]="mailText.valid" [hidden]="mailText.untouched">Incorrect Text</span>
         </div>
-
+      </form>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline" (click)="showMailWindow = false;">Cancel</button>
@@ -371,11 +372,11 @@
         <div class="clr-form-control clr-row">
 
           <!--User first name field-->
-          <label for="example" class="clr-control-label clr-col-12 clr-col-md-2">First Name *</label>
+          <label for="first-name" class="clr-control-label clr-col-12 clr-col-md-2">First Name *</label>
           <div class="clr-control-container user-data-field clr-col-12 clr-col-md-10"
                [class.clr-error]="userName.invalid && userName.touched">
             <div class="clr-input-wrapper">
-              <input type="text" id="example" placeholder="User First Name" class="clr-input" style="width: 99%;"
+              <input type="text" id="first-name" placeholder="User First Name" class="clr-input" style="width: 99%;"
                      [(ngModel)]="selectedUser.userName" #userName="ngModel" name="userName" minlength="3" maxlength="20"
                      pattern="[A-ZĄĆĘŁŃÓŚŹŻ]([A-ZĄĆĘŁŃÓŚŹŻ]*[a-ząćęłńóśźż]*[\' -]?)+" required/>
               <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="userName.valid"></clr-icon>
@@ -384,11 +385,11 @@
           </div>
 
           <!--User last name field-->
-          <label for="example" class="clr-control-label clr-col-12 clr-col-md-2">Last Name *</label>
+          <label for="last-name" class="clr-control-label clr-col-12 clr-col-md-2">Last Name *</label>
           <div class="clr-control-container user-data-field clr-col-12 clr-col-md-10"
                [class.clr-error]="lastName.invalid && lastName.touched">
             <div class="clr-input-wrapper">
-              <input type="text" id="example" placeholder="User Last Name" class="clr-input"
+              <input type="text" id="last-name" placeholder="User Last Name" class="clr-input"
                      [(ngModel)]="selectedUser.lastName" #lastName="ngModel" name="lastName" minlength="3" maxlength="20"
                      pattern="[A-ZĄĆĘŁŃÓŚŹŻ]([A-ZĄĆĘŁŃÓŚŹŻ]*[a-ząćęłńóśźż]*[\' -]?)+" required/>
               <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="lastName.valid"></clr-icon>
@@ -397,11 +398,11 @@
           </div>
 
           <!--User email field-->
-          <label for="example" class="clr-control-label clr-col-12 clr-col-md-2">Email *</label>
+          <label for="email-address" class="clr-control-label clr-col-12 clr-col-md-2">Email *</label>
           <div class="clr-control-container user-data-field clr-col-12 clr-col-md-10"
                [class.clr-error]="email.invalid && email.touched">
             <div class="clr-input-wrapper">
-              <input type="text" id="example" placeholder="User Email" class="clr-input" [(ngModel)]="selectedUser.email"
+              <input type="text" id="email-address" placeholder="User Email" class="clr-input" [(ngModel)]="selectedUser.email"
                      #email="ngModel" name="email"
                      pattern="^([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))$" required/>
               <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="email.valid"></clr-icon>
@@ -411,7 +412,7 @@
           </div>
 
           <!--User role field-->
-          <label for="example" class="clr-control-label clr-col-12 clr-col-md-2">Role</label>
+          <label class="clr-control-label clr-col-12 clr-col-md-2">Role</label>
           <div class="clr-control-container user-data-field clr-col-12 clr-col-md-10 clr-control-inline">
             <div class="clr-checkbox-wrapper" *ngFor="let role of roles; let i = index">
               <input type="checkbox" id="{{role.role}}" name="checkbox-error" value="roleItem" class="clr-checkbox" [(ngModel)]="roles[i].checked" (change)="getSelectedRoles()">
@@ -424,11 +425,11 @@
           </div>
 
           <!--User activity field-->
-          <label for="example" class="clr-control-label clr-col-12 clr-col-md-2">Is Active *</label>
+          <label for="is-active" class="clr-control-label clr-col-12 clr-col-md-2">Is Active *</label>
           <div class="clr-control-container user-data-field clr-col-12 clr-col-md-10"
                [class.clr-error]="isActive.invalid && isActive.touched">
             <div class="clr-input-wrapper">
-              <input type="text" id="example" placeholder="Is Active" class="clr-input"
+              <input type="text" id="is-active" placeholder="Is Active" class="clr-input"
                      [(ngModel)]="selectedUser.isActive"
                      #isActive="ngModel" name="isActive" pattern="^(?:[0-1])$" required/>
               <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="isActive.valid"></clr-icon>
@@ -437,11 +438,11 @@
           </div>
 
           <!--User country field-->
-          <label for="example" class="clr-control-label clr-col-12 clr-col-md-2">Country *</label>
+          <label for="user-country" class="clr-control-label clr-col-12 clr-col-md-2">Country *</label>
           <div class="clr-control-container user-data-field clr-col-12 clr-col-md-10"
                [class.clr-error]="country.invalid && country.touched">
             <div class="clr-input-wrapper">
-              <input type="text" id="example" placeholder="User Country" class="clr-input" style="width: 99%;"
+              <input type="text" id="user-country" placeholder="User Country" class="clr-input" style="width: 99%;"
                      [(ngModel)]="selectedUser.country" #country="ngModel" name="country" minlength="3" maxlength="20"
                      pattern="[A-ZĄĆĘŁŃÓŚŹŻ]([A-ZĄĆĘŁŃÓŚŹŻ]*[a-ząćęłńóśźż]*[\' -]?)+" required/>
               <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="country.valid"></clr-icon>
@@ -450,11 +451,11 @@
           </div>
 
           <!--User city field-->
-          <label for="example" class="clr-control-label clr-col-12 clr-col-md-2">City *</label>
+          <label for="user-city" class="clr-control-label clr-col-12 clr-col-md-2">City *</label>
           <div class="clr-control-container user-data-field clr-col-12 clr-col-md-10"
                [class.clr-error]="city.invalid && city.touched">
             <div class="clr-input-wrapper">
-              <input type="text" id="example" placeholder="User City" class="clr-input" style="width: 99%;"
+              <input type="text" id="user-city" placeholder="User City" class="clr-input" style="width: 99%;"
                      [(ngModel)]="selectedUser.city" #city="ngModel" name="city" minlength="3" maxlength="20"
                      pattern="[A-ZĄĆĘŁŃÓŚŹŻ]([A-ZĄĆĘŁŃÓŚŹŻ]*[a-ząćęłńóśźż]*[\' -]?)+" required/>
               <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="city.valid"></clr-icon>
@@ -464,11 +465,11 @@
           </div>
 
           <!--User date of birth field-->
-          <label for="example" class="clr-control-label clr-col-12 clr-col-md-2">Date of birth</label>
+          <label for="user-date-of-birth" class="clr-control-label clr-col-12 clr-col-md-2">Date of birth</label>
           <div class="clr-control-container user-data-field clr-col-12 clr-col-md-10"
                [class.clr-error]="dateOfBirth.invalid && dateOfBirth.touched">
             <div class="clr-date-container">
-              <input type="date" id="example" clrDate placeholder="Date of birth" class="clr-input" style="width: 99%;"
+              <input type="date" id="user-date-of-birth" clrDate placeholder="Date of birth" class="clr-input" style="width: 99%;"
                      [(ngModel)]="selectedUser.dateOfBirth" #dateOfBirth="ngModel" name="dateOfBirth" minlength="3"
                      maxlength="20"/>
               <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="dateOfBirth.valid"></clr-icon>
@@ -493,11 +494,11 @@
           </div>
 
           <!--User avatar field-->
-          <label for="example" class="clr-control-label clr-col-12 clr-col-md-2">Avatar</label>
+          <label for="user-avatar" class="clr-control-label clr-col-12 clr-col-md-2">Avatar</label>
           <div class="clr-control-container user-data-field clr-col-12 clr-col-md-10"
                [class.clr-error]="avatar.invalid && avatar.touched">
             <div class="clr-input-wrapper">
-              <input type="text" id="example" placeholder="User Avatar" class="clr-input" style="width: 99%;"
+              <input type="text" id="user-avatar" placeholder="User Avatar" class="clr-input" style="width: 99%;"
                      [(ngModel)]="selectedUser.avatar" #avatar="ngModel" name="avatar" minlength="3" maxlength="20"/>
               <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="avatar.valid"></clr-icon>
             </div>
@@ -523,11 +524,11 @@
         <div class="clr-form-control clr-row">
 
           <!--News title field-->
-          <label for="example" class="clr-control-label clr-col-12 clr-col-md-1">Title *</label>
+          <label for="article-title" class="clr-control-label clr-col-12 clr-col-md-1">Title *</label>
           <div class="clr-control-container news-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="newsTitle.invalid && newsTitle.touched">
             <div class="clr-input-wrapper">
-              <input type="text" id="example" placeholder="Article Title" class="clr-input" style="width: 99%;"
+              <input type="text" id="article-title" placeholder="Article Title" class="clr-input" style="width: 99%;"
                      [(ngModel)]="selectedArticle.newsTitle" #newsTitle="ngModel" name="newsTitle" required/>
               <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="newsTitle.valid"></clr-icon>
             </div>
@@ -535,11 +536,11 @@
           </div>
 
           <!--News annotation field-->
-          <label for="example" class="clr-control-label clr-col-12 clr-col-md-1">Annotation *</label>
+          <label for="article-annotation" class="clr-control-label clr-col-12 clr-col-md-1">Annotation *</label>
           <div class="clr-control-container news-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="subText.invalid && subText.touched">
             <div class="clr-input-wrapper">
-              <input type="text" id="example" placeholder="Article Annotation" class="clr-input"
+              <input type="text" id="article-annotation" placeholder="Article Annotation" class="clr-input"
                      [(ngModel)]="selectedArticle.newsSubText" #subText="ngModel" name="subText" required/>
               <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="subText.valid"></clr-icon>
             </div>
@@ -547,11 +548,11 @@
           </div>
 
           <!--News source field-->
-          <label for="example" class="clr-control-label clr-col-12 clr-col-md-1">Source *</label>
+          <label for="article-source" class="clr-control-label clr-col-12 clr-col-md-1">Source *</label>
           <div class="clr-control-container news-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="articleSource.invalid && articleSource.touched">
             <div class="clr-input-wrapper">
-              <input type="text" id="example" placeholder="Article Source" class="clr-input"
+              <input type="text" id="article-source" placeholder="Article Source" class="clr-input"
                      [(ngModel)]="selectedArticle.newsSource" #articleSource="ngModel" name="articleSource" required/>
               <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="articleSource.valid"></clr-icon>
             </div>
@@ -559,11 +560,11 @@
           </div>
 
           <!--News image field-->
-          <label for="example" class="clr-control-label clr-col-12 clr-col-md-1">Image</label>
+          <label for="article-image" class="clr-control-label clr-col-12 clr-col-md-1">Image</label>
           <div class="clr-control-container news-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="articleImage.invalid && articleImage.touched">
             <div class="clr-input-wrapper">
-              <input type="text" id="example" placeholder="Article Image" class="clr-input"
+              <input type="text" id="article-image" placeholder="Article Image" class="clr-input"
                      [(ngModel)]="selectedArticle.newsImage" #articleImage="ngModel" name="articleImage"/>
               <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="articleImage.valid"></clr-icon>
             </div>
@@ -571,10 +572,10 @@
           </div>
 
           <!--News main text field-->
-          <label for="textarea-basic-error" class="clr-control-label clr-col-12 clr-col-md-1">Article Main Text *</label>
+          <label for="article-main-text" class="clr-control-label clr-col-12 clr-col-md-1">Article Main Text *</label>
           <div class="clr-control-container news-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="newsText.invalid && newsText.touched">
-            <quill-editor id="textarea-basic-error" placeholder="Field For Article Main Text"
+            <quill-editor id="article-main-text" placeholder="Field For Article Main Text"
                           [(ngModel)]="selectedArticle.newsText" #newsText="ngModel" name="newsText"
                           required></quill-editor>
             <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="newsText.valid"></clr-icon>
@@ -599,11 +600,11 @@
         <div class="clr-form-control clr-row">
 
           <!--Product name field-->
-          <label for="example" class="clr-control-label clr-col-12 clr-col-md-1">Product Name *</label>
+          <label for="product-name" class="clr-control-label clr-col-12 clr-col-md-1">Product Name *</label>
           <div class="clr-control-container product-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="productName.invalid && productName.touched">
             <div class="clr-input-wrapper">
-              <input type="text" id="example" placeholder="Product Name" class="clr-input" style="width: 99%;"
+              <input type="text" id="product-name" placeholder="Product Name" class="clr-input" style="width: 99%;"
                      [(ngModel)]="selectedProduct.productName" #productName="ngModel" name="productName" required/>
               <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="productName.valid"></clr-icon>
             </div>
@@ -611,11 +612,11 @@
           </div>
 
           <!--Product type field-->
-          <label for="example" class="clr-control-label clr-col-12 clr-col-md-1">Product Type *</label>
+          <label for="product-type" class="clr-control-label clr-col-12 clr-col-md-1">Product Type *</label>
           <div class="clr-control-container product-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="productType.invalid && productType.touched">
             <div class="clr-input-wrapper">
-              <input type="text" id="example" placeholder="Product Type" class="clr-input"
+              <input type="text" id="product-type" placeholder="Product Type" class="clr-input"
                      [(ngModel)]="selectedProduct.productType" #productType="ngModel" name="productType" required/>
               <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="productType.valid"></clr-icon>
             </div>
@@ -623,11 +624,11 @@
           </div>
 
           <!--News source field-->
-          <label for="example" class="clr-control-label clr-col-12 clr-col-md-1">Product Price *</label>
+          <label for="product-price" class="clr-control-label clr-col-12 clr-col-md-1">Product Price *</label>
           <div class="clr-control-container product-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="price.invalid && price.touched">
             <div class="clr-input-wrapper">
-              <input type="number" id="example" placeholder="Product Price" class="clr-input"
+              <input type="number" id="product-price" placeholder="Product Price" class="clr-input"
                      [(ngModel)]="selectedProduct.price" #price="ngModel" name="price" required/>
               <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="price.valid"></clr-icon>
             </div>
@@ -636,11 +637,11 @@
           </div>
 
           <!--News image field-->
-          <label for="example" class="clr-control-label clr-col-12 clr-col-md-1">Image</label>
+          <label for="product-image" class="clr-control-label clr-col-12 clr-col-md-1">Image</label>
           <div class="clr-control-container product-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="productImage.invalid && productImage.touched">
             <div class="clr-input-wrapper">
-              <input type="text" id="example" placeholder="Product Image" class="clr-input"
+              <input type="text" id="product-image" placeholder="Product Image" class="clr-input"
                      [(ngModel)]="selectedProduct.image" #productImage="ngModel" name="productImage"/>
               <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="productImage.valid"></clr-icon>
             </div>
@@ -648,11 +649,11 @@
           </div>
 
           <!--News main text field-->
-          <label for="textarea-basic-error" class="clr-control-label clr-col-12 clr-col-md-1">Product Description
+          <label for="product-description" class="clr-control-label clr-col-12 clr-col-md-1">Product Description
             *</label>
           <div class="clr-control-container product-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="description.invalid && description.touched">
-            <quill-editor id="textarea-basic-error" placeholder="Field For Product Description"
+            <quill-editor id="product-description" placeholder="Field For Product Description"
                           [(ngModel)]="selectedProduct.description" #description="ngModel" name="description"
                           required></quill-editor>
             <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="description.valid"></clr-icon>
