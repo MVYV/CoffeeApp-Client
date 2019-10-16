@@ -16,6 +16,7 @@ export class RegistrationComponent implements OnInit {
   repeatPassword: any;
   eCode: any;
   isCorrectCode: boolean = false;
+  isCorrectPass: boolean = false;
   emailCode: any;
   mail: Mail;
 
@@ -52,14 +53,15 @@ export class RegistrationComponent implements OnInit {
   }
 
   checkCode(event) {
-    if(event.target.value == this.emailCode) {
-      this.isCorrectCode = true;
-    } else {
-      this.isCorrectCode = false;
-    }
+    this.isCorrectCode = event.target.value == this.emailCode;
     console.log(event.target.value);
     console.log(this.emailCode);
     console.log(this.isCorrectCode);
+  }
+
+  checkPass(event) {
+    let passField: any = document.getElementById('userPass');
+    this.isCorrectPass = event.target.value == passField.value;
   }
 
 }

@@ -7,8 +7,8 @@
       <li><a routerLink="/about">{{ 'ABOUT' | translate }}</a></li>
       <li *ngIf="!authenticationService.isLoggedIn()"><a routerLink="/registration">{{ 'REGISTRATION' | translate }}</a></li>
       <li *ngIf="!authenticationService.isLoggedIn()"><a routerLink="/login">{{ 'LOG_IN' | translate }}</a></li>
-      <li *ngIf="authenticationService.isLoggedIn()"><a routerLink="/dashboard" class="nav-link nav-icon">Admin Page</a></li>
-      <li *ngIf="authenticationService.isLoggedIn()"><a routerLink="/logout">Log Out</a></li>
+      <li *ngIf="authenticationService.isLoggedIn()"><a routerLink="/dashboard" class="nav-link nav-icon">{{ 'ADMIN_PAGE' | translate }}</a></li>
+      <li *ngIf="authenticationService.isLoggedIn()"><a routerLink="/logout">{{ 'LOG_OUT' | translate }}</a></li>
     </ul>
   </div>
   <div class="footer-logo-box">

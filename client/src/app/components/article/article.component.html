@@ -31,6 +31,18 @@
         <div class="article-annotation">{{selectedArticle?.newsSubText}}</div>
         <div class="article-text" [innerHtml]="selectedArticle?.newsText"></div>
       </div>
+      <div class="article-comment-box">
+        <h3>Comments</h3>
+        <form>
+          <label for="commentText">Your Comment</label>
+          <textarea id="commentText" [(ngModel)]="description" name="description" required></textarea>
+          <button class="btn btn-primary">Comment</button>
+        </form>
+      </div>
+      <div class="article-comments">
+        <div>Test comment</div>
+        <div>Another test comment</div>
+      </div>
     </div>
     <div class="products-on-article-page">
       <div class="products-header">Our Products</div>

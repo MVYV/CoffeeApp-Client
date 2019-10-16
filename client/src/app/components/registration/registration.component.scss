@@ -2,15 +2,21 @@ $buttonColor: #0079b8;
 .login-wrapper-own-styles
 {
   height: 100vh;
+  display: block;
   background-image: url('/assets/images/login-page.jpg');
   background-size: auto 100%;
   overflow: auto;
 }
 .login-own-styles
 {
-  //height: 200vh;
+  height: 100vh;
   display: block;
   //overflow: auto;
+}
+.login-group-own-styles
+{
+  //height: 100vh;
+  overflow: auto;
 }
 .title
 {

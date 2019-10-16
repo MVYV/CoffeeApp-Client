@@ -18,6 +18,10 @@ export class UserRegistrationService {
     return this.http.get<User[]>('https://march11app.herokuapp.com/');
   }
 
+  public getAuthenticatedUser(userEmail): Observable<User> {
+    return this.http.get<User>(`https://march11app.herokuapp.com/email/${userEmail}`);
+  }
+
   public putUser(user: User): Observable<User> {
     return this.http.put<User>(`https://march11app.herokuapp.com/${user.id}`, user);
   }

@@ -5,7 +5,7 @@
         <clr-icon shape="users" size="40" class="home-details"></clr-icon>
         <clr-icon shape="arrow" size="40" dir="right" class="home-arrow"></clr-icon>
       </a>
-      <div class="home-box-title home-title">You can get more information about us and our organization ...</div>
+      <div class="home-box-title home-title">{{'HOMEPAGE_TEXT_ABOUT' | translate}}</div>
       <div class="home-box-data home-data">
         <div class="about-image">
           <img src="assets/images/coffee-logo.png" class="about-img" />
@@ -17,10 +17,10 @@
         <clr-icon shape="details" size="40" class="home-details"></clr-icon>
         <clr-icon shape="arrow" size="40" dir="right" class="home-arrow"></clr-icon>
       </a>
-      <div class="news-box-title home-title">... or read some recent news about coffee and everything related to this ...</div>
+      <div class="news-box-title home-title">{{'HOMEPAGE_TEXT_NEWS' | translate}}</div>
       <div class="news-box-data home-data">
         <div class="home-news-title">
-          The latest news
+          {{'THE_LATEST_NEWS' | translate}}
         </div>
         <div class="home-news">
           <a *ngFor="let article of oneArticle" [routerLink]="['/article', article.id]" class="home-news-link">
@@ -37,10 +37,10 @@
         <clr-icon shape="bundle" size="40" class="home-details"></clr-icon>
         <clr-icon shape="arrow" size="40" dir="right" class="home-arrow"></clr-icon>
       </a>
-      <div class="products-box-title home-title">... or You you can view our products, and and leave a feedback about them.</div>
+      <div class="products-box-title home-title">{{'HOMEPAGE_TEXT_PRODUCTS' | translate}}</div>
       <div class="products-box-data home-data">
         <div class="home-products-title">
-          One of our products
+          {{'ONE_OF_OUR_PRODUCTS' | translate}}
         </div>
         <div class="home-products">
           <a *ngFor="let product of oneProduct" routerLink="/products" class="home-products-link">

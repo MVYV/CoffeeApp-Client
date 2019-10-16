@@ -22,7 +22,18 @@
             <div class="productDate productInfo" *ngIf="!product.productModificationDate">{{product.productDate | date:'medium'}}</div>
           </div>
           <div class="productText" [innerHtml]="product.description"></div>
-          <!--<div class="productResponse productInfo">Nice</div>-->
+          <div class="productComment">
+            <h3>Comments</h3>
+            <form>
+              <label for="commentText">Your Comment</label>
+              <textarea id="commentText" [(ngModel)]="description" name="description" required></textarea>
+              <button class="btn btn-primary">Comment</button>
+            </form>
+          </div>
+          <div class="productAllComments">
+            <div>Test comment</div>
+            <div>Another test comment</div>
+          </div>
         </div>
       </div>
     </div>

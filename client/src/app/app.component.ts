@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from "./services/translate.service";
 import { AuthenticationService } from "./services/authentication.service";
+import { User } from './models/users.model';
+import { Role } from './models/roles.model';
+import { UserRegistrationService } from './services/user-registration.service';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +14,18 @@ export class AppComponent implements OnInit{
 
   navLinkTitle: string;
   loggedIn: any;
+  authenticateUser: User;
+  userRoleArr: any;
+  userRole: any;
+  roles: Role[];
 
   constructor( private translate: TranslateService,
-               private authenticationService: AuthenticationService) {}
+               private authenticationService: AuthenticationService,
+               private registrationService: UserRegistrationService ) {}
 
   ngOnInit() {
-    // this.activeNavLink('home');
     this.loggedIn = sessionStorage.getItem('username');
+    this.loadUserData();
   }
 
   setLanguage(lang: string) {
@@ -26,5 +34,17 @@ export class AppComponent implements OnInit{
 
   activeNavLink(linkTitle: string) {
     this.navLinkTitle = linkTitle;
+  }
+
+  loadUserData() {
+    let userMail: any = sessionStorage.getItem('username');
+    this.registrationService.getAuthenticatedUser(userMail).subscribe(
+      userData => {
+        this.authenticateUser = userData;
+        this.userRoleArr = this.authenticateUser.roles;
+        this.userRole = this.userRoleArr[0].role;
+      }, () => {
+
+      });
   }
 }

@@ -34,13 +34,13 @@
           <clr-icon shape="caret down"></clr-icon>
         </button>
         <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right" class="userTools">
-          <a routerLink="/registration" clrDropdownItem>{{ 'REGISTRATION' | translate }}</a>
+          <a *ngIf="!authenticationService.isLoggedIn()" routerLink="/registration" clrDropdownItem>{{ 'REGISTRATION' | translate }}</a>
           <a *ngIf="!authenticationService.isLoggedIn()" routerLink="/login" clrDropdownItem>{{ 'LOG_IN' | translate }}</a>
-          <a *ngIf="authenticationService.isLoggedIn()" routerLink="/logout" clrDropdownItem>Log Out</a>
-          <a *ngIf="authenticationService.isLoggedIn()" clrDropdownItem>{{loggedIn}}111</a>
+          <a *ngIf="authenticationService.isLoggedIn()" routerLink="/profile" clrDropdownItem>{{authenticateUser.userName}} {{authenticateUser.lastName}}</a>
+          <a *ngIf="authenticationService.isLoggedIn()" routerLink="/logout" clrDropdownItem>{{ 'LOG_OUT' | translate }}</a>
         </clr-dropdown-menu>
       </clr-dropdown>
-      <a *ngIf="authenticationService.isLoggedIn()" routerLink="/dashboard" class="nav-link nav-icon">
+      <a *ngIf="authenticationService.isLoggedIn() && userRole == 'ADMIN'" routerLink="/dashboard" class="nav-link nav-icon">
         <clr-icon shape="cog"></clr-icon>
       </a>
     </div>

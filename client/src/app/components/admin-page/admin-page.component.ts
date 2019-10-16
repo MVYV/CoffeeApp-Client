@@ -94,6 +94,8 @@ export class AdminPageComponent implements OnInit {
         this.numberOfActiveUsers = this.activeUsers.length;
         this.numberOfInActiveUsers = this.inActiveUsers.length;
         this.loading = false;
+      }, () => {
+
       });
   }
 
@@ -102,7 +104,6 @@ export class AdminPageComponent implements OnInit {
       roles => {
         this.roles = roles;
       }, () => {
-        console.log('No');
       });
   }
 

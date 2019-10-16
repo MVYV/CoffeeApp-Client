@@ -3,7 +3,7 @@
     <section class="title">
       <h4 class="registrationTitle">{{ 'REGISTRATION_HELP' | translate }}</h4>
     </section>
-    <div class="login-group">
+    <div class="login-group login-group-own-styles">
 
       <clr-input-container>
         <input type="text" class="userName" clrInput placeholder="{{ 'FIRST_NAME' | translate }} *"
@@ -28,7 +28,7 @@
 
       <clr-input-container>
         <input type="number" class="userName" [(ngModel)]="eCode" #emailCode="ngModel" name="emailCode" clrInput
-               (change)="checkCode($event);" placeholder="Email Verification Code *" required/>
+               placeholder="Email Verification Code *" (keyup)="checkCode($event);" required/>
       </clr-input-container>
 
       <clr-input-container>
@@ -51,19 +51,19 @@
       </clr-select-container>
 
       <clr-password-container>
-        <input type="password" class="userPass" clrPassword placeholder="{{ 'PASSWORD' | translate }} *"
+        <input type="password" class="userPass" id="userPass" clrPassword placeholder="{{ 'PASSWORD' | translate }} *"
                [(ngModel)]="newUser.password" #password="ngModel" name="password" required/>
       </clr-password-container>
 
       <clr-password-container>
-        <input type="password" class="userPass" clrPassword placeholder="{{ 'PASSWORD_REPEAT' | translate }} *"
-               [(ngModel)]="repeatPassword" #repeatPass="ngModel" name="repeatPass" required/>
+        <input type="password" class="userPassRepeat" clrPassword placeholder="{{ 'PASSWORD_REPEAT' | translate }} *"
+               [(ngModel)]="repeatPassword" #repeatPass="ngModel" name="repeatPass" (keyup)="checkPass($event);" required/>
       </clr-password-container>
 
-      <div class="error error-message" [class.active]="userRegistrationForm.invalid || !isCorrectCode">
+      <div class="error error-message" [class.active]="userRegistrationForm.invalid || !isCorrectCode || !isCorrectPass">
         Invalid entered data or empty field.<br>Please, start your first name, last name, country and city with capital letter.
       </div>
-      <button type="submit" class="btn btn-primary" [disabled]="userRegistrationForm.invalid || !isCorrectCode"
+      <button type="submit" class="btn btn-primary" [disabled]="userRegistrationForm.invalid || !isCorrectCode || !isCorrectPass"
               (click)="addNewUser();">{{'REGISTER' | translate }}
       </button>
     </div>

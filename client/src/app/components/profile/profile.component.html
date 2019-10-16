@@ -1,3 +1,125 @@
-<p>
-  profile works!
-</p>
+<div class="scroll-container">
+  <!--Success alert-->
+  <clr-alert [clrAlertType]="'success'" [hidden]="!isSuccess">
+    <clr-alert-item>
+            <span class="alert-text">
+                {{ 'CHANGES_HAVE_BEEN_SAVED' | translate }}
+            </span>
+    </clr-alert-item>
+  </clr-alert>
+
+  <!--Error alert-->
+  <clr-alert [clrAlertType]="'danger'" [hidden]="!isError">
+    <clr-alert-item>
+            <span class="alert-text">
+                {{ 'CHANGES_HAVE_BEEN_SAVED' | translate }}
+            </span>
+    </clr-alert-item>
+  </clr-alert>
+
+  <div class="profileTitle">{{ 'YOUR_PROFILE' | translate}}</div>
+
+  <form class="clr-form clr-form-horizontal profileForm" #profileForm="ngForm" autocomplete="off">
+    <div class="clr-form-control clr-row profileData">
+
+      <!--User first name field-->
+      <label for="first-name" class="clr-control-label clr-col-12 clr-col-md-12">{{ 'FIRST_NAME' | translate }} *</label>
+      <div class="clr-control-container user-data-field clr-col-12 clr-col-md-12"
+           [class.clr-error]="userName.invalid && userName.touched">
+        <div class="clr-input-wrapper">
+          <input type="text" id="first-name" placeholder="{{ 'FIRST_NAME' | translate }}" class="clr-input clr-col-12 clr-col-md-12"
+                 [(ngModel)]="authenticateUser.userName" #userName="ngModel" name="userName" minlength="3" maxlength="20"
+                 pattern="[A-ZĄĆĘŁŃÓŚŹŻ]([A-ZĄĆĘŁŃÓŚŹŻ]*[a-ząćęłńóśźż]*[\' -]?)+" required/>
+          <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="userName.valid"></clr-icon>
+        </div>
+      </div>
+
+      <!--User last name field-->
+      <label for="last-name" class="clr-control-label clr-col-12 clr-col-md-12">{{ 'LAST_NAME' | translate }} *</label>
+      <div class="clr-control-container user-data-field clr-col-12 clr-col-md-12"
+           [class.clr-error]="lastName.invalid && lastName.touched">
+        <div class="clr-input-wrapper">
+          <input type="text" id="last-name" placeholder="{{ 'LAST_NAME' | translate }}" class="clr-input clr-col-12 clr-col-md-12"
+                 [(ngModel)]="authenticateUser.lastName" #lastName="ngModel" name="lastName" minlength="3" maxlength="20"
+                 pattern="[A-ZĄĆĘŁŃÓŚŹŻ]([A-ZĄĆĘŁŃÓŚŹŻ]*[a-ząćęłńóśźż]*[\' -]?)+" required/>
+          <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="lastName.valid"></clr-icon>
+        </div>
+      </div>
+
+      <!--User email field-->
+      <label for="email-address" class="clr-control-label clr-col-12 clr-col-md-12">{{ 'EMAIL' | translate }} *</label>
+      <div class="clr-control-container user-data-field clr-col-12 clr-col-md-12"
+           [class.clr-error]="email.invalid && email.touched">
+        <div class="clr-input-wrapper">
+          <input type="text" id="email-address" placeholder="{{ 'EMAIL' | translate }}" class="clr-input clr-col-12 clr-col-md-12" [(ngModel)]="authenticateUser.email"
+                 #email="ngModel" name="email"
+                 pattern="^([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))$" required/>
+          <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="email.valid"></clr-icon>
+        </div>
+      </div>
+
+      <!--User country field-->
+      <label for="user-country" class="clr-control-label clr-col-12 clr-col-md-12">{{ 'COUNTRY' | translate }} *</label>
+      <div class="clr-control-container user-data-field clr-col-12 clr-col-md-12"
+           [class.clr-error]="country.invalid && country.touched">
+        <div class="clr-input-wrapper">
+          <input type="text" id="user-country" placeholder="{{ 'COUNTRY' | translate }}" class="clr-input clr-col-12 clr-col-md-12"
+                 [(ngModel)]="authenticateUser.country" #country="ngModel" name="country" minlength="3" maxlength="20"
+                 pattern="[A-ZĄĆĘŁŃÓŚŹŻ]([A-ZĄĆĘŁŃÓŚŹŻ]*[a-ząćęłńóśźż]*[\' -]?)+" required/>
+          <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="country.valid"></clr-icon>
+        </div>
+      </div>
+
+      <!--User city field-->
+      <label for="user-city" class="clr-control-label clr-col-12 clr-col-md-12">{{ 'CITY' | translate }} *</label>
+      <div class="clr-control-container user-data-field clr-col-12 clr-col-md-12"
+           [class.clr-error]="city.invalid && city.touched">
+        <div class="clr-input-wrapper">
+          <input type="text" id="user-city" placeholder="{{ 'CITY' | translate }}" class="clr-input clr-col-12 clr-col-md-12"
+                 [(ngModel)]="authenticateUser.city" #city="ngModel" name="city" minlength="3" maxlength="20"
+                 pattern="[A-ZĄĆĘŁŃÓŚŹŻ]([A-ZĄĆĘŁŃÓŚŹŻ]*[a-ząćęłńóśźż]*[\' -]?)+" required/>
+          <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="city.valid"></clr-icon>
+        </div>
+      </div>
+
+      <!--User date of birth field-->
+      <label for="user-date-of-birth" class="clr-control-label clr-col-12 clr-col-md-12">{{ 'DATE_OF_BIRTH' | translate }}</label>
+      <div class="clr-control-container user-data-field clr-col-12 clr-col-md-12"
+           [class.clr-error]="dateOfBirth.invalid && dateOfBirth.touched">
+        <div class="clr-date-container">
+          <input type="date" id="user-date-of-birth" clrDate placeholder="{{ 'DATE_OF_BIRTH' | translate }}" class="clr-input clr-col-12 clr-col-md-10"
+                 [(ngModel)]="authenticateUser.dateOfBirth" #dateOfBirth="ngModel" name="dateOfBirth" minlength="3"
+                 maxlength="20"/>
+          <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="dateOfBirth.valid"></clr-icon>
+        </div>
+      </div>
+
+      <!--User gender field-->
+      <label for="select-error" class="clr-control-label clr-col-12 clr-col-md-12">{{ 'GENDER' | translate }} *</label>
+      <div class="clr-control-container user-data-field clr-col-12 clr-col-md-12"
+           [class.clr-error]="gender.invalid && gender.touched">
+        <div class="clr-select-wrapper">
+          <select id="select-error" class="clr-select" [(ngModel)]="authenticateUser.gender"
+                  #gender="ngModel" name="gender" required>
+            <option value="Male">{{ 'MALE' | translate }}</option>
+            <option value="Female">{{ 'FEMALE' | translate }}</option>
+          </select>
+          <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="gender.valid"></clr-icon>
+        </div>
+      </div>
+
+      <!--User avatar field-->
+      <label for="user-avatar" class="clr-control-label clr-col-12 clr-col-md-12">{{ 'AVATAR' | translate }}</label>
+      <div class="clr-control-container user-data-field clr-col-12 clr-col-md-12"
+           [class.clr-error]="avatar.invalid && avatar.touched">
+        <div class="clr-input-wrapper">
+          <input type="text" id="user-avatar" placeholder="{{ 'AVATAR' | translate }}" class="clr-input clr-col-12 clr-col-md-12"
+                 [(ngModel)]="authenticateUser.avatar" #avatar="ngModel" name="avatar" minlength="3" maxlength="20"/>
+          <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="avatar.valid"></clr-icon>
+        </div>
+      </div>
+      <button class="btn btn-primary" (click)="updateProfile();">{{ 'UPDATE_PROFILE' | translate }}</button>
+    </div>
+  </form>
+  <app-footer></app-footer>
+</div>
