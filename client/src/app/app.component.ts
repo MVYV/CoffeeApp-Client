@@ -20,12 +20,13 @@ export class AppComponent implements OnInit{
   roles: Role[];
 
   constructor( private translate: TranslateService,
-               private authenticationService: AuthenticationService,
+               public authenticationService: AuthenticationService,
                private registrationService: UserRegistrationService ) {}
 
   ngOnInit() {
+    this.authenticateUser = new User();
     this.loggedIn = sessionStorage.getItem('username');
-    this.loadUserData();
+    this.checkLoggedInUser();
   }
 
   setLanguage(lang: string) {
@@ -46,5 +47,14 @@ export class AppComponent implements OnInit{
       }, () => {
 
       });
+  }
+
+  checkLoggedInUser() {
+    let loggedInUser: any = sessionStorage.getItem('username');
+    if (loggedInUser) {
+      this.loadUserData();
+    } else {
+
+    }
   }
 }

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class UserRegistrationService {
 
-  constructor( private http: HttpClient) { }
+  constructor( private http: HttpClient ) { }
 
   public postUser(user: User): Observable<User> {
     return this.http.post<User>('https://march11app.herokuapp.com/', user);

@@ -37,6 +37,7 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { AngularPaginatorModule } from "angular-paginator";
 import { NgxPaginationModule } from "ngx-pagination";
 import { ProfileComponent } from './components/profile/profile.component';
+import { ConstantsService } from './services/constants.service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -85,6 +86,7 @@ export function setupTranslateFactory(service: TranslateService): Function {
     ProductsService,
     TranslateService,
     StyleService,
+    ConstantsService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

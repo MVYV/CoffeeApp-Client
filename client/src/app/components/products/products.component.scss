@@ -175,6 +175,23 @@ $headerColor: #037a00;
           {
             text-align: left;
           }
+          .productComment
+          {
+            font-size: 14px;
+            .productsCommentsHeader
+            {
+              overflow: hidden;
+              margin-bottom: 10px;
+              border-bottom: 1px solid $headerColor;
+              font-size: 18px;
+              font-weight: bold;
+              color: $headerColor;
+            }
+          }
+          .productAllComments
+          {
+            font-size: 14px;
+          }
           // ----- Will be added later -----
           //.productResponse
           //{

@@ -266,6 +266,15 @@ body
       {
         width: 100%;
         margin-bottom: 15px;
+        .comments-header
+        {
+          overflow: hidden;
+          margin-bottom: 10px;
+          border-bottom: 1px solid $headerColor;
+          font-size: 18px;
+          font-weight: bold;
+          color: $headerColor;
+        }
       }
     }
   }

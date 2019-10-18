@@ -23,10 +23,10 @@
           </div>
           <div class="productText" [innerHtml]="product.description"></div>
           <div class="productComment">
-            <h3>Comments</h3>
+            <div class="productsCommentsHeader">Comments</div>
             <form>
               <label for="commentText">Your Comment</label>
-              <textarea id="commentText" [(ngModel)]="description" name="description" required></textarea>
+              <textarea id="commentText" rows="8" required></textarea>
               <button class="btn btn-primary">Comment</button>
             </form>
           </div>

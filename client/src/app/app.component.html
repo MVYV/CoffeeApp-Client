@@ -29,14 +29,18 @@
         </clr-dropdown-menu>
       </clr-dropdown>
       <clr-dropdown>
-        <button class="nav-icon" clrDropdownTrigger>
+        <button *ngIf="!authenticationService.isLoggedIn()" class="nav-icon" clrDropdownTrigger>
           <clr-icon shape="user"></clr-icon>
+          <clr-icon shape="caret down"></clr-icon>
+        </button>
+        <button *ngIf="authenticationService.isLoggedIn()" class="nav-text" clrDropdownTrigger>
+          {{authenticateUser.userName}} {{authenticateUser.lastName}}
           <clr-icon shape="caret down"></clr-icon>
         </button>
         <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right" class="userTools">
           <a *ngIf="!authenticationService.isLoggedIn()" routerLink="/registration" clrDropdownItem>{{ 'REGISTRATION' | translate }}</a>
           <a *ngIf="!authenticationService.isLoggedIn()" routerLink="/login" clrDropdownItem>{{ 'LOG_IN' | translate }}</a>
-          <a *ngIf="authenticationService.isLoggedIn()" routerLink="/profile" clrDropdownItem>{{authenticateUser.userName}} {{authenticateUser.lastName}}</a>
+          <a *ngIf="authenticationService.isLoggedIn()" routerLink="/profile" clrDropdownItem>Profile</a>
           <a *ngIf="authenticationService.isLoggedIn()" routerLink="/logout" clrDropdownItem>{{ 'LOG_OUT' | translate }}</a>
         </clr-dropdown-menu>
       </clr-dropdown>
