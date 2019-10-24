@@ -19,35 +19,12 @@ clr-tree-node
 {
   color: #000000;
 }
-.title3:nth-of-type(2n + 1)
+.textHelp
 {
-  background-color: dodgerblue;
+  border: 2px solid black;
+  display: none;
 }
-.title3:nth-of-type(2n)
+.test-btn:hover + .textHelp
 {
-  background-color: lightblue;
-}
-.title3:nth-of-type(2n + 1) .title4:nth-of-type(2n + 1)
-{
-  background-color: lightblue;
-}
-.title3:nth-of-type(2n) .title4:nth-of-type(2n + 1)
-{
-  background-color: dodgerblue;
-}
-.title4:nth-of-type(2n + 1) .title5:nth-of-type(2n + 1)
-{
-  background-color: dodgerblue;
-}
-.title4:nth-of-type(2n) .title5:nth-of-type(2n + 1)
-{
-  background-color: lightblue;
-}
-.title5:nth-of-type(2n + 1) .title6:nth-of-type(2n + 1)
-{
-  background-color: lightblue;
-}
-.title5:nth-of-type(2n + 1) .title6:nth-of-type(2n)
-{
-  background-color: dodgerblue;
+  display: block;
 }

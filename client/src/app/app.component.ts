@@ -13,7 +13,6 @@ import { UserRegistrationService } from './services/user-registration.service';
 export class AppComponent implements OnInit{
 
   navLinkTitle: string;
-  loggedIn: any;
   authenticateUser: User;
   userRoleArr: any;
   userRole: any;
@@ -25,7 +24,6 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
     this.authenticateUser = new User();
-    this.loggedIn = sessionStorage.getItem('username');
     this.checkLoggedInUser();
   }
 

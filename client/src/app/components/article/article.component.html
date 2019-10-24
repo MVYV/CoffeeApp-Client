@@ -2,9 +2,9 @@
   <div class="article-page-container">
     <div class="article-box" id="articleBox">
       <div class="link-guide">
-        <a routerLink="/news" class="link-guide-item">News</a>
+        <a routerLink="/news" class="link-guide-item">{{ 'NEWS' | translate }}</a>
         <clr-icon shape="circle-arrow" class="guide-arrow" size="18"></clr-icon>
-        <span class="link-guide-item link-guide-item-disabled">Article</span>
+        <span class="link-guide-item link-guide-item-disabled">{{ 'ARTICLE' | translate }}</span>
         <clr-icon shape="circle-arrow" class="guide-arrow" size="18"></clr-icon>
         <span class="link-guide-item link-guide-item-disabled">{{selectedArticle?.newsTitle}}</span>
       </div>
@@ -13,16 +13,16 @@
         <div class="gray-box">
           <div class="article-info">
             <div class="article-modification-date">
-              <span class="smallInfoBox">Date:</span>
+              <span class="smallInfoBox">{{ 'DATE' | translate }}:</span>
               <span *ngIf="selectedArticle?.newsModificationDate" class="smallDataBox">
-                {{selectedArticle?.newsModificationDate | date: 'medium'}}
+                {{selectedArticle?.newsModificationDate | date: 'short'}}
               </span>
               <span *ngIf="!selectedArticle?.newsModificationDate" class="smallDataBox">
-                {{selectedArticle?.newsDate | date: 'medium'}}
+                {{selectedArticle?.newsDate | date: 'short'}}
               </span>
             </div>
             <div class="article-title">{{selectedArticle?.newsTitle}}</div>
-            <div class="article-source"><span class="smallInfoBox">Source/Author:</span><span class="smallDataBox">{{selectedArticle?.newsSource}}</span>
+            <div class="article-source"><span class="smallInfoBox">{{ 'SOURCE_AUTHOR' | translate }}:</span><span class="smallDataBox">{{selectedArticle?.newsSource}}</span>
             </div>
           </div>
         </div>
@@ -32,20 +32,42 @@
         <div class="article-text" [innerHtml]="selectedArticle?.newsText"></div>
       </div>
       <div class="article-comment-box">
-        <div class="comments-header">Comments</div>
-        <form>
-          <label for="commentText">Your Comment</label>
-          <textarea id="commentText" rows="8" required></textarea>
-          <button class="btn btn-primary">Comment</button>
-        </form>
+        <div class="comments-header">{{ 'YOUR_COMMENT' | translate }}</div>
+        <button class="btn btn-primary" (click)="showCommentForm();">{{ 'OPEN_FORM' | translate }}</button>
+        <div class="comment-form comment-form-hidden" id="comment-form">
+          <form>
+            <label for="commentText">{{ 'YOUR_COMMENT' | translate }}</label>
+            <textarea id="commentText" rows="8" [(ngModel)]="userComment.commentText" #commentText="ngModel" name="commentText" required></textarea>
+            <button class="btn btn-primary" (click)="commentArticle();">{{ 'COMMENT' | translate }}</button>
+          </form>
+        </div>
       </div>
       <div class="article-comments">
-        <div>Test comment</div>
-        <div>Another test comment</div>
+        <div class="comments-header">{{ 'COMMENTS' | translate }}</div>
+        <div *ngFor="let comment of commentsForArticle" class="comment-container">
+          <div class="comment-author">{{comment.fullName}}</div>
+          <div class="comment-date">{{comment.commentDate | date: 'short'}}</div>
+          <div class="comment-text">{{comment.commentText}}</div>
+          <div class="comment-tools">
+            <div class="delete-confirmation" id="{{comment.id}}">
+              <button class="btn btn-danger btn-sm del-confirmation-btn" (click)="removeComment(comment.id); hideDeleteConfirmation(comment.id);">{{ 'DELETE' | translate }}</button>
+              <button class="btn btn-success btn-sm del-confirmation-btn" (click)="hideDeleteConfirmation(comment.id);">{{ 'CANCEL' | translate }}</button>
+            </div>
+            <button *ngIf="authenticationService.isLoggedIn()" type="button" class="btn btn-icon btn-success" aria-label="pencil" title="{{ 'EDIT_COMMENT' | translate }}" (click)="editComment(comment);">
+              <clr-icon shape="pencil"></clr-icon>
+            </button>
+            <button *ngIf="authenticationService.isLoggedIn()" type="button" class="btn btn-icon btn-danger" aria-label="trash" title="{{ 'DELETE_COMMENT' | translate }}" (click)="showDeleteConfirmation(comment.id);">
+              <clr-icon shape="trash"></clr-icon>
+            </button>
+            <button *ngIf="authenticationService.isLoggedIn() && userRole == 'ADMIN'" type="button" class="btn btn-icon" aria-label="ban" title="{{ 'BAN_USER' | translate }}">
+              <clr-icon shape="ban"></clr-icon>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="products-on-article-page">
-      <div class="products-header">Our Products</div>
+      <div class="products-header">{{ 'OUR_PRODUCTS' | translate }}</div>
       <div class="scrollbarBox">
         <a *ngFor="let product of products" [routerLink]="'/products'" class="product-link">
           <div class="product-img">
@@ -63,7 +85,7 @@
   </div>
 
   <div class="other-news">
-    <div class="other-news-header">More news</div>
+    <div class="other-news-header">{{ 'MORE_NEWS' | translate }}</div>
     <a *ngFor="let record of news | paginate: { itemsPerPage: 10, currentPage: p }"
        [routerLink]="['/article', record.id]" [ngx-scroll-to-offset]="-70" [ngx-scroll-to]="'#articleBox'"
        class="other-news-link-box" title="{{record.newsTitle}}">

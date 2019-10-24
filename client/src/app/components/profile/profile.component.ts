@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.authenticateUser = new User();
     this.pageTitle.setTitle('Coffee Products - Profile');
-    this.loadUserData();
+    this.checkLoggedInUser();
   }
 
   loadUserData() {
@@ -32,6 +32,15 @@ export class ProfileComponent implements OnInit {
       }, () => {
 
       });
+  }
+
+  checkLoggedInUser() {
+    let loggedInUser: any = sessionStorage.getItem('username');
+    if (loggedInUser) {
+      this.loadUserData();
+    } else {
+
+    }
   }
 
   updateProfile() {

@@ -8,7 +8,9 @@ import { PageTitleService } from '../../services/page-title.service';
 import { NewsService } from '../../services/news-service';
 import { ClrDatagridSortOrder } from '@clr/angular';
 import { ProductsService } from '../../services/products.service';
-import { Role } from "../../models/roles.model";
+import { Role } from '../../models/roles.model';
+import { About } from '../../models/about.model';
+import { AboutService } from '../../services/about.service';
 
 @Component({
   selector: 'app-admin-page',
@@ -20,6 +22,7 @@ export class AdminPageComponent implements OnInit {
   showUser: boolean;
   showArticle: boolean;
   showProducts: boolean;
+  showInfo: boolean;
   showDeleteUserConfirmation: boolean = false;
   showMailWindow: boolean = false;
   loading: boolean;
@@ -51,11 +54,14 @@ export class AdminPageComponent implements OnInit {
   ascSort: any;
   descSort: any;
   userRoles: Role[];
+  aboutArr: any[] = [];
+  selectedInfo: About;
 
   constructor( private pageTitle: PageTitleService,
                private registrationService: UserRegistrationService,
                private newsService: NewsService,
-               private productsService: ProductsService ) { }
+               private productsService: ProductsService,
+               private aboutService: AboutService ) { }
 
   ngOnInit() {
     this.ascSort = ClrDatagridSortOrder.ASC;
@@ -69,10 +75,12 @@ export class AdminPageComponent implements OnInit {
     this.newArticle = new News();
     this.selectedProduct = new Product();
     this.newProduct = new Product();
+    this.selectedInfo = new About();
     this.getAllUsers();
     this.getUserRoles();
     this.getAllNews();
     this.getAllProducts();
+    this.getContactInformation();
   }
 
   sendMailToUser() {
@@ -81,6 +89,35 @@ export class AdminPageComponent implements OnInit {
         console.log('Yes');
       }, () => {
         console.log('No');
+      });
+  }
+
+  getContactInformation() {
+    this.aboutService.getContactInfo().subscribe(
+      aboutInfo => {
+        this.aboutArr.push(aboutInfo);
+      }, () => {
+
+      });
+  }
+
+  editInfo(information: About) {
+    this.selectedInfo = new About(
+      information.id,
+      information.contactInfo
+    );
+  }
+
+  modifyInfo() {
+    this.aboutService.putContactInfo(this.selectedInfo).subscribe(
+      () => {
+        this.isSuccess = true;
+        this.aboutArr = [];
+        this.getContactInformation();
+      }, () => {
+        this.isError = true;
+        this.aboutArr = [];
+        this.getContactInformation();
       });
   }
 

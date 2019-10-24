@@ -82,5 +82,18 @@
   "PRODUCT_DESCRIPTION": "Opis produktu",
   "ARTICLE_MAIN_TEXT": "Tekst Wiadomości",
   "UPDATE_PROFILE": "Zapisz Nowe Dane",
-  "YOUR_PROFILE": "Twój Profil"
+  "YOUR_PROFILE": "Twój Profil",
+  "OUR_PRODUCTS": "Nasze Produkty",
+  "LATEST_NEWS": "Najnowsze Wiadomości",
+  "COMMENTS": "Komentarze",
+  "COMMENT": "Komentować",
+  "YOUR_COMMENT": "Twój Komentarz",
+  "ARTICLE": "Wiadomość",
+  "MORE_NEWS": "Więcej Wiadomości",
+  "OPEN_FORM": "Formularz otwarty",
+  "DELETE": "Usunąć",
+  "BAN_USER": "Zablokuj Użytkownika",
+  "EDIT_COMMENT": "Edytuj Komentarz",
+  "DELETE_COMMENT": "Usuń Komentarz",
+  "SHOW_COMMENTS": "Pokaż Komentarze"
 }

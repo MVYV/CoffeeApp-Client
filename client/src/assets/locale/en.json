@@ -82,5 +82,18 @@
   "PRODUCT_DESCRIPTION": "Product Description",
   "ARTICLE_MAIN_TEXT": "Article Main Text",
   "UPDATE_PROFILE": "Update Profile",
-  "YOUR_PROFILE": "Your Profile"
+  "YOUR_PROFILE": "Your Profile",
+  "OUR_PRODUCTS": "Our Products",
+  "LATEST_NEWS": "Latest News",
+  "COMMENTS": "Comments",
+  "COMMENT": "Comment",
+  "YOUR_COMMENT": "Your Comment",
+  "ARTICLE": "Article",
+  "MORE_NEWS": "More News",
+  "OPEN_FORM": "Open Form",
+  "DELETE": "Delete",
+  "BAN_USER": "Ban User",
+  "EDIT_COMMENT": "Edit Comment",
+  "DELETE_COMMENT": "Delete Comment",
+  "SHOW_COMMENTS": "Show Comments"
 }

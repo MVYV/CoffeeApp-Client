@@ -4,6 +4,7 @@ $backgroundColor: #dddddd;
 $globalBackgroundColor: #edeef0;
 $linkColor: #0066cc;
 $headerColor: #037a00;
+$darkSiteColor: #222d36;
 .subnav
 {
   position: sticky;
@@ -187,16 +188,99 @@ $headerColor: #037a00;
               font-weight: bold;
               color: $headerColor;
             }
+            .comment-form
+            {
+              overflow: hidden;
+              -webkit-transition: all ease-in-out .2s;
+              -moz-transition: all ease-in-out .2s;
+              -ms-transition: all ease-in-out .2s;
+              -o-transition: all ease-in-out .2s;
+              transition: all ease-in-out .2s;
+            }
+            .comment-form-hidden
+            {
+              height: 0;
+            }
+            .comment-form-visible
+            {
+              height: auto;
+            }
           }
           .productAllComments
           {
+            margin-bottom: 25px;
             font-size: 14px;
+            .comments-header
+            {
+              overflow: hidden;
+              margin-bottom: 10px;
+              border-bottom: 1px solid $headerColor;
+              font-size: 18px;
+              font-weight: bold;
+              color: $headerColor;
+            }
+            .show-comments-btn
+            {
+              margin-bottom: 10px;
+            }
+            .comment-container
+            {
+              background-color: $globalBackgroundColor;
+              border: 2px solid $backgroundColor;
+              color: $darkSiteColor;
+              margin-bottom: 10px;
+              .comment-author
+              {
+                width: 50%;
+                float: left;
+                text-align: left;
+                padding: 2px 5px;
+                border-bottom: 1px solid $headerColor;
+                font-style: oblique;
+              }
+              .comment-date
+              {
+                width: 50%;
+                float: right;
+                text-align: right;
+                padding: 2px 5px;
+                border-bottom: 1px solid $headerColor;
+              }
+              .comment-text
+              {
+                padding: 2px 5px;
+                font-weight: bold;
+              }
+              .comment-tools
+              {
+                text-align: right;
+                .delete-confirmation
+                {
+                  text-align: center;
+                  position: relative;
+                  //bottom: 10px;
+                  left: 150px;
+                  background-color: #ffffff;
+                  display: none;
+                  z-index: 1000;
+                  border: 1px solid $darkSiteColor;
+                  padding: 3px;
+                  .del-confirmation-btn
+                  {
+                    margin: 3px;
+                  }
+                }
+                .delete-confirmation-hidden
+                {
+                  display: none;
+                }
+                .delete-confirmation-visible
+                {
+                  display: inline-block;
+                }
+              }
+            }
           }
-          // ----- Will be added later -----
-          //.productResponse
-          //{
-          //  background-color: darkolivegreen;
-          //}
         }
       }
     }

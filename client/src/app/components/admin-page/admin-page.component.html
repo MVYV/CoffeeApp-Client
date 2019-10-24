@@ -275,6 +275,36 @@
       </clr-tab-content>
     </clr-tab>
 
+    <!--Tab with contact information-->
+    <clr-tab>
+      <button clrTabLink id="products">{{ 'ABOUT' | translate }}</button>
+      <clr-tab-content *clrIfActive="false">
+
+        <!--Table-->
+        <clr-datagrid [clrDgLoading]="loading">
+
+          <!--Table header-->
+          <clr-dg-column [clrDgField]="'contactInfo'">
+            <ng-container *clrDgHideableColumn="{hidden: false}">
+              {{ 'ABOUT' | translate }}
+            </ng-container>
+          </clr-dg-column>
+
+          <!--Table data-->
+          <clr-dg-row *clrDgItems="let information of aboutArr">
+            <clr-dg-action-overflow class="user-tools admin-tools">
+              <clr-icon shape="pencil" title="Modify Product" class="admin-modify-user admin-modify"
+                        (click)="showInfo = true; editInfo(information);"></clr-icon>
+            </clr-dg-action-overflow>
+            <clr-dg-cell class="newsTitle">{{information.contactInfo}}</clr-dg-cell>
+          </clr-dg-row>
+
+        </clr-datagrid>
+
+      </clr-tab-content>
+
+    </clr-tab>
+
   </clr-tabs>
 
   <!--Modal window with confirmation of deletion selected user, article or product-->
@@ -309,8 +339,6 @@
       </button>
     </div>
   </clr-modal>
-
-
 
   <!--Modal window for letter sending-->
   <clr-modal [(clrModalOpen)]="showMailWindow" [clrModalStaticBackdrop]="false">
@@ -361,8 +389,6 @@
       <button type="button" class="btn btn-primary" (click)="showMailWindow = false; sendMailToUser();">{{ 'SEND_EMAIL' | translate }}</button>
     </div>
   </clr-modal>
-
-
 
   <!--Modal window with form for editing information about user-->
   <clr-modal [(clrModalOpen)]="showUser" [clrModalStaticBackdrop]="false" [clrModalSize]="'500'">
@@ -669,4 +695,34 @@
       </button>
     </div>
   </clr-modal>
+
+  <!--Modal window with form for editing contact information-->
+  <clr-modal [(clrModalOpen)]="showInfo" [clrModalStaticBackdrop]="false" [clrModalSize]="'xl'">
+    <h3 class="modal-title">{{ 'ADD_PRODUCT_HELP' | translate }}</h3>
+    <div class="modal-body">
+      <form class="clr-form clr-form-horizontal editInfoForm" #editInfoForm="ngForm" autocomplete="off">
+        <div class="clr-form-control clr-row">
+
+          <!--Information field-->
+          <label for="contact_info" class="clr-control-label clr-col-12 clr-col-md-1">{{ 'ABOUT' | translate }} *</label>
+          <div class="clr-control-container info-data-field clr-col-12 clr-col-md-11"
+               [class.clr-error]="contactInfo.invalid && contactInfo.touched">
+            <quill-editor id="contact_info" placeholder="{{ 'ABOUT' | translate }}" style="width: 99%;"
+                          [(ngModel)]="selectedInfo.contactInfo" #contactInfo="ngModel" name="contactInfo" required>
+            </quill-editor>
+            <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="contactInfo.valid"></clr-icon>
+            <span class="clr-subtext" [class.wrongDataMessage]="contactInfo.valid" [hidden]="contactInfo.untouched">{{ 'INCORRECT' | translate }}</span>
+          </div>
+
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" (click)="showInfo = false;">{{ 'CANCEL' | translate }}</button>
+      <button type="button" class="btn btn-primary" (click)="showInfo = false; modifyInfo();"
+              [disabled]="editInfoForm.invalid">{{ 'OK' | translate }}
+      </button>
+    </div>
+  </clr-modal>
+
 </div>
