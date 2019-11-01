@@ -4,6 +4,7 @@ import { AuthenticationService } from "./services/authentication.service";
 import { User } from './models/users.model';
 import { Role } from './models/roles.model';
 import { UserRegistrationService } from './services/user-registration.service';
+import { GlobalVariablesService } from './services/global-variables.service';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ export class AppComponent implements OnInit{
 
   constructor( private translate: TranslateService,
                public authenticationService: AuthenticationService,
-               private registrationService: UserRegistrationService ) {}
+               private registrationService: UserRegistrationService,
+               private globalVariables: GlobalVariablesService) {}
 
   ngOnInit() {
     this.authenticateUser = new User();
@@ -28,7 +30,9 @@ export class AppComponent implements OnInit{
   }
 
   setLanguage(lang: string) {
-    this.translate.use(lang);
+    localStorage.setItem('translationLang', lang);
+    this.translate.use(localStorage.getItem('translationLang'));
+    this.globalVariables.siteLanguage = lang;
   }
 
   activeNavLink(linkTitle: string) {
@@ -54,5 +58,9 @@ export class AppComponent implements OnInit{
     } else {
 
     }
+  }
+
+  pageReload() {
+    window.location.reload();
   }
 }

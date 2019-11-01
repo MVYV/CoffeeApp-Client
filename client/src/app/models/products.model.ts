@@ -7,5 +7,6 @@ export class Product {
     public description?: string,
     public price?: number,
     public productDate?: any,
-    public productModificationDate?: any ) {}
+    public productModificationDate?: any,
+    public language?: string ) {}
 }

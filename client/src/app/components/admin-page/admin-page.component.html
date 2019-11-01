@@ -12,7 +12,7 @@
   <clr-alert [clrAlertType]="'danger'" [hidden]="!isError">
     <clr-alert-item>
           <span class="alert-text">
-              {{ 'CHANGES_HAVE_BEEN_SAVED' | translate }}
+              {{ 'CHANGES_ERROR' | translate }}
           </span>
     </clr-alert-item>
   </clr-alert>
@@ -86,13 +86,13 @@
           <!--Table data-->
           <clr-dg-row *clrDgItems="let user of users" [ngClass]="{'inactiveUser': user.isActive === 0}">
             <clr-dg-action-overflow class="user-tools admin-tools">
-              <clr-icon shape="pencil" title="Modify User" class="admin-modify-user admin-modify"
+              <clr-icon shape="pencil" title="{{ 'MODIFY_USER' | translate }}" class="admin-modify-user admin-modify"
                         (click)="showUser = true; editUser(user)"></clr-icon>
-              <clr-icon shape="envelope" title="Send message for user" class="admin-message-user admin-message"
+              <clr-icon shape="envelope" title="{{ 'SEND_MESSAGE_FOR_USER' | translate }}" class="admin-message-user admin-message"
                         (click)="showMailWindow = true; editUser(user)"></clr-icon>
-              <clr-icon shape="ban" title="Ban user" class="admin-ban-user admin-ban"
+              <clr-icon shape="ban" title="{{ 'BAN_USER' | translate }}" class="admin-ban-user admin-ban"
                         (click)="editUser(user); banOneUser();"></clr-icon>
-              <clr-icon shape="trash" title="Delete User" class="admin-delete-user admin-delete"
+              <clr-icon shape="trash" title="{{ 'DELETE_USER' | translate }}" class="admin-delete-user admin-delete"
                         (click)="showDeleteDialog('user'); editUser(user);"></clr-icon>
             </clr-dg-action-overflow>
             <clr-dg-cell>{{user.avatar}}</clr-dg-cell>
@@ -165,13 +165,18 @@
               {{ 'MODIFICATION_DATE' | translate }}
             </ng-container>
           </clr-dg-column>
+          <clr-dg-column [clrDgField]="'language'">
+            <ng-container *clrDgHideableColumn="{hidden: false}">
+              {{ 'LANGUAGE' | translate }}
+            </ng-container>
+          </clr-dg-column>
 
           <!--Table data-->
           <clr-dg-row *clrDgItems="let article of news">
             <clr-dg-action-overflow class="user-tools admin-tools">
-              <clr-icon shape="pencil" title="Modify Article" class="admin-modify-user admin-modify"
+              <clr-icon shape="pencil" title="{{ 'MODIFY_ARTICLE' | translate }}" class="admin-modify-user admin-modify"
                         (click)="showArticle = true; editArticle(article);"></clr-icon>
-              <clr-icon shape="trash" title="Delete Article" class="admin-delete-user admin-delete"
+              <clr-icon shape="trash" title="{{ 'DELETE_ARTICLE' | translate }}" class="admin-delete-user admin-delete"
                         (click)="showDeleteDialog('article'); editArticle(article);"></clr-icon>
             </clr-dg-action-overflow>
             <clr-dg-cell>{{article.newsImage}}</clr-dg-cell>
@@ -180,6 +185,7 @@
             <clr-dg-cell>{{article.newsSource}}</clr-dg-cell>
             <clr-dg-cell>{{article.newsDate | date: 'long'}}</clr-dg-cell>
             <clr-dg-cell>{{article.newsModificationDate | date: 'long'}}</clr-dg-cell>
+            <clr-dg-cell>{{article.language}}</clr-dg-cell>
             <clr-dg-row-detail *clrIfExpanded>
               {{article.newsText}}
             </clr-dg-row-detail>
@@ -241,13 +247,18 @@
               {{ 'MODIFICATION_DATE' | translate }}
             </ng-container>
           </clr-dg-column>
+          <clr-dg-column [clrDgField]="'language'">
+            <ng-container *clrDgHideableColumn="{hidden: false}">
+              {{ 'LANGUAGE' | translate }}
+            </ng-container>
+          </clr-dg-column>
 
           <!--Table data-->
           <clr-dg-row *clrDgItems="let product of products">
             <clr-dg-action-overflow class="user-tools admin-tools">
-              <clr-icon shape="pencil" title="Modify Product" class="admin-modify-user admin-modify"
+              <clr-icon shape="pencil" title="{{ 'MODIFY_PRODUCT' | translate }}" class="admin-modify-user admin-modify"
                         (click)="showProducts = true; editProduct(product);"></clr-icon>
-              <clr-icon shape="trash" title="Delete Product" class="admin-delete-user admin-delete"
+              <clr-icon shape="trash" title="{{ 'DELETE_PRODUCT' | translate }}" class="admin-delete-user admin-delete"
                         (click)="showDeleteDialog('product'); editProduct(product);"></clr-icon>
             </clr-dg-action-overflow>
             <clr-dg-cell>{{product.image}}</clr-dg-cell>
@@ -256,6 +267,7 @@
             <clr-dg-cell>{{product.price}}</clr-dg-cell>
             <clr-dg-cell>{{product.productDate | date: 'long'}}</clr-dg-cell>
             <clr-dg-cell>{{product.productModificationDate | date: 'long'}}</clr-dg-cell>
+            <clr-dg-cell>{{product.language}}</clr-dg-cell>
             <clr-dg-row-detail *clrIfExpanded>
               {{product.description}}
             </clr-dg-row-detail>
@@ -293,7 +305,7 @@
           <!--Table data-->
           <clr-dg-row *clrDgItems="let information of aboutArr">
             <clr-dg-action-overflow class="user-tools admin-tools">
-              <clr-icon shape="pencil" title="Modify Product" class="admin-modify-user admin-modify"
+              <clr-icon shape="pencil" title="{{ 'MODIFY_CONTACT_INFORMATION' | translate }}" class="admin-modify-user admin-modify"
                         (click)="showInfo = true; editInfo(information);"></clr-icon>
             </clr-dg-action-overflow>
             <clr-dg-cell class="newsTitle">{{information.contactInfo}}</clr-dg-cell>
@@ -585,6 +597,21 @@
             <span class="clr-subtext" [class.wrongDataMessage]="articleSource.valid" [hidden]="articleSource.untouched">{{ 'INCORRECT' | translate }}</span>
           </div>
 
+          <!--News language field-->
+          <label for="article-language" class="clr-control-label clr-col-12 clr-col-md-1">{{ 'LANGUAGE' | translate }} *</label>
+          <div class="clr-control-container news-data-field clr-col-12 clr-col-md-11"
+               [class.clr-error]="articleLanguage.invalid && articleLanguage.touched">
+            <div class="clr-select-wrapper">
+              <select id="article-language" class="clr-select" style="width: 99%;" [(ngModel)]="selectedArticle.language"
+                      #articleLanguage="ngModel" name="articleLanguage" required>
+                <option value="en">{{ 'ENGLISH' | translate }}</option>
+                <option value="pl">{{ 'POLISH' | translate }}</option>
+              </select>
+              <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="articleLanguage.valid"></clr-icon>
+            </div>
+            <span class="clr-subtext" [class.wrongDataMessage]="articleLanguage.valid" [hidden]="articleLanguage.untouched">{{ 'INCORRECT' | translate }}</span>
+          </div>
+
           <!--News image field-->
           <label for="article-image" class="clr-control-label clr-col-12 clr-col-md-1">{{ 'IMAGE' | translate }}</label>
           <div class="clr-control-container news-data-field clr-col-12 clr-col-md-11"
@@ -602,7 +629,7 @@
           <div class="clr-control-container news-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="newsText.invalid && newsText.touched">
             <quill-editor id="article-main-text" placeholder="{{ 'ARTICLE_MAIN_TEXT' | translate }}"
-                          [(ngModel)]="selectedArticle.newsText" #newsText="ngModel" name="newsText"
+                          [(ngModel)]="selectedArticle.newsText" #newsText="ngModel" name="newsText" [style]="quillEditorStyle"
                           required></quill-editor>
             <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="newsText.valid"></clr-icon>
             <span class="clr-subtext" [class.wrongDataMessage]="newsText.valid" [hidden]="newsText.untouched">{{ 'INCORRECT' | translate }}</span>
@@ -649,7 +676,7 @@
             <span class="clr-subtext" [class.wrongDataMessage]="productType.valid" [hidden]="productType.untouched">{{ 'INCORRECT' | translate }}</span>
           </div>
 
-          <!--News source field-->
+          <!--Product price field-->
           <label for="product-price" class="clr-control-label clr-col-12 clr-col-md-1">{{ 'PRICE' | translate }} *</label>
           <div class="clr-control-container product-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="price.invalid && price.touched">
@@ -662,7 +689,22 @@
                   [hidden]="price.untouched">{{ 'INCORRECT' | translate }}</span>
           </div>
 
-          <!--News image field-->
+          <!--Product language field-->
+          <label for="product-language" class="clr-control-label clr-col-12 clr-col-md-1">{{ 'LANGUAGE' | translate }} *</label>
+          <div class="clr-control-container product-data-field clr-col-12 clr-col-md-11"
+               [class.clr-error]="productLanguage.invalid && productLanguage.touched">
+            <div class="clr-select-wrapper">
+              <select id="product-language" class="clr-select" style="width: 99%;" [(ngModel)]="selectedProduct.language"
+                      #productLanguage="ngModel" name="productLanguage" required>
+                <option value="en">{{ 'ENGLISH' | translate }}</option>
+                <option value="pl">{{ 'POLISH' | translate }}</option>
+              </select>
+              <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="productLanguage.valid"></clr-icon>
+            </div>
+            <span class="clr-subtext" [class.wrongDataMessage]="productLanguage.valid" [hidden]="productLanguage.untouched">{{ 'INCORRECT' | translate }}</span>
+          </div>
+
+          <!--Product image field-->
           <label for="product-image" class="clr-control-label clr-col-12 clr-col-md-1">{{ 'IMAGE' | translate }}</label>
           <div class="clr-control-container product-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="productImage.invalid && productImage.touched">
@@ -674,13 +716,13 @@
             <span class="clr-subtext" [class.wrongDataMessage]="productImage.valid" [hidden]="productImage.untouched">{{ 'INCORRECT' | translate }}</span>
           </div>
 
-          <!--News main text field-->
+          <!--Product main text field-->
           <label for="product-description" class="clr-control-label clr-col-12 clr-col-md-1">{{ 'PRODUCT_DESCRIPTION' | translate }}
             *</label>
           <div class="clr-control-container product-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="description.invalid && description.touched">
             <quill-editor id="product-description" placeholder="{{ 'PRODUCT_DESCRIPTION' | translate }}"
-                          [(ngModel)]="selectedProduct.description" #description="ngModel" name="description"
+                          [(ngModel)]="selectedProduct.description" #description="ngModel" name="description" [style]="quillEditorStyle"
                           required></quill-editor>
             <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="description.valid"></clr-icon>
             <span class="clr-subtext" [class.wrongDataMessage]="description.valid" [hidden]="description.untouched">{{ 'INCORRECT' | translate }}</span>
@@ -707,7 +749,7 @@
           <label for="contact_info" class="clr-control-label clr-col-12 clr-col-md-1">{{ 'ABOUT' | translate }} *</label>
           <div class="clr-control-container info-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="contactInfo.invalid && contactInfo.touched">
-            <quill-editor id="contact_info" placeholder="{{ 'ABOUT' | translate }}" style="width: 99%;"
+            <quill-editor id="contact_info" placeholder="{{ 'ABOUT' | translate }}" style="width: 99%;" [style]="quillEditorStyle"
                           [(ngModel)]="selectedInfo.contactInfo" #contactInfo="ngModel" name="contactInfo" required>
             </quill-editor>
             <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="contactInfo.valid"></clr-icon>

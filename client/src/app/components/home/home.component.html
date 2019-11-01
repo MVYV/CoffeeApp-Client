@@ -1,58 +1,73 @@
-<div class="scroll-container">
-  <div class="home-container">
-    <div class="home-box box">
-      <a class="home-icons" routerLink="/about">
-        <clr-icon shape="users" size="40" class="home-details"></clr-icon>
-        <clr-icon shape="arrow" size="40" dir="right" class="home-arrow"></clr-icon>
-      </a>
-      <div class="home-box-title home-title">{{'HOMEPAGE_TEXT_ABOUT' | translate}}</div>
-      <div class="home-box-data home-data">
-        <div class="about-image">
-          <img src="assets/images/coffee-logo.png" class="about-img" />
-        </div>
-      </div>
+<div class="scroll-container" id="scroll-container" (mousewheel)="hideUpperHiddenBox(); hideLowerHiddenBox();">
+
+  <div class="hiddenBox hiddenBoxHide" id="upperHiddenBox">
+    <div class="homePage-ghost-text"></div>
+  </div>
+  <div class="home-about" id="home-about">
+    <div class="homePage-about-text homePage-text">
+      {{'HOMEPAGE_TEXT_ABOUT' | translate}}
     </div>
-    <div class="news-box box">
-      <a class="home-icons" routerLink="/news">
-        <clr-icon shape="details" size="40" class="home-details"></clr-icon>
-        <clr-icon shape="arrow" size="40" dir="right" class="home-arrow"></clr-icon>
-      </a>
-      <div class="news-box-title home-title">{{'HOMEPAGE_TEXT_NEWS' | translate}}</div>
-      <div class="news-box-data home-data">
-        <div class="home-news-title">
-          {{'THE_LATEST_NEWS' | translate}}
-        </div>
-        <div class="home-news">
-          <a *ngFor="let article of oneArticle" [routerLink]="['/article', article.id]" class="home-news-link">
-            <div class="home-article-image">
-              <img src="assets/images/login-page.jpg" class="home-article-img" />
-            </div>
-            <div class="home-article-title">{{article.newsTitle}}</div>
-          </a>
-        </div>
-      </div>
+
+    <div class="homePage-about-container homePage-item">
+      <!--<img src="assets/images/coffee-logo.png" class="about-img" />-->
+      [LOGO]
     </div>
-    <div class="products-box box">
-      <a class="home-icons" routerLink="/products">
-        <clr-icon shape="bundle" size="40" class="home-details"></clr-icon>
-        <clr-icon shape="arrow" size="40" dir="right" class="home-arrow"></clr-icon>
+
+    <a [ngx-scroll-to]="'#home-news'" [ngx-scroll-to-duration]="1000" [ngx-scroll-to-easing]="'easeOutElastic'" class="down-arrow" (click)="showLowerHiddenBox();">
+      <clr-icon shape="angle" dir="down" size="50"></clr-icon>
+    </a>
+
+  </div>
+
+  <div class="home-news" id="home-news">
+    <a [ngx-scroll-to]="'#home-about'" [ngx-scroll-to-offset]="" [ngx-scroll-to-duration]="1000" [ngx-scroll-to-easing]="'easeOutElastic'" class="up-arrow" (click)="showUpperHiddenBox(); hideUpperHiddenBox();">
+      <clr-icon shape="angle" dir="up" size="50"></clr-icon>
+    </a>
+
+    <div class="homePage-news-text homePage-text">
+      {{'HOMEPAGE_TEXT_NEWS' | translate}}
+    </div>
+
+    <div class="homePage-news-container homePage-item">
+      <a *ngFor="let article of severalArticles" [routerLink]="['/article', article.id]" class="homePageOneArticle">
+        <div class="homePage-article-icon">
+          <clr-icon shape="details" size="36"></clr-icon>
+        </div>
+        <div class="homePage-article-title">
+          {{article.newsTitle}}
+        </div>
       </a>
-      <div class="products-box-title home-title">{{'HOMEPAGE_TEXT_PRODUCTS' | translate}}</div>
-      <div class="products-box-data home-data">
-        <div class="home-products-title">
-          {{'ONE_OF_OUR_PRODUCTS' | translate}}
+    </div>
+
+    <a [ngx-scroll-to]="'#home-products'" [ngx-scroll-to-duration]="1000" [ngx-scroll-to-easing]="'easeOutElastic'" class="down-arrow" (click)="showLowerHiddenBox(); hideLowerHiddenBox();">
+      <clr-icon shape="angle" dir="down" size="50"></clr-icon>
+    </a>
+
+  </div>
+
+  <div class="home-products" id="home-products">
+
+    <a [ngx-scroll-to]="'#home-news'" [ngx-scroll-to-duration]="1000" [ngx-scroll-to-easing]="'easeOutElastic'" class="up-arrow" (click)="showUpperHiddenBox();">
+      <clr-icon shape="angle" dir="up" size="50"></clr-icon>
+    </a>
+
+    <div class="homePage-products-text homePage-text">
+      {{'HOMEPAGE_TEXT_PRODUCTS' | translate}}
+    </div>
+
+    <div class="homePage-products-container homePage-item">
+      <a *ngFor="let product of severalProducts" routerLink="/products" class="homePageOneProduct">
+        <div class="homePage-product-icon">
+          <clr-icon shape="bundle" size="36"></clr-icon>
         </div>
-        <div class="home-products">
-          <a *ngFor="let product of oneProduct" routerLink="/products" class="home-products-link">
-            <div class="home-products-image">
-              <img src="assets/images/login-page.jpg" class="home-products-img" />
-            </div>
-            <div class="home-products-names">
-              {{product.productName}}
-            </div>
-          </a>
+        <div class="homePage-product-title">
+          {{product.productName}}
         </div>
-      </div>
+      </a>
     </div>
   </div>
+  <div class="hiddenBox" id="lowerHiddenBox">
+    <div class="homePage-ghost-text"></div>
+  </div>
+
 </div>

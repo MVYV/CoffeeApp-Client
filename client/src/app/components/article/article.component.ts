@@ -10,6 +10,7 @@ import { User } from '../../models/users.model';
 import { Comment } from '../../models/comment.model';
 import { CommentsService } from '../../services/comments.service';
 import { AuthenticationService } from '../../services/authentication.service';
+import { GlobalVariablesService } from '../../services/global-variables.service';
 
 @Component({
   selector: 'app-article',
@@ -36,7 +37,8 @@ export class ArticleComponent implements OnInit {
                private productsService: ProductsService,
                private registrationService: UserRegistrationService,
                public authenticationService: AuthenticationService,
-               private commentsService: CommentsService ) { }
+               private commentsService: CommentsService,
+               private globalVariables: GlobalVariablesService ) { }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -65,14 +67,18 @@ export class ArticleComponent implements OnInit {
   getAllNews() {
     this.newsService.getNews().subscribe(
       news => {
-        this.news = news;
+        let localStorageLang = localStorage.getItem('translationLang');
+        let currentLang = localStorageLang ? localStorageLang : this.globalVariables.siteLanguage;
+        this.news = news.filter(articleLang => articleLang.language == currentLang);
       });
   }
 
   getAllProducts() {
     this.productsService.getProducts().subscribe(
       products => {
-        this.products = products;
+        let localStorageLang = localStorage.getItem('translationLang');
+        let currentLang = localStorageLang ? localStorageLang : this.globalVariables.siteLanguage;
+        this.products = products.filter(productLang => productLang.language == currentLang);
       }
     );
   }

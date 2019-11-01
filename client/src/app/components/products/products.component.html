@@ -24,8 +24,8 @@
           <div class="productText" [innerHtml]="product.description"></div>
           <div class="productComment">
             <div class="productsCommentsHeader">{{ 'YOUR_COMMENT' | translate }}</div>
-            <button class="btn btn-primary" (click)="showCommentForm();">{{ 'OPEN_FORM' | translate }}</button>
-            <div class="comment-form comment-form-hidden" id="comment-form">
+            <button class="btn btn-primary" (click)="showCommentForm(product.id);">{{ 'OPEN_FORM' | translate }}</button>
+            <div class="comment-form comment-form-hidden" id="comment-form{{product.id}}">
               <form>
                 <label for="commentText">{{ 'YOUR_COMMENT' | translate }}</label>
                 <textarea id="commentText" rows="8" [(ngModel)]="userComment.commentText" #commentText="ngModel" name="commentText" required></textarea>
@@ -36,26 +36,30 @@
           <div class="productAllComments">
             <div class="comments-header">{{ 'COMMENTS' | translate }}</div>
             <button class="btn btn-success show-comments-btn" (click)="getAllCommentsForProduct(product.id);">{{ 'SHOW_COMMENTS' | translate }}</button>
-            <div *ngFor="let comment of commentsForProduct" class="comment-container">
-              <div class="comment-author">{{comment.fullName}}</div>
-              <div class="comment-date">{{comment.commentDate | date: 'short'}}</div>
-              <div class="comment-text">{{comment.commentText}}</div>
-              <div class="comment-tools">
-                <div class="delete-confirmation" id="{{comment.id}}">
-                  <button class="btn btn-danger btn-sm del-confirmation-btn" (click)="removeComment(comment.id); hideDeleteConfirmation(comment.id);">{{ 'DELETE' | translate }}</button>
-                  <button class="btn btn-success btn-sm del-confirmation-btn" (click)="hideDeleteConfirmation(comment.id);">{{ 'CANCEL' | translate }}</button>
+            <ng-container *ngFor="let comment of commentsForProduct">
+              <ng-container *ngIf="product.id == comment.productId">
+                <div  class="comment-container">
+                  <div class="comment-author">{{comment.fullName}}</div>
+                  <div class="comment-date">{{comment.commentDate | date: 'short'}}</div>
+                  <div class="comment-text">{{comment.commentText}}</div>
+                  <div class="comment-tools">
+                    <div class="delete-confirmation" id="{{comment.id}}">
+                      <button class="btn btn-danger btn-sm del-confirmation-btn" (click)="removeComment(comment.id); hideDeleteConfirmation(comment.id);">{{ 'DELETE' | translate }}</button>
+                      <button class="btn btn-success btn-sm del-confirmation-btn" (click)="hideDeleteConfirmation(comment.id);">{{ 'CANCEL' | translate }}</button>
+                    </div>
+                    <button *ngIf="authenticationService.isLoggedIn()" type="button" class="btn btn-icon btn-success" aria-label="pencil" title="{{ 'EDIT_COMMENT' | translate }}" (click)="editComment(comment);">
+                      <clr-icon shape="pencil"></clr-icon>
+                    </button>
+                    <button *ngIf="authenticationService.isLoggedIn()" type="button" class="btn btn-icon btn-danger" aria-label="trash" title="{{ 'DELETE_COMMENT' | translate }}" (click)="showDeleteConfirmation(comment.id);">
+                      <clr-icon shape="trash"></clr-icon>
+                    </button>
+                    <button *ngIf="authenticationService.isLoggedIn() && userRole == 'ADMIN'" type="button" class="btn btn-icon" aria-label="ban" title="{{ 'BAN_USER' | translate }}">
+                      <clr-icon shape="ban"></clr-icon>
+                    </button>
+                  </div>
                 </div>
-                <button *ngIf="authenticationService.isLoggedIn()" type="button" class="btn btn-icon btn-success" aria-label="pencil" title="{{ 'EDIT_COMMENT' | translate }}" (click)="editComment(comment);">
-                  <clr-icon shape="pencil"></clr-icon>
-                </button>
-                <button *ngIf="authenticationService.isLoggedIn()" type="button" class="btn btn-icon btn-danger" aria-label="trash" title="{{ 'DELETE_COMMENT' | translate }}" (click)="showDeleteConfirmation(comment.id);">
-                  <clr-icon shape="trash"></clr-icon>
-                </button>
-                <button *ngIf="authenticationService.isLoggedIn() && userRole == 'ADMIN'" type="button" class="btn btn-icon" aria-label="ban" title="{{ 'BAN_USER' | translate }}">
-                  <clr-icon shape="ban"></clr-icon>
-                </button>
-              </div>
-            </div>
+              </ng-container>
+            </ng-container>
           </div>
         </div>
       </div>
@@ -69,7 +73,7 @@
           <div class="articleTitle"><clr-icon shape="details" size="18" class="newsIcon"></clr-icon><span>{{article.newsTitle}}</span></div>
         </a>
       </div>
-      <pagination-controls class="newsPagination" [directionLinks]="false" [maxSize]="7" [responsive]="false" previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
+      <pagination-controls class="newsPagination" [directionLinks]="false" [maxSize]="5" [responsive]="false" previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
   <app-footer></app-footer>

@@ -18,7 +18,11 @@
   top: 0;
   z-index: 501;
 }
-@media screen and (max-width: 450px)
+.siteLogo
 {
-
+  color: #ffffff;
+}
+.header-nav > a:hover
+{
+  text-decoration: underline;
 }

@@ -57,6 +57,10 @@ export class AdminPageComponent implements OnInit {
   aboutArr: any[] = [];
   selectedInfo: About;
 
+  quillEditorStyle = {
+    height: '300px'
+  }
+
   constructor( private pageTitle: PageTitleService,
                private registrationService: UserRegistrationService,
                private newsService: NewsService,
@@ -244,7 +248,8 @@ export class AdminPageComponent implements OnInit {
       article.newsDate,
       article.newsModificationDate,
       article.newsText,
-      article.newsImage
+      article.newsImage,
+      article.language
     );
   }
 
@@ -303,7 +308,8 @@ export class AdminPageComponent implements OnInit {
       product.description,
       product.price,
       product.productDate,
-      product.productModificationDate
+      product.productModificationDate,
+      product.language
     );
   }
 

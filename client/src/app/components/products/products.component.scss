@@ -448,6 +448,26 @@ $darkSiteColor: #222d36;
   .scroll-container
   {
     height: calc(100vh - 60px);
+    .globalProductsContainer
+    {
+      .products-container
+      {
+        .item-container
+        {
+          .product-item
+          {
+            .productComment
+            {
+              padding: 20px;
+            }
+            .productAllComments
+            {
+              padding: 20px;
+            }
+          }
+        }
+      }
+    }
   }
 }
 @media screen and (max-width: 700px)

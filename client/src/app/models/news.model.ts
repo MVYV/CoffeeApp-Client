@@ -7,5 +7,6 @@ export class News {
     public newsDate?: any,
     public newsModificationDate?: any,
     public newsText?: string,
-    public newsImage?: string ) {}
+    public newsImage?: string,
+    public language?: string) {}
 }

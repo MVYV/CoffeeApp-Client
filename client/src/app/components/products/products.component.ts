@@ -9,6 +9,7 @@ import { User } from '../../models/users.model';
 import { Comment } from '../../models/comment.model';
 import { CommentsService } from '../../services/comments.service';
 import { AuthenticationService } from '../../services/authentication.service';
+import { GlobalVariablesService } from '../../services/global-variables.service';
 
 @Component({
   selector: 'app-products',
@@ -33,7 +34,8 @@ export class ProductsComponent implements OnInit {
                private newsService: NewsService,
                private registrationService: UserRegistrationService,
                public authenticationService: AuthenticationService,
-               private commentsService: CommentsService ) { }
+               private commentsService: CommentsService,
+               private globalVariables: GlobalVariablesService ) { }
 
   ngOnInit() {
     this.pageTitle.setTitle('Coffee Products - Products');
@@ -47,7 +49,9 @@ export class ProductsComponent implements OnInit {
   getAllProducts() {
     this.productsService.getProducts().subscribe(
       products => {
-        this.products = products;
+        let localStorageLang = localStorage.getItem('translationLang');
+        let currentLang = localStorageLang ? localStorageLang : this.globalVariables.siteLanguage;
+        this.products = products.filter(productLang => productLang.language == currentLang);
       }
     );
   }
@@ -59,7 +63,9 @@ export class ProductsComponent implements OnInit {
   getAllNews() {
     this.newsService.getNews().subscribe(
       news => {
-        this.news = news;
+        let localStorageLang = localStorage.getItem('translationLang');
+        let currentLang = localStorageLang ? localStorageLang : this.globalVariables.siteLanguage;
+        this.news = news.filter(articleLang => articleLang.language == currentLang);
       });
   }
 
@@ -84,9 +90,9 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  showCommentForm() {
+  showCommentForm(productID: any) {
     this.isNewComment = true;
-    let commentForm = document.getElementById('comment-form');
+    let commentForm = document.getElementById('comment-form' + productID);
     commentForm.classList.remove('comment-form-hidden');
     commentForm.classList.add('comment-form-visible');
   }

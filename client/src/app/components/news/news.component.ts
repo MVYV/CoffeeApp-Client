@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PageTitleService } from '../../services/page-title.service';
 import { NewsService } from '../../services/news-service';
 import { News } from '../../models/news.model';
+import { GlobalVariablesService } from '../../services/global-variables.service';
 
 @Component({
   selector: 'app-news',
@@ -15,7 +16,8 @@ export class NewsComponent implements OnInit {
   loadingSpinner: boolean;
 
   constructor( private pageTitle: PageTitleService,
-               private newsService: NewsService) { }
+               private newsService: NewsService,
+               private globalVariables: GlobalVariablesService ) { }
 
   ngOnInit() {
     this.pageTitle.setTitle('Coffee Products - News');
@@ -26,8 +28,10 @@ export class NewsComponent implements OnInit {
   getAllNews() {
     this.newsService.getNews().subscribe(
       news => {
-        this.news = news;
-        this.postedNews = news.slice(0, 5);
+        let localStorageLang = localStorage.getItem('translationLang');
+        let currentLang = localStorageLang ? localStorageLang : this.globalVariables.siteLanguage;
+        this.news = news.filter(articleLang => articleLang.language == currentLang);
+        this.postedNews = this.news.slice(0, 5);
         this.loadingSpinner = false;
       });
   }

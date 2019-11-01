@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PageTitleService } from "../../services/page-title.service";
+import { PageTitleService } from '../../services/page-title.service';
+import { AboutService } from '../../services/about.service';
 
 @Component({
   selector: 'app-about',
@@ -8,26 +9,22 @@ import { PageTitleService } from "../../services/page-title.service";
 })
 export class AboutComponent implements OnInit {
 
-  allCheckBoxes: any = document.querySelectorAll('input[type=checkbox]');
+  aboutArr: any[] = [];
 
-  constructor( private pageTitle: PageTitleService ) { }
+  constructor( private pageTitle: PageTitleService,
+               private aboutService: AboutService ) { }
 
   ngOnInit() {
     this.pageTitle.setTitle('Coffee Products - About Us');
+    this.getContactInformation();
   }
 
-  saveCheckBoxesState() {
-    let allCheckBoxes: any = document.querySelectorAll('input[type=checkbox]');
-    for (let i = 0; i < allCheckBoxes.length; i++) {
-      localStorage.setItem(allCheckBoxes[i].value, allCheckBoxes[i].checked);
-    }
-  }
+  getContactInformation() {
+    this.aboutService.getContactInfo().subscribe(
+      aboutInfo => {
+        this.aboutArr.push(aboutInfo);
+      }, () => {
 
-  loadCheckBoxesState() {
-    let allCheckBoxes: any = document.querySelectorAll('input[type=checkbox]');
-    for (let i = 0; i < allCheckBoxes.length; i++) {
-      allCheckBoxes[i].checked = localStorage.getItem(allCheckBoxes[i].value) === 'true' ? true:false;
-    }
+      });
   }
-
 }

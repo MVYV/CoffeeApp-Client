@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TranslateService {
 
   data: any = {};
@@ -11,14 +9,15 @@ export class TranslateService {
 
   use(lang: string): Promise<{}> {
     return new Promise<{}>((resolve, reject) => {
-      const langPath = `assets/locale/${lang || 'en'}.json`;
+      // const langPath = `assets/locale/${lang || 'en'}.json`;
+      const langPath = `assets/locale/${localStorage.getItem('translationLang') || 'en'}.json`;
 
       this._http.get<{}>(langPath).subscribe(
         translation => {
           this.data = Object.assign({}, translation || {});
           resolve(this.data);
         },
-        error1 => {
+        () => {
           this.data = {};
           resolve(this.data);
         }
