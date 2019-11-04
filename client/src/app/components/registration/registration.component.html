@@ -23,28 +23,28 @@
                pattern="^([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))$" required/>
       </clr-input-container>
 
-      <span class="code-button" (click)="checkUserEmail();">Get Verification Code</span>
-      <span class="email-code-help">This code is required to verify that the email is real. We will send you the code by email.</span>
+      <span class="code-button" (click)="checkUserEmail();">{{ 'EMAIL_CODE' | translate }}</span>
+      <span class="email-code-help">{{ 'CODE_HELP' | translate }}</span>
 
       <clr-input-container>
         <input type="number" class="userName" [(ngModel)]="eCode" #emailCode="ngModel" name="emailCode" clrInput
-               placeholder="Email Verification Code *" (keyup)="checkCode($event);" required/>
+               placeholder="{{ 'EMAIL_VERIFICATION_CODE' | translate }} *" (keyup)="checkCode($event);" required/>
       </clr-input-container>
 
       <clr-input-container>
-        <input type="text" class="userName" clrInput placeholder="Country *"
+        <input type="text" class="userName" clrInput placeholder="{{ 'COUNTRY' | translate }} *"
                [(ngModel)]="newUser.country" #country="ngModel" name="country" minlength="3" maxlength="20"
                pattern="[A-ZĄĆĘŁŃÓŚŹŻ]([A-ZĄĆĘŁŃÓŚŹŻ]*[a-ząćęłńóśźż]*[\' -]?)+" required/>
       </clr-input-container>
 
       <clr-input-container>
-        <input type="text" class="userName" clrInput placeholder="City *"
+        <input type="text" class="userName" clrInput placeholder="{{ 'CITY' | translate }} *"
                [(ngModel)]="newUser.city" #city="ngModel" name="city" minlength="3" maxlength="20"
                pattern="[A-ZĄĆĘŁŃÓŚŹŻ]([A-ZĄĆĘŁŃÓŚŹŻ]*[a-ząćęłńóśźż]*[\' -]?)+" required/>
       </clr-input-container>
 
       <clr-date-container>
-        <input type="date" class="userName" clrDate placeholder="Date Of Birth *"
+        <input type="date" class="userName" clrDate placeholder="{{ 'DATE_OF_BIRTH' | translate }} *"
                [(ngModel)]="newUser.dateOfBirth" #dateOfBirth="ngModel" name="dateOfBirth" required/>
       </clr-date-container>
 
@@ -69,7 +69,7 @@
         Invalid entered data or empty field.<br>Please, start your first name, last name, country and city with capital letter.
       </div>
       <button type="submit" class="btn btn-primary" [disabled]="userRegistrationForm.invalid || !isCorrectCode || !isCorrectPass"
-              (click)="addNewUser();">{{'REGISTER' | translate }}
+              (click)="addNewUser(); checkLogin();">{{'REGISTER' | translate }}
       </button>
     </div>
   </form>

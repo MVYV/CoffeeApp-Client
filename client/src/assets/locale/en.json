@@ -105,5 +105,8 @@
   "MODIFY_PRODUCT": "Modify Product",
   "DELETE_PRODUCT": "Delete Product",
   "MODIFY_CONTACT_INFORMATION": "Modify Contact Information",
-  "SIGN_UP": "Sign Up"
+  "SIGN_UP": "Sign Up",
+  "EMAIL_CODE": "Get Verification Code",
+  "CODE_HELP": "This code is required to verify that the email is real. We will send you the code by email.",
+  "EMAIL_VERIFICATION_CODE": "Email Verification Code"
 }

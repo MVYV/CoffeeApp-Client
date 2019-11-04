@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { PageTitleService } from '../../services/page-title.service';
 import { UserRegistrationService } from '../../services/user-registration.service';
 import { User } from '../../models/users.model';
-import { Mail } from "../../models/mail.model";
+import { Mail } from '../../models/mail.model';
+import { AuthenticationService } from '../../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -19,10 +21,13 @@ export class RegistrationComponent implements OnInit {
   isCorrectPass: boolean = false;
   emailCode: any;
   mail: Mail;
+  invalidLogin = false;
 
   constructor(
     private pageTitle: PageTitleService,
-    private registrationService: UserRegistrationService ) { }
+    private registrationService: UserRegistrationService,
+    private authenticationService: AuthenticationService,
+    private router: Router ) { }
 
   ngOnInit() {
     this.pageTitle.setTitle('Coffee Products - Registration');
@@ -67,6 +72,19 @@ export class RegistrationComponent implements OnInit {
   checkPass(event) {
     let passField: any = document.getElementById('userPass');
     this.isCorrectPass = event.target.value == passField.value;
+  }
+
+  checkLogin() {
+    (this.authenticationService.authenticate(this.newUser.email, this.newUser.password).subscribe(
+      () => {
+        this.router.navigate(['']).then(() => {
+          window.location.reload();
+        });
+        this.invalidLogin = false;
+      }, () => {
+        this.invalidLogin = true;
+      }
+    ));
   }
 
 }
