@@ -43,6 +43,11 @@
                pattern="[A-ZĄĆĘŁŃÓŚŹŻ]([A-ZĄĆĘŁŃÓŚŹŻ]*[a-ząćęłńóśźż]*[\' -]?)+" required/>
       </clr-input-container>
 
+      <clr-date-container>
+        <input type="date" class="userName" clrDate placeholder="Date Of Birth *"
+               [(ngModel)]="newUser.dateOfBirth" #dateOfBirth="ngModel" name="dateOfBirth" required/>
+      </clr-date-container>
+
       <clr-select-container>
         <select clrSelect [(ngModel)]="newUser.gender" #gender="ngModel" name="gender" required>
           <option value="Male">Male</option>

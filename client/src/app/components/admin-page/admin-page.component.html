@@ -99,7 +99,7 @@
             <clr-dg-cell>{{user.isActive}}</clr-dg-cell>
             <clr-dg-cell>{{user.country}}</clr-dg-cell>
             <clr-dg-cell>{{user.city}}</clr-dg-cell>
-            <clr-dg-cell>{{user.dateOfBirth}}</clr-dg-cell>
+            <clr-dg-cell>{{user.dateOfBirth | date: 'longDate'}}</clr-dg-cell>
             <clr-dg-cell>{{user.gender}}</clr-dg-cell>
           </clr-dg-row>
 
