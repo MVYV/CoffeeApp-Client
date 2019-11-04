@@ -31,6 +31,11 @@ export class RegistrationComponent implements OnInit {
   }
 
   addNewUser() {
+    let dateArr = this.newUser.dateOfBirth.split('/').reverse();
+    let newDateArr = [];
+    newDateArr.push(dateArr[0], dateArr[2], dateArr[1]);
+    let newDateString = newDateArr.join('-');
+    this.newUser.dateOfBirth = new Date(Date.parse(newDateString));
     this.registrationService.postUser(this.newUser).subscribe(
       () => {
       console.log('Done!!!');

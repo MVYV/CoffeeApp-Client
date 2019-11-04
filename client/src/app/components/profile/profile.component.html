@@ -108,6 +108,28 @@
         </div>
       </div>
 
+      <!--User password field-->
+      <label for="user-pass" class="clr-control-label clr-col-12 clr-col-md-12">{{ 'PASSWORD' | translate }} *</label>
+      <div class="clr-control-container user-data-field clr-col-12 clr-col-md-12"
+           [class.clr-error]="pass.invalid && pass.touched">
+        <div class="clr-input-wrapper">
+          <input type="password" id="user-pass" placeholder="{{ 'PASSWORD' | translate }}" class="clr-input clr-col-12 clr-col-md-12"
+                 [(ngModel)]="authenticateUser.password" #pass="ngModel" name="pass" required/>
+          <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="pass.valid"></clr-icon>
+        </div>
+      </div>
+
+      <!--User password confirmation field-->
+      <label for="user-passRepeat" class="clr-control-label clr-col-12 clr-col-md-12">{{ 'PASSWORD_REPEAT' | translate }} *</label>
+      <div class="clr-control-container user-data-field clr-col-12 clr-col-md-12"
+           [class.clr-error]="passRepeat.invalid && passRepeat.touched">
+        <div class="clr-input-wrapper">
+          <input type="password" id="user-passRepeat" placeholder="{{ 'PASSWORD_REPEAT' | translate }}" class="clr-input clr-col-12 clr-col-md-12"
+                 [(ngModel)]="repeatPassword" #passRepeat="ngModel" name="passRepeat" (keyup)="checkPass($event);" required/>
+          <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="passRepeat.valid"></clr-icon>
+        </div>
+      </div>
+
       <!--User avatar field-->
       <label for="user-avatar" class="clr-control-label clr-col-12 clr-col-md-12">{{ 'AVATAR' | translate }}</label>
       <div class="clr-control-container user-data-field clr-col-12 clr-col-md-12"
@@ -118,7 +140,7 @@
           <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="avatar.valid"></clr-icon>
         </div>
       </div>
-      <button class="btn btn-primary" (click)="updateProfile();">{{ 'UPDATE_PROFILE' | translate }}</button>
+      <button class="btn btn-primary" [disabled]="profileForm.invalid || !isCorrectPass" (click)="updateProfile();">{{ 'UPDATE_PROFILE' | translate }}</button>
     </div>
   </form>
   <app-footer></app-footer>
