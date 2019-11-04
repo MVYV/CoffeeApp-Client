@@ -40,6 +40,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AboutService } from './services/about.service';
 import { CommentsService } from './services/comments.service';
 import { GlobalVariablesService } from './services/global-variables.service';
+import { SafeHTMLPipe } from './pipes/safe-html.pipe';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -64,7 +65,8 @@ export function setupTranslateFactory(service: TranslateService): Function {
     AdminPageComponent,
     FooterComponent,
     LogoutComponent,
-    ProfileComponent
+    ProfileComponent,
+    SafeHTMLPipe
   ],
   imports: [
     BrowserModule,

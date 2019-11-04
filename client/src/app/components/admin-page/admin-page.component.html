@@ -47,11 +47,6 @@
               {{ 'LAST_NAME' | translate }}
             </ng-container>
           </clr-dg-column>
-          <clr-dg-column [clrDgField]="'email'">
-            <ng-container *clrDgHideableColumn="{hidden: false}">
-              {{ 'EMAIL' | translate }}
-            </ng-container>
-          </clr-dg-column>
           <clr-dg-column>
             <ng-container *clrDgHideableColumn="{hidden: false}">
               {{ 'ROLE' | translate }}
@@ -98,7 +93,6 @@
             <clr-dg-cell>{{user.avatar}}</clr-dg-cell>
             <clr-dg-cell>{{user.userName}}</clr-dg-cell>
             <clr-dg-cell>{{user.lastName}}</clr-dg-cell>
-            <clr-dg-cell>{{user.email}}</clr-dg-cell>
             <clr-dg-cell>
               <ng-container *ngFor="let role of user.roles">{{role.role}}</ng-container>
             </clr-dg-cell>
@@ -187,7 +181,7 @@
             <clr-dg-cell>{{article.newsModificationDate | date: 'long'}}</clr-dg-cell>
             <clr-dg-cell>{{article.language}}</clr-dg-cell>
             <clr-dg-row-detail *clrIfExpanded>
-              {{article.newsText}}
+              {{article.newsText | safeHTML}}
             </clr-dg-row-detail>
           </clr-dg-row>
 
@@ -269,7 +263,7 @@
             <clr-dg-cell>{{product.productModificationDate | date: 'long'}}</clr-dg-cell>
             <clr-dg-cell>{{product.language}}</clr-dg-cell>
             <clr-dg-row-detail *clrIfExpanded>
-              {{product.description}}
+              {{product.description | safeHTML}}
             </clr-dg-row-detail>
           </clr-dg-row>
 
@@ -433,20 +427,6 @@
               <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="lastName.valid"></clr-icon>
             </div>
             <span class="clr-subtext" [class.wrongDataMessage]="lastName.valid" [hidden]="lastName.untouched">{{ 'INCORRECT' | translate }}</span>
-          </div>
-
-          <!--User email field-->
-          <label for="email-address" class="clr-control-label clr-col-12 clr-col-md-2">{{ 'EMAIL' | translate }} *</label>
-          <div class="clr-control-container user-data-field clr-col-12 clr-col-md-10"
-               [class.clr-error]="email.invalid && email.touched">
-            <div class="clr-input-wrapper">
-              <input type="text" id="email-address" placeholder="{{ 'EMAIL' | translate }}" class="clr-input" [(ngModel)]="selectedUser.email"
-                     #email="ngModel" name="email"
-                     pattern="^([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))$" required/>
-              <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="email.valid"></clr-icon>
-            </div>
-            <span class="clr-subtext" [class.wrongDataMessage]="email.valid"
-                  [hidden]="email.untouched">{{ 'INCORRECT' | translate }}</span>
           </div>
 
           <!--User role field-->
@@ -629,7 +609,7 @@
           <div class="clr-control-container news-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="newsText.invalid && newsText.touched">
             <quill-editor id="article-main-text" placeholder="{{ 'ARTICLE_MAIN_TEXT' | translate }}"
-                          [(ngModel)]="selectedArticle.newsText" #newsText="ngModel" name="newsText" [style]="quillEditorStyle"
+                          [(ngModel)]="selectedArticle.newsText" #newsText="ngModel" name="newsText" [ngStyle]="quillEditorStyle"
                           required></quill-editor>
             <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="newsText.valid"></clr-icon>
             <span class="clr-subtext" [class.wrongDataMessage]="newsText.valid" [hidden]="newsText.untouched">{{ 'INCORRECT' | translate }}</span>
@@ -722,7 +702,7 @@
           <div class="clr-control-container product-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="description.invalid && description.touched">
             <quill-editor id="product-description" placeholder="{{ 'PRODUCT_DESCRIPTION' | translate }}"
-                          [(ngModel)]="selectedProduct.description" #description="ngModel" name="description" [style]="quillEditorStyle"
+                          [(ngModel)]="selectedProduct.description" #description="ngModel" name="description" [ngStyle]="quillEditorStyle"
                           required></quill-editor>
             <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="description.valid"></clr-icon>
             <span class="clr-subtext" [class.wrongDataMessage]="description.valid" [hidden]="description.untouched">{{ 'INCORRECT' | translate }}</span>
@@ -749,7 +729,7 @@
           <label for="contact_info" class="clr-control-label clr-col-12 clr-col-md-1">{{ 'ABOUT' | translate }} *</label>
           <div class="clr-control-container info-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="contactInfo.invalid && contactInfo.touched">
-            <quill-editor id="contact_info" placeholder="{{ 'ABOUT' | translate }}" style="width: 99%;" [style]="quillEditorStyle"
+            <quill-editor id="contact_info" placeholder="{{ 'ABOUT' | translate }}" style="width: 99%;" [ngStyle]="quillEditorStyle"
                           [(ngModel)]="selectedInfo.contactInfo" #contactInfo="ngModel" name="contactInfo" required>
             </quill-editor>
             <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="contactInfo.valid"></clr-icon>

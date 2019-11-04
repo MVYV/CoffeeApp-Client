@@ -29,7 +29,7 @@
       </div>
       <div class="article-text-box">
         <div class="article-annotation">{{selectedArticle?.newsSubText}}</div>
-        <div class="article-text" [innerHtml]="selectedArticle?.newsText"></div>
+        <div class="article-text" [innerHtml]="selectedArticle?.newsText | safeHTML"></div>
       </div>
       <div class="article-comment-box">
         <div class="comments-header">{{ 'YOUR_COMMENT' | translate }}</div>

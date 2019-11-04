@@ -21,7 +21,7 @@
             <div class="productDate productInfo" *ngIf="product.productModificationDate">{{product.productModificationDate | date:'medium'}}</div>
             <div class="productDate productInfo" *ngIf="!product.productModificationDate">{{product.productDate | date:'medium'}}</div>
           </div>
-          <div class="productText" [innerHtml]="product.description"></div>
+          <div class="productText" [innerHtml]="product.description | safeHTML"></div>
           <div class="productComment">
             <div class="productsCommentsHeader">{{ 'YOUR_COMMENT' | translate }}</div>
             <button class="btn btn-primary" (click)="showCommentForm(product.id);">{{ 'OPEN_FORM' | translate }}</button>

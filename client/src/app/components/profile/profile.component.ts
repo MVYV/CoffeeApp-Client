@@ -44,6 +44,7 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile() {
+    this.authenticateUser.dateOfBirth = this.authenticateUser.dateOfBirth.replace(/\//g, "-");
     this.registrationService.putUser(this.authenticateUser).subscribe(
       () => {
         this.isSuccess = true;

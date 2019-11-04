@@ -208,7 +208,6 @@ $darkSiteColor: #222d36;
           }
           .productAllComments
           {
-            margin-bottom: 25px;
             font-size: 14px;
             .comments-header
             {
@@ -287,11 +286,12 @@ $darkSiteColor: #222d36;
     .newsOnProductsPage
     {
       width: 270px;
-      padding: 20px;
+      padding: 0 20px 20px 20px;
       background-color: #ffffff;
       position: absolute;
       top: 0;
       right: 0;
+      padding-top: 20px;
       .news-header
       {
         overflow: hidden;
@@ -426,6 +426,14 @@ $darkSiteColor: #222d36;
             {
               padding: 10px 20px 20px 20px;
             }
+            .productComment
+            {
+              padding: 20px;
+            }
+            .productAllComments
+            {
+              padding: 20px;
+            }
           }
         }
       }
@@ -448,45 +456,5 @@ $darkSiteColor: #222d36;
   .scroll-container
   {
     height: calc(100vh - 60px);
-    .globalProductsContainer
-    {
-      .products-container
-      {
-        .item-container
-        {
-          .product-item
-          {
-            .productComment
-            {
-              padding: 20px;
-            }
-            .productAllComments
-            {
-              padding: 20px;
-            }
-          }
-        }
-      }
-    }
   }
-}
-@media screen and (max-width: 700px)
-{
-
-}
-@media screen and (max-width: 550px)
-{
-
-}
-@media screen and (max-width: 450px)
-{
-
-}
-@media screen and (max-width: 400px)
-{
-
-}
-@media screen and (max-width: 375px)
-{
-
 }

@@ -181,6 +181,7 @@ export class AdminPageComponent implements OnInit {
   modifyUser() {
     if (this.isNewUser) {
       this.selectedUser.roles = this.userRoles;
+      // this.selectedUser.dateOfBirth = this.selectedUser.dateOfBirth.replace(/\//g, "-");
       this.registrationService.postUser(this.selectedUser).subscribe(
         () => {
           this.isSuccess = true;
@@ -191,13 +192,29 @@ export class AdminPageComponent implements OnInit {
         });
     } else {
       this.selectedUser.roles = this.userRoles;
+      // this.selectedUser.dateOfBirth = this.selectedUser.dateOfBirth.replace(/\//g, "-");
+      let dateArr = this.selectedUser.dateOfBirth.split('/').reverse();
+      let newDateArr = [];
+      newDateArr.push(dateArr[0], dateArr[2], dateArr[1]);
+      let newDateString = newDateArr.join('-');
+      this.selectedUser.dateOfBirth = new Date(Date.parse(newDateString));
       this.registrationService.putUser(this.selectedUser).subscribe(
         () => {
           this.isSuccess = true;
           this.getAllUsers();
+          console.log(this.selectedUser.dateOfBirth);
+          console.log(dateArr);
+          console.log(newDateArr);
+          console.log(newDateString);
+          console.log(this.selectedUser.dateOfBirth);
         }, () => {
           this.isError = true;
           this.getAllUsers();
+          console.log(this.selectedUser.dateOfBirth);
+          console.log(dateArr);
+          console.log(newDateArr);
+          console.log(newDateString);
+          console.log(this.selectedUser.dateOfBirth);
         });
     }
 

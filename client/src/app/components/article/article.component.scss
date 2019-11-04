@@ -58,8 +58,7 @@ body
       }
       .scrollbarBox
       {
-        max-width: 270px;
-        max-height: 700px;
+        width: 100%;
         .product-link
         {
           display: flex;
@@ -234,6 +233,10 @@ body
           left: 0;
           bottom: 0;
           background-color: rgba(0, 0, 0, .3);
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
           .article-info
           {
             width: 100%;
@@ -302,7 +305,6 @@ body
       .article-comment-box
       {
         width: 100%;
-        margin-bottom: 15px;
         .comments-header
         {
           overflow: hidden;
@@ -332,7 +334,6 @@ body
       }
       .article-comments
       {
-        margin-bottom: 25px;
         .comments-header
         {
           overflow: hidden;
@@ -648,6 +649,14 @@ body
         {
           padding: 20px;
         }
+        .article-comment-box
+        {
+          padding: 20px;
+        }
+        .article-comments
+        {
+          padding: 20px;
+        }
       }
       .products-on-article-page
       {
@@ -661,8 +670,9 @@ body
         }
         .scrollbarBox
         {
-          max-width: 100%;
-          max-height: 100%;
+          width: 100%;
+          overflow: hidden;
+          //max-height: 100%;
           .product-link
           {
             margin: 2px;
@@ -682,20 +692,6 @@ body
 {
   .scroll-container
   {
-    .article-page-container
-    {
-      .article-box
-      {
-        .article-comment-box
-        {
-          padding: 20px;
-        }
-        .article-comments
-        {
-          padding: 20px;
-        }
-      }
-    }
     .other-news
     {
       .other-news-link-box
