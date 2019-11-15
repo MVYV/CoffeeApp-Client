@@ -34,13 +34,8 @@ export class AdminPageComponent implements OnInit {
   users: User[];
   newUser: User;
   selectedUser: User;
-  numberOfUsers: number;
-  activeUsers: User[];
-  inActiveUsers: User[];
-  numberOfActiveUsers: number;
-  numberOfInActiveUsers: number;
   roles: Role[];
-  selectedRoles: Role[];
+  selectedRoles: Role;
   mail: Mail;
   news: News[];
   newArticle: News;
@@ -59,7 +54,7 @@ export class AdminPageComponent implements OnInit {
 
   quillEditorStyle = {
     height: '300px'
-  }
+  };
 
   constructor( private pageTitle: PageTitleService,
                private registrationService: UserRegistrationService,
@@ -129,11 +124,6 @@ export class AdminPageComponent implements OnInit {
     this.registrationService.getUsers().subscribe(
       users => {
         this.users = users;
-        this.numberOfUsers = users.length;
-        this.activeUsers = users.filter(person => person.isActive);
-        this.inActiveUsers = users.filter(person => !person.isActive);
-        this.numberOfActiveUsers = this.activeUsers.length;
-        this.numberOfInActiveUsers = this.inActiveUsers.length;
         this.loading = false;
       }, () => {
 
@@ -144,13 +134,9 @@ export class AdminPageComponent implements OnInit {
     this.registrationService.getRoles().subscribe(
       roles => {
         this.roles = roles;
+        console.log(this.roles);
       }, () => {
       });
-  }
-
-  getSelectedRoles() {
-    this.selectedRoles = this.roles.filter((r) => r.checked);
-    this.userRoles = this.selectedRoles;
   }
 
   addUser() {
@@ -180,7 +166,7 @@ export class AdminPageComponent implements OnInit {
 
   modifyUser() {
     if (this.isNewUser) {
-      this.selectedUser.roles = this.userRoles;
+      // this.selectedUser.roles = this.userRoles;
       let dateArr = this.selectedUser.dateOfBirth.split('/').reverse();
       let newDateArr = [];
       newDateArr.push(dateArr[0], dateArr[2], dateArr[1]);
@@ -195,7 +181,7 @@ export class AdminPageComponent implements OnInit {
           this.getAllUsers();
         });
     } else {
-      this.selectedUser.roles = this.userRoles;
+      this.selectedUser.roles = this.roles.filter(r => r.role == this.selectedRoles);
       let dateArr = this.selectedUser.dateOfBirth.split('/').reverse();
       let newDateArr = [];
       newDateArr.push(dateArr[0], dateArr[2], dateArr[1]);
@@ -205,19 +191,11 @@ export class AdminPageComponent implements OnInit {
         () => {
           this.isSuccess = true;
           this.getAllUsers();
-          console.log(this.selectedUser.dateOfBirth);
-          console.log(dateArr);
-          console.log(newDateArr);
-          console.log(newDateString);
-          console.log(this.selectedUser.dateOfBirth);
+          console.log(this.selectedUser.roles);
         }, () => {
           this.isError = true;
           this.getAllUsers();
-          console.log(this.selectedUser.dateOfBirth);
-          console.log(dateArr);
-          console.log(newDateArr);
-          console.log(newDateString);
-          console.log(this.selectedUser.dateOfBirth);
+          console.log(this.selectedUser.roles);
         });
     }
 

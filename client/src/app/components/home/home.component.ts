@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
         let localStorageLang = localStorage.getItem('translationLang');
         let currentLang = localStorageLang ? localStorageLang : this.globalVariables.siteLanguage;
         this.news = news.filter(articleLang => articleLang.language == currentLang);
-        this.severalArticles = this.news.slice(0, 5);
+        this.severalArticles = this.news.slice(0, 6);
       });
   }
 
@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
         let localStorageLang = localStorage.getItem('translationLang');
         let currentLang = localStorageLang ? localStorageLang : this.globalVariables.siteLanguage;
         this.products = products.filter(productLang => productLang.language == currentLang);
-        this.severalProducts = this.products.slice(0, 3);
+        this.severalProducts = this.products.slice(0, 4);
       });
   }
 

@@ -2,6 +2,13 @@
 //{
 //  font-family: 'ZCOOL QingKe HuangYou', cursive;
 //}
+$textColor: #000000;
+$alternateColor :#314351;
+$backgroundColor: #dddddd;
+$globalBackgroundColor: #edeef0;
+$linkColor: #0066cc;
+$headerColor: #037a00;
+$darkSiteColor: #222d36;
 .clr-main-container
 {
   overflow: hidden;
@@ -25,4 +32,52 @@
 .header-nav > a:hover
 {
   text-decoration: underline;
+}
+.subnav
+{
+  display: none;
+}
+.nav-text-hidden
+{
+  color: $darkSiteColor;
+  font-weight: bold;
+  margin-left: 10px;
+}
+.nav-link-hidden
+{
+  color: $darkSiteColor;
+  margin-left: 10px;
+}
+.lang-hidden
+{
+  color: $darkSiteColor;
+  margin-left: 10px;
+}
+.user-icon-hidden
+{
+  color: $darkSiteColor;
+  margin-left: 10px;
+}
+.nav-text-hidden:hover,
+.nav-link-hidden:hover,
+.lang-hidden:hover,
+.user-icon-hidden:hover
+{
+  color: $headerColor;
+}
+@media screen and (max-width: 900px)
+{
+  .header-actions-own-styles
+  {
+    display: none;
+  }
+  .subnav
+  {
+    position: sticky;
+    top: 60px;
+    z-index: 500;
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px 10px;
+  }
 }

@@ -24,9 +24,9 @@
     <clr-tab>
       <button clrTabLink id="users">{{ 'USERS' | translate }}</button>
       <clr-tab-content *clrIfActive="false">
-        <button type="button" class="btn btn-outline add-item-btn" (click)="editUserForm.reset(); addUser();">
-          {{ 'ADD_USER' | translate }}
-        </button>
+        <!--<button type="button" class="btn btn-outline add-item-btn" (click)="editUserForm.reset(); addUser();">-->
+          <!--{{ 'ADD_USER' | translate }}-->
+        <!--</button>-->
 
         <!--Table with all users-->
         <clr-datagrid [clrDgLoading]="loading">
@@ -87,8 +87,8 @@
                         (click)="showMailWindow = true; editUser(user)"></clr-icon>
               <clr-icon shape="ban" title="{{ 'BAN_USER' | translate }}" class="admin-ban-user admin-ban"
                         (click)="editUser(user); banOneUser();"></clr-icon>
-              <clr-icon shape="trash" title="{{ 'DELETE_USER' | translate }}" class="admin-delete-user admin-delete"
-                        (click)="showDeleteDialog('user'); editUser(user);"></clr-icon>
+              <!--<clr-icon shape="trash" title="{{ 'DELETE_USER' | translate }}" class="admin-delete-user admin-delete"-->
+                        <!--(click)="showDeleteDialog('user'); editUser(user);"></clr-icon>-->
             </clr-dg-action-overflow>
             <clr-dg-cell>{{user.avatar}}</clr-dg-cell>
             <clr-dg-cell>{{user.userName}}</clr-dg-cell>
@@ -105,7 +105,7 @@
 
           <!--Table footer-->
           <clr-dg-footer>
-            <clr-dg-pagination #pagination [clrDgPageSize]="10">
+            <clr-dg-pagination #pagination [clrDgPageSize]="20">
               <clr-dg-page-size [clrPageSizeOptions]="[5,10,20,50,100]">{{ 'USERS_PER_PAGE' | translate }}</clr-dg-page-size>
               {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
               {{ 'OF' | translate }} {{pagination.totalItems}} {{ 'USERS' | translate }}
@@ -432,8 +432,8 @@
           <!--User role field-->
           <label class="clr-control-label clr-col-12 clr-col-md-2">{{ 'ROLE' | translate }}</label>
           <div class="clr-control-container user-data-field clr-col-12 clr-col-md-10 clr-control-inline">
-            <div class="clr-checkbox-wrapper" *ngFor="let role of roles; let i = index">
-              <input type="checkbox" id="{{role.role}}" name="checkbox-error" value="roleItem" class="clr-checkbox" [(ngModel)]="roles[i].checked" (change)="getSelectedRoles()">
+            <div class="clr-checkbox-wrapper" *ngFor="let role of roles">
+              <input type="radio" id="{{role.role}}" name="checkbox-error" value="{{role.role}}" clrRadio [(ngModel)]="selectedRoles">
               <label for="{{role.role}}" class="clr-control-label">{{role.role}}</label>
             </div>
             <div class="clr-subtext-wrapper">
@@ -482,18 +482,18 @@
                   [hidden]="city.untouched">{{ 'INCORRECT' | translate }}</span>
           </div>
 
-          <!--User date of birth field-->
-          <label for="user-date-of-birth" class="clr-control-label clr-col-12 clr-col-md-2">{{ 'DATE_OF_BIRTH' | translate }}</label>
-          <div class="clr-control-container user-data-field clr-col-12 clr-col-md-10"
-               [class.clr-error]="dateOfBirth.invalid && dateOfBirth.touched">
-            <div class="clr-date-container">
-              <input type="date" id="user-date-of-birth" clrDate placeholder="{{ 'DATE_OF_BIRTH' | translate }}" class="clr-input" style="width: 99%;"
-                     [(ngModel)]="selectedUser.dateOfBirth" #dateOfBirth="ngModel" name="dateOfBirth" minlength="3"
-                     maxlength="20"/>
-              <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="dateOfBirth.valid"></clr-icon>
-            </div>
-            <span class="clr-subtext" [class.wrongDataMessage]="dateOfBirth.valid" [hidden]="dateOfBirth.untouched">{{ 'INCORRECT' | translate }}</span>
-          </div>
+          <!--&lt;!&ndash;User date of birth field&ndash;&gt;-->
+          <!--<label for="user-date-of-birth" class="clr-control-label clr-col-12 clr-col-md-2">{{ 'DATE_OF_BIRTH' | translate }}</label>-->
+          <!--<div class="clr-control-container user-data-field clr-col-12 clr-col-md-10"-->
+               <!--[class.clr-error]="dateOfBirth.invalid && dateOfBirth.touched">-->
+            <!--<div class="clr-date-container">-->
+              <!--<input type="date" id="user-date-of-birth" clrDate placeholder="{{ 'DATE_OF_BIRTH' | translate }}" class="clr-input" style="width: 99%;"-->
+                     <!--[(ngModel)]="selectedUser.dateOfBirth" #dateOfBirth="ngModel" name="dateOfBirth" minlength="3"-->
+                     <!--maxlength="20"/>-->
+              <!--<clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="dateOfBirth.valid"></clr-icon>-->
+            <!--</div>-->
+            <!--<span class="clr-subtext" [class.wrongDataMessage]="dateOfBirth.valid" [hidden]="dateOfBirth.untouched">{{ 'INCORRECT' | translate }}</span>-->
+          <!--</div>-->
 
           <!--User gender field-->
           <label for="select-error" class="clr-control-label clr-col-12 clr-col-md-2">{{ 'GENDER' | translate }} *</label>

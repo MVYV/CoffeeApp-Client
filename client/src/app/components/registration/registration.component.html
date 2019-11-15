@@ -50,8 +50,8 @@
 
       <clr-select-container>
         <select clrSelect [(ngModel)]="newUser.gender" #gender="ngModel" name="gender" required>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
+          <option value="Male">{{ 'MALE' | translate }}</option>
+          <option value="Female">{{ 'FEMALE' | translate }}</option>
         </select>
       </clr-select-container>
 
@@ -65,12 +65,16 @@
                [(ngModel)]="repeatPassword" #repeatPass="ngModel" name="repeatPass" (keyup)="checkPass($event);" required/>
       </clr-password-container>
 
-      <div class="error error-message" [class.active]="userRegistrationForm.invalid || !isCorrectCode || !isCorrectPass">
-        Invalid entered data or empty field.<br>Please, start your first name, last name, country and city with capital letter.
-      </div>
-      <button type="submit" class="btn btn-primary" [disabled]="userRegistrationForm.invalid || !isCorrectCode || !isCorrectPass"
-              (click)="addNewUser(); checkLogin();">{{'REGISTER' | translate }}
+      <button type="submit" class="btn btn-primary registerBtn" [disabled]="userRegistrationForm.invalid || !isCorrectCode || !isCorrectPass"
+              (click)="addNewUser();">{{'REGISTER' | translate }}
       </button>
+
+      <div class="error error-message" [class.active]="userRegistrationForm.invalid || !isCorrectCode || !isCorrectPass">
+        {{'REGISTRATION_1' | translate }}<br>{{'REGISTRATION_2' | translate }}
+      </div>
+
+      <div class="ghost"></div>
+
     </div>
   </form>
 </div>

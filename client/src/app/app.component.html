@@ -13,6 +13,7 @@
       <a routerLink="/about" class="nav-link nav-text" (click)="activeNavLink('about')">{{ 'ABOUT' | translate }}</a>
     </div>
     <div class="header-actions">
+      <span class="header-actions header-actions-own-styles">
       <clr-dropdown>
         <button class="nav-icon" clrDropdownTrigger>
           <clr-icon shape="language"></clr-icon>
@@ -43,8 +44,42 @@
       <a *ngIf="authenticationService.isLoggedIn() && userRole == 'ADMIN'" routerLink="/dashboard" class="nav-link nav-icon">
         <clr-icon shape="cog"></clr-icon>
       </a>
+      </span>
     </div>
   </clr-header>
+
+  <nav class="subnav">
+    <clr-dropdown>
+      <button class="nav-icon" clrDropdownTrigger>
+        <clr-icon shape="language" size="22" class="lang-hidden"></clr-icon>
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right" class="langSelector">
+        <span clrDropdownItem (click)="setLanguage('en'); pageReload();" class="langSwitch">{{ 'ENGLISH' | translate }}</span>
+        <!--<span (click)="setLanguage('ua')" class="nav-link nav-text langSwitch langSwitchUA">{{ 'UKRAINIAN' | translate}}</span>-->
+        <span clrDropdownItem (click)="setLanguage('pl'); pageReload();" class="langSwitch">{{ 'POLISH' | translate}}</span>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+    <clr-dropdown>
+      <button *ngIf="!authenticationService.isLoggedIn()" class="nav-icon" clrDropdownTrigger>
+        <clr-icon shape="user" class="user-icon-hidden" size="22"></clr-icon>
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <button *ngIf="authenticationService.isLoggedIn()" class="nav-text" clrDropdownTrigger>
+        <span class="nav-text-hidden">{{authenticateUser.userName}} {{authenticateUser.lastName}}</span>
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right" class="userTools">
+        <a *ngIf="!authenticationService.isLoggedIn()" routerLink="/registration" clrDropdownItem>{{ 'REGISTRATION' | translate }}</a>
+        <a *ngIf="!authenticationService.isLoggedIn()" routerLink="/login" clrDropdownItem>{{ 'LOG_IN' | translate }}</a>
+        <a *ngIf="authenticationService.isLoggedIn()" routerLink="/profile" clrDropdownItem>Profile</a>
+        <a *ngIf="authenticationService.isLoggedIn()" routerLink="/logout" clrDropdownItem>{{ 'LOG_OUT' | translate }}</a>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+    <a *ngIf="authenticationService.isLoggedIn() && userRole == 'ADMIN'" routerLink="/dashboard" class="nav-link nav-icon nav-link-hidden">
+      <clr-icon shape="cog" size="22"></clr-icon>
+    </a>
+  </nav>
   <router-outlet></router-outlet>
   <!--<app-footer></app-footer>-->
 </clr-main-container>

@@ -23,8 +23,7 @@ const appRoutes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'profile', component: ProfileComponent },
-  // { path: 'dashboard', component: AdminPageComponent, canActivate: [AuthenticationGuardService] },
-  { path: 'dashboard', component: AdminPageComponent },
+  { path: 'dashboard', component: AdminPageComponent, canActivate: [AuthenticationGuardService] },
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

@@ -108,5 +108,7 @@
   "SIGN_UP": "Zaloguj się",
   "EMAIL_CODE": "Uzyskaj Kod Weryfikacyjny",
   "CODE_HELP": "Ten kod jest wymagany do zweryfikowania, czy e-mail jest prawdziwy. Wyślemy ci kod e-mailem.",
-  "EMAIL_VERIFICATION_CODE": "Kod Weryfikacyjny E-mail"
+  "EMAIL_VERIFICATION_CODE": "Kod Weryfikacyjny E-mail",
+  "REGISTRATION_1": "Niepoprawne wprowadzone dane lub puste pole.",
+  "REGISTRATION_2": "Proszę zacząć od imienia, nazwiska, kraju i miasta wielką literą."
 }

@@ -13,15 +13,15 @@
       [LOGO]
     </div>
 
-    <a [ngx-scroll-to]="'#home-news'" [ngx-scroll-to-duration]="1000" [ngx-scroll-to-easing]="'easeOutElastic'" class="down-arrow" (click)="showLowerHiddenBox();">
-      <clr-icon shape="angle" dir="down" size="50"></clr-icon>
+    <a [ngx-scroll-to]="'#home-news'" [ngx-scroll-to-duration]="1000" [ngx-scroll-to-offset]="" [ngx-scroll-to-easing]="'easeOutElastic'" class="down-arrow" (click)="showLowerHiddenBox();">
+      <clr-icon shape="angle" dir="down" size="30"></clr-icon>
     </a>
 
   </div>
 
   <div class="home-news" id="home-news">
-    <a [ngx-scroll-to]="'#home-about'" [ngx-scroll-to-offset]="" [ngx-scroll-to-duration]="1000" [ngx-scroll-to-easing]="'easeOutElastic'" class="up-arrow" (click)="showUpperHiddenBox(); hideUpperHiddenBox();">
-      <clr-icon shape="angle" dir="up" size="50"></clr-icon>
+    <a [ngx-scroll-to]="'#home-about'" [ngx-scroll-to-duration]="1000" [ngx-scroll-to-easing]="'easeOutElastic'" class="up-arrow" (click)="showUpperHiddenBox(); hideUpperHiddenBox();">
+      <clr-icon shape="angle" dir="up" size="30"></clr-icon>
     </a>
 
     <div class="homePage-news-text homePage-text">
@@ -30,25 +30,25 @@
 
     <div class="homePage-news-container homePage-item">
       <a *ngFor="let article of severalArticles" [routerLink]="['/article', article.id]" class="homePageOneArticle">
-        <div class="homePage-article-icon">
-          <clr-icon shape="details" size="36"></clr-icon>
-        </div>
         <div class="homePage-article-title">
+          <div class="homePage-article-icon">
+            <clr-icon shape="details" size="36"></clr-icon>
+          </div>
           {{article.newsTitle}}
         </div>
       </a>
     </div>
 
-    <a [ngx-scroll-to]="'#home-products'" [ngx-scroll-to-duration]="1000" [ngx-scroll-to-easing]="'easeOutElastic'" class="down-arrow" (click)="showLowerHiddenBox(); hideLowerHiddenBox();">
-      <clr-icon shape="angle" dir="down" size="50"></clr-icon>
+    <a [ngx-scroll-to]="'#home-products'" [ngx-scroll-to-duration]="1000" [ngx-scroll-to-offset]="" [ngx-scroll-to-easing]="'easeOutElastic'" class="down-arrow" (click)="showLowerHiddenBox(); hideLowerHiddenBox();">
+      <clr-icon shape="angle" dir="down" size="30"></clr-icon>
     </a>
 
   </div>
 
   <div class="home-products" id="home-products">
 
-    <a [ngx-scroll-to]="'#home-news'" [ngx-scroll-to-duration]="1000" [ngx-scroll-to-easing]="'easeOutElastic'" class="up-arrow" (click)="showUpperHiddenBox();">
-      <clr-icon shape="angle" dir="up" size="50"></clr-icon>
+    <a [ngx-scroll-to]="'#home-news'" [ngx-scroll-to-duration]="1000" [ngx-scroll-to-offset]="" [ngx-scroll-to-easing]="'easeOutElastic'" class="up-arrow" (click)="showUpperHiddenBox();">
+      <clr-icon shape="angle" dir="up" size="30"></clr-icon>
     </a>
 
     <div class="homePage-products-text homePage-text">
@@ -57,10 +57,10 @@
 
     <div class="homePage-products-container homePage-item">
       <a *ngFor="let product of severalProducts" routerLink="/products" class="homePageOneProduct">
-        <div class="homePage-product-icon">
-          <clr-icon shape="bundle" size="36"></clr-icon>
-        </div>
         <div class="homePage-product-title">
+          <div class="homePage-product-icon">
+            <clr-icon shape="bundle" size="36"></clr-icon>
+          </div>
           {{product.productName}}
         </div>
       </a>

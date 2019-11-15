@@ -44,6 +44,7 @@ export class RegistrationComponent implements OnInit {
     this.registrationService.postUser(this.newUser).subscribe(
       () => {
       console.log('Done!!!');
+      this.checkLogin();
     },() => {
       console.log('Fail(((');
     });

@@ -3,13 +3,13 @@ $buttonColor: #0079b8;
 {
   height: 100vh;
   display: block;
-  background-image: url('/assets/images/login-page.jpg');
-  background-size: auto 100%;
+  background-image: url('/assets/images/background.jpg');
+  background-size: 100% 100%;
   overflow: auto;
 }
 .login-own-styles
 {
-  height: 100vh;
+  //height: 100vh;
   display: block;
   //overflow: auto;
 }
@@ -67,6 +67,21 @@ input[type=number]::-webkit-outer-spin-button
   margin: 0;
   position: relative;
   top: -10px;
+}
+.btnSpan
+{
+  display: inline-block;
+  background-color: red;
+  overflow: hidden;
+}
+.registerBtn
+{
+  margin-top: 10px !important;
+}
+.ghost
+{
+  height: 100px;
+  border: 1px solid transparent;
 }
 //@media screen and (max-height: 860px)
 //{
