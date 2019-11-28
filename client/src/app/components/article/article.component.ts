@@ -22,7 +22,8 @@ export class ArticleComponent implements OnInit {
   selectedArticle: News;
   news: News[];
   products: Product[];
-  p: number = 1;
+  p1: number = 1;
+  p2: number = 1;
   authenticateUser: User;
   userRoleArr: any;
   userRole: any;

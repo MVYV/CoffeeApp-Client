@@ -113,6 +113,7 @@ $darkSiteColor: #222d36;
               color: #ffffff;
               padding: 20px;
               font-size: 40px;
+              line-height: 42px;
               justify-content: center;
             }
             .productType
@@ -164,7 +165,7 @@ $darkSiteColor: #222d36;
           }
           ::ng-deep .productText > p > a
           {
-            color: $headerColor;
+            color: $headerColor !important;
             font-weight: bold;
           }
           ::ng-deep .productText > h1,
@@ -456,5 +457,150 @@ $darkSiteColor: #222d36;
   .scroll-container
   {
     height: calc(100vh - 60px);
+  }
+}
+@media screen and (max-width: 550px)
+{
+  .scroll-container
+  {
+    .globalProductsContainer
+    {
+      .products-container
+      {
+        .item-container
+        {
+          .product-item
+          {
+            .productImage
+            {
+              .productName
+              {
+                font-size: 24px;
+              }
+              .productType
+              {
+                font-size: 20px;
+              }
+              .productPrice
+              {
+                font-size: 16px;
+                padding: 5px;
+              }
+              .productDate
+              {
+                font-size: 16px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 500px)
+{
+  .scroll-container
+  {
+    .globalProductsContainer
+    {
+      .products-container
+      {
+        .item-container
+        {
+          .product-item
+          {
+            .productImage
+            {
+              .productName
+              {
+                font-size: 22px;
+              }
+              .productType
+              {
+                font-size: 18px;
+              }
+              .productPrice
+              {
+                font-size: 14px;
+              }
+              .productDate
+              {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 450px)
+{
+  .scroll-container
+  {
+    .globalProductsContainer
+    {
+      .products-container
+      {
+        .item-container
+        {
+          .product-item
+          {
+            .productImage
+            {
+              .productName
+              {
+                font-size: 24px;
+              }
+              .productType
+              {
+                font-size: 20px;
+              }
+              .productPrice
+              {
+                font-size: 16px;
+              }
+              .productDate
+              {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 550px)
+{
+  .scroll-container
+  {
+    .globalProductsContainer
+    {
+      .products-container
+      {
+        .item-container
+        {
+          .product-item
+          {
+            .productImage
+            {
+              .productName
+              {
+                font-size: 20px;
+              }
+              .productType
+              {
+                font-size: 16px;
+              }
+              .productPrice
+              {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

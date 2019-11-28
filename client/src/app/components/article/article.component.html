@@ -69,7 +69,7 @@
     <div class="products-on-article-page">
       <div class="products-header">{{ 'OUR_PRODUCTS' | translate }}</div>
       <div class="scrollbarBox">
-        <a *ngFor="let product of products | paginate: { itemsPerPage: 5, currentPage: p }" [routerLink]="'/products'" class="product-link">
+        <a *ngFor="let product of products | paginate: { itemsPerPage: 5, currentPage: p1, id: 'firstBox' }" [routerLink]="'/products'" class="product-link">
           <div class="product-img">
             <img *ngIf="product.image" src="{{product.image}}" class="productImage"/>
             <img *ngIf="!product.image" src="assets/images/login-page.jpg" class="productImage"/>
@@ -81,13 +81,13 @@
           </div>
         </a>
       </div>
-      <pagination-controls class="productsPagination" [directionLinks]="false" [maxSize]="5" [responsive]="false" previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
+      <pagination-controls class="productsPagination" [directionLinks]="false" [maxSize]="5" [responsive]="false" previousLabel="" nextLabel="" (pageChange)="p1 = $event" id="firstBox"></pagination-controls>
     </div>
   </div>
 
   <div class="other-news">
     <div class="other-news-header">{{ 'MORE_NEWS' | translate }}</div>
-    <a *ngFor="let record of news | paginate: { itemsPerPage: 10, currentPage: p }"
+    <a *ngFor="let record of news | paginate: { itemsPerPage: 10, currentPage: p2, id: 'secondBox' }"
        [routerLink]="['/article', record.id]" [ngx-scroll-to-offset]="-70" [ngx-scroll-to]="'#articleBox'"
        class="other-news-link-box" title="{{record.newsTitle}}">
       <div class="other-news-box">
@@ -103,7 +103,7 @@
       </div>
     </a>
     <pagination-controls class="otherNewsPagination" [directionLinks]="false" [maxSize]="7" [responsive]="false"
-                         previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
+                         previousLabel="" nextLabel="" (pageChange)="p2 = $event" id="secondBox"></pagination-controls>
   </div>
   <app-footer></app-footer>
 </div>

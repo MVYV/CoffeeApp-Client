@@ -166,12 +166,7 @@ export class AdminPageComponent implements OnInit {
 
   modifyUser() {
     if (this.isNewUser) {
-      // this.selectedUser.roles = this.userRoles;
-      let dateArr = this.selectedUser.dateOfBirth.split('/').reverse();
-      let newDateArr = [];
-      newDateArr.push(dateArr[0], dateArr[2], dateArr[1]);
-      let newDateString = newDateArr.join('-');
-      this.selectedUser.dateOfBirth = new Date(Date.parse(newDateString));
+      this.selectedUser.roles = this.roles.filter(r => r.role == this.selectedRoles);
       this.registrationService.postUser(this.selectedUser).subscribe(
         () => {
           this.isSuccess = true;
@@ -182,11 +177,6 @@ export class AdminPageComponent implements OnInit {
         });
     } else {
       this.selectedUser.roles = this.roles.filter(r => r.role == this.selectedRoles);
-      let dateArr = this.selectedUser.dateOfBirth.split('/').reverse();
-      let newDateArr = [];
-      newDateArr.push(dateArr[0], dateArr[2], dateArr[1]);
-      let newDateString = newDateArr.join('-');
-      this.selectedUser.dateOfBirth = new Date(Date.parse(newDateString));
       this.registrationService.putUser(this.selectedUser).subscribe(
         () => {
           this.isSuccess = true;

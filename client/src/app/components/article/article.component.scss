@@ -298,7 +298,7 @@ body
         ::ng-deep .article-text > p > a,
         ::ng-deep .article-text > ul > li > a
         {
-          color: $headerColor;
+          color: $headerColor !important;
           font-weight: bold;
         }
       }
@@ -334,6 +334,7 @@ body
       }
       .article-comments
       {
+        margin-bottom: 20px;
         .comments-header
         {
           overflow: hidden;
@@ -648,6 +649,10 @@ body
         .article-text-box
         {
           padding: 20px;
+          .article-annotation
+          {
+            font-size: 18px;
+          }
         }
         .article-comment-box
         {
@@ -763,6 +768,9 @@ body
               .article-title
               {
                 font-size: 30px;
+                line-height: 32px;
+                padding-top: 10px;
+                padding-bottom: 10px;
               }
             }
           }
@@ -798,6 +806,7 @@ body
               .article-title
               {
                 font-size: 20px;
+                line-height: 22px;
               }
             }
           }

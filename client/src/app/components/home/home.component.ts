@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PageTitleService } from '../../services/page-title.service';
 import { NewsService } from '../../services/news-service';
 import { News } from '../../models/news.model';
@@ -11,7 +11,7 @@ import { GlobalVariablesService } from '../../services/global-variables.service'
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   news: News[];
   products: Product[];
@@ -21,12 +21,17 @@ export class HomeComponent implements OnInit {
   constructor( private pageTitle: PageTitleService,
                private newsService: NewsService,
                private productsService: ProductsService,
-               private globalVariables: GlobalVariablesService) { }
+               private globalVariables: GlobalVariablesService ) { }
 
   ngOnInit() {
     this.pageTitle.setTitle('Coffee Products - Home');
     this.getAllNews();
     this.getAllProducts();
+    window.addEventListener('scroll', this.homeScroll, true);
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('scroll', this.homeScroll, true);
   }
 
   getAllNews() {
@@ -45,39 +50,20 @@ export class HomeComponent implements OnInit {
         let localStorageLang = localStorage.getItem('translationLang');
         let currentLang = localStorageLang ? localStorageLang : this.globalVariables.siteLanguage;
         this.products = products.filter(productLang => productLang.language == currentLang);
-        this.severalProducts = this.products.slice(0, 4);
+        this.severalProducts = this.products.slice(0, 5);
       });
   }
 
-  hideUpperFunc() {
-    let upperBox = document.getElementById('upperHiddenBox');
-    upperBox.classList.remove('hiddenBoxShow');
+  homeScroll = (): void => {
+    let scrollContainer = document.getElementById('scroll-container');
+    let homePageNews = document.getElementById('homePage-news');
+    if (homePageNews.getBoundingClientRect().top <= 60) {
+      scrollContainer.classList.remove('scroll-container-image1');
+      scrollContainer.classList.add('scroll-container-image2');
+    } else {
+      scrollContainer.classList.remove('scroll-container-image2');
+      scrollContainer.classList.add('scroll-container-image1');
+    }
   }
-
-  hideLowerFunc() {
-    let lowerBox = document.getElementById('lowerHiddenBox');
-    lowerBox.classList.remove('hiddenBoxShow');
-  }
-
-  showUpperHiddenBox() {
-    let upperBox = document.getElementById('upperHiddenBox');
-    upperBox.classList.remove('hiddenBoxHide');
-    upperBox.classList.add('hiddenBoxShow');
-  }
-
-  hideUpperHiddenBox() {
-    setTimeout(this.hideUpperFunc, 1050);
-  }
-
-  showLowerHiddenBox() {
-    let lowerBox = document.getElementById('lowerHiddenBox');
-    lowerBox.classList.add('hiddenBoxShow');
-  }
-
-  hideLowerHiddenBox() {
-    setTimeout(this.hideLowerFunc, 1000);
-  }
-
-
 
 }
