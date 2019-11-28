@@ -280,6 +280,42 @@ $darkSiteColor: #222d36;
                 }
               }
             }
+            .commentsPagination ::ng-deep .ngx-pagination
+            {
+              width: 100%;
+              border-top: 1px solid $headerColor;
+              border-bottom: 1px solid $headerColor;
+              margin: 5px 0;
+              padding: 0;
+            }
+            .commentsPagination ::ng-deep .ngx-pagination > li
+            {
+              width: 14.285714%;
+              text-align: center;
+              margin: 0;
+              padding: 5px 0;
+              list-style: none;
+            }
+            .commentsPagination ::ng-deep .ngx-pagination > li > a:hover
+            {
+              background-color: $backgroundColor;
+              color: $headerColor;
+              text-decoration: none;
+            }
+            .commentsPagination ::ng-deep .ngx-pagination > li > a
+            {
+              font-size: 12px;
+              line-height: 12px;
+              font-weight: bold;
+              margin: 0;
+              padding: 5px 0;
+            }
+            .commentsPagination ::ng-deep .ngx-pagination .current
+            {
+              font-size: 12px;
+              line-height: 12px;
+              background-color: $headerColor;
+            }
           }
         }
       }
@@ -322,6 +358,7 @@ $darkSiteColor: #222d36;
           .newsIcon
           {
             margin-right: 10px;
+            font-size: 16px;
           }
           .articleTitle
           {

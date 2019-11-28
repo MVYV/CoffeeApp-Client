@@ -6,11 +6,9 @@ $globalBackgroundColor: #edeef0;
 $headerColor: #037a00;
 
 .scroll-container {
-  //padding: 20px;
   width: 100%;
   height: calc(100vh - 60px);
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: auto;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -36,25 +34,28 @@ $headerColor: #037a00;
 }
 .homePage-overall
 {
+  background-color: rgba(255, 255, 255, .55);
   height: calc(100vh - 60px);
   display: flex;
   align-items: stretch;
-  margin-bottom: 20px;
   .overall-text
   {
     display: flex;
+    flex-flow: column wrap;
     align-items: center;
+    justify-content: center;
     width: 50%;
     margin: 0 auto;
-    background-color: rgba(255, 255, 255, .75);
     font-size: 48px;
+    font-weight: bold;
     line-height: 56px;
     text-align: center;
     color: $darkSiteColor;
     padding: 25px;
-    -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .75);
-    -moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .75);
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .75);
+    .overall-text-box
+    {
+      margin: 50px 0;
+    }
   }
 }
 .homePage-news
@@ -62,16 +63,16 @@ $headerColor: #037a00;
   height: 105vh;
   background-color: #ffffff;
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   align-content: center;
   align-items: center;
   justify-content: space-evenly;
   .news-text
   {
     padding: 20px 150px 0;
-    font-size: 56px;
+    font-size: 48px;
     font-weight: bold;
-    line-height: 64px;
+    line-height: 56px;
     text-align: center;
     color: $darkSiteColor;
   }
@@ -119,7 +120,7 @@ $headerColor: #037a00;
     padding: 20px;
     .one-article
     {
-      width: 16.66666%;
+      width: calc(16.66666% - 24px);
       margin: 0 10px;
       border: 2px solid #ffffff;
       -webkit-border-radius: 5px;
@@ -132,7 +133,9 @@ $headerColor: #037a00;
       transition: all ease-in-out .2s;
       .news-items-icon
       {
+        margin-top: 10px;
         color: #ffffff;
+        font-size: 60px;
       }
       .news-items-title
       {
@@ -155,16 +158,16 @@ $headerColor: #037a00;
   height: 105vh;
   background-color: $darkSiteColor;
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   align-content: center;
   align-items: center;
   justify-content: space-evenly;
   .products-text
   {
     padding: 20px 150px 0;
-    font-size: 56px;
+    font-size: 48px;
     font-weight: bold;
-    line-height: 64px;
+    line-height: 56px;
     text-align: center;
     color: #ffffff;
   }
@@ -227,6 +230,7 @@ $headerColor: #037a00;
       {
         color: $darkSiteColor;
         padding-top: 10px;
+        font-size: 60px;
       }
       .products-items-title
       {
@@ -247,11 +251,461 @@ $headerColor: #037a00;
 .homePage-about
 {
   height: calc(100vh - 60px);
+  display: flex;
+  align-items: stretch;
+  background-color: rgba(255, 255, 255, .55);
   .about-text
   {
-    padding: 20px;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    margin: 0 auto;
     font-size: 48px;
-    line-height: 52px;
-    color: #ffffff;
+    font-weight: bold;
+    line-height: 56px;
+    text-align: center;
+    color: $darkSiteColor;
+    padding: 25px;
+    .about-link
+    {
+      padding: 2px 10px 10px 10px;
+      margin-top: 50px;
+      border-top: 3px solid $headerColor;
+      border-left: 3px solid $headerColor;
+      -webkit-border-radius: 10px 0 0 0;
+      -moz-border-radius: 10px 0 0 0;
+      border-radius: 10px 0 0 0;
+      a
+      {
+        background-color: $darkSiteColor;
+        display: inline-block;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: bold;
+        color: #ffffff;
+        padding: 0 85px;
+        border: 2px solid transparent;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        -webkit-transition: all ease-in-out .2s;
+        -moz-transition: all ease-in-out .2s;
+        -ms-transition: all ease-in-out .2s;
+        -o-transition: all ease-in-out .2s;
+        transition: all ease-in-out .2s;
+      }
+      a:hover
+      {
+        background-color: transparent;
+        border-color: $darkSiteColor;
+        color: $darkSiteColor;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1300px)
+{
+  .homePage-overall
+  {
+    .overall-text
+    {
+      font-size: 40px;
+      line-height: 48px;
+    }
+  }
+  .homePage-about
+  {
+    .about-text
+    {
+      font-size: 40px;
+      line-height: 48px;
+    }
+  }
+}
+@media screen and (max-width: 1000px)
+{
+  .homePage-overall
+  {
+    .overall-text
+    {
+      width: 75%;
+      font-size: 40px;
+      line-height: 48px;
+    }
+  }
+  .homePage-news
+  {
+    .news-text
+    {
+      font-size: 40px;
+      font-weight: bold;
+      line-height: 48px;
+    }
+    .news-items
+    {
+      flex-flow: row nowrap;
+      .one-article
+      {
+        .news-items-title
+        {
+          font-size: 16px;
+        }
+        .news-items-icon
+        {
+          font-size: 52px;
+        }
+      }
+    }
+  }
+  .homePage-products
+  {
+    .products-text
+    {
+      font-size: 40px;
+      font-weight: bold;
+      line-height: 48px;
+    }
+    .products-items
+    {
+      padding: 20px;
+      .one-product
+      {
+        .products-items-title
+        {
+          font-size: 16px;
+        }
+        .products-items-icon
+        {
+          font-size: 52px;
+        }
+      }
+    }
+  }
+  .homePage-about
+  {
+    .about-text
+    {
+      width: 75%;
+      font-size: 40px;
+      line-height: 48px;
+    }
+  }
+}
+@media screen and (max-width: 900px)
+{
+  .homePage-news
+  {
+    .news-items
+    {
+      flex-flow: row nowrap;
+      .one-article
+      {
+        .news-items-title
+        {
+          font-size: 14px;
+          font-weight: normal;
+        }
+        .news-items-icon
+        {
+          font-size: 40px;
+        }
+      }
+    }
+  }
+  .homePage-products
+  {
+    .products-items
+    {
+      padding: 20px 20px;
+      .one-product
+      {
+        .products-items-title
+        {
+          font-size: 14px;
+          font-weight: normal;
+        }
+        .products-items-icon
+        {
+          font-size: 40px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 800px)
+{
+  @media screen and (orientation: landscape)
+  {
+    .homePage-overall
+    {
+      .overall-text
+      {
+        width: 100%;
+        font-size: 18px;
+        line-height: 20px;
+        i.fas
+        {
+          display: none;
+        }
+      }
+    }
+    .homePage-about
+    {
+      .about-text
+      {
+        width: 100%;
+        font-size: 18px;
+        line-height: 20px;
+      }
+    }
+    .homePage-news
+    {
+      .news-items
+      {
+        display: none;
+      }
+    }
+    .homePage-products
+    {
+      .products-items
+      {
+        display: none;
+      }
+    }
+  }
+  .homePage-news
+  {
+    .news-text
+    {
+      font-size: 32px;
+      font-weight: bold;
+      line-height: 34px;
+    }
+    .news-items
+    {
+      flex-flow: row wrap;
+      .one-article
+      {
+        width: calc(33.33333% - 24px);
+        margin: 10px;
+        .news-items-title
+        {
+          font-size: 14px;
+          font-weight: normal;
+        }
+        .news-items-icon
+        {
+          font-size: 40px;
+        }
+      }
+    }
+  }
+  .homePage-products
+  {
+    .products-text
+    {
+      font-size: 32px;
+      font-weight: bold;
+      line-height: 34px;
+    }
+    .products-items
+    {
+      flex-flow: row wrap;
+      padding: 20px;
+      .one-product
+      {
+        width: calc(50% - 24px);
+        margin: 10px;
+        .products-items-title
+        {
+          font-size: 14px;
+          font-weight: normal;
+        }
+        .products-items-icon
+        {
+          font-size: 40px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 700px) and (orientation: landscape)
+{
+  @media screen and (orientation: landscape)
+  {
+    .homePage-overall {
+      .overall-text {
+        width: 100%;
+        font-size: 18px;
+        line-height: 20px;
+      }
+    }
+    .homePage-about {
+      .about-text {
+        width: 100%;
+        font-size: 18px;
+        line-height: 20px;
+      }
+    }
+  }
+  .homePage-overall
+  {
+    .overall-text
+    {
+      width: 100%;
+      font-size: 40px;
+      line-height: 48px;
+    }
+  }
+  .homePage-about
+  {
+    .about-text
+    {
+      width: 100%;
+      font-size: 40px;
+      line-height: 48px;
+    }
+  }
+}
+@media screen and (max-width: 600px)
+{
+  .homePage-overall
+  {
+    .overall-text
+    {
+      font-size: 30px;
+      line-height: 36px;
+    }
+  }
+  .homePage-about
+  {
+    .about-text
+    {
+      font-size: 30px;
+      line-height: 36px;
+    }
+  }
+  .homePage-news
+  {
+    .news-items
+    {
+      padding: 5px;
+      flex-flow: row wrap;
+      .one-article
+      {
+        width: calc(50% - 24px);
+        .news-items-icon
+        {
+          font-size: 25px;
+        }
+      }
+    }
+    .news-text
+    {
+      padding: 10px 50px 0;
+    }
+    .news-link
+    {
+      padding: 0;
+      border: none;
+      a
+      {
+        font-size: 14px;
+        padding: 5px 55px;
+      };
+    }
+  }
+  .homePage-products
+  {
+    .products-items
+    {
+      padding: 5px;
+      .one-product
+      {
+        width: calc(50% - 24px);
+        .products-items-icon
+        {
+          font-size: 25px;
+        }
+      }
+    }
+    .products-text
+    {
+      padding: 10px 50px 0;
+    }
+    .products-link
+    {
+      padding: 0;
+      border: none;
+      a
+      {
+        font-size: 14px;
+        padding: 5px 40px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 500px)
+{
+  .homePage-overall
+  {
+    .overall-text
+    {
+      font-size: 24px;
+      line-height: 28px;
+    }
+  }
+  .homePage-about
+  {
+    .about-text
+    {
+      font-size: 24px;
+      line-height: 28px;
+      .about-link
+      {
+        padding: 0;
+        border: none;
+      }
+    }
+  }
+  .homePage-news
+  {
+    .news-items
+    {
+      .one-article
+      {
+        .news-items-icon
+        {
+          font-size: 18px;
+        }
+      }
+    }
+    .news-text
+    {
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 26px;
+    }
+  }
+  .homePage-products
+  {
+    .products-items
+    {
+      .one-product
+      {
+        .products-items-icon
+        {
+          font-size: 18px;
+        }
+      }
+    }
+    .products-text
+    {
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 26px;
+    }
   }
 }

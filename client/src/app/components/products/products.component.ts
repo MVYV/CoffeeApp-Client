@@ -22,6 +22,7 @@ export class ProductsComponent implements OnInit {
   products: Product[];
   news: News[];
   p: number = 1;
+  q: number = 1;
   authenticateUser: User;
   isNewComment: boolean;
   userRoleArr: any;

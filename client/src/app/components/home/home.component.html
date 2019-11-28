@@ -2,9 +2,12 @@
 
   <div class="homePage-box homePage-overall" id="homePage-overall">
     <div class="overall-text">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      Sunt excepturi labore explicabo temporibus, enim voluptate saepe corrupti
-      illum earum eveniet ab veniam vel nisi fugit accusantium perferendis quas facilis quod.
+      <i class="fas fa-mug-hot"></i>
+      <span class="overall-text-box">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Sunt excepturi labore explicabo temporibus.
+      </span>
+      <i class="fas fa-mug-hot"></i>
     </div>
   </div>
 
@@ -13,13 +16,13 @@
       {{'HOMEPAGE_TEXT_NEWS' | translate}}
     </div>
     <div class="news-link">
-      <a routerLink="/news">News</a>
+      <a routerLink="/news">{{ 'NEWS' | translate }}</a>
     </div>
     <div class="news-items">
       <a *ngFor="let article of severalArticles" [routerLink]="['/article', article.id]"
          class="homePage-item one-article">
         <div class="news-items-icon">
-          <clr-icon shape="details" size="72"></clr-icon>
+          <i class="fas fa-newspaper"></i>
         </div>
         <div class="news-items-title">
           {{article.newsTitle}}
@@ -33,12 +36,12 @@
       {{'HOMEPAGE_TEXT_PRODUCTS' | translate}}
     </div>
     <div class="products-link">
-      <a routerLink="/products">Products</a>
+      <a routerLink="/products">{{ 'PRODUCTS' | translate }}</a>
     </div>
     <div class="products-items">
       <a *ngFor="let product of severalProducts" routerLink="/products" class="homePage-item one-product">
         <div class="products-items-icon">
-          <clr-icon shape="bundle" size="72"></clr-icon>
+          <i class="fas fa-dolly-flatbed"></i>
         </div>
         <div class="products-items-title">
           {{product.productName}}
@@ -49,9 +52,11 @@
 
   <div class="homePage-box homePage-about" id="homePage-about">
     <div class="about-text">
-      {{'HOMEPAGE_TEXT_ABOUT' | translate}}
+      <span>{{'HOMEPAGE_TEXT_ABOUT' | translate}}</span>
+      <div class="about-link">
+        <a routerLink="/about">{{ 'ABOUT' | translate }}</a>
+      </div>
     </div>
-
   </div>
 
 </div>

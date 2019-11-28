@@ -9,7 +9,8 @@
         <span class="link-guide-item link-guide-item-disabled">{{selectedArticle?.newsTitle}}</span>
       </div>
       <div class="article-image-box">
-        <img src="assets/images/nature33hd.jpg" class="article-image">
+        <img *ngIf="!selectedArticle?.newsImage" src="assets/images/nature33hd.jpg" class="article-image">
+        <img *ngIf="selectedArticle?.newsImage" src="{{selectedArticle?.newsImage}}" class="article-image">
         <div class="gray-box">
           <div class="article-info">
             <div class="article-modification-date">
@@ -44,7 +45,7 @@
       </div>
       <div class="article-comments">
         <div class="comments-header">{{ 'COMMENTS' | translate }}</div>
-        <div *ngFor="let comment of commentsForArticle" class="comment-container">
+        <div *ngFor="let comment of commentsForArticle | paginate: { itemsPerPage: 5, currentPage: p3, id: 'thirdBox' }" class="comment-container">
           <div class="comment-author">{{comment.fullName}}</div>
           <div class="comment-date">{{comment.commentDate | date: 'short'}}</div>
           <div class="comment-text">{{comment.commentText}}</div>
@@ -64,6 +65,7 @@
             </button>
           </div>
         </div>
+        <pagination-controls class="commentsPagination" [directionLinks]="false" [maxSize]="5" [responsive]="false" previousLabel="" nextLabel="" (pageChange)="p3 = $event" id="thirdBox"></pagination-controls>
       </div>
     </div>
     <div class="products-on-article-page">
@@ -76,7 +78,7 @@
           </div>
           <div class="product-info-box">
             <clr-icon shape="arrow" class="product-arrow" size="24"></clr-icon>
-            <clr-icon shape="bundle" size="24" class="product-logo"></clr-icon>
+            <i class="fas fa-dolly-flatbed"></i>
             <span class="product-title">{{product.productName}}</span>
           </div>
         </a>
@@ -92,7 +94,7 @@
        class="other-news-link-box" title="{{record.newsTitle}}">
       <div class="other-news-box">
         <div class="other-news-icon">
-          <clr-icon shape="details" size="40"></clr-icon>
+          <i class="fas fa-newspaper"></i>
         </div>
         <div class="other-news-title">
           {{record.newsTitle}}

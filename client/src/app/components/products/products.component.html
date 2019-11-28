@@ -14,7 +14,8 @@
             <span class="lineText">{{product.productName}}</span>
           </div>
           <div class="productImage">
-            <img src="/assets/images/login-page.jpg" class="productImg"/>
+            <img *ngIf="!product.image" src="/assets/images/login-page.jpg" class="productImg"/>
+            <img *ngIf="product.image" src="{{product.image}}" class="productImg"/>
             <div *ngIf="product.price" class="productPrice productInfo">{{ 'PRICE' | translate }}: {{product.price}}</div>
             <div class="productName productInfo">{{product.productName}}</div>
             <div *ngIf="product.productType" class="productType productInfo">{{product.productType}}</div>
@@ -36,7 +37,7 @@
           <div class="productAllComments">
             <div class="comments-header">{{ 'COMMENTS' | translate }}</div>
             <button class="btn btn-success show-comments-btn" (click)="getAllCommentsForProduct(product.id);">{{ 'SHOW_COMMENTS' | translate }}</button>
-            <ng-container *ngFor="let comment of commentsForProduct">
+            <ng-container *ngFor="let comment of commentsForProduct | paginate: { itemsPerPage: 5, currentPage: q, id: 'comments'}">
               <ng-container *ngIf="product.id == comment.productId">
                 <div  class="comment-container">
                   <div class="comment-author">{{comment.fullName}}</div>
@@ -60,6 +61,7 @@
                 </div>
               </ng-container>
             </ng-container>
+            <pagination-controls class="commentsPagination" [directionLinks]="false" [maxSize]="5" [responsive]="false" previousLabel="" nextLabel="" (pageChange)="q = $event" id="comments"></pagination-controls>
           </div>
         </div>
       </div>
@@ -67,13 +69,13 @@
     <div class="newsOnProductsPage">
       <div class="news-header">{{ 'LATEST_NEWS' | translate }}</div>
       <div class="scrollbarBox">
-        <a *ngFor="let article of news | paginate: { itemsPerPage: 10, currentPage: p }" [routerLink]="['/article', article.id]" class="articleLink">
+        <a *ngFor="let article of news | paginate: { itemsPerPage: 10, currentPage: p, id: 'articles' }" [routerLink]="['/article', article.id]" class="articleLink">
           <div *ngIf="!article.newsModificationDate" class="articleDate">{{article.newsDate | date:'medium'}}</div>
           <div *ngIf="article.newsModificationDate" class="articleDate">{{article.newsModificationDate | date:'medium'}}</div>
-          <div class="articleTitle"><clr-icon shape="details" size="18" class="newsIcon"></clr-icon><span>{{article.newsTitle}}</span></div>
+          <div class="articleTitle"><i class="fas fa-newspaper newsIcon" style="margin-top: 5px;"></i><span>{{article.newsTitle}}</span></div>
         </a>
       </div>
-      <pagination-controls class="newsPagination" [directionLinks]="false" [maxSize]="5" [responsive]="false" previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
+      <pagination-controls class="newsPagination" [directionLinks]="false" [maxSize]="5" [responsive]="false" previousLabel="" nextLabel="" (pageChange)="p = $event" id="articles"></pagination-controls>
     </div>
   </div>
   <app-footer></app-footer>

@@ -3,7 +3,8 @@
     <div class="news-container">
       <a class="news-card clickable" *ngFor="let article of postedNews" [routerLink]="['/article', article.id]">
         <div class="news-card-img" >
-          <img src="assets/images/login-page.jpg" class="news-img">
+          <img *ngIf="!article.newsImage" src="assets/images/login-page.jpg" class="news-img">
+          <img *ngIf="article.newsImage" src="{{article.newsImage}}" class="news-img">
           <div class="card-date">{{article.newsDate | date: 'medium'}}</div>
         </div>
         <div class="news-card-block">

@@ -401,6 +401,42 @@ body
             }
           }
         }
+        .commentsPagination ::ng-deep .ngx-pagination
+        {
+          width: 100%;
+          border-top: 1px solid $headerColor;
+          border-bottom: 1px solid $headerColor;
+          margin: 5px 0;
+          padding: 0;
+        }
+        .commentsPagination ::ng-deep .ngx-pagination > li
+        {
+          width: 14.285714%;
+          text-align: center;
+          margin: 0;
+          padding: 5px 0;
+          list-style: none;
+        }
+        .commentsPagination ::ng-deep .ngx-pagination > li > a:hover
+        {
+          background-color: $backgroundColor;
+          color: $headerColor;
+          text-decoration: none;
+        }
+        .commentsPagination ::ng-deep .ngx-pagination > li > a
+        {
+          font-size: 12px;
+          line-height: 12px;
+          font-weight: bold;
+          margin: 0;
+          padding: 5px 0;
+        }
+        .commentsPagination ::ng-deep .ngx-pagination .current
+        {
+          font-size: 12px;
+          line-height: 12px;
+          background-color: $headerColor;
+        }
       }
     }
   }
@@ -446,6 +482,7 @@ body
           width: calc(48px + 5px);
           height: calc(48px + 5px);
           display: flex;
+          font-size: 32px;
           align-items: center;
           justify-content: center;
           margin: 0 5px 0 0;
