@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PageTitleService } from '../../services/page-title.service';
 import { Product } from '../../models/products.model';
 import { ProductsService } from '../../services/products.service';
@@ -10,13 +10,14 @@ import { Comment } from '../../models/comment.model';
 import { CommentsService } from '../../services/comments.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { GlobalVariablesService } from '../../services/global-variables.service';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
 
   productsLink: string;
   products: Product[];
@@ -29,6 +30,14 @@ export class ProductsComponent implements OnInit {
   userRole: any;
   userComment: Comment;
   commentsForProduct: Comment[];
+
+  getProductsSubscription: Subscription;
+  getNewsSubscription: Subscription;
+  getProductCommentsSubscription: Subscription;
+  postCommentsSubscription: Subscription;
+  putCommentsSubscription: Subscription;
+  deleteCommentSubscription: Subscription;
+  getAuthSubscription: Subscription;
 
   constructor( private pageTitle: PageTitleService,
                private productsService: ProductsService,
@@ -47,8 +56,18 @@ export class ProductsComponent implements OnInit {
     this.checkLoggedInUser();
   }
 
+  ngOnDestroy() {
+    if (this.getProductsSubscription) {this.getProductsSubscription.unsubscribe();}
+    if (this.getNewsSubscription) {this.getNewsSubscription.unsubscribe();}
+    if (this.getProductCommentsSubscription) {this.getProductCommentsSubscription.unsubscribe();}
+    if (this.postCommentsSubscription) {this.postCommentsSubscription.unsubscribe();}
+    if (this.putCommentsSubscription) {this.putCommentsSubscription.unsubscribe();}
+    if (this.deleteCommentSubscription) {this.deleteCommentSubscription.unsubscribe();}
+    if (this.getAuthSubscription) {this.getAuthSubscription.unsubscribe();}
+  }
+
   getAllProducts() {
-    this.productsService.getProducts().subscribe(
+    this.getProductsSubscription = this.productsService.getProducts().subscribe(
       products => {
         let localStorageLang = localStorage.getItem('translationLang');
         let currentLang = localStorageLang ? localStorageLang : this.globalVariables.siteLanguage;
@@ -62,7 +81,7 @@ export class ProductsComponent implements OnInit {
   }
 
   getAllNews() {
-    this.newsService.getNews().subscribe(
+    this.getNewsSubscription = this.newsService.getNews().subscribe(
       news => {
         let localStorageLang = localStorage.getItem('translationLang');
         let currentLang = localStorageLang ? localStorageLang : this.globalVariables.siteLanguage;
@@ -72,7 +91,7 @@ export class ProductsComponent implements OnInit {
 
   loadUserData() {
     let userMail: any = sessionStorage.getItem('username');
-    this.registrationService.getAuthenticatedUser(userMail).subscribe(
+    this.getAuthSubscription = this.registrationService.getAuthenticatedUser(userMail).subscribe(
       userData => {
         this.authenticateUser = userData;
         this.userRoleArr = this.authenticateUser.roles;
@@ -103,14 +122,14 @@ export class ProductsComponent implements OnInit {
     this.userComment.userId = this.authenticateUser.id;
     this.userComment.fullName = this.authenticateUser.userName + this.authenticateUser.lastName;
     if(this.isNewComment) {
-      this.commentsService.postComment(this.userComment).subscribe(
+      this.postCommentsSubscription = this.commentsService.postComment(this.userComment).subscribe(
         () => {
           console.log('Yes');
         }, () => {
           console.log('No');
         });
     } else {
-      this.commentsService.putComment(this.userComment).subscribe(
+      this.putCommentsSubscription = this.commentsService.putComment(this.userComment).subscribe(
         () => {
           console.log('Yes');
         }, () => {
@@ -120,7 +139,7 @@ export class ProductsComponent implements OnInit {
   }
 
   getAllCommentsForProduct(productID: number) {
-    this.commentsService.getProductsComments(productID).subscribe(
+    this.getProductCommentsSubscription = this.commentsService.getProductsComments(productID).subscribe(
       allComments => {
         this.commentsForProduct = allComments;
       }, () => {
@@ -144,7 +163,7 @@ export class ProductsComponent implements OnInit {
   }
 
   removeComment(commentID: number) {
-    this.commentsService.deleteComment(commentID).subscribe(
+    this.deleteCommentSubscription = this.commentsService.deleteComment(commentID).subscribe(
       () => {
         console.log('YES');
       }, () => {

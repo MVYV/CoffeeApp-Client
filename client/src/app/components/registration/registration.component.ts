@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PageTitleService } from '../../services/page-title.service';
 import { UserRegistrationService } from '../../services/user-registration.service';
 import { User } from '../../models/users.model';
 import { Mail } from '../../models/mail.model';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-registration',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./registration.component.scss'],
   providers: [UserRegistrationService]
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent implements OnInit, OnDestroy {
 
   newUser: User;
   repeatPassword: any;
@@ -22,6 +23,10 @@ export class RegistrationComponent implements OnInit {
   emailCode: any;
   mail: Mail;
   invalidLogin = false;
+
+  postUserSubscription: Subscription;
+  checkMailSubscription: Subscription;
+  authSubscription: Subscription;
 
   constructor(
     private pageTitle: PageTitleService,
@@ -35,13 +40,19 @@ export class RegistrationComponent implements OnInit {
     this.mail = new Mail();
   }
 
+  ngOnDestroy() {
+    if (this.postUserSubscription) {this.postUserSubscription.unsubscribe();}
+    if (this.checkMailSubscription) {this.checkMailSubscription.unsubscribe();}
+    if (this.authSubscription) {this.authSubscription.unsubscribe();}
+  }
+
   addNewUser() {
     let dateArr = this.newUser.dateOfBirth.split('/').reverse();
     let newDateArr = [];
     newDateArr.push(dateArr[0], dateArr[2], dateArr[1]);
     let newDateString = newDateArr.join('-');
     this.newUser.dateOfBirth = new Date(Date.parse(newDateString));
-    this.registrationService.postUser(this.newUser).subscribe(
+    this.postUserSubscription = this.registrationService.postUser(this.newUser).subscribe(
       () => {
       console.log('Done!!!');
       this.checkLogin();
@@ -52,7 +63,7 @@ export class RegistrationComponent implements OnInit {
 
   checkUserEmail() {
     this.mail.mailToAddress = this.newUser.email;
-    this.registrationService.checkEmail(this.mail).subscribe(
+    this.checkMailSubscription = this.registrationService.checkEmail(this.mail).subscribe(
       emailCode => {
         this.emailCode = emailCode;
         console.log('YES');
@@ -76,7 +87,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   checkLogin() {
-    (this.authenticationService.authenticate(this.newUser.email, this.newUser.password).subscribe(
+    (this.authSubscription = this.authenticationService.authenticate(this.newUser.email, this.newUser.password).subscribe(
       () => {
         this.router.navigate(['']).then(() => {
           window.location.reload();

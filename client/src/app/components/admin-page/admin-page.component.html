@@ -430,10 +430,6 @@
               <input type="radio" id="{{role.role}}" name="checkbox-error" value="{{role.role}}" clrRadio [(ngModel)]="selectedRoles" required>
               <label for="{{role.role}}" class="clr-control-label">{{role.role}}</label>
             </div>
-            <div class="clr-subtext-wrapper">
-              <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
-              <span class="clr-subtext">{{ 'INCORRECT' | translate }}</span>
-            </div>
           </div>
 
           <!--&lt;!&ndash;User activity field&ndash;&gt;-->
@@ -603,7 +599,7 @@
           <div class="clr-control-container news-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="newsText.invalid && newsText.touched">
             <quill-editor id="article-main-text" placeholder="{{ 'ARTICLE_MAIN_TEXT' | translate }}"
-                          [(ngModel)]="selectedArticle.newsText" #newsText="ngModel" name="newsText" [ngStyle]="quillEditorStyle"
+                          [(ngModel)]="selectedArticle.newsText" #newsText="ngModel" name="newsText" [styles]="quillEditorStyle" [modules]="config"
                           required></quill-editor>
             <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="newsText.valid"></clr-icon>
             <span class="clr-subtext" [class.wrongDataMessage]="newsText.valid" [hidden]="newsText.untouched">{{ 'INCORRECT' | translate }}</span>
@@ -696,7 +692,7 @@
           <div class="clr-control-container product-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="description.invalid && description.touched">
             <quill-editor id="product-description" placeholder="{{ 'PRODUCT_DESCRIPTION' | translate }}"
-                          [(ngModel)]="selectedProduct.description" #description="ngModel" name="description" [ngStyle]="quillEditorStyle"
+                          [(ngModel)]="selectedProduct.description" #description="ngModel" name="description" [styles]="quillEditorStyle" [modules]="config"
                           required></quill-editor>
             <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="description.valid"></clr-icon>
             <span class="clr-subtext" [class.wrongDataMessage]="description.valid" [hidden]="description.untouched">{{ 'INCORRECT' | translate }}</span>
@@ -723,7 +719,7 @@
           <label for="contact_info" class="clr-control-label clr-col-12 clr-col-md-1">{{ 'ABOUT' | translate }} *</label>
           <div class="clr-control-container info-data-field clr-col-12 clr-col-md-11"
                [class.clr-error]="contactInfo.invalid && contactInfo.touched">
-            <quill-editor id="contact_info" placeholder="{{ 'ABOUT' | translate }}" style="width: 99%;" [ngStyle]="quillEditorStyle"
+            <quill-editor id="contact_info" placeholder="{{ 'ABOUT' | translate }}" style="width: 99%;" [styles]="quillEditorStyle" [modules]="config"
                           [(ngModel)]="selectedInfo.contactInfo" #contactInfo="ngModel" name="contactInfo" required>
             </quill-editor>
             <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="contactInfo.valid"></clr-icon>

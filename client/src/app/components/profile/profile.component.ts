@@ -1,20 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PageTitleService } from '../../services/page-title.service';
 import { UserRegistrationService } from '../../services/user-registration.service';
 import { User } from '../../models/users.model';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
   authenticateUser: User;
   isSuccess: boolean = false;
   isError: boolean = false;
   isCorrectPass: boolean = false;
   repeatPassword: any;
+
+  getAuthSubscription: Subscription;
+  putAuthSubscription: Subscription;
 
   constructor(
     private pageTitle: PageTitleService,
@@ -26,9 +30,14 @@ export class ProfileComponent implements OnInit {
     this.checkLoggedInUser();
   }
 
+  ngOnDestroy() {
+    if (this.getAuthSubscription) {this.getAuthSubscription.unsubscribe();}
+    if (this.putAuthSubscription) {this.putAuthSubscription.unsubscribe();}
+  }
+
   loadUserData() {
     let userMail: any = sessionStorage.getItem('username');
-    this.registrationService.getAuthenticatedUser(userMail).subscribe(
+    this.getAuthSubscription = this.registrationService.getAuthenticatedUser(userMail).subscribe(
       userData => {
         this.authenticateUser = userData;
       }, () => {
@@ -51,7 +60,7 @@ export class ProfileComponent implements OnInit {
     newDateArr.push(dateArr[0], dateArr[2], dateArr[1]);
     let newDateString = newDateArr.join('-');
     this.authenticateUser.dateOfBirth = new Date(Date.parse(newDateString));
-    this.registrationService.putUser(this.authenticateUser).subscribe(
+    this.putAuthSubscription = this.registrationService.putUser(this.authenticateUser).subscribe(
       () => {
         this.isSuccess = true;
         this.loadUserData();

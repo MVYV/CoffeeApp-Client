@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserRegistrationService } from '../../services/user-registration.service';
 import { User } from '../../models/users.model';
 import { News } from '../../models/news.model';
@@ -11,13 +11,14 @@ import { ProductsService } from '../../services/products.service';
 import { Role } from '../../models/roles.model';
 import { About } from '../../models/about.model';
 import { AboutService } from '../../services/about.service';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-admin-page',
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.scss']
 })
-export class AdminPageComponent implements OnInit {
+export class AdminPageComponent implements OnInit, OnDestroy {
 
   showUser: boolean;
   showArticle: boolean;
@@ -52,8 +53,42 @@ export class AdminPageComponent implements OnInit {
   aboutArr: any[] = [];
   selectedInfo: About;
 
+  private getUserSubscription: Subscription;
+  private putUserSubscription: Subscription;
+  private postUserSubscription: Subscription;
+  private banUserSubscription: Subscription;
+  private deleteUserSubscription: Subscription;
+  private getNewsSubscription: Subscription;
+  private postNewsSubscription: Subscription;
+  private putNewsSubscription: Subscription;
+  private deleteNewsSubscription: Subscription;
+  private getProductsSubscription: Subscription;
+  private postProductsSubscription: Subscription;
+  private putProductsSubscription: Subscription;
+  private deleteProductsSubscription: Subscription;
+  private getAboutSubscription: Subscription;
+  private putAboutSubscription: Subscription;
+  private getRolesSubscription: Subscription;
+  private mailSubscription: Subscription;
+
   quillEditorStyle = {
     height: '300px'
+  };
+
+  config = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],
+      ['blockquote', 'code-block'],
+      [{ 'header': 1 }, { 'header': 2 }],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'script': 'sub'}, { 'script': 'super' }],
+      [{ 'indent': '-1'}, { 'indent': '+1' }],
+      [{ 'size': ['small', false, 'large', 'huge'] }],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'align': [] }],
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      ['clean'],
+    ]
   };
 
   constructor( private pageTitle: PageTitleService,
@@ -82,8 +117,28 @@ export class AdminPageComponent implements OnInit {
     this.getContactInformation();
   }
 
+  ngOnDestroy() {
+    if (this.getUserSubscription) {this.getUserSubscription.unsubscribe();}
+    if (this.putUserSubscription) {this.putUserSubscription.unsubscribe();}
+    if (this.postUserSubscription) {this.postUserSubscription.unsubscribe();}
+    if (this.banUserSubscription) {this.banUserSubscription.unsubscribe();}
+    if (this.deleteUserSubscription) {this.deleteUserSubscription.unsubscribe();}
+    if (this.getNewsSubscription) {this.getNewsSubscription.unsubscribe();}
+    if (this.postNewsSubscription) {this.postNewsSubscription.unsubscribe();}
+    if (this.putNewsSubscription) {this.putNewsSubscription.unsubscribe();}
+    if (this.deleteNewsSubscription) {this.deleteNewsSubscription.unsubscribe();}
+    if (this.getProductsSubscription) {this.getProductsSubscription.unsubscribe();}
+    if (this.postProductsSubscription) {this.postProductsSubscription.unsubscribe();}
+    if (this.putProductsSubscription) {this.putProductsSubscription.unsubscribe();}
+    if (this.deleteProductsSubscription) {this.deleteProductsSubscription.unsubscribe();}
+    if (this.getAboutSubscription) {this.getAboutSubscription.unsubscribe();}
+    if (this.putAboutSubscription) {this.putAboutSubscription.unsubscribe();}
+    if (this.getRolesSubscription) {this.getRolesSubscription.unsubscribe();}
+    if (this.mailSubscription) {this.mailSubscription.unsubscribe();}
+  }
+
   sendMailToUser() {
-    this.registrationService.mailToUser(this.mail).subscribe(
+    this.mailSubscription = this.registrationService.mailToUser(this.mail).subscribe(
       () => {
         console.log('Yes');
       }, () => {
@@ -92,7 +147,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   getContactInformation() {
-    this.aboutService.getContactInfo().subscribe(
+    this.getAboutSubscription = this.aboutService.getContactInfo().subscribe(
       aboutInfo => {
         this.aboutArr.push(aboutInfo);
       }, () => {
@@ -108,7 +163,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   modifyInfo() {
-    this.aboutService.putContactInfo(this.selectedInfo).subscribe(
+    this.putAboutSubscription = this.aboutService.putContactInfo(this.selectedInfo).subscribe(
       () => {
         this.isSuccess = true;
         this.aboutArr = [];
@@ -121,7 +176,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   getAllUsers() {
-    this.registrationService.getUsers().subscribe(
+    this.getUserSubscription = this.registrationService.getUsers().subscribe(
       users => {
         this.users = users;
         this.loading = false;
@@ -131,10 +186,9 @@ export class AdminPageComponent implements OnInit {
   }
 
   getUserRoles() {
-    this.registrationService.getRoles().subscribe(
+    this.getRolesSubscription = this.registrationService.getRoles().subscribe(
       roles => {
         this.roles = roles;
-        console.log(this.roles);
       }, () => {
       });
   }
@@ -167,7 +221,7 @@ export class AdminPageComponent implements OnInit {
   modifyUser() {
     if (this.isNewUser) {
       this.selectedUser.roles = this.roles.filter(r => r.role == this.selectedRoles);
-      this.registrationService.postUser(this.selectedUser).subscribe(
+      this.postUserSubscription = this.registrationService.postUser(this.selectedUser).subscribe(
         () => {
           this.isSuccess = true;
           this.getAllUsers();
@@ -177,7 +231,7 @@ export class AdminPageComponent implements OnInit {
         });
     } else {
       this.selectedUser.roles = this.roles.filter(r => r.role == this.selectedRoles);
-      this.registrationService.putUser(this.selectedUser).subscribe(
+      this.putUserSubscription = this.registrationService.putUser(this.selectedUser).subscribe(
         () => {
           this.isSuccess = true;
           this.getAllUsers();
@@ -192,7 +246,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   deleteOneUser() {
-    this.registrationService.deleteUser(this.selectedUser).subscribe(
+    this.deleteUserSubscription = this.registrationService.deleteUser(this.selectedUser).subscribe(
       () => {
         this.getAllUsers();
       }, () => {
@@ -201,7 +255,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   banOneUser() {
-    this.registrationService.banUser(this.selectedUser).subscribe(
+    this.banUserSubscription = this.registrationService.banUser(this.selectedUser).subscribe(
       () => {
         this.getAllUsers();
       }, () => {
@@ -219,7 +273,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   getAllNews() {
-    this.newsService.getNews().subscribe(
+    this.getNewsSubscription = this.newsService.getNews().subscribe(
       news => {
         this.news = news;
         this.numberOfNews = news.length;
@@ -249,7 +303,7 @@ export class AdminPageComponent implements OnInit {
 
   addNewArticle() {
     if (this.isNewArticle) {
-      this.newsService.postArticle(this.selectedArticle).subscribe(
+      this.postNewsSubscription = this.newsService.postArticle(this.selectedArticle).subscribe(
         () => {
           this.isSuccess = true;
           this.getAllNews();
@@ -258,7 +312,7 @@ export class AdminPageComponent implements OnInit {
           this.getAllNews();
         });
     } else {
-      this.newsService.putArticle(this.selectedArticle).subscribe(
+      this.putNewsSubscription = this.newsService.putArticle(this.selectedArticle).subscribe(
         () => {
           this.isSuccess = true;
           this.getAllNews();
@@ -270,7 +324,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   deleteOneArticle() {
-    this.newsService.deleteArticle(this.selectedArticle).subscribe(
+    this.deleteNewsSubscription = this.newsService.deleteArticle(this.selectedArticle).subscribe(
       () => {
         this.getAllNews();
       }, () => {
@@ -279,7 +333,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   getAllProducts() {
-    this.productsService.getProducts().subscribe(
+    this.getProductsSubscription = this.productsService.getProducts().subscribe(
       products => {
         this.products = products;
         this.numberOfProducts = products.length;
@@ -309,7 +363,7 @@ export class AdminPageComponent implements OnInit {
 
   addNewProduct() {
     if (this.isNewProduct) {
-      this.productsService.postProduct(this.selectedProduct).subscribe(
+      this.postProductsSubscription = this.productsService.postProduct(this.selectedProduct).subscribe(
         () => {
           this.isSuccess = true;
           this.getAllProducts();
@@ -318,7 +372,7 @@ export class AdminPageComponent implements OnInit {
           this.getAllProducts();
         });
     } else {
-      this.productsService.putProduct(this.selectedProduct).subscribe(
+      this.putProductsSubscription = this.productsService.putProduct(this.selectedProduct).subscribe(
         () => {
           this.isSuccess = true;
           this.getAllProducts();
@@ -330,7 +384,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   deleteOneProduct() {
-    this.productsService.deleteProduct(this.selectedProduct).subscribe(
+    this.deleteProductsSubscription = this.productsService.deleteProduct(this.selectedProduct).subscribe(
       () => {
         this.getAllProducts();
       }, () => {

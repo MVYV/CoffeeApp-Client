@@ -5,6 +5,7 @@ import { News } from '../../models/news.model';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../models/products.model';
 import { GlobalVariablesService } from '../../services/global-variables.service';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   products: Product[];
   severalArticles: News[];
   severalProducts: Product[];
+
+  getNewsSubscription: Subscription;
+  getProductsSubscription: Subscription;
 
   constructor( private pageTitle: PageTitleService,
                private newsService: NewsService,
@@ -32,10 +36,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     window.removeEventListener('scroll', this.homeScroll, true);
+    if (this.getNewsSubscription) {this.getNewsSubscription.unsubscribe();}
+    if (this.getProductsSubscription) {this.getProductsSubscription.unsubscribe();}
   }
 
   getAllNews() {
-    this.newsService.getNews().subscribe(
+    this.getNewsSubscription = this.newsService.getNews().subscribe(
       news => {
         let localStorageLang = localStorage.getItem('translationLang');
         let currentLang = localStorageLang ? localStorageLang : this.globalVariables.siteLanguage;
@@ -45,7 +51,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getAllProducts() {
-    this.productsService.getProducts().subscribe(
+    this.getProductsSubscription = this.productsService.getProducts().subscribe(
       products => {
         let localStorageLang = localStorage.getItem('translationLang');
         let currentLang = localStorageLang ? localStorageLang : this.globalVariables.siteLanguage;

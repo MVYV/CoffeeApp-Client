@@ -1,19 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PageTitleService } from '../../services/page-title.service';
 import { NewsService } from '../../services/news-service';
 import { News } from '../../models/news.model';
 import { GlobalVariablesService } from '../../services/global-variables.service';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.scss']
 })
-export class NewsComponent implements OnInit {
+export class NewsComponent implements OnInit, OnDestroy {
 
   news: News[];
   postedNews: News[];
   loadingSpinner: boolean;
+
+  getNewsSubscription: Subscription;
 
   constructor( private pageTitle: PageTitleService,
                private newsService: NewsService,
@@ -25,8 +28,12 @@ export class NewsComponent implements OnInit {
     this.loadingSpinner = true;
   }
 
+  ngOnDestroy() {
+    if (this.getNewsSubscription) {this.getNewsSubscription.unsubscribe();}
+  }
+
   getAllNews() {
-    this.newsService.getNews().subscribe(
+    this.getNewsSubscription = this.newsService.getNews().subscribe(
       news => {
         let localStorageLang = localStorage.getItem('translationLang');
         let currentLang = localStorageLang ? localStorageLang : this.globalVariables.siteLanguage;
