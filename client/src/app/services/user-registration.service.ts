@@ -18,6 +18,10 @@ export class UserRegistrationService {
     return this.http.get<User[]>('https://march11app.herokuapp.com/');
   }
 
+  public getOneUser(userID: number): Observable<User> {
+    return this.http.get<User>(`https://march11app.herokuapp.com/${userID}`);
+  }
+
   public getAuthenticatedUser(userEmail): Observable<User> {
     return this.http.get<User>(`https://march11app.herokuapp.com/email/${userEmail}`);
   }

@@ -27,6 +27,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
   p2: number = 1;
   p3: number = 1;
   authenticateUser: User;
+  selectedUser: User;
   userRoleArr: any;
   userRole: any;
   userComment: Comment;
@@ -42,6 +43,8 @@ export class ArticleComponent implements OnInit, OnDestroy {
   postCommentsSubscription: Subscription;
   putCommentsSubscription: Subscription;
   deleteCommentSubscription: Subscription;
+  banUserSubscription: Subscription;
+  getOneUserSubscription: Subscription;
 
   constructor( private pageTitle: PageTitleService,
                private newsService: NewsService,
@@ -60,6 +63,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
         this.getAllCommentsForArticle(selectedArticleId);
       });
     this.authenticateUser = new User();
+    this.selectedUser = new User();
     this.userComment = new Comment();
     this.selectedComment = new Comment();
     this.pageTitle.setTitle('Coffee Products - Article');
@@ -77,6 +81,8 @@ export class ArticleComponent implements OnInit, OnDestroy {
     if (this.putCommentsSubscription) {this.putCommentsSubscription.unsubscribe();}
     if (this.deleteCommentSubscription) {this.deleteCommentSubscription.unsubscribe();}
     if (this.getAuthSubscription) {this.getAuthSubscription.unsubscribe();}
+    if (this.banUserSubscription) {this.banUserSubscription.unsubscribe();}
+    if (this.getOneUserSubscription) {this.getOneUserSubscription.unsubscribe();}
   }
 
   getSelectedArticle(articleId: number) {
@@ -134,6 +140,12 @@ export class ArticleComponent implements OnInit, OnDestroy {
     commentForm.classList.add('comment-form-visible');
   }
 
+  hideCommentForm() {
+    let commentForm = document.getElementById('comment-form');
+    commentForm.classList.add('comment-form-hidden');
+    commentForm.classList.remove('comment-form-visible');
+  }
+
   commentArticle() {
     this.userComment.newsId = this.selectedArticle.id;
     this.userComment.userId = this.authenticateUser.id;
@@ -142,15 +154,36 @@ export class ArticleComponent implements OnInit, OnDestroy {
       this.postCommentsSubscription = this.commentsService.postComment(this.userComment).subscribe(
         () => {
           console.log('Yes');
+          this.hideCommentForm();
+          this.route.params.subscribe(
+            params => {
+              const selectedArticleId = +params['id'];
+              this.getAllCommentsForArticle(selectedArticleId);
+            });
         }, () => {
-          console.log('No');
+          this.hideCommentForm();
+          this.route.params.subscribe(
+            params => {
+              const selectedArticleId = +params['id'];
+              this.getAllCommentsForArticle(selectedArticleId);
+            });
         });
     } else {
       this.putCommentsSubscription = this.commentsService.putComment(this.userComment).subscribe(
         () => {
           console.log('Yes');
+          this.route.params.subscribe(
+            params => {
+              const selectedArticleId = +params['id'];
+              this.getAllCommentsForArticle(selectedArticleId);
+            });
         }, () => {
           console.log('No');
+          this.route.params.subscribe(
+            params => {
+              const selectedArticleId = +params['id'];
+              this.getAllCommentsForArticle(selectedArticleId);
+            });
         });
     }
   }
@@ -198,5 +231,20 @@ export class ArticleComponent implements OnInit, OnDestroy {
     let deleteTooltip = document.getElementById(comment_ID);
     deleteTooltip.classList.add('delete-confirmation-hidden');
     deleteTooltip.classList.remove('delete-confirmation-visible');
+  }
+
+  banOneUser(userID: number) {
+    this.getOneUserSubscription = this.registrationService.getOneUser(userID).subscribe(
+      user => {
+        this.selectedUser = user;
+        this.banUserSubscription = this.registrationService.banUser(this.selectedUser).subscribe(
+          () => {
+
+          }, () => {
+
+          });
+      }, () => {
+
+      });
   }
 }

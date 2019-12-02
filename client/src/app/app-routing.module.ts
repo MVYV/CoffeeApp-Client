@@ -10,8 +10,10 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import {AuthenticationGuardService} from './services/authentication-guard.service';
+import { AuthenticationGuardService } from './services/authentication-guard.service';
 import { ProfileComponent } from './components/profile/profile.component';
+import { RegistrationGuardService } from './services/registration-guard.service';
+import { LoginGuardService } from './services/login-guard.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,9 +21,9 @@ const appRoutes: Routes = [
   { path: 'products', component: ProductsComponent },
   { path: 'about', component: AboutComponent },
   { path: 'article/:id', component: ArticleComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoginGuardService] },
   { path: 'logout', component: LogoutComponent },
-  { path: 'registration', component: RegistrationComponent },
+  { path: 'registration', component: RegistrationComponent, canActivate: [RegistrationGuardService] },
   { path: 'profile', component: ProfileComponent },
   { path: 'dashboard', component: AdminPageComponent, canActivate: [AuthenticationGuardService] },
   { path: '', redirectTo: '/', pathMatch: 'full' },

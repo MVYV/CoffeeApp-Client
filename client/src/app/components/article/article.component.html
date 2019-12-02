@@ -23,7 +23,8 @@
               </span>
             </div>
             <div class="article-title">{{selectedArticle?.newsTitle}}</div>
-            <div class="article-source"><span class="smallInfoBox">{{ 'SOURCE_AUTHOR' | translate }}:</span><span class="smallDataBox">{{selectedArticle?.newsSource}}</span>
+            <div class="article-source"><span class="smallInfoBox">{{ 'SOURCE_AUTHOR' | translate }}:</span><span
+              class="smallDataBox">{{selectedArticle?.newsSource}}</span>
             </div>
           </div>
         </div>
@@ -38,40 +39,58 @@
         <div class="comment-form comment-form-hidden" id="comment-form">
           <form>
             <label for="commentText">{{ 'YOUR_COMMENT' | translate }}</label>
-            <textarea id="commentText" rows="8" [(ngModel)]="userComment.commentText" #commentText="ngModel" name="commentText" required></textarea>
+            <textarea id="commentText" rows="8" [(ngModel)]="userComment.commentText" #commentText="ngModel"
+                      name="commentText" required></textarea>
             <button class="btn btn-primary" (click)="commentArticle();">{{ 'COMMENT' | translate }}</button>
           </form>
         </div>
       </div>
       <div class="article-comments">
         <div class="comments-header">{{ 'COMMENTS' | translate }}</div>
-        <div *ngFor="let comment of commentsForArticle | paginate: { itemsPerPage: 5, currentPage: p3, id: 'thirdBox' }" class="comment-container">
+        <div *ngFor="let comment of commentsForArticle | paginate: { itemsPerPage: 5, currentPage: p3, id: 'thirdBox' }"
+             class="comment-container">
           <div class="comment-author">{{comment.fullName}}</div>
           <div class="comment-date">{{comment.commentDate | date: 'short'}}</div>
           <div class="comment-text">{{comment.commentText}}</div>
           <div class="comment-tools">
             <div class="delete-confirmation" id="{{comment.id}}">
-              <button class="btn btn-danger btn-sm del-confirmation-btn" (click)="removeComment(comment.id); hideDeleteConfirmation(comment.id);">{{ 'DELETE' | translate }}</button>
-              <button class="btn btn-success btn-sm del-confirmation-btn" (click)="hideDeleteConfirmation(comment.id);">{{ 'CANCEL' | translate }}</button>
+              <button class="btn btn-danger btn-sm del-confirmation-btn"
+                      (click)="removeComment(comment.id); hideDeleteConfirmation(comment.id);">
+                {{ 'DELETE' | translate}}
+              </button>
+              <button class="btn btn-success btn-sm del-confirmation-btn" (click)="hideDeleteConfirmation(comment.id);">
+                {{ 'CANCEL' | translate }}
+              </button>
             </div>
-            <button *ngIf="authenticationService.isLoggedIn()" type="button" class="btn btn-icon btn-success" aria-label="pencil" title="{{ 'EDIT_COMMENT' | translate }}" (click)="editComment(comment);">
+            <button
+              *ngIf="authenticationService.isLoggedIn() && (authenticateUser.id === comment.userId || userRole == 'ADMIN' || userRole == 'MODERATOR')"
+              type="button" class="btn btn-icon btn-success" aria-label="pencil"
+              title="{{ 'EDIT_COMMENT' | translate }}" (click)="editComment(comment);">
               <clr-icon shape="pencil"></clr-icon>
             </button>
-            <button *ngIf="authenticationService.isLoggedIn()" type="button" class="btn btn-icon btn-danger" aria-label="trash" title="{{ 'DELETE_COMMENT' | translate }}" (click)="showDeleteConfirmation(comment.id);">
+            <button
+              *ngIf="authenticationService.isLoggedIn() && (authenticateUser.id === comment.userId || userRole == 'ADMIN' || userRole == 'MODERATOR')"
+              type="button" class="btn btn-icon btn-danger" aria-label="trash"
+              title="{{ 'DELETE_COMMENT' | translate }}" (click)="showDeleteConfirmation(comment.id);">
               <clr-icon shape="trash"></clr-icon>
             </button>
-            <button *ngIf="authenticationService.isLoggedIn() && userRole == 'ADMIN'" type="button" class="btn btn-icon" aria-label="ban" title="{{ 'BAN_USER' | translate }}">
+            <button *ngIf="authenticationService.isLoggedIn() && (userRole == 'ADMIN' || userRole == 'MODERATOR')"
+                    type="button" class="btn btn-icon" aria-label="ban" title="{{ 'BAN_USER' | translate }}"
+                    (click)="banOneUser(comment.userId)">
               <clr-icon shape="ban"></clr-icon>
             </button>
           </div>
         </div>
-        <pagination-controls class="commentsPagination" [directionLinks]="false" [maxSize]="5" [responsive]="false" previousLabel="" nextLabel="" (pageChange)="p3 = $event" id="thirdBox"></pagination-controls>
+        <pagination-controls class="commentsPagination" [directionLinks]="false" [maxSize]="5" [responsive]="false"
+                             previousLabel="" nextLabel="" (pageChange)="p3 = $event"
+                             id="thirdBox"></pagination-controls>
       </div>
     </div>
     <div class="products-on-article-page">
       <div class="products-header">{{ 'OUR_PRODUCTS' | translate }}</div>
       <div class="scrollbarBox">
-        <a *ngFor="let product of products | paginate: { itemsPerPage: 5, currentPage: p1, id: 'firstBox' }" [routerLink]="'/products'" class="product-link">
+        <a *ngFor="let product of products | paginate: { itemsPerPage: 5, currentPage: p1, id: 'firstBox' }"
+           [routerLink]="'/products'" class="product-link">
           <div class="product-img">
             <img *ngIf="product.image" src="{{product.image}}" class="productImage"/>
             <img *ngIf="!product.image" src="assets/images/login-page.jpg" class="productImage"/>
@@ -83,7 +102,8 @@
           </div>
         </a>
       </div>
-      <pagination-controls class="productsPagination" [directionLinks]="false" [maxSize]="5" [responsive]="false" previousLabel="" nextLabel="" (pageChange)="p1 = $event" id="firstBox"></pagination-controls>
+      <pagination-controls class="productsPagination" [directionLinks]="false" [maxSize]="5" [responsive]="false"
+                           previousLabel="" nextLabel="" (pageChange)="p1 = $event" id="firstBox"></pagination-controls>
     </div>
   </div>
 
