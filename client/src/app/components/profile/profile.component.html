@@ -1,6 +1,6 @@
 <div class="scroll-container">
   <!--Success alert-->
-  <clr-alert [clrAlertType]="'success'" [hidden]="!isSuccess">
+  <clr-alert [clrAlertType]="'success'" [(clrAlertClosed)]="!isSuccess">
     <clr-alert-item>
             <span class="alert-text">
                 {{ 'CHANGES_HAVE_BEEN_SAVED' | translate }}
@@ -9,7 +9,7 @@
   </clr-alert>
 
   <!--Error alert-->
-  <clr-alert [clrAlertType]="'danger'" [hidden]="!isError">
+  <clr-alert [clrAlertType]="'danger'" [(clrAlertClosed)]="!isError">
     <clr-alert-item>
             <span class="alert-text">
                 {{ 'CHANGES_ERROR' | translate }}

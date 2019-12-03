@@ -63,9 +63,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.putAuthSubscription = this.registrationService.putUser(this.authenticateUser).subscribe(
       () => {
         this.isSuccess = true;
+        setTimeout(() => {
+          this.isSuccess = false;
+        }, 3000);
         this.loadUserData();
       }, () => {
         this.isError = true;
+        setTimeout(() => {
+          this.isError = false;
+        }, 3000);
         this.loadUserData();
       }
     )

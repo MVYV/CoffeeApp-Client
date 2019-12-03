@@ -5,7 +5,7 @@
       [TITLE]
       <h5 class="hint">{{ 'LOGIN_HELP' | translate }}</h5>
     </section>
-    <div class="login-group login-group-own-styles">
+    <div class="login-group login-group-own-styles" (keyup.enter)="checkLogin();">
       <clr-input-container>
         <input type="text" name="username" class="userName" [(ngModel)]="username" clrInput placeholder="{{ 'USERNAME' | translate }}" autocomplete="off"/>
       </clr-input-container>

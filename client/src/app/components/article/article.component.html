@@ -1,3 +1,21 @@
+<!--Success alert-->
+<clr-alert [clrAlertType]="'success'" [(clrAlertClosed)]="!isSuccess">
+  <clr-alert-item>
+          <span class="alert-text">
+              {{ 'CHANGES_HAVE_BEEN_SAVED' | translate }}
+          </span>
+  </clr-alert-item>
+</clr-alert>
+
+<!--Error alert-->
+<clr-alert [clrAlertType]="'danger'" [(clrAlertClosed)]="!isError">
+  <clr-alert-item>
+          <span class="alert-text">
+              {{ 'CHANGES_ERROR' | translate }}
+          </span>
+  </clr-alert-item>
+</clr-alert>
+
 <div class="scroll-container">
   <div class="article-page-container">
     <div class="article-box" id="articleBox">

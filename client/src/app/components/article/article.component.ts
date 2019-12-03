@@ -34,6 +34,8 @@ export class ArticleComponent implements OnInit, OnDestroy {
   selectedComment: Comment;
   commentsForArticle: Comment[];
   isNewComment: boolean;
+  isSuccess: boolean;
+  isError: boolean;
 
   getArticleSubscription: Subscription;
   getNewsSubscription: Subscription;
@@ -153,7 +155,6 @@ export class ArticleComponent implements OnInit, OnDestroy {
     if(this.isNewComment) {
       this.postCommentsSubscription = this.commentsService.postComment(this.userComment).subscribe(
         () => {
-          console.log('Yes');
           this.hideCommentForm();
           this.route.params.subscribe(
             params => {
@@ -171,14 +172,12 @@ export class ArticleComponent implements OnInit, OnDestroy {
     } else {
       this.putCommentsSubscription = this.commentsService.putComment(this.userComment).subscribe(
         () => {
-          console.log('Yes');
           this.route.params.subscribe(
             params => {
               const selectedArticleId = +params['id'];
               this.getAllCommentsForArticle(selectedArticleId);
             });
         }, () => {
-          console.log('No');
           this.route.params.subscribe(
             params => {
               const selectedArticleId = +params['id'];
@@ -215,9 +214,17 @@ export class ArticleComponent implements OnInit, OnDestroy {
   removeComment(commentID: number) {
     this.deleteCommentSubscription = this.commentsService.deleteComment(commentID).subscribe(
       () => {
-        console.log('YES');
+        this.route.params.subscribe(
+          params => {
+            const selectedArticleId = +params['id'];
+            this.getAllCommentsForArticle(selectedArticleId);
+          });
       }, () => {
-        console.log('NO');
+        this.route.params.subscribe(
+          params => {
+            const selectedArticleId = +params['id'];
+            this.getAllCommentsForArticle(selectedArticleId);
+          });
       });
   }
 
@@ -239,9 +246,15 @@ export class ArticleComponent implements OnInit, OnDestroy {
         this.selectedUser = user;
         this.banUserSubscription = this.registrationService.banUser(this.selectedUser).subscribe(
           () => {
-
+            this.isSuccess = true;
+            setTimeout(() => {
+              this.isSuccess = false;
+            }, 3000);
           }, () => {
-
+            this.isError = true;
+            setTimeout(() => {
+              this.isError = false;
+            }, 3000);
           });
       }, () => {
 

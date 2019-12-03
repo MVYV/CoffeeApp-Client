@@ -166,10 +166,16 @@ export class AdminPageComponent implements OnInit, OnDestroy {
     this.putAboutSubscription = this.aboutService.putContactInfo(this.selectedInfo).subscribe(
       () => {
         this.isSuccess = true;
+        setTimeout(() => {
+          this.isSuccess = false;
+        }, 3000);
         this.aboutArr = [];
         this.getContactInformation();
       }, () => {
         this.isError = true;
+        setTimeout(() => {
+          this.isError = false;
+        }, 3000);
         this.aboutArr = [];
         this.getContactInformation();
       });
@@ -224,9 +230,15 @@ export class AdminPageComponent implements OnInit, OnDestroy {
       this.postUserSubscription = this.registrationService.postUser(this.selectedUser).subscribe(
         () => {
           this.isSuccess = true;
+          setTimeout(() => {
+            this.isSuccess = false;
+          }, 3000);
           this.getAllUsers();
         },() => {
           this.isError = true;
+          setTimeout(() => {
+            this.isError = false;
+          }, 3000);
           this.getAllUsers();
         });
     } else {
@@ -234,10 +246,16 @@ export class AdminPageComponent implements OnInit, OnDestroy {
       this.putUserSubscription = this.registrationService.putUser(this.selectedUser).subscribe(
         () => {
           this.isSuccess = true;
+          setTimeout(() => {
+            this.isSuccess = false;
+          }, 3000);
           this.getAllUsers();
           console.log(this.selectedUser.roles);
         }, () => {
           this.isError = true;
+          setTimeout(() => {
+            this.isError = false;
+          }, 3000);
           this.getAllUsers();
           console.log(this.selectedUser.roles);
         });
@@ -306,18 +324,30 @@ export class AdminPageComponent implements OnInit, OnDestroy {
       this.postNewsSubscription = this.newsService.postArticle(this.selectedArticle).subscribe(
         () => {
           this.isSuccess = true;
+          setTimeout(() => {
+            this.isSuccess = false;
+          }, 3000);
           this.getAllNews();
         },() => {
           this.isError = true;
+          setTimeout(() => {
+            this.isError = false;
+          }, 3000);
           this.getAllNews();
         });
     } else {
       this.putNewsSubscription = this.newsService.putArticle(this.selectedArticle).subscribe(
         () => {
           this.isSuccess = true;
+          setTimeout(() => {
+            this.isSuccess = false;
+          }, 3000);
           this.getAllNews();
         }, () => {
           this.isError = true;
+          setTimeout(() => {
+            this.isError = false;
+          }, 3000);
           this.getAllNews();
         });
     }
@@ -366,18 +396,30 @@ export class AdminPageComponent implements OnInit, OnDestroy {
       this.postProductsSubscription = this.productsService.postProduct(this.selectedProduct).subscribe(
         () => {
           this.isSuccess = true;
+          setTimeout(() => {
+            this.isSuccess = false;
+          }, 3000);
           this.getAllProducts();
         }, () => {
           this.isError = true;
+          setTimeout(() => {
+            this.isError = false;
+          }, 3000);
           this.getAllProducts();
         });
     } else {
       this.putProductsSubscription = this.productsService.putProduct(this.selectedProduct).subscribe(
         () => {
           this.isSuccess = true;
+          setTimeout(() => {
+            this.isSuccess = false;
+          }, 3000);
           this.getAllProducts();
         }, () => {
           this.isError = true;
+          setTimeout(() => {
+            this.isError = false;
+          }, 3000);
           this.getAllProducts();
         });
     }
