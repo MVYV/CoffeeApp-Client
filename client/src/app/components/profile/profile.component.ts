@@ -28,6 +28,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.authenticateUser = new User();
     this.pageTitle.setTitle('Coffee Products - Profile');
     this.checkLoggedInUser();
+    this.checkPassword();
   }
 
   ngOnDestroy() {
@@ -55,11 +56,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   updateProfile() {
-    let dateArr = this.authenticateUser.dateOfBirth.split('/').reverse();
-    let newDateArr = [];
-    newDateArr.push(dateArr[0], dateArr[2], dateArr[1]);
-    let newDateString = newDateArr.join('-');
-    this.authenticateUser.dateOfBirth = new Date(Date.parse(newDateString));
+    // let dateArr = this.authenticateUser.dateOfBirth.split('/').reverse();
+    // let newDateArr = [];
+    // newDateArr.push(dateArr[0], dateArr[2], dateArr[1]);
+    // let newDateString = newDateArr.join('-');
+    // this.authenticateUser.dateOfBirth = new Date(Date.parse(newDateString));
     this.putAuthSubscription = this.registrationService.putUser(this.authenticateUser).subscribe(
       () => {
         this.isSuccess = true;
@@ -77,9 +78,20 @@ export class ProfileComponent implements OnInit, OnDestroy {
     )
   }
 
+  checkPassword() {
+    let passField: any = document.getElementById('user-pass');
+    let passFieldRepeat: any = document.getElementById('user-passRepeat');
+    this.isCorrectPass = passField.value == passFieldRepeat.value;
+  }
+
   checkPass(event) {
     let passField: any = document.getElementById('user-pass');
     this.isCorrectPass = event.target.value == passField.value;
+  }
+
+  checkPassRepeat(event) {
+    let passFieldRepeat: any = document.getElementById('user-passRepeat');
+    this.isCorrectPass = event.target.value == passFieldRepeat.value;
   }
 
 }

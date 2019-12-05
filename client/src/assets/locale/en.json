@@ -110,5 +110,6 @@
   "CODE_HELP": "This code is required to verify that the email is real. We will send you the code by email.",
   "EMAIL_VERIFICATION_CODE": "Email Verification Code",
   "REGISTRATION_1": "Invalid entered data or empty field.",
-  "REGISTRATION_2": "Please, start your first name, last name, country and city with capital letter."
+  "REGISTRATION_2": "Please, start your first name, last name, country and city with capital letter.",
+  "CHANGE": "Change"
 }

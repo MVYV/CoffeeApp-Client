@@ -25,7 +25,8 @@ export class AuthenticationService {
               this.authenticatedUser = user;
               this.userRolesArr = this.authenticatedUser.roles;
               this.userRoleData = this.userRolesArr[0].role;
-              sessionStorage.setItem('userRole', this.userRoleData)
+              sessionStorage.setItem('userRole', this.userRoleData);
+              localStorage.setItem('userRole', this.userRoleData)
             },
             () => {}
           );
@@ -43,15 +44,14 @@ export class AuthenticationService {
 
   detectRole() {
     let role = sessionStorage.getItem('userRole');
-    if (role == 'ADMIN') {
-      return true;
-    } else {
-      return false;
-    }
+    let alternateRole = localStorage.getItem('userRole');
+    return role == 'ADMIN' || alternateRole == 'ADMIN';
   }
 
   logOut() {
-    sessionStorage.removeItem('username')
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('userRole');
+    localStorage.removeItem('userRole');
   }
 
 }

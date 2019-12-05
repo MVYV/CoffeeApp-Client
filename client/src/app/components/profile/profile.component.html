@@ -84,13 +84,12 @@
 
       <!--User date of birth field-->
       <label for="user-date-of-birth" class="clr-control-label clr-col-12 clr-col-md-12">{{ 'DATE_OF_BIRTH' | translate }}</label>
-      <div class="clr-control-container user-data-field clr-col-12 clr-col-md-12"
-           [class.clr-error]="dateOfBirth.invalid && dateOfBirth.touched">
-        <div class="clr-date-container">
-          <input type="date" id="user-date-of-birth" clrDate placeholder="{{ 'DATE_OF_BIRTH' | translate }}" class="clr-input clr-col-12 clr-col-md-10"
-                 [(ngModel)]="authenticateUser.dateOfBirth" #dateOfBirth="ngModel" name="dateOfBirth" minlength="3"
-                 maxlength="20" required />
-          <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="dateOfBirth.valid"></clr-icon>
+      <div class="clr-control-container user-data-field clr-col-12 clr-col-md-12">
+        <div class="clr-date-container" id="user-date-of-birth">
+          <div class="userDateOfBirth">{{authenticateUser.dateOfBirth | date: 'fullDate'}}</div>
+          <!--<input type="date" id="user-date-of-birth" clrDate placeholder="{{ 'CHANGE' | translate }} {{ 'DATE_OF_BIRTH' | translate }}" class="clr-col-12 clr-col-md-10"-->
+                 <!--[(ngModel)]="authenticateUser.dateOfBirth" #dateOfBirth="ngModel" name="dateOfBirth" />-->
+          <!--<clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="dateOfBirth.valid"></clr-icon>-->
         </div>
       </div>
 
@@ -114,7 +113,7 @@
            [class.clr-error]="pass.invalid && pass.touched">
         <div class="clr-input-wrapper">
           <input type="password" id="user-pass" placeholder="{{ 'PASSWORD' | translate }}" class="clr-input clr-col-12 clr-col-md-12"
-                 [(ngModel)]="authenticateUser.password" #pass="ngModel" name="pass" required/>
+                 [(ngModel)]="authenticateUser.password" #pass="ngModel" name="pass" (keyup)="checkPassRepeat($event);" />
           <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="pass.valid"></clr-icon>
         </div>
       </div>
@@ -125,7 +124,7 @@
            [class.clr-error]="passRepeat.invalid && passRepeat.touched">
         <div class="clr-input-wrapper">
           <input type="password" id="user-passRepeat" placeholder="{{ 'PASSWORD_REPEAT' | translate }}" class="clr-input clr-col-12 clr-col-md-12"
-                 [(ngModel)]="repeatPassword" #passRepeat="ngModel" name="passRepeat" (keyup)="checkPass($event);" required/>
+                 [(ngModel)]="repeatPassword" #passRepeat="ngModel" name="passRepeat" (keyup)="checkPass($event);" />
           <clr-icon class="clr-validate-icon" shape="exclamation-circle" [hidden]="passRepeat.valid"></clr-icon>
         </div>
       </div>

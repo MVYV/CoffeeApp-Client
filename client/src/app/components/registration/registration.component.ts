@@ -76,9 +76,6 @@ export class RegistrationComponent implements OnInit, OnDestroy {
 
   checkCode(event) {
     this.isCorrectCode = event.target.value == this.emailCode;
-    console.log(event.target.value);
-    console.log(this.emailCode);
-    console.log(this.isCorrectCode);
   }
 
   checkPass(event) {
