@@ -24,8 +24,8 @@
           </div>
           <div class="productText" [innerHtml]="product.description | safeHTML"></div>
           <div class="productComment">
-            <div class="productsCommentsHeader">{{ 'YOUR_COMMENT' | translate }}</div>
-            <button class="btn btn-primary" (click)="showCommentForm(product.id);">{{ 'OPEN_FORM' | translate }}</button>
+            <div *ngIf="authenticationService.isLoggedIn();" class="productsCommentsHeader">{{ 'YOUR_COMMENT' | translate }}</div>
+            <button *ngIf="authenticationService.isLoggedIn();" class="btn btn-primary" (click)="showCommentForm(product.id);">{{ 'OPEN_FORM' | translate }}</button>
             <div class="comment-form comment-form-hidden" id="comment-form{{product.id}}">
               <form>
                 <label for="commentText">{{ 'YOUR_COMMENT' | translate }}</label>

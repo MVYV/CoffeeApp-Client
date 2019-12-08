@@ -16,7 +16,7 @@ export class AppComponent implements OnInit{
   navLinkTitle: string;
   authenticateUser: User;
   userRoleArr: any;
-  userRole: any;
+  public userRole: any;
   roles: Role[];
 
   constructor( private translate: TranslateService,
@@ -46,6 +46,8 @@ export class AppComponent implements OnInit{
         this.authenticateUser = userData;
         this.userRoleArr = this.authenticateUser.roles;
         this.userRole = this.userRoleArr[0].role;
+        sessionStorage.setItem('userRole', this.userRole);
+        localStorage.setItem('userRole', this.userRole);
       }, () => {
 
       });

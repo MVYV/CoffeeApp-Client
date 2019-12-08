@@ -52,8 +52,8 @@
         <div class="article-text" [innerHtml]="selectedArticle?.newsText | safeHTML"></div>
       </div>
       <div class="article-comment-box">
-        <div class="comments-header">{{ 'YOUR_COMMENT' | translate }}</div>
-        <button class="btn btn-primary" (click)="showCommentForm();">{{ 'OPEN_FORM' | translate }}</button>
+        <div *ngIf="authenticationService.isLoggedIn();" class="comments-header">{{ 'YOUR_COMMENT' | translate }}</div>
+        <button *ngIf="authenticationService.isLoggedIn();" class="btn btn-primary" (click)="showCommentForm();">{{ 'OPEN_FORM' | translate }}</button>
         <div class="comment-form comment-form-hidden" id="comment-form">
           <form>
             <label for="commentText">{{ 'YOUR_COMMENT' | translate }}</label>

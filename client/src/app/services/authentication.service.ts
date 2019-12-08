@@ -20,16 +20,16 @@ export class AuthenticationService {
           let tokenString = 'Bearer ' + userData.token;
           sessionStorage.setItem('token', tokenString);
 
-          this.http.get<User>(`https://march11app.herokuapp.com/email/${username}`).subscribe(
-            user => {
-              this.authenticatedUser = user;
-              this.userRolesArr = this.authenticatedUser.roles;
-              this.userRoleData = this.userRolesArr[0].role;
-              sessionStorage.setItem('userRole', this.userRoleData);
-              localStorage.setItem('userRole', this.userRoleData)
-            },
-            () => {}
-          );
+          // this.http.get<User>(`https://march11app.herokuapp.com/email/${username}`).subscribe(
+          //   user => {
+          //     this.authenticatedUser = user;
+          //     this.userRolesArr = this.authenticatedUser.roles;
+          //     this.userRoleData = this.userRolesArr[0].role;
+          //     sessionStorage.setItem('userRole', this.userRoleData);
+          //     localStorage.setItem('userRole', this.userRoleData)
+          //   },
+          //   () => {}
+          // );
 
           return userData;
         }
