@@ -32,7 +32,7 @@
     "angular-paginator": "^2.0.2",
     "chart.js": "^2.8.0",
     "core-js": "^2.5.4",
-    "handlebars": "^4.5.3",
+    "handlebars": "^4.7.7",
     "ng2-smooth-scroll": "^1.0.1",
     "ngx-color-picker": "^8.1.0",
     "ngx-infinite-scroll": "^7.0.0",
